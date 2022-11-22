@@ -8,5 +8,6 @@ public interface IHMMainCallsIHMGame{
 
     public void newGameWindow(Game gameNewPlayer){}
 
+//    public void playReplay(Replay replay){}
 
 }
