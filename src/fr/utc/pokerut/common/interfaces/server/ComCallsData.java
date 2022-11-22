@@ -1,4 +1,4 @@
-package src.fr.utc.pokerut.common.interfaces;
+package src.fr.utc.pokerut.common.interfaces.server;
 
 import src.fr.utc.pokerut.common.dataclass.*;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public interface ComServerCallDataServer {
+public interface ComCallsData {
 
     public void sendUpdateRound(Round round, List<UUID> Players);
     public void sendUpdateNextRound(Round round, List<UUID> players);
