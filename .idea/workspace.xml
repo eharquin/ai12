@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e4362964-b02b-4652-be45-7162583087f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fr/utc/pokerut/common/interfaces/ComServerCallDataServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/fr/utc/pokerut/common/interfaces/ComServerCallDataServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/ClientProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/ClientProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/fr/utc/pokerut/common/dataclass/Round.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669112445633</updated>
-      <workItem from="1669112449114" duration="5459000" />
+      <workItem from="1669112449114" duration="6583000" />
     </task>
     <servers />
   </component>

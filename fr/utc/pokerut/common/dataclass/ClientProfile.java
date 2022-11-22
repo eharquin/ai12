@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class ClientProfile extends Player{
     private String password;
-    private String nom;
+    private String name;
     private String surname;
     private Date birthdate;
     private int gains;
@@ -22,12 +22,12 @@ public class ClientProfile extends Player{
         this.password = password;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSurname() {
