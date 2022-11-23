@@ -62,4 +62,9 @@ public class ComCallDataServerImpl implements ComServerCallDataServer {
     public void sendNewRound(Round round, Round newRound, List<UUID> players) {
 
     }
+
+    @Override
+    public void initGameServer(Game newGame) {
+        
+    }
 }
