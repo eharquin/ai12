@@ -10,7 +10,7 @@ public class Game implements Serializable {
     private int nbMaxPlayers;
     private int nbPoints;
     private int nbRounds;
-    private boolean chat;
+    private boolean chatStatus;
     private ArrayList<Player> players;
     private Player creator;
     private ArrayList<Result> results;
@@ -18,6 +18,16 @@ public class Game implements Serializable {
     private ArrayList<Round> rounds;
 
     private Round currentRound;
+    private Chat chat;
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
+    }
+
 
     public UUID getId() {
         return id;
@@ -59,12 +69,12 @@ public class Game implements Serializable {
         this.nbRounds = nbRounds;
     }
 
-    public boolean isChat() {
-        return chat;
+    public boolean isChatStatus() {
+        return chatStatus;
     }
 
-    public void setChat(boolean chat) {
-        this.chat = chat;
+    public void setChatStatus(boolean chatStatus) {
+        this.chatStatus = chatStatus;
     }
 
     public ArrayList<Player> getPlayers() {
