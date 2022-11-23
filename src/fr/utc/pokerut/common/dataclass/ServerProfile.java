@@ -8,6 +8,13 @@ public class ServerProfile extends Player{
     private int gains;
     private int nbGamesPlayed;
 
+    public ServerProfile(ClientProfile clientProfile) {
+        super(clientProfile);
+        this.birthdate = clientProfile.getBirthdate();
+        this.gains = clientProfile.getGains();
+        this.nbGamesPlayed = clientProfile.getNbGamesPlayed();
+    }
+
     public Date getBirthdate() {
         return birthdate;
     }

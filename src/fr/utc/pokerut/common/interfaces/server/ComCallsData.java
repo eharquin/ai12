@@ -19,4 +19,5 @@ public interface ComCallsData {
     public void modify(ServerProfile profile);
     public void sendUpdateRoundAndEndResult(Round round, ArrayList<Result> results, List<UUID> players);
     public void sendNewRound(Round round, Round newRound, List<UUID> players);
+    public void initGameServer(Game newGame);
 }
