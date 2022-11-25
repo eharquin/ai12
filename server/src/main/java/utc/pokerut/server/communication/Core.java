@@ -1,4 +1,4 @@
-package src.fr.utc.pokerut.server.com;
+package utc.pokerut.server.com;
 
 public class Core {
 }
