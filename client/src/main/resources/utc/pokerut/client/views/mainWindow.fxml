@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="utc.pokerut.client.ihmmain.controllers.MainController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #026502;">
+            <children>
+                <ImageView pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                    <image>
+                        <Image url="@../img/cardsIcon.png" />
+                    </image>
+                </ImageView>
+                <ImageView pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+                    <image>
+                        <Image url="@../img/mainTitle.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox fx:id="showSideBar" alignment="BASELINE_CENTER" spacing="20.0" style="-fx-background-color: #026502; -fx-padding: 15;">
+            <Button fx:id="profileButton" text="Mon profil" onAction="#profileButtonClicked" />
+            <Button fx:id="viewGameButton" text="Voir une partie" onAction="#viewGameButtonClicked"/>
+            <Button fx:id="logoutButton" text="Se déconnecter" onAction="#logoutButtonClicked" />
+            <Label text="Joueurs connectés" style="-fx-font-weight:bold; -fx-font-size:20;" textFill="white"/>
+            <ScrollPane>
+                <ListView fx:id="list"/>
+            </ScrollPane>
+        </VBox>
+    </left>
+    <center>
+        <StackPane alignment="CENTER">
+            <fx:include fx:id="login" source="login.fxml" visible="${controller.loginView}"/>
+            <fx:include fx:id="create_profile" source="page1.fxml" visible="${controller.createProfileView}"/>
+        </StackPane>
+    </center>
+</BorderPane>
