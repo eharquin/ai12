@@ -1,6 +1,11 @@
-package utc.pokerut.common.interfaces.server;
+package common.src.main.java.utc.pokerut.common.interfaces.server;
 
-import utc.pokerut.common.dataclass.*;
+import utc.pokerut.common.dataclass.Round;
+import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.Action;
+import utc.pokerut.common.dataclass.Game;
+import utc.pokerut.common.dataclass.Result;
+import utc.pokerut.common.dataclass.ServerProfile;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package utc.pokerut.common.interfaces.client;
+package common.src.main.java.utc.pokerut.common.interfaces.client;
 
 import utc.pokerut.common.dataclass.ChatMessage;
 
