@@ -20,4 +20,7 @@ public interface ComCallsData {
     public void sendUpdateRoundAndEndResult(Round round, ArrayList<Result> results, List<UUID> players);
     public void sendNewRound(Round round, Round newRound, List<UUID> players);
     public void initGameServer(Game newGame);
+    public void saveUser(ServerProfile newUser);
+    public ArrayList<Game> getWaitingGames();
+    public ArrayList<ServerProfile> getConnectedPlayers();
 }
