@@ -69,4 +69,19 @@ public class ComCallDataServerImpl implements ComCallsData {
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
     }
+
+    @Override
+    public void saveUser(ServerProfile newUser) {
+        dataServerCore.getConnectedPlayers().add(newUser);
+    }
+
+    @Override
+    public ArrayList<Game> getWaitingGames() {
+        return dataServerCore.getWaitingGames();
+    }
+
+    @Override
+    public ArrayList<ServerProfile> getConnectedPlayers() {
+        return dataServerCore.getConnectedPlayers();
+    }
 }
