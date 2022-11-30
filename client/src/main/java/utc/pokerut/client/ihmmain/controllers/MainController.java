@@ -13,10 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import utc.pokerut.client.ihmmain.Core;
 import utc.pokerut.client.ihmmain.ViewNames;
+import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Player;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController extends Controller implements Initializable {
@@ -70,6 +72,12 @@ public class MainController extends Controller implements Initializable {
     public void setGameListView(boolean gameListView) {
         this.gameListView.set(gameListView);
     }
+
+    public PlayerListListener getPlayerListListener() {
+        return playerListListener;
+    }
+
+    private PlayerListListener playerListListener;
     public void closeViews()
     {
         setLoginView(false);
@@ -126,6 +134,13 @@ public class MainController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         list.getItems().setAll("User 1", "User 2", "User 3", "User 4");
+        playerListListener = new PlayerListListener(this);
+    }
 
+    public void setPlayerList(List<Player> playerList) {
+        list.getItems().clear();
+        for(Player player : playerList){
+            list.getItems().add(player.getPseudo());
+        }
     }
 }
