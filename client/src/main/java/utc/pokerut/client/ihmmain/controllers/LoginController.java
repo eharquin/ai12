@@ -3,12 +3,16 @@ package utc.pokerut.client.ihmmain.controllers;
 import javafx.beans.property.*;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import utc.pokerut.client.ihmmain.ViewNames;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController extends Controller {
+
 
     @FXML
     private TextField username;
@@ -28,6 +32,7 @@ public class LoginController {
     @FXML
     private Label errorMessage;
 
+
     private final StringProperty loginListener = new SimpleStringProperty();
 
     public StringProperty loginListenerProperty() {
@@ -35,21 +40,15 @@ public class LoginController {
     }
 
     public void loginUser(Event event) {
-        try {
-           // login(username,passwordField)
-            // this.showMainMenu();
-            System.out.println("called");
-            loginListenerProperty().set("login");
-        } catch(Exception err) {
-            //   errorMessage.setVisible(true);
-        }
+
+        errorMessage.setVisible(true);
     }
 
     public void navigateToCreateProfile() {
-        loginListenerProperty().set("create");
-    }
 
+        core.getMainController().Navigate(ViewNames.CREATE_PROFILE_VIEW);
+    }
     public void navigateToImportProfile() {
-        loginListenerProperty().set("import");
+        core.getMainController().Navigate(ViewNames.LOGOUT_VIEW);
     }
 }
