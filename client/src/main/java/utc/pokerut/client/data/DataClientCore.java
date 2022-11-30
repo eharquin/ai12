@@ -1,32 +1,14 @@
-package utc.pokerut.client.data;
-
+package client.src.main.java.utc.pokerut.client.data;
 
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class Core {
-    private ComCallsDataClientImpl iComCallsDataClientImpl;
-
-    public DataCallsCom getiDataCallsCom() {
-        return iDataCallsCom;
-    }
-
-    public ComCallsDataClientImpl getiComCallsDataClientImpl() {
-        return iComCallsDataClientImpl;
-    }
-
-    public void setiDataCallsCom(DataCallsCom iDataCallsCom) {
-        this.iDataCallsCom = iDataCallsCom;
-    }
-
-    private DataCallsCom iDataCallsCom;
+public class DataClientCore {
     private ClientProfile profile;
 
     private Game currentGame;
@@ -35,15 +17,7 @@ public class Core {
 
     private ArrayList<Game> waitingGame;
 
-    public PropertyChangeSupport getPcsGame() {
-        return pcsGame;
-    }
-
     private final PropertyChangeSupport pcsGame = new PropertyChangeSupport(waitingGame);
-
-    public PropertyChangeSupport getPcsPlayer() {
-        return pcsPlayer;
-    }
 
     private final PropertyChangeSupport pcsPlayer = new PropertyChangeSupport(connectedPlayers);
 
@@ -83,15 +57,13 @@ public class Core {
     }
 
     public void setConnectedPlayers(ArrayList<Player> connectedPlayers) {
-        ArrayList<Player> oldConnectedPlayers = this.connectedPlayers;
         this.connectedPlayers = connectedPlayers;
-        this.pcsPlayer.firePropertyChange("init_connectedPlayers", oldConnectedPlayers, this.connectedPlayers);
+        this.pcsPlayer.firePropertyChange("init_connectedPlayers", null, this.connectedPlayers);
     }
 
     public void setWaitingGame(ArrayList<Game> waitingGame) {
-        ArrayList<Game> oldWaitingGame = this.waitingGame;
         this.waitingGame = waitingGame;
-        this.pcsGame.firePropertyChange("init_waitingGame", oldWaitingGame, this.waitingGame);
+        this.pcsGame.firePropertyChange("init_waitingGame", null, this.waitingGame);
     }
 
     public void addWaitingGame(Game newGame){
