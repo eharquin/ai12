@@ -8,6 +8,7 @@ import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -112,4 +113,35 @@ public class Core {
         this.connectedPlayers.remove(player);
         this.pcsPlayer.firePropertyChange("remove_connectedPlayer", this.connectedPlayers, player);
     }
+    public void saveProfile(ClientProfile profile) throws Exception {
+
+        String file_path = "profiles/" + profile.getId().toString() + ".ser";
+        ObjectOutputStream oos = null;
+
+        try {
+            // on ouvre le fichier
+            FileOutputStream file = new FileOutputStream(file_path);
+            // on cree une instance d'un ObjectStream en utilisant le fichier ouvert
+            oos = new ObjectOutputStream(file);
+            // on sauvegarde le profile dans le fichier
+            oos.writeObject(profile);
+            // on push les binaires par le pipeline
+            oos.flush();
+        } catch (IOException e_write) {
+            // erreur rencontre pendant l'ouverture et/ou sauvegarde
+            throw new Exception(e_write);
+        } finally {
+            try {
+                // fermeture du pipeline
+                if (oos != null) {
+                    oos.flush();
+                    oos.close();
+                }
+            } catch (IOException e_close) {
+                // erreur rencontre pendant la fermeture du pipeline
+                throw new Exception(e_close);
+            }
+        }
+    }
+
 }
