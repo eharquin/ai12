@@ -55,7 +55,7 @@
         </Pane>
         <Pane GridPane.columnIndex="1" GridPane.rowIndex="2">
             <fx:include fx:id="login" source="login.fxml" visible="false"/>
-            <fx:include fx:id="tablesView" source="tablesView.fxml" visible="true"/>
+            <fx:include fx:id="tablesView" source="gameListView.fxml" visible="true"/>
         </Pane>
     </children>
 </GridPane>

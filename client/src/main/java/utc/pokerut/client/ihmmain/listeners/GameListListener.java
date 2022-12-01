@@ -36,7 +36,7 @@ public class GameListListener implements PropertyChangeListener {
 
     public GameListListener(MainController controller)
     {
-        mainController = controller;
+        mainController = controller; //controller tablesView fonction setGameList
     }
 
 }
