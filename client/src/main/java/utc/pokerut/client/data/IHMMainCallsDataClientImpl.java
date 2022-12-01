@@ -93,15 +93,15 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
 
     @Override
-    public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port){
+    public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port) throws Exception {
         UUID userUUID = UUID.randomUUID();
         ClientProfile myUser = new ClientProfile(userUUID, pseudo, avatar, password, name, surname, birthdate, ip, port);
         //truc crado qu'on fait pour aller plus vite à enlever pour la V2
-        myDataCore.setProfile(myUser);
+        //myDataCore.setProfile(myUser);
 
 
         //appel de la méthode saveProfil
-        //saveProfile(myUser);
+        myDataCore.saveProfile(myUser);
 
 
     }
