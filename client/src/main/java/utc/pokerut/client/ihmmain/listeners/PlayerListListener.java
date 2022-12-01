@@ -1,6 +1,7 @@
 package utc.pokerut.client.ihmmain.listeners;
 
 import utc.pokerut.client.ihmmain.controllers.MainController;
+import utc.pokerut.client.ihmmain.controllers.PlayerListController;
 import utc.pokerut.common.dataclass.Player;
 
 import java.beans.PropertyChangeEvent;
@@ -8,7 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 public class PlayerListListener implements PropertyChangeListener {
-    private MainController mainController;
+    private PlayerListController playerListController;
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt != null)
@@ -20,20 +21,20 @@ public class PlayerListListener implements PropertyChangeListener {
             switch (actions[0])
             {
                 case "init":
-                    mainController.setPlayerList(playerList);
+                    playerListController.setPlayerList(playerList);
                     break;
                 case "add":
-                    mainController.setPlayerList(playerList);
+                    playerListController.setPlayerList(playerList);
                     break;
                 case "remove":
-                    mainController.setPlayerList(playerList);
+                    playerListController.setPlayerList(playerList);
                     break;
             }
         }
     }
-    public PlayerListListener(MainController controller)
+    public PlayerListListener(PlayerListController controller)
     {
-        mainController = controller;
+        playerListController = controller;
     }
 }
 

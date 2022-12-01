@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainController extends Controller implements Initializable {
+public class MainController extends Controller {
 
     private final BooleanProperty loginView = new SimpleBooleanProperty();
 
@@ -73,11 +73,7 @@ public class MainController extends Controller implements Initializable {
         this.gameListView.set(gameListView);
     }
 
-    public PlayerListListener getPlayerListListener() {
-        return playerListListener;
-    }
 
-    private PlayerListListener playerListListener;
     public void closeViews()
     {
         setLoginView(false);
@@ -91,17 +87,7 @@ public class MainController extends Controller implements Initializable {
 
 
 
-    @FXML
-    private Button profileButton;
 
-    @FXML
-    private Button viewGameButton;
-
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private ListView list;
-    private ObservableList<String> observableList = FXCollections.observableArrayList();
 
     public void Navigate(ViewNames view)
     {
@@ -118,29 +104,6 @@ public class MainController extends Controller implements Initializable {
             }
         }
     }
-    @FXML
-    protected void profileButtonClicked() {
-        Navigate(ViewNames.CREATE_PROFILE_VIEW);
-    }
-    @FXML
-    protected void viewGameButtonClicked() {
-        Navigate(ViewNames.LOGIN_VIEW);
-    }
-    @FXML
-    protected void logoutButtonClicked() {
 
-    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        list.getItems().setAll("User 1", "User 2", "User 3", "User 4");
-        playerListListener = new PlayerListListener(this);
-    }
-
-    public void setPlayerList(List<Player> playerList) {
-        list.getItems().clear();
-        for(Player player : playerList){
-            list.getItems().add(player.getPseudo());
-        }
-    }
 }
