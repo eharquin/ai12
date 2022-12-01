@@ -30,13 +30,13 @@ public class TablesViewController {
     private TableColumn<Game, String> name;
 
     @FXML
-    private TableColumn<Player, String> creator;
+    private TableColumn<Game, String> pseudo;
 
     public void initialize() {
         name.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
-        creator.setCellValueFactory( Player -> {
+        pseudo.setCellValueFactory(Game -> {
             SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Player.getPseudo());
+            property.setValue(Game.getValue().getCreator().getPseudo());
             return property;
         });
 
