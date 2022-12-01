@@ -14,6 +14,7 @@ public class ClientProfile extends Player{
     private String port;
     private ArrayList<Game> savedGames;
 
+    public ClientProfile() {}
     public ClientProfile(ClientProfile clientProfile) {
         super(clientProfile);
     }

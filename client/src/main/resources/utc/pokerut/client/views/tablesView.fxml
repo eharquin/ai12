@@ -32,7 +32,13 @@
             <content>
                 <TableView fx:id="myTableView" prefHeight="-1.0" prefWidth="-1.0">
                     <columns>
-                        <TableColumn fx:id="name" prefWidth="100.0" text="Id" />
+                        <TableColumn fx:id="name" prefWidth="100.0" text="Nom" />
+                        <TableColumn fx:id="creator" prefWidth="100.0" text="Créateur" />
+                        <TableColumn fx:id="nbRounds" prefWidth="100.0" text="Nb tours" />
+                        <TableColumn fx:id="tokens" prefWidth="100.0" text="Jetons" />
+                        <TableColumn fx:id="players" prefWidth="100.0" text="Participants" />
+                        <TableColumn fx:id="status" prefWidth="100.0" text="Statut" />
+
                     </columns>
                 </TableView>
             </content>
