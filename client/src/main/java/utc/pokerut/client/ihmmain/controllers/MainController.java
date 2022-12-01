@@ -14,18 +14,7 @@ public class MainController {
     @FXML
     private Parent createProfile;
 
-    @FXML
-    private LoginController loginController;
-
     public void initialize(){
-        loginController.loginListenerProperty().addListener((obs, wasRequested, isNowRequested) -> {
-            if (isNowRequested == "login") {
-                login.setVisible(false);
-            } else if(isNowRequested == "create") {
-                login.setVisible(false);
-            } else {
-                login.setVisible(false);
-            }
-        });
+
     }
 }
