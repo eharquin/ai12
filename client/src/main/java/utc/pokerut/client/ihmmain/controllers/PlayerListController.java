@@ -46,7 +46,6 @@ public class PlayerListController extends Controller implements Initializable {
     }
     @FXML
     protected void profileButtonClicked() {
-        core.getMainController().Navigate(ViewNames.CREATE_PROFILE_VIEW);
     }
     @FXML
     protected void viewGameButtonClicked() {

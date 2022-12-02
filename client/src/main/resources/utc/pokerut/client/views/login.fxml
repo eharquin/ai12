@@ -21,7 +21,7 @@
 
    </left>
    <center>
-      <VBox  style="-fx-background-color: #E3E3E3;" BorderPane.alignment="CENTER">
+      <VBox  style="-fx-background-color: #E3E3E3;"  alignment="CENTER">
          <children>
              <VBox alignment="CENTER" spacing="10">
                  <children>
@@ -30,14 +30,14 @@
                              <Font size="36.0" />
                          </font>
                      </Label>
-                     <Label fx:id="errorMessage"  text="Erreur de connexion" textAlignment="CENTER" textFill="RED" visible="true">
+                     <Label fx:id="errorMessage"  text="Erreur de connexion" textAlignment="CENTER" textFill="RED" visible="false">
                          <font>
                              <Font size="14.0" />
                          </font>
                      </Label>
                  </children>
              </VBox>
-            <GridPane>
+            <GridPane alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="198.4000244140625" />
                 <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="201.5999755859375" minWidth="10.0" prefWidth="201.5999755859375" />
@@ -53,7 +53,7 @@
                   <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane>
+            <GridPane alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="75.0" />
                 <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="122.0" />

@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 //import utc.pokerut.common.dataclass.Game;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
@@ -17,7 +18,7 @@ import static utc.pokerut.common.dataclass.StatusEnum.ON_GOING;
 import static utc.pokerut.common.dataclass.StatusEnum.WAITING_FOR_PLAYER;
 
 
-public class gameListViewController {
+public class GameListController extends Controller {
     @FXML
     private TableView<Game> myTableView;
 
@@ -40,7 +41,7 @@ public class gameListViewController {
     private TableColumn<Game, String> status;
 
     public void initialize() {
-        displayGameTables();
+        setGameList(getItemsToAdd());
 
     }
 
@@ -90,7 +91,7 @@ public class gameListViewController {
     }
 
     //faire fonction
-    public void displayGameTables(){
+    public void setGameList(List<Game> gameList){
         // faire différents cas en fonction de si on est dans l'ini ou dans l'actualisation
 
         name.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
@@ -126,11 +127,12 @@ public class gameListViewController {
         });
 
 
-        myTableView.getItems().setAll(getItemsToAdd());
+        myTableView.getItems().setAll(gameList);
     }
 
     public void createGame(){
         //navigate to the screen of game creation
+        core.getMainController().Navigate(ViewNames.CREATE_GAME_VIEW);
     }
 
     public void joinGame(){

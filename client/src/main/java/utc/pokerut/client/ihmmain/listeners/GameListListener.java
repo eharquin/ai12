@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmmain.listeners;
 
+import utc.pokerut.client.ihmmain.controllers.GameListController;
 import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.common.dataclass.Game;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 
 public class GameListListener implements PropertyChangeListener {
-    private MainController mainController;
+    private GameListController gameListController;
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
          //quelle action faire (ini, ajout, remove?)
@@ -22,21 +23,21 @@ public class GameListListener implements PropertyChangeListener {
             switch (actions[0])
             {
                 case "init":
-                    mainController.setGameList(gameList);
+                    gameListController.setGameList(gameList);
                     break;
                 case "add":
-                    mainController.setGameList(gameList);
+                    gameListController.setGameList(gameList);
                     break;
                 case "remove":
-                    mainController.setGameList(gameList);
+                    gameListController.setGameList(gameList);
                     break;
             }
         }
     }
 
-    public GameListListener(MainController controller)
+    public GameListListener(GameListController controller)
     {
-        mainController = controller; //controller tablesView fonction setGameList
+        gameListController = controller; //controller tablesView fonction setGameList
     }
 
 }

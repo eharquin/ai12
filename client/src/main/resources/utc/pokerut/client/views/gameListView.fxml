@@ -25,7 +25,7 @@
   </content>
 </TitledPane> -->
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.gameListViewController">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.GameListController">
    <center>
       <VBox prefHeight="400.0" prefWidth="550.0" BorderPane.alignment="CENTER">
          <children>
@@ -68,4 +68,7 @@
          </children>
       </VBox>
    </center>
+    <left>
+        <fx:include source="leftPanel.fxml" />
+    </left>
 </BorderPane>

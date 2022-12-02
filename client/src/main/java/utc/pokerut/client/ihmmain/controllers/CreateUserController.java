@@ -6,18 +6,20 @@ import java.nio.file.Files;
 import java.util.Base64;
 import java.util.Date;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.common.dataclass.ClientProfile;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class CreateUserController {
+public class CreateUserController extends Controller {
 
     @FXML private TextField name;
     @FXML private TextField surname;
@@ -61,7 +63,7 @@ public class CreateUserController {
 
     @FXML
     protected void CreatedProfile(){
-        if ((name.getText() != "") & (surname.getText() != "") & (pseudo.getText() != "") & (birthdate != null) & (password.getText().length() > 6) & (avatar != null) & (passwordVerification.getText().length() > 6))
+        if ((!name.getText().trim().isEmpty()) && (!surname.getText().trim().isEmpty()) && (!pseudo.getText().trim().isEmpty()) && (birthdate != null) && (password.getText().length() > 6) && (avatar != null) && (passwordVerification.getText().length() > 6))
         {
             if(password.getText() == passwordVerification.getText())
             {
@@ -79,6 +81,7 @@ public class CreateUserController {
                 profile.setAvatar(null);
             //sendUserData(profile);
             //Todo : besoin constructeur par defaut pour la classe ClientProfile*/
+                core.getMainController().Navigate(ViewNames.LOGIN_VIEW);
             }
             else
             {
@@ -91,4 +94,7 @@ public class CreateUserController {
         }
     }
 
+    public void goBack(ActionEvent actionEvent) {
+        core.getMainController().Navigate(ViewNames.LOGIN_VIEW);
+    }
 }

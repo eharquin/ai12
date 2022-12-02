@@ -8,13 +8,12 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import utc.pokerut.client.ihmmain.ViewNames;
+
 import java.util.regex.*;
 
-public class CreateGameController {
+public class CreateGameController extends Controller {
     private String format = "^[1-9][0-9]*";
     //private String format = "^[1-9][0-9]*";
 
@@ -65,6 +64,6 @@ public class CreateGameController {
 
     @FXML
     void handleCancelButtonAction(ActionEvent event){
-
+        core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
     }
 }

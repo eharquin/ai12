@@ -80,11 +80,25 @@ public class MainController extends Controller {
         setCreateProfileView(false);
         setGameListView(false);
         setCreateGameView(false);
+        setIhmGameView(false);
     }
     private final BooleanProperty createProfileView = new SimpleBooleanProperty();
     private final BooleanProperty createGameView = new SimpleBooleanProperty();
     private final BooleanProperty gameListView = new SimpleBooleanProperty();
 
+    public boolean isIhmGameView() {
+        return ihmGameView.get();
+    }
+
+    public BooleanProperty ihmGameViewProperty() {
+        return ihmGameView;
+    }
+
+    public void setIhmGameView(boolean ihmGameView) {
+        this.ihmGameView.set(ihmGameView);
+    }
+
+    private final BooleanProperty ihmGameView = new SimpleBooleanProperty();
 
 
 
@@ -100,6 +114,18 @@ public class MainController extends Controller {
             }
             case CREATE_PROFILE_VIEW: {
                 setCreateProfileView(true);
+                break;
+            }
+            case GAME_LIST_VIEW:{
+                setGameListView(true);
+                break;
+            }
+            case IHM_GAME_VIEW:{
+                setIhmGameView(true);
+                break;
+            }
+            case CREATE_GAME_VIEW:{
+                setCreateGameView(true);
                 break;
             }
         }
