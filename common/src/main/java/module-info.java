@@ -1,4 +1,5 @@
 module utc.pokerut.common {
+    requires java.desktop;
 
     exports utc.pokerut.common;
     exports utc.pokerut.common.dataclass;
