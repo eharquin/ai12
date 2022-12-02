@@ -8,6 +8,8 @@ public class Player implements Serializable {
     private String pseudo;
     private String avatar;
 
+    public Player() {}
+
     public Player(ClientProfile clientProfile){
        this.id = clientProfile.getId();
        this.pseudo = clientProfile.getPseudo();
