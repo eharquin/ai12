@@ -46,7 +46,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>utc.pokerut.client/utc.pokerut.client.HelloApplication</mainClass>
+                            <mainClass>utc.pokerut.client/utc.pokerut.client.MainApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
