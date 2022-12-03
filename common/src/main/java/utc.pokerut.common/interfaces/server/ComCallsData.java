@@ -1,4 +1,4 @@
-package common.src.main.java.utc.pokerut.common.interfaces.server;
+package utc.pokerut.common.interfaces.server;
 
 import utc.pokerut.common.dataclass.Round;
 import utc.pokerut.common.dataclass.Player;
