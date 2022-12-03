@@ -42,4 +42,10 @@ public class ComCallsDataClientImpl implements ComCallsData {
         myDataCore.setConnectedPlayers((ArrayList<Player>) players);
         myDataCore.setWaitingGame((ArrayList<Game>) games);
     }
+
+    @Override
+    public void updateGameList(Game game) {
+        myDataCore.addWaitingGame(game);
+        myDataCore.getiDataCallsIHMMain().displayGame(game);
+    }
 }

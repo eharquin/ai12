@@ -10,6 +10,10 @@ import java.util.UUID;
 public class ComCallDataServerImpl implements ComCallsData {
     private Core dataServerCore;
 
+    public ComCallDataServerImpl(Core dataServerCore) {
+        this.dataServerCore = dataServerCore;
+    }
+
     @Override
     public void sendUpdateRound(Round round, List<UUID> Players) {
 
@@ -66,11 +70,6 @@ public class ComCallDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void initGameServer(Game newGame) {
-        dataServerCore.getWaitingGames().add(newGame);
-    }
-
-    @Override
     public void saveUser(ServerProfile newUser) {
         dataServerCore.getConnectedPlayers().add(newUser);
     }
@@ -83,5 +82,10 @@ public class ComCallDataServerImpl implements ComCallsData {
     @Override
     public ArrayList<ServerProfile> getConnectedPlayers() {
         return dataServerCore.getConnectedPlayers();
+    }
+
+    @Override
+    public void initGameServer(Game newGame) {
+        dataServerCore.getWaitingGames().add(newGame);
     }
 }

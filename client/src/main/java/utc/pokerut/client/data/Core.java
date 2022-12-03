@@ -4,6 +4,7 @@ package utc.pokerut.client.data;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
@@ -13,11 +14,19 @@ import java.util.Collection;
 
 public class Core {
     private ComCallsDataClientImpl iComCallsDataClientImpl;
+    private DataCallsIHMMain iDataCallsIHMMain;
+    private DataCallsCom iDataCallsCom;
+    private ClientProfile profile;
+    private Game currentGame;
+    private ArrayList<Player> connectedPlayers;
+    private ArrayList<Game> waitingGame;
+    private final PropertyChangeSupport pcsGame = new PropertyChangeSupport(waitingGame);
+    private final PropertyChangeSupport pcsPlayer = new PropertyChangeSupport(connectedPlayers);
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
     }
-
+    
     public ComCallsDataClientImpl getiComCallsDataClientImpl() {
         return iComCallsDataClientImpl;
     }
@@ -26,26 +35,13 @@ public class Core {
         this.iDataCallsCom = iDataCallsCom;
     }
 
-    private DataCallsCom iDataCallsCom;
-    private ClientProfile profile;
-
-    private Game currentGame;
-
-    private ArrayList<Player> connectedPlayers;
-
-    private ArrayList<Game> waitingGame;
-
     public PropertyChangeSupport getPcsGame() {
         return pcsGame;
     }
 
-    private final PropertyChangeSupport pcsGame = new PropertyChangeSupport(waitingGame);
-
     public PropertyChangeSupport getPcsPlayer() {
         return pcsPlayer;
     }
-
-    private final PropertyChangeSupport pcsPlayer = new PropertyChangeSupport(connectedPlayers);
 
     public void addPropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.addPropertyChangeListener(listener);
@@ -111,5 +107,13 @@ public class Core {
     public void removePlayer(Player player){
         this.connectedPlayers.remove(player);
         this.pcsPlayer.firePropertyChange("remove_connectedPlayer", this.connectedPlayers, player);
+    }
+
+    public DataCallsIHMMain getiDataCallsIHMMain() {
+        return this.iDataCallsIHMMain;
+    }
+
+    public void setiDataCallsIHMMain(DataCallsIHMMain iDataCallsIHMMain) {
+        this.iDataCallsIHMMain = iDataCallsIHMMain;
     }
 }
