@@ -13,7 +13,6 @@ public class Game implements Serializable {
     private int nbPoints;
     private int minimalBet;
     private int nbRounds;
-    private int minimalBet;
     private boolean chatStatus;
     private ArrayList<Player> players;
     private Player creator;
@@ -106,15 +105,6 @@ public class Game implements Serializable {
     public void setNbRounds(int nbRounds) {
         this.nbRounds = nbRounds;
     }
-
-    public int getMinimalBet() {
-        return minimalBet;
-    }
-
-    public void setMinimalBet(int minimalBet) {
-        this.minimalBet = minimalBet;
-    }
-
 
     public boolean isChatStatus() {
         return chatStatus;

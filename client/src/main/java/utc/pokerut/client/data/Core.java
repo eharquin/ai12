@@ -4,15 +4,32 @@ package utc.pokerut.client.data;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
+import utc.pokerut.common.interfaces.client.IHMMainCallsData;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class Core {
     private ComCallsDataClientImpl iComCallsDataClientImpl;
+
+    public IHMMainCallsData getIhmMainCallsData() {
+        return ihmMainCallsData;
+    }
+
+    public void setIhmMainCallsData(IHMMainCallsData ihmMainCallsData) {
+        this.ihmMainCallsData = ihmMainCallsData;
+    }
+
+    private IHMMainCallsData ihmMainCallsData;
+
+    private DataCallsIHMMain iDataCallsIHMMain;
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
@@ -39,13 +56,13 @@ public class Core {
         return pcsGame;
     }
 
-    private final PropertyChangeSupport pcsGame = new PropertyChangeSupport(waitingGame);
+    private PropertyChangeSupport pcsGame;
 
     public PropertyChangeSupport getPcsPlayer() {
         return pcsPlayer;
     }
 
-    private final PropertyChangeSupport pcsPlayer = new PropertyChangeSupport(connectedPlayers);
+    private PropertyChangeSupport pcsPlayer;
 
     public void addPropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.addPropertyChangeListener(listener);
@@ -82,6 +99,14 @@ public class Core {
         return waitingGame;
     }
 
+    public Core()
+    {
+        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
+        waitingGame = new ArrayList<Game>();
+        connectedPlayers = new ArrayList<Player>();
+        pcsGame = new PropertyChangeSupport(waitingGame);
+        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
+    }
     public void setConnectedPlayers(ArrayList<Player> connectedPlayers) {
         ArrayList<Player> oldConnectedPlayers = this.connectedPlayers;
         this.connectedPlayers = connectedPlayers;
@@ -114,7 +139,7 @@ public class Core {
     }
     public void saveProfile(ClientProfile profile) throws Exception {
 
-        String file_path = "profiles/" + profile.getId().toString() + ".ser";
+        String file_path =  profile.getId().toString() + ".ser";
         ObjectOutputStream oos = null;
 
         try {

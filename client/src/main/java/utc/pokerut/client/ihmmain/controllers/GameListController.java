@@ -47,7 +47,7 @@ public class GameListController extends Controller {
 
     private List<Game> getItemsToAdd(){
         List<Game> list = new ArrayList<>();
-        ArrayList<Player> playerList1 = new ArrayList<>();
+        /*ArrayList<Player> playerList1 = new ArrayList<>();
         ArrayList<Player> playerList2 = new ArrayList<>();
 
         ClientProfile client1= new ClientProfile();
@@ -85,7 +85,7 @@ public class GameListController extends Controller {
         game2.setNbRounds(50);
         game2.setStatus(ON_GOING);
 
-        list.add(game2);
+        list.add(game2);*/
 
         return list;
     }

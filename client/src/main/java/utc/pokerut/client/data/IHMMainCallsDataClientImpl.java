@@ -32,8 +32,8 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
     @Override
     public void login(String login, String password, String ip, int port) throws Exception {
-        //il faudra une méthode pour ouvrir le fichier et renvoie une exception si aucun correspondant.Sinon renvoie le clientProfile
-        myDataCore.setProfile(checkAuthentication(login, password));
+       /* //il faudra une méthode pour ouvrir le fichier et renvoie une exception si aucun correspondant.Sinon renvoie le clientProfile
+        myDataCore.setProfile(new ServerProfile(myDataCore.getProfile());
         //Crado à modifier:
 
         if (myDataCore.getProfile().getIp() == null){
@@ -43,13 +43,27 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         else{
             ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
             myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
-           }
+           }*/
+        if (login.equals(this.myDataCore.getProfile().getPseudo()) && password.equals(this.myDataCore.getProfile().getPassword())){
+            if (ip == null){
+                ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
+                myDataCore.getiDataCallsCom().Connection(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
+            }
+            else{
+                ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
+                myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
+            }
+        }
+        else{
+            //créer les exceptions qu'on renvoie dans des classes
+            throw new Exception("Nom d'utilisateur ou mot de passe incorrect");
+        }
     }
 
     public ClientProfile checkAuthentication(String login, String password) throws Exception {
         // get Profiles directory, it must be created at:
         //  > 'client/src/main/java/utc/pokerut/client/data/profiles'
-        File folder = new File("profiles/");
+        File folder = new File("profiles");
         File[] listOfFiles = folder.listFiles();
         ObjectInputStream ois = null;
 
@@ -97,11 +111,11 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         UUID userUUID = UUID.randomUUID();
         ClientProfile myUser = new ClientProfile(userUUID, pseudo, avatar, password, name, surname, birthdate, ip, port);
         //truc crado qu'on fait pour aller plus vite à enlever pour la V2
-        //myDataCore.setProfile(myUser);
+        myDataCore.setProfile(myUser);
 
 
         //appel de la méthode saveProfil
-        myDataCore.saveProfile(myUser);
+        //myDataCore.saveProfile(myUser);
 
 
     }

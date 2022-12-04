@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.*;
 
+import static java.lang.Integer.parseInt;
+
 
 public class LoginController extends Controller {
 
@@ -34,20 +36,17 @@ public class LoginController extends Controller {
     private Label errorMessage;
 
     public void loginUser(Event event) {
-        if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())){
-            //if(login(username.getText(),passwordField.getText(), serverIp.getText(), port.getText()) {
-                //go to main Menu
-                errorMessage.setVisible(false);
+        if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())) {
+            try {
+                core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
-            //} else {
-                //errorMessage.setVisible(true);
-           // }
-        } else {
-            errorMessage.setVisible(true);
-            JOptionPane.showMessageDialog(null,
-                    "Hi, In the message box",
-                    "PopUp Dialog",
-                    JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                errorMessage.setVisible(true);
+                JOptionPane.showMessageDialog(null,
+                        "Hi, In the message box",
+                        "PopUp Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     public boolean validateIP(final String ip) {

@@ -3,6 +3,7 @@ package utc.pokerut.client.ihmmain.controllers;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
+import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 
@@ -65,7 +66,7 @@ public class CreateUserController extends Controller {
     protected void CreatedProfile(){
         if ((!name.getText().trim().isEmpty()) && (!surname.getText().trim().isEmpty()) && (!pseudo.getText().trim().isEmpty()) && (birthdate != null) && (password.getText().length() > 6) && (avatar != null) && (passwordVerification.getText().length() > 6))
         {
-            if(password.getText() == passwordVerification.getText())
+            if(password.getText().equals(passwordVerification.getText()))
             {
                 /*ClientProfile profile = new ClientProfile();
                 profile.setName(name.getText());
@@ -82,6 +83,12 @@ public class CreateUserController extends Controller {
             //sendUserData(profile);
             //Todo : besoin constructeur par defaut pour la classe ClientProfile*/
                 core.getMainController().Navigate(ViewNames.LOGIN_VIEW);
+                //Instant instant = Instant.from(birthdate.getValue());
+                try {
+                    core.getDataInterface().createUser(pseudo.getText(), password.getText(), name.getText(), surname.getText(), new Date(), avatar, null, 0);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
             else
             {
