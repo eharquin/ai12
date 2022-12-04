@@ -1,8 +1,13 @@
 package utc.pokerut.server.communication;
 
+import utc.pokerut.common.interfaces.server.ComCallsData;
+
 import java.io.IOException;
 
 public class Core {
+
+    public ComCallsData comCallsData;
+
     public static void main(String[] args) {
 
         // interface graphique

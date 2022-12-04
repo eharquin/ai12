@@ -8,7 +8,7 @@ public class Core {
 
     public Core()
     {
-        this.imp = new ComCallsDataImp(this);
+        this.imp = new DataCallsComImp(this);
         this.client = new Client();
     }
 }

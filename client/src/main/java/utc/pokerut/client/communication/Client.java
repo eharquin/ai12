@@ -26,10 +26,10 @@ public class Client implements Runnable{
         connected = false;
         this.map = new HashMap<>();
         this.map.put(MessageType.UserLogggedIn, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserLogggedOut, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserInit, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserGameCreated, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserGameDeleted, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserLoggedOut, CommandUserLoggedIn.class);
+        this.map.put(MessageType.Init, CommandUserLoggedIn.class);
+        this.map.put(MessageType.GameCreated, CommandUserLoggedIn.class);
+        this.map.put(MessageType.GameDeleted, CommandUserLoggedIn.class);
     }
 
     public void connect(String host, int port) {
@@ -66,6 +66,14 @@ public class Client implements Runnable{
             } catch (InstantiationException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public void send(utc.pokerut.common.messages.client.Message message) {
+        try {
+            this.out.writeObject(message);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
