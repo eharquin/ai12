@@ -81,4 +81,9 @@ public class GameEngine {
         //toutes les cartes ont le même attribut symbol
         return true;
     }
+
+    public int translateResults(){ // type de l'argument ?
+        int points = 0;
+        return points;
+    }
 }
