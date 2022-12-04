@@ -32,6 +32,10 @@ public class Client implements Runnable{
 
         this.map = new HashMap<>();
         this.map.put(MessageType.UserLogggedIn, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserLogggedOut, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserInit, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserGameCreated, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserGameDeleted, CommandUserLoggedIn.class);
     }
 
     public void connect() {
