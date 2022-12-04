@@ -24,12 +24,17 @@ import java.util.ResourceBundle;
 public class MainController extends Controller {
 
     private final BooleanProperty loginView = new SimpleBooleanProperty();
+    private final BooleanProperty createProfileView = new SimpleBooleanProperty();
+    private final BooleanProperty createGameView = new SimpleBooleanProperty();
+    private final BooleanProperty gameListView = new SimpleBooleanProperty();
+    private final BooleanProperty inGameView = new SimpleBooleanProperty();
 
     public boolean isLoginView() {
         return loginView.get();
     }
 
     public BooleanProperty loginViewProperty() {
+
         return loginView;
     }
 
@@ -82,9 +87,6 @@ public class MainController extends Controller {
         setCreateGameView(false);
         setIhmGameView(false);
     }
-    private final BooleanProperty createProfileView = new SimpleBooleanProperty();
-    private final BooleanProperty createGameView = new SimpleBooleanProperty();
-    private final BooleanProperty gameListView = new SimpleBooleanProperty();
 
     public boolean isIhmGameView() {
         return ihmGameView.get();
