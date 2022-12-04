@@ -16,6 +16,12 @@ public class Player implements Serializable {
        this.avatar = clientProfile.getAvatar();
     }
 
+    public Player(UUID id, String pseudo, String avatar) {
+        this.id = id;
+        this.pseudo = pseudo;
+        this.avatar = avatar;
+    }
+
     public UUID getId() {
         return id;
     }

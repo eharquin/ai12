@@ -1,19 +1,14 @@
-package server.src.main.java.utc.pokerut.server.data;
+package utc.pokerut.server.data;
 
-import common.src.main.java.utc.pokerut.common.interfaces.server.ComCallsData;
-import utc.pokerut.common.dataclass.Round;
-import utc.pokerut.common.dataclass.Action;
-import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.dataclass.ServerProfile;
-import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Result;
+import utc.pokerut.common.dataclass.*;
+import utc.pokerut.common.interfaces.server.ComCallsData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class ComCallDataServerImpl implements ComCallsData {
-    private DataServerCore dataServerCore;
+    private Core dataServerCore;
 
     @Override
     public void sendUpdateRound(Round round, List<UUID> Players) {
@@ -73,5 +68,20 @@ public class ComCallDataServerImpl implements ComCallsData {
     @Override
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
+    }
+
+    @Override
+    public void saveUser(ServerProfile newUser) {
+        dataServerCore.getConnectedPlayers().add(newUser);
+    }
+
+    @Override
+    public ArrayList<Game> getWaitingGames() {
+        return dataServerCore.getWaitingGames();
+    }
+
+    @Override
+    public ArrayList<ServerProfile> getConnectedPlayers() {
+        return dataServerCore.getConnectedPlayers();
     }
 }

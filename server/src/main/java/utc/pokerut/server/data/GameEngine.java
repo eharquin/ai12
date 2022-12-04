@@ -1,4 +1,4 @@
-package server.src.main.java.utc.pokerut.server.data;
+package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Result;
@@ -41,3 +41,4 @@ public class GameEngine {
         return true;
     }
 }
+
