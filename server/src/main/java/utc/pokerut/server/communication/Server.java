@@ -36,7 +36,7 @@ public class Server implements Runnable
             Socket clientSocket = socket.accept();
             System.out.println("Connection acceptedd");
 
-            ClientHandler client = new ClientHandler(clientSocket, clients.size());
+            ClientHandler client = new ClientHandler(clientSocket);
             clients.add(client);
 
             Thread thread = new Thread(client);

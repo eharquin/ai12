@@ -13,9 +13,6 @@ import utc.pokerut.common.messages.server.MessageType;
 
 public class Client implements Runnable{
 
-    private String host;
-    private int port;
-
     private boolean connected;
 
     private Socket socket;
@@ -24,12 +21,9 @@ public class Client implements Runnable{
 
     private HashMap<MessageType, Class<? extends Command>> map;
 
-    public Client(String host, int port) {
-        this.host = host;
-        this.port = port;
+    public Client() {
 
         connected = false;
-
         this.map = new HashMap<>();
         this.map.put(MessageType.UserLogggedIn, CommandUserLoggedIn.class);
         this.map.put(MessageType.UserLogggedOut, CommandUserLoggedIn.class);
@@ -38,7 +32,7 @@ public class Client implements Runnable{
         this.map.put(MessageType.UserGameDeleted, CommandUserLoggedIn.class);
     }
 
-    public void connect() {
+    public void connect(String host, int port) {
         if(connected)
             throw new IllegalArgumentException("client already connected");
 
