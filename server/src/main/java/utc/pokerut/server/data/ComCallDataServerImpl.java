@@ -71,7 +71,7 @@ public class ComCallDataServerImpl implements ComCallsData {
 
     @Override
     public ArrayList<Game> getWaitingGames() {
-        return dataServerCore.getWaitingGames();
+        return dataServerCore.getUnfilledWaitingGames();
     }
 
     @Override
@@ -88,8 +88,11 @@ public class ComCallDataServerImpl implements ComCallsData {
     public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
         if (checkJoiningConditions(idUser, idGame) == true) {
             ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
-            dataServerCore.getWaitingGame(idGame).getPlayers().add(player);
-            dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
+            Game game = dataServerCore.getUnfilledWaitingGame(idGame);
+            if(game != null) {
+                game.getPlayers().add(player);
+                dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
+            }
         }
     }
 

@@ -13,11 +13,9 @@ import java.util.stream.Collectors;
 public class Core {
 
     private DataCallsCom iDataCallsCom;
-    // private ComCallDataServerImpl iComServerCallDataServerImpl;
-    //private DataServerCallComServer iDataServerCallComServer; // à déclarer dans common/interface
-    private ArrayList<Game> onGoingGames;
-    private ArrayList<Game> waitingGames;
-    private ArrayList<ServerProfile> connectedPlayers;
+    private ArrayList<Game> onGoingGames = new ArrayList<>();
+    private ArrayList<Game> waitingGames = new ArrayList<>();
+    private ArrayList<ServerProfile> connectedPlayers = new ArrayList<>();
     private final GameEngine gameEngine = new GameEngine();
 
     public Player getPlayerInGame(UUID playerID, Game game) {
@@ -32,6 +30,20 @@ public class Core {
     public Game getWaitingGame(UUID gameId) {
         Game game = waitingGames.stream().filter(a -> a.getId() == gameId).findAny().orElse(null);
         return game;
+    }
+
+    public ArrayList<Game> getUnfilledWaitingGames() {
+        ArrayList<Game> games = (ArrayList<Game> ) waitingGames.stream().filter(game -> game.getPlayers().size() < game.getNbMaxPlayers())
+                .collect(Collectors.toList());
+        if(games == null)
+            games = new ArrayList<>();
+        return games;
+    }
+
+    public Game getUnfilledWaitingGame(UUID gameId) {
+        Game unfilledGame = waitingGames.stream().filter(game -> game.getId() == gameId && game.getPlayers().size() < game.getNbMaxPlayers())
+                .findAny().orElse(null);
+        return unfilledGame;
     }
 
     public Game getOnGoingGame(UUID gameId) {
