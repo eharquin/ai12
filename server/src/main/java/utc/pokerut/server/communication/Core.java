@@ -8,19 +8,37 @@ public class Core {
 
     public ComCallsData comCallsData;
 
-    public static void main(String[] args) {
+    public DataCallsComImp dataCallsComImp;
 
-        // interface graphique
-        int port = Integer.parseInt(args[0]);
+    private Server server;
 
+    private int port;
+
+    public Core() {
+        // port selection (UI)
+        this.port = 8889;
+        
+        try {
+            server = new Server(port);
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void start() {
+        // start server thread
         try {
             Thread server = new Thread(new Server(port));
             server.start();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 
+        // wait (until threads stop)
         while(true);
+    }
+
+    public void setComCallsData(ComCallsData comCallsData) {
+        this.comCallsData = comCallsData;
     }
 }

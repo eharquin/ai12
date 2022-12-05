@@ -8,6 +8,8 @@ import utc.pokerut.common.messages.ClientMessage;
 
 public interface DataCallsCom {
 
+    void connectionUser(int port, ServerProfile profile, String ip);
+
     ClientProfile AskForProfile(int playerID);
 
     void modifyUser(ServerProfile profile);

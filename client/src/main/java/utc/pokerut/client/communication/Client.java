@@ -52,7 +52,7 @@ public class Client implements Runnable{
         {
             try {
                 Message message = (Message) in.readObject();
-                map.get(message.type).getDeclaredConstructor().newInstance().execute(message.payLoad);
+                map.get(message.type).getDeclaredConstructor().newInstance().execute(message.payLoad, out, in);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {

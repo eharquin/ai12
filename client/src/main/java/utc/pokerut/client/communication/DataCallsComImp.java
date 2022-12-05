@@ -20,6 +20,15 @@ public class DataCallsComImp implements DataCallsCom
         this.core = core;
     }
 
+    public void connectionUser(int port, ServerProfile profile, String ip) {
+
+        core.connect(port, ip);
+
+        // send player profile to the server
+        Message m = new Message(MessageType.Login, profile);
+        core.client.send(m);
+    }
+
     public ClientProfile AskForProfile(int playerID) {
 
         return new ClientProfile();

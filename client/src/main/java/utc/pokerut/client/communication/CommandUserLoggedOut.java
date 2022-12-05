@@ -1,11 +1,12 @@
 package utc.pokerut.client.communication;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class CommandUserLoggedOut implements Command {
+public class CommandUserLoggedOut extends Command {
 
-    @Override
-    public void execute(Serializable payLoad) {
+    public void execute(Serializable payLoad, ObjectOutputStream out, ObjectInputStream in) {
         System.out.println("User logged in : " + payLoad);
     }
 }
