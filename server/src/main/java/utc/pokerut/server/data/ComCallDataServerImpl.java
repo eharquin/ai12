@@ -45,11 +45,6 @@ public class ComCallDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void joinTableRequestDataComServ(UUID idUser, UUID idGame) {
-
-    }
-
-    @Override
     public void addUserToGameDataComServ(Game gameNewPlayer, Player newPlayer, UUID idUser) {
 
     }
@@ -87,5 +82,35 @@ public class ComCallDataServerImpl implements ComCallsData {
     @Override
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
+    }
+
+    @Override
+    public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
+        if (checkJoiningConditions(idUser, idGame) == true) {
+            ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
+            dataServerCore.getWaitingGame(idGame).getPlayers().add(player);
+            dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
+        }
+    }
+
+    /**
+     * Returns true if a player can join the game
+     * @param idUser : id of the user who wants to join the game
+     * @param idGame : id of the game to be joined
+     * @return
+     */
+    private boolean checkJoiningConditions(UUID idUser, UUID idGame){
+        Game game = dataServerCore.getWaitingGame(idGame);
+        //check that the game exists
+        if(game == null)
+            return false;
+        //checks that the maximum number of players has not been reached
+        if(game.getNbMaxPlayers() == game.getPlayers().size())
+            return false;
+        Player player = dataServerCore.getPlayerInGame(idUser, game);
+        //checks that the player is not already in the game
+        if(player != null)
+            return false;
+        return true;
     }
 }
