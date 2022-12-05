@@ -48,6 +48,7 @@ public class Core {
         this.game = game;
     }
 
+    //constructor
     public Core(Game game) {
 
         this.game = game;
