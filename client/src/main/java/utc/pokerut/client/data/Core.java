@@ -18,18 +18,27 @@ import java.util.Collection;
 
 public class Core {
     private ComCallsDataClientImpl iComCallsDataClientImpl;
+    private IHMMainCallsData ihmMainCallsData;
+    private DataCallsIHMMain iDataCallsIHMMain;
+    private DataCallsCom iDataCallsCom;
+    private ClientProfile profile;
+    private Game currentGame;
+    private ArrayList<Player> connectedPlayers;
+    private ArrayList<Game> waitingGame;
+    private PropertyChangeSupport pcsGame;
+    private PropertyChangeSupport pcsPlayer;
 
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
     }
 
-    public void setIhmMainCallsData(IHMMainCallsData ihmMainCallsData) {
-        this.ihmMainCallsData = ihmMainCallsData;
+    public PropertyChangeSupport getPcsGame() {
+        return pcsGame;
     }
 
-    private IHMMainCallsData ihmMainCallsData;
-
-    private DataCallsIHMMain iDataCallsIHMMain;
+    public PropertyChangeSupport getPcsPlayer() {
+        return pcsPlayer;
+    }
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
@@ -43,39 +52,26 @@ public class Core {
         this.iDataCallsCom = iDataCallsCom;
     }
 
-    private DataCallsCom iDataCallsCom;
-    private ClientProfile profile;
-
-    private Game currentGame;
-
-    private ArrayList<Player> connectedPlayers;
-
-    private ArrayList<Game> waitingGame;
-
-    public PropertyChangeSupport getPcsGame() {
-        return pcsGame;
+    public void setIhmMainCallsData(IHMMainCallsData ihmMainCallsData) {
+        this.ihmMainCallsData = ihmMainCallsData;
     }
-
-    private PropertyChangeSupport pcsGame;
-
-    public PropertyChangeSupport getPcsPlayer() {
-        return pcsPlayer;
-    }
-
-    private PropertyChangeSupport pcsPlayer;
 
     public void addPropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.addPropertyChangeListener(listener);
     }
+
     public void addPropertyChangeListenerPlayer(PropertyChangeListener listener) {
         this.pcsPlayer.addPropertyChangeListener(listener);
     }
+
     public void removePropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.removePropertyChangeListener(listener);
     }
+
     public void removePropertyChangeListenerPlayer(PropertyChangeListener listener) {
         this.pcsPlayer.removePropertyChangeListener(listener);
     }
+
     public ClientProfile getProfile() {
         return profile;
     }
@@ -143,5 +139,9 @@ public class Core {
 
     public void setiDataCallsIHMMain(DataCallsIHMMain iDataCallsIHMMain) {
         this.iDataCallsIHMMain = iDataCallsIHMMain;
+    }
+
+    public void setiComCallsDataClientImpl(ComCallsDataClientImpl iComCallsDataClientImpl) {
+        this.iComCallsDataClientImpl = iComCallsDataClientImpl;
     }
 }
