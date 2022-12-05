@@ -45,11 +45,6 @@ public class ComCallDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void addUserToGameDataComServ(Game gameNewPlayer, Player newPlayer, UUID idUser) {
-
-    }
-
-    @Override
     public void modify(ServerProfile profile) {
 
     }
@@ -115,5 +110,12 @@ public class ComCallDataServerImpl implements ComCallsData {
         if(player != null)
             return false;
         return true;
+    }
+
+    @Override
+    public void newPlayerJoinedComDataServ(UUID idUser, UUID idGame) {
+        Game game = dataServerCore.getWaitingGame(idGame);
+        Player player = dataServerCore.getConnectedPlayer(idUser);
+        dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
     }
 }

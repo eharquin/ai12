@@ -28,4 +28,5 @@ public interface DataCallsCom {
     void sendUserActionsRefused();
 
     void transmitLeaveMessage(int playerID, int gameID, int nbCreditFinal, boolean result);
+    void addUserToGameDataComServ(Game game, Player player,  UUID id_user);
 }
