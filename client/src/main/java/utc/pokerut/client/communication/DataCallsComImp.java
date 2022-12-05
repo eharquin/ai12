@@ -1,15 +1,13 @@
 package utc.pokerut.client.communication;
 
+import utc.pokerut.client.communication.Commands.CreateGameCommand;
+import utc.pokerut.client.communication.Commands.LoginCommand;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
 import utc.pokerut.common.messages.ClientMessage;
-import utc.pokerut.common.messages.client.Message;
-import utc.pokerut.common.messages.client.MessageType;
-
-import java.io.IOException;
 
 public class DataCallsComImp implements DataCallsCom
 {
@@ -24,9 +22,9 @@ public class DataCallsComImp implements DataCallsCom
 
         core.connect(port, ip);
 
-        // send player profile to the server
-        Message m = new Message(MessageType.Login, profile);
-        core.client.send(m);
+        // send new LoginCommand
+        LoginCommand command = new LoginCommand(profile);
+        command.execute(core);
     }
 
     public ClientProfile AskForProfile(int playerID) {
@@ -39,8 +37,8 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void initGameClient(Game newGame) {
-        Message m = new Message(MessageType.CreateGame, newGame);
-        this.core.client.send(m);
+        CreateGameCommand command = new CreateGameCommand(newGame);
+        command.execute(core);
     }
 
     public void sendGame(Game newGame, boolean b) {
@@ -48,9 +46,7 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void askJoinTableMainComCli(int playerID, int idGame) {
-        int[] payload = {playerID, idGame};
-        Message m = new Message(MessageType.Login, payload);
-        this.core.client.send(m);
+        
     }
 
     public void sendStartGame(int gameID) {
@@ -70,9 +66,7 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void leaveGame(int gameID, int playerID) {
-        int[] payload = {gameID, playerID};
-        Message m = new Message(MessageType.LogOut, payload);
-        this.core.client.send(m);
+        
     }
 
     public void getReplays() {

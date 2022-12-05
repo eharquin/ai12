@@ -1,18 +1,35 @@
 package utc.pokerut.client.communication;
 
 import utc.pokerut.common.interfaces.client.ComCallsData;
+import utc.pokerut.common.interfaces.client.DataCallsCom;
 
 public class Core {
 
-    public DataCallsComImp imp;
+    private DataCallsComImp dataCallsComImp;
 
-    public ComCallsData comCallsData;
+    private ComCallsData comCallsData;
 
-    public Client client;
+    private Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public ComCallsData getComCallsData() {
+        return comCallsData;
+    }
+
+    public DataCallsCom getDataCallsCom() {
+        return dataCallsComImp;
+    }
+    
+    public void setComCallsData(ComCallsData comCallsData) {
+        this.comCallsData = comCallsData;
+    }
 
     public Core() {
-        this.imp = new DataCallsComImp(this);
-        this.client = new Client();
+        this.dataCallsComImp = new DataCallsComImp(this);
+        this.client = new Client(this);
     }
 
     public void connect(int port, String ip) {
@@ -24,9 +41,5 @@ public class Core {
 
         // simple / multiple thread 
         while(true);
-    }
-
-    public void setComCallsData(ComCallsData comCallsData) {
-        this.comCallsData = comCallsData;
     }
 }
