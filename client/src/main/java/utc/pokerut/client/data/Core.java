@@ -28,6 +28,14 @@ public class Core {
     private PropertyChangeSupport pcsGame;
     private PropertyChangeSupport pcsPlayer;
 
+    public Core()
+    {
+        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
+        waitingGame = new ArrayList<Game>();
+        connectedPlayers = new ArrayList<Player>();
+        pcsGame = new PropertyChangeSupport(waitingGame);
+        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
+    }
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
     }
@@ -95,14 +103,6 @@ public class Core {
         return waitingGame;
     }
 
-    public Core()
-    {
-        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
-        waitingGame = new ArrayList<Game>();
-        connectedPlayers = new ArrayList<Player>();
-        pcsGame = new PropertyChangeSupport(waitingGame);
-        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
-    }
     public void setConnectedPlayers(ArrayList<Player> connectedPlayers) {
         ArrayList<Player> oldConnectedPlayers = this.connectedPlayers;
         this.connectedPlayers = connectedPlayers;
