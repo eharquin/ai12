@@ -64,7 +64,7 @@ public class CreateUserController extends Controller {
 
     @FXML
     protected void CreatedProfile(){
-        if ((!name.getText().trim().isEmpty()) && (!surname.getText().trim().isEmpty()) && (!pseudo.getText().trim().isEmpty()) && (birthdate != null) && (password.getText().length() > 6) && (avatar != null) && (passwordVerification.getText().length() > 6))
+        if ((!name.getText().trim().isEmpty()) && (!surname.getText().trim().isEmpty()) && (!pseudo.getText().trim().isEmpty()) && (birthdate != null) && (password.getText().length() > 6)  && (passwordVerification.getText().length() > 6))
         {
             if(password.getText().equals(passwordVerification.getText()))
             {

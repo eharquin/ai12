@@ -41,7 +41,7 @@
             <fx:include fx:id="create_profile" source="createUser.fxml" visible="${controller.createProfileView}"/>
             <fx:include fx:id="create_game" source="createGame.fxml" visible="${controller.createGameView}"/>
             <fx:include fx:id="game_list" source="gameListView.fxml" visible="${controller.gameListView}"/>
-            <fx:include fx:id="ihmGame" source="gameTable.fxml" visible="${controller.createProfileView}"/>
+            <fx:include fx:id="ihmGame" source="gameTable.fxml" visible="${controller.ihmGameView}"/>
         </StackPane>
     </center>
 </BorderPane>

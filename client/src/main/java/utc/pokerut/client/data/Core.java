@@ -1,6 +1,7 @@
 package utc.pokerut.client.data;
 
 
+import utc.pokerut.client.communication.DataCallsComImp;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;

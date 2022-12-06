@@ -40,6 +40,6 @@ public class Core {
         thread.start();
 
         // simple / multiple thread 
-        while(true);
+        //while(true);
     }
 }

@@ -8,5 +8,7 @@ module utc.pokerut.client {
     opens utc.pokerut.client to javafx.fxml;
     exports utc.pokerut.client;
     exports utc.pokerut.client.ihmmain.controllers;
+    exports utc.pokerut.client.ihmgame;
+    exports utc.pokerut.client.ihmmain;
     opens utc.pokerut.client.ihmmain.controllers to javafx.fxml;
 }

@@ -59,7 +59,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
                 // on fait la lecture se l'objet serializable
                 try {
                     // ouverture du fichier
-                    FileInputStream file = new FileInputStream(listOfFiles[i].getName());
+                    FileInputStream file = new FileInputStream(listOfFiles[i]);
                     ois = new ObjectInputStream(file);
                     // lecture de l'objet
                     ClientProfile profile = (ClientProfile) ois.readObject();
@@ -97,6 +97,12 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         ObjectOutputStream oos = null;
 
         try {
+            File directory = new File(PROFILE_DIRECTORY_NAME);
+            // si le répertoire n'existe pas
+            if(!directory.exists() ) {
+                // do something
+                directory.mkdir();
+            }
             // on ouvre le fichier
             FileOutputStream file = new FileOutputStream(file_path);
             // on cree une instance d'un ObjectStream en utilisant le fichier ouvert
