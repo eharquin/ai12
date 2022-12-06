@@ -1,6 +1,7 @@
 package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.Game;
+import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.dataclass.ServerProfile;
 
 import java.util.ArrayList;
@@ -50,5 +51,12 @@ public class Core {
     public void setConnectedPlayers(ArrayList<ServerProfile> connectedPlayers) {
         this.connectedPlayers = connectedPlayers;
     }
-
+    public ServerProfile getConnectedPlayer(UUID playerId) {
+        ServerProfile connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
+    }
+    public void removeConnectedPlayer(UUID playerDisconnectingId) {
+        Player player = getConnectedPlayer(playerDisconnectingId);
+        connectedPlayers.remove(player);
+    }
 }

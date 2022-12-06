@@ -28,4 +28,5 @@ public interface ComCallsData {
     public void saveUser(ServerProfile newUser);
     public ArrayList<Game> getWaitingGames();
     public ArrayList<ServerProfile> getConnectedPlayers();
+    public void removeUser(UUID playerDisconnectingId);
 }

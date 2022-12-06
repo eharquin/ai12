@@ -88,4 +88,9 @@ public class ComCallDataServerImpl implements ComCallsData {
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
     }
+
+    @Override
+    public void removeUser(UUID playerDisconnectingId) {
+        dataServerCore.removeConnectedPlayer(playerDisconnectingId);
+    }
 }
