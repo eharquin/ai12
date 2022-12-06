@@ -6,15 +6,13 @@ import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
 
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.Date;
 import java.util.UUID;
 
 public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     private Core myDataCore;
+    private final String PROFILE_DIRECTORY_NAME ="profiles";
 
     public IHMMainCallsDataClientImpl(Core myDataCore) {
         this.myDataCore = myDataCore;
@@ -32,39 +30,27 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
     @Override
     public void login(String login, String password, String ip, int port) throws Exception {
-       /* //il faudra une méthode pour ouvrir le fichier et renvoie une exception si aucun correspondant.Sinon renvoie le clientProfile
-        myDataCore.setProfile(new ServerProfile(myDataCore.getProfile());
-        //Crado à modifier:
+        myDataCore.setProfile(checkAuthentication(login, password));
 
+        ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
         if (myDataCore.getProfile().getIp() == null){
-            ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-            myDataCore.getiDataCallsCom().Connection(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
+            myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
         }
         else{
-            ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-            myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
-           }*/
-        if (login.equals(this.myDataCore.getProfile().getPseudo()) && password.equals(this.myDataCore.getProfile().getPassword())){
-            if (ip == null){
-                ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-                myDataCore.getiDataCallsCom().Connection(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
-            }
-            else{
-                ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-                myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
-            }
-        }
-        else{
-            //créer les exceptions qu'on renvoie dans des classes
-            throw new Exception("Nom d'utilisateur ou mot de passe incorrect");
+            myDataCore.getiDataCallsCom().connectionUser(myNewUser, ip, port);
         }
     }
 
     public ClientProfile checkAuthentication(String login, String password) throws Exception {
         // get Profiles directory, it must be created at:
         //  > 'client/src/main/java/utc/pokerut/client/data/profiles'
-        File folder = new File("profiles");
-        File[] listOfFiles = folder.listFiles();
+        File directory = new File(PROFILE_DIRECTORY_NAME);
+        // si le répertoire n'existe pas
+        if(!directory.exists() ) {
+            // do something
+            directory.mkdir();
+        }
+        File[] listOfFiles = directory.listFiles();
         ObjectInputStream ois = null;
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -105,7 +91,36 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         throw new Exception("Aucun profil trouvé");
     }
 
+    public void saveProfile(ClientProfile profile) throws Exception {
 
+        String file_path =  PROFILE_DIRECTORY_NAME +"/"+profile.getId().toString() + ".ser";
+        ObjectOutputStream oos = null;
+
+        try {
+            // on ouvre le fichier
+            FileOutputStream file = new FileOutputStream(file_path);
+            // on cree une instance d'un ObjectStream en utilisant le fichier ouvert
+            oos = new ObjectOutputStream(file);
+            // on sauvegarde le profile dans le fichier
+            oos.writeObject(profile);
+            // on push les binaires par le pipeline
+            oos.flush();
+        } catch (IOException e_write) {
+            // erreur rencontre pendant l'ouverture et/ou sauvegarde
+            throw new Exception(e_write);
+        } finally {
+            try {
+                // fermeture du pipeline
+                if (oos != null) {
+                    oos.flush();
+                    oos.close();
+                }
+            } catch (IOException e_close) {
+                // erreur rencontre pendant la fermeture du pipeline
+                throw new Exception(e_close);
+            }
+        }
+    }
     @Override
     public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port) throws Exception {
         UUID userUUID = UUID.randomUUID();
@@ -115,7 +130,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
 
         //appel de la méthode saveProfil
-        //myDataCore.saveProfile(myUser);
+        saveProfile(myUser);
 
 
     }

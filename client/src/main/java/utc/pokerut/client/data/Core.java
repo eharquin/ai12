@@ -6,7 +6,7 @@ import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
-import utc.pokerut.common.interfaces.server.DataCallsCom;
+import utc.pokerut.common.interfaces.client.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -18,18 +18,35 @@ import java.util.Collection;
 
 public class Core {
     private ComCallsDataClientImpl iComCallsDataClientImpl;
+    private IHMMainCallsData ihmMainCallsData;
+    private DataCallsIHMMain iDataCallsIHMMain;
+    private DataCallsCom iDataCallsCom;
+    private ClientProfile profile;
+    private Game currentGame;
+    private ArrayList<Player> connectedPlayers;
+    private ArrayList<Game> waitingGame;
+    private PropertyChangeSupport pcsGame;
+    private PropertyChangeSupport pcsPlayer;
 
+    public Core()
+    {
+        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
+        waitingGame = new ArrayList<Game>();
+        connectedPlayers = new ArrayList<Player>();
+        pcsGame = new PropertyChangeSupport(waitingGame);
+        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
+    }
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
     }
 
-    public void setIhmMainCallsData(IHMMainCallsData ihmMainCallsData) {
-        this.ihmMainCallsData = ihmMainCallsData;
+    public PropertyChangeSupport getPcsGame() {
+        return pcsGame;
     }
 
-    private IHMMainCallsData ihmMainCallsData;
-
-    private DataCallsIHMMain iDataCallsIHMMain;
+    public PropertyChangeSupport getPcsPlayer() {
+        return pcsPlayer;
+    }
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
@@ -43,39 +60,26 @@ public class Core {
         this.iDataCallsCom = iDataCallsCom;
     }
 
-    private DataCallsCom iDataCallsCom;
-    private ClientProfile profile;
-
-    private Game currentGame;
-
-    private ArrayList<Player> connectedPlayers;
-
-    private ArrayList<Game> waitingGame;
-
-    public PropertyChangeSupport getPcsGame() {
-        return pcsGame;
+    public void setIhmMainCallsData(IHMMainCallsData ihmMainCallsData) {
+        this.ihmMainCallsData = ihmMainCallsData;
     }
-
-    private PropertyChangeSupport pcsGame;
-
-    public PropertyChangeSupport getPcsPlayer() {
-        return pcsPlayer;
-    }
-
-    private PropertyChangeSupport pcsPlayer;
 
     public void addPropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.addPropertyChangeListener(listener);
     }
+
     public void addPropertyChangeListenerPlayer(PropertyChangeListener listener) {
         this.pcsPlayer.addPropertyChangeListener(listener);
     }
+
     public void removePropertyChangeListenerGame(PropertyChangeListener listener) {
         this.pcsGame.removePropertyChangeListener(listener);
     }
+
     public void removePropertyChangeListenerPlayer(PropertyChangeListener listener) {
         this.pcsPlayer.removePropertyChangeListener(listener);
     }
+
     public ClientProfile getProfile() {
         return profile;
     }
@@ -99,14 +103,6 @@ public class Core {
         return waitingGame;
     }
 
-    public Core()
-    {
-        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
-        waitingGame = new ArrayList<Game>();
-        connectedPlayers = new ArrayList<Player>();
-        pcsGame = new PropertyChangeSupport(waitingGame);
-        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
-    }
     public void setConnectedPlayers(ArrayList<Player> connectedPlayers) {
         ArrayList<Player> oldConnectedPlayers = this.connectedPlayers;
         this.connectedPlayers = connectedPlayers;
@@ -137,43 +133,15 @@ public class Core {
         this.connectedPlayers.remove(player);
         this.pcsPlayer.firePropertyChange("remove_connectedPlayer", this.connectedPlayers, player);
     }
-    public void saveProfile(ClientProfile profile) throws Exception {
-
-        String file_path =  profile.getId().toString() + ".ser";
-        ObjectOutputStream oos = null;
-
-        try {
-            // on ouvre le fichier
-            FileOutputStream file = new FileOutputStream(file_path);
-            // on cree une instance d'un ObjectStream en utilisant le fichier ouvert
-            oos = new ObjectOutputStream(file);
-            // on sauvegarde le profile dans le fichier
-            oos.writeObject(profile);
-            // on push les binaires par le pipeline
-            oos.flush();
-        } catch (IOException e_write) {
-            // erreur rencontre pendant l'ouverture et/ou sauvegarde
-            throw new Exception(e_write);
-        } finally {
-            try {
-                // fermeture du pipeline
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-            } catch (IOException e_close) {
-                // erreur rencontre pendant la fermeture du pipeline
-                throw new Exception(e_close);
-            }
-        }
-    }
-
-
     public DataCallsIHMMain getiDataCallsIHMMain() {
         return this.iDataCallsIHMMain;
     }
 
     public void setiDataCallsIHMMain(DataCallsIHMMain iDataCallsIHMMain) {
         this.iDataCallsIHMMain = iDataCallsIHMMain;
+    }
+
+    public void setiComCallsDataClientImpl(ComCallsDataClientImpl iComCallsDataClientImpl) {
+        this.iComCallsDataClientImpl = iComCallsDataClientImpl;
     }
 }

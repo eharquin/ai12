@@ -31,5 +31,6 @@ public interface DataCallsCom {
     void getReplays();
 
     void logoutUser(int playerID);
+    public void connectionUser(ServerProfile profile, String ip, int port);
     
 }
