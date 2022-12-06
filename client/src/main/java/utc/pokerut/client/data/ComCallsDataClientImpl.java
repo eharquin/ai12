@@ -15,22 +15,6 @@ public class ComCallsDataClientImpl implements ComCallsData {
     public ComCallsDataClientImpl(Core myDataCore) {
         this.myDataCore = myDataCore;
     }
-
-    @Override
-    public void connexionUser(ServerProfile profile, String IP, int port){
-
-    }
-
-    @Override
-    public void logoutUser(UUID playerID){
-
-    }
-
-    @Override
-    public void modifyUser(ServerProfile profile){
-
-    }
-
     @Override
     public void addUserAtList(Player player){
         myDataCore.addNewPlayer(player);
@@ -47,5 +31,11 @@ public class ComCallsDataClientImpl implements ComCallsData {
     public void updateGameList(Game game) {
         myDataCore.addWaitingGame(game);
         myDataCore.getiDataCallsIHMMain().displayGame(game);
+    }
+
+    @Override
+    public void userDisconnected(UUID playerID) {
+        Player player = myDataCore.getConnectedPlayer(playerID);
+        myDataCore.removePlayer(player);
     }
 }

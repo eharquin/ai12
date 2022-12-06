@@ -4,6 +4,7 @@ package utc.pokerut.client.data;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsIHMGame;
 import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
 import utc.pokerut.common.interfaces.client.IHMGameCallsData;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 public class Core {
     private ComCallsDataClientImpl iComCallsDataClientImpl;
@@ -159,5 +161,10 @@ public class Core {
 
     public void setiComCallsDataClientImpl(ComCallsDataClientImpl iComCallsDataClientImpl) {
         this.iComCallsDataClientImpl = iComCallsDataClientImpl;
+    }
+
+    public Player getConnectedPlayer(UUID playerId) {
+        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
     }
 }
