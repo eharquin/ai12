@@ -1,11 +1,7 @@
 package utc.pokerut.client;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utc.pokerut.client.ihmgame.Core;
-import utc.pokerut.client.ihmmain.controllers.MainController;
 
 import java.io.IOException;
 
@@ -31,8 +27,9 @@ public class MainApplication extends Application {
         // INSTANCIATION INTERFACES DATA
         dataCore.setiDataCallsIHMMain(mainCore.getDataCallsMainInterface());
         dataCore.setiDataCallsCom(commCore.getDataCallsCom());
-        //dataCore.setiDataCallsCom(commCore.);
+
         // INSTANCIATION INTERFAES COMM
+        commCore.setComCallsData(dataCore.getComCallsData());
 
         // INSTANCIATION INTERFACES GAME
 

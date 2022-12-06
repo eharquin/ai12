@@ -2,6 +2,8 @@ package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.interfaces.server.ComCallsData;
+import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -15,7 +17,13 @@ public class Core {
     private ArrayList<GameEngine> onGoingGames;
     private ArrayList<Game> waitingGames;
     private ArrayList<ServerProfile> connectedPlayers;
+    private ComCallsData comCallsData;
+    private DataCallsCom iDataCallsCom;
+    public Core()
+    {
+        comCallsData = new ComCallsDataServerImpl(this);
 
+    }
     public Game getOnGoingGame(UUID gameId) {
         Game game = onGoingGames.stream().filter(a -> a.getGame().getId() == gameId).collect(Collectors.toList()).get(0).getGame();
         return game;
@@ -51,4 +59,14 @@ public class Core {
         this.connectedPlayers = connectedPlayers;
     }
 
+    public ComCallsData getComCallsData() {
+        return comCallsData;
+    }
+
+    public DataCallsCom getiDataCallsCom() {
+        return iDataCallsCom;
+    }
+    public void setiDataCallsCom(DataCallsCom iDataCallsCom) {
+        this.iDataCallsCom = iDataCallsCom;
+    }
 }

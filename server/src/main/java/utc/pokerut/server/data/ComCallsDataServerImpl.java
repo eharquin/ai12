@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ComCallDataServerImpl implements ComCallsData {
+public class ComCallsDataServerImpl implements ComCallsData {
     private Core dataServerCore;
 
-    public ComCallDataServerImpl(Core dataServerCore) {
+    public ComCallsDataServerImpl(Core dataServerCore) {
         this.dataServerCore = dataServerCore;
     }
 

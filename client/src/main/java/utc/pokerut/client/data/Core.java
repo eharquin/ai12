@@ -1,24 +1,20 @@
 package utc.pokerut.client.data;
 
 
-import utc.pokerut.client.communication.DataCallsComImp;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.interfaces.client.ComCallsData;
 import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Core {
-    private ComCallsDataClientImpl iComCallsDataClientImpl;
+    private ComCallsData comCallsData;
     private IHMMainCallsData ihmMainCallsData;
     private DataCallsIHMMain iDataCallsIHMMain;
     private DataCallsCom iDataCallsCom;
@@ -32,6 +28,7 @@ public class Core {
     public Core()
     {
         ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
+        comCallsData = new ComCallsDataClientImpl(this);
         waitingGame = new ArrayList<Game>();
         connectedPlayers = new ArrayList<Player>();
         pcsGame = new PropertyChangeSupport(waitingGame);
@@ -53,8 +50,8 @@ public class Core {
         return iDataCallsCom;
     }
 
-    public ComCallsDataClientImpl getiComCallsDataClientImpl() {
-        return iComCallsDataClientImpl;
+    public ComCallsData getComCallsData() {
+        return comCallsData;
     }
 
     public void setiDataCallsCom(DataCallsCom iDataCallsCom) {
@@ -142,7 +139,7 @@ public class Core {
         this.iDataCallsIHMMain = iDataCallsIHMMain;
     }
 
-    public void setiComCallsDataClientImpl(ComCallsDataClientImpl iComCallsDataClientImpl) {
-        this.iComCallsDataClientImpl = iComCallsDataClientImpl;
+    public void setComCallsData(ComCallsDataClientImpl comCallsData) {
+        this.comCallsData = comCallsData;
     }
 }
