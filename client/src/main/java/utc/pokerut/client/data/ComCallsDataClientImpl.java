@@ -46,6 +46,8 @@ public class ComCallsDataClientImpl implements ComCallsData {
     @Override
     public void updateGameList(Game game) {
         myDataCore.addWaitingGame(game);
-        myDataCore.getiDataCallsIHMMain().displayGame(game);
+        if(game.getCreator().getId() == myDataCore.getProfile().getId())
+            myDataCore.getiDataCallsIHMMain().displayGame(game);
+
     }
 }

@@ -14,15 +14,14 @@ public class Core {
 
     // private ComCallDataServerImpl iComServerCallDataServerImpl;
     //private DataServerCallComServer iDataServerCallComServer; // à déclarer dans common/interface
-    private ArrayList<GameEngine> onGoingGames;
-    private ArrayList<Game> waitingGames;
-    private ArrayList<ServerProfile> connectedPlayers;
+    private ArrayList<GameEngine> onGoingGames = new ArrayList<>();
+    private ArrayList<Game> waitingGames = new ArrayList<>();
+    private ArrayList<ServerProfile> connectedPlayers = new ArrayList<>();
     private ComCallsData comCallsData;
     private DataCallsCom iDataCallsCom;
     public Core()
     {
         comCallsData = new ComCallsDataServerImpl(this);
-
     }
     public Game getOnGoingGame(UUID gameId) {
         Game game = onGoingGames.stream().filter(a -> a.getGame().getId() == gameId).collect(Collectors.toList()).get(0).getGame();
