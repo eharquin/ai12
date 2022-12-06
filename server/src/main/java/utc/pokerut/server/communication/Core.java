@@ -1,21 +1,48 @@
 package utc.pokerut.server.communication;
 
+import utc.pokerut.common.interfaces.server.ComCallsData;
+
 import java.io.IOException;
 
 public class Core {
-    public static void main(String[] args) {
+    
+    private ComCallsData comCallsData;
+    
+    private DataCallsComImp dataCallsComImp;
+    
+    private Server server;
+    
+    private int port;
+    
+    public ComCallsData getComCallsData() {
+        return this.comCallsData;
+    }
 
-        // interface graphique
-        int port = Integer.parseInt(args[0]);
+    public void setComCallsData(ComCallsData comCallsData) {
+        this.comCallsData = comCallsData;
+    }
 
+    public Server getServer() {
+        return server;
+    }
+
+    public Core() {
+        // port selection (UI)
+        this.port = 8889;
+        
         try {
-            Thread server = new Thread(new Server(port));
-            server.start();
+            server = new Server(this, port);
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
         }
-        catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
+    }
 
+    public void start() {
+        Thread serverThread = new Thread(server);
+        serverThread.start();
+
+        // wait (until threads stop)
         while(true);
     }
+
 }

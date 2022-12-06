@@ -1,7 +1,8 @@
-package server.src.main.java.utc.pokerut.server.data;
+package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.server.data.GameEngine;
 
 import java.util.ArrayList;
 import java.util.UUID;

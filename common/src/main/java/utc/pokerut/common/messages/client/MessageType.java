@@ -4,5 +4,5 @@ public enum MessageType {
     Login,
     LogOut,
     CreateGame,
-    DeleteGame,
+    DeleteGame
 }

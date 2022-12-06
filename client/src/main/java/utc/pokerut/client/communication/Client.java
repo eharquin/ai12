@@ -7,14 +7,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.util.HashMap;
 
+import utc.pokerut.client.communication.Commands.Command;
+import utc.pokerut.client.communication.Commands.CommandUserLoggedIn;
 // pokerut
-import utc.pokerut.common.messages.server.Message;
 import utc.pokerut.common.messages.server.MessageType;
 
 public class Client implements Runnable{
-
-    private String host;
-    private int port;
 
     private boolean connected;
 
@@ -22,23 +20,35 @@ public class Client implements Runnable{
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
+    private Core core;
+
     private HashMap<MessageType, Class<? extends Command>> map;
 
-    public Client(String host, int port) {
-        this.host = host;
-        this.port = port;
-
-        connected = false;
-
-        this.map = new HashMap<>();
-        this.map.put(MessageType.UserLogggedIn, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserLogggedOut, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserInit, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserGameCreated, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserGameDeleted, CommandUserLoggedIn.class);
+    public boolean isConnected() {
+        return connected;
     }
 
-    public void connect() {
+    public ObjectInputStream getInputStream() {
+        return in;
+    }
+
+    public ObjectOutputStream getOutputStream() {
+        return out;
+    }
+
+    public Client(Core core) {
+        this.core = core;
+
+        connected = false;
+        this.map = new HashMap<>();
+        this.map.put(MessageType.UserLoggedIn, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserLoggedOut, CommandUserLoggedIn.class);
+        this.map.put(MessageType.Init, CommandUserLoggedIn.class);
+        this.map.put(MessageType.GameCreated, CommandUserLoggedIn.class);
+        this.map.put(MessageType.GameDeleted, CommandUserLoggedIn.class);
+    }
+
+    public void connect(String host, int port) {
         if(connected)
             throw new IllegalArgumentException("client already connected");
 
@@ -57,8 +67,8 @@ public class Client implements Runnable{
         while(connected)
         {
             try {
-                Message message = (Message) in.readObject();
-                map.get(message.type).getDeclaredConstructor().newInstance().execute(message.payLoad);
+                MessageType type = (MessageType) in.readObject();
+                map.get(type).getDeclaredConstructor().newInstance().execute(core);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
@@ -73,5 +83,23 @@ public class Client implements Runnable{
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public void send(Object obj) {
+        try {
+            this.out.writeObject(obj);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Object receive() {
+        try {
+            Object obj = this.in.readObject();
+            return obj;
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

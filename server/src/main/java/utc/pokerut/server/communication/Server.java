@@ -12,11 +12,18 @@ public class Server implements Runnable
 
     private List<ClientHandler> clients;
 
+    private Core core;
+
     public boolean isStarted() {
         return started;        
     } 
 
-    Server(int port) throws IOException {
+    public List<ClientHandler> getClients() {
+        return clients;
+    }
+
+    Server(Core core, int port) throws IOException {
+        this.core = core;
         socket = new ServerSocket(port);
         started = false;
         clients = new ArrayList<ClientHandler>();
@@ -36,7 +43,7 @@ public class Server implements Runnable
             Socket clientSocket = socket.accept();
             System.out.println("Connection acceptedd");
 
-            ClientHandler client = new ClientHandler(clientSocket, clients.size());
+            ClientHandler client = new ClientHandler(core, clientSocket);
             clients.add(client);
 
             Thread thread = new Thread(client);
