@@ -8,7 +8,7 @@ import utc.pokerut.common.interfaces.client.DataCallsIHMGame;
 import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
 import utc.pokerut.common.interfaces.client.IHMGameCallsData;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
-import utc.pokerut.common.interfaces.server.DataCallsCom;
+import utc.pokerut.common.interfaces.client.DataCallsCom;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -6,6 +6,8 @@ import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.ClientMessage;
 
+import java.util.UUID;
+
 public interface DataCallsCom {
 
     ClientProfile AskForProfile(int playerID);
@@ -31,5 +33,6 @@ public interface DataCallsCom {
     void getReplays();
 
     void logoutUser(int playerID);
-    
+    public void connectionUser(ServerProfile profile, String ip, int port);
+    public void logoutUser(UUID id);
 }
