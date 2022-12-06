@@ -47,11 +47,11 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         if (login.equals(this.myDataCore.getProfile().getPseudo()) && password.equals(this.myDataCore.getProfile().getPassword())){
             if (ip == null){
                 ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-                myDataCore.getiDataCallsCom().Connection(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
+                myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
             }
             else{
                 ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-                myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
+                myDataCore.getiDataCallsCom().connectionUser(myNewUser, ip, port);
             }
         }
         else{
