@@ -32,7 +32,7 @@ public class Core {
         this.client = new Client(this);
     }
 
-    public void connect(int port, String ip) {
+    public void connect(String ip, int port) {
         client.connect(ip, port);
 
         // start client thread

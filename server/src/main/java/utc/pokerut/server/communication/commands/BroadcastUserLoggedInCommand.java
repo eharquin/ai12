@@ -21,8 +21,10 @@ public class BroadcastUserLoggedInCommand implements Command {
         ArrayList<ClientHandler> clients = (ArrayList<ClientHandler>)core.getServer().getClients();
 
         for (ClientHandler other : clients) {
-            other.send(MessageType.UserLoggedIn);
-            other.send((Player)client.getProfile());
+            if(other != client) {
+                other.send(MessageType.UserLoggedIn);
+                other.send((Player) client.getProfile());
+            }
         }
     }
 }

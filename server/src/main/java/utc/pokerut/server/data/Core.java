@@ -65,7 +65,7 @@ public class Core {
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
     }
-    public void setiDataCallsCom(DataCallsCom iDataCallsCom) {
+    public void setDataCallsCom(DataCallsCom iDataCallsCom) {
         this.iDataCallsCom = iDataCallsCom;
     }
 }

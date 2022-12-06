@@ -11,6 +11,11 @@ import java.util.List;
 
 public class DataCallsComImp implements DataCallsCom {
 
+    private Core core;
+    public DataCallsComImp(Core core) {
+        this.core = core;
+    }
+
     public ClientProfile AskForProfile(int playerID)
     {
         return null;

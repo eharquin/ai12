@@ -20,7 +20,9 @@ public class DataCallsComImp implements DataCallsCom
 
     public void connectionUser(ServerProfile profile, String ip, int port) {
 
-        core.connect(port, ip);
+
+
+        core.connect(ip, port);
 
         // send new LoginCommand
         LoginCommand command = new LoginCommand(profile);

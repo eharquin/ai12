@@ -32,8 +32,10 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     public void login(String login, String password, String ip, int port) throws Exception {
         myDataCore.setProfile(checkAuthentication(login, password));
 
+        System.out.println(ip + ":" + port);
+
         ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-        if (myDataCore.getProfile().getIp() == null){
+        if (myDataCore.getProfile().getIp() != null){
             myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
         }
         else{

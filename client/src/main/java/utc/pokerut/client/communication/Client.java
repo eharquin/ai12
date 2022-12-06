@@ -7,8 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.util.HashMap;
 
-import utc.pokerut.client.communication.Commands.Command;
-import utc.pokerut.client.communication.Commands.CommandUserLoggedIn;
+import utc.pokerut.client.communication.Commands.*;
 // pokerut
 import utc.pokerut.common.messages.server.MessageType;
 
@@ -42,10 +41,10 @@ public class Client implements Runnable{
         connected = false;
         this.map = new HashMap<>();
         this.map.put(MessageType.UserLoggedIn, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserLoggedOut, CommandUserLoggedIn.class);
-        this.map.put(MessageType.Init, CommandUserLoggedIn.class);
-        this.map.put(MessageType.GameCreated, CommandUserLoggedIn.class);
-        this.map.put(MessageType.GameDeleted, CommandUserLoggedIn.class);
+        this.map.put(MessageType.UserLoggedOut, CommandUserLoggedOut.class);
+        this.map.put(MessageType.Init, CommandInit.class);
+        this.map.put(MessageType.GameCreated, CommandGameCreated.class);
+        this.map.put(MessageType.GameDeleted, CommandGameDeleted.class);
     }
 
     public void connect(String host, int port) {

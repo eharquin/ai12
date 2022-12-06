@@ -52,6 +52,9 @@ public class ClientHandler implements Runnable {
             try {
                 MessageType type = (MessageType) in.readObject();
                 map.get(type).getDeclaredConstructor().newInstance().execute(core, this);
+
+                System.out.println("Message receive :" + type);
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
