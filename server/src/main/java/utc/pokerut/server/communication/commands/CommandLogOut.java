@@ -1,4 +1,4 @@
-package utc.pokerut.server.communication.Commands;
+package utc.pokerut.server.communication.commands;
 
 import utc.pokerut.server.communication.ClientHandler;
 import utc.pokerut.server.communication.Core;

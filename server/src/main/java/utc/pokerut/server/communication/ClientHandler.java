@@ -2,11 +2,11 @@ package utc.pokerut.server.communication;
 
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.client.MessageType;
-import utc.pokerut.server.communication.Commands.Command;
-import utc.pokerut.server.communication.Commands.CommandCreateGame;
-import utc.pokerut.server.communication.Commands.CommandDeleteGame;
-import utc.pokerut.server.communication.Commands.CommandLogOut;
-import utc.pokerut.server.communication.Commands.CommandLogin;
+import utc.pokerut.server.communication.commands.Command;
+import utc.pokerut.server.communication.commands.CommandCreateGame;
+import utc.pokerut.server.communication.commands.CommandDeleteGame;
+import utc.pokerut.server.communication.commands.CommandLogOut;
+import utc.pokerut.server.communication.commands.CommandLogin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -6,8 +6,6 @@ import utc.pokerut.common.dataclass.Game;
 public class CommandGameCreated implements Command {
     public void execute(Core core) {
         Game newGame = (Game) core.getClient().receive();
-
-        // missing
-        //core.getComCallsData().updateGameLists(newGame, true);
+        core.getComCallsData().updateGameList(newGame);
     }
 }

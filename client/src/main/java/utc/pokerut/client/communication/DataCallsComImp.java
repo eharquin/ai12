@@ -7,7 +7,7 @@ import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
-import utc.pokerut.common.messages.ClientMessage;
+import utc.pokerut.common.messages.client.MessageType;
 
 public class DataCallsComImp implements DataCallsCom
 {
@@ -57,11 +57,11 @@ public class DataCallsComImp implements DataCallsCom
 
     }
 
-    public void sendMessage(ClientMessage msg) {
+    public void sendMessage(MessageType msg) {
 
     }
 
-    public void receiveMessage(ClientMessage msg) {
+    public void receiveMessage(utc.pokerut.common.messages.server.MessageType msg) {
 
     }
 

@@ -1,4 +1,4 @@
-package utc.pokerut.server.communication.Commands;
+package utc.pokerut.server.communication.commands;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

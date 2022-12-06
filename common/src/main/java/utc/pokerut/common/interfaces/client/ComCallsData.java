@@ -13,4 +13,5 @@ public interface ComCallsData {
     public void modifyUser(ServerProfile profile);
     public void addUserAtList(Player player);
     public void sendLists(List<Player> players, List<Game> games);
+    public  void updateGameList(Game game);
 }
