@@ -34,10 +34,10 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
         ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
         if (myDataCore.getProfile().getIp() == null){
-            myDataCore.getiDataCallsCom().Connection(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
+            myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
         }
         else{
-            myDataCore.getiDataCallsCom().Connection(myNewUser, ip, port);
+            myDataCore.getiDataCallsCom().connectionUser(myNewUser, ip, port);
         }
     }
 
