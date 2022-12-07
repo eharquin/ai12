@@ -50,4 +50,17 @@ public class ComCallsDataClientImpl implements ComCallsData {
             myDataCore.getiDataCallsIHMMain().displayGame(game);
 
     }
+
+    @Override
+    public void addUserToGameComDataCli(Game gameNewPlayer, Player newPlayer, UUID idUser) {
+        myDataCore.setCurrentGame(gameNewPlayer);
+        myDataCore.getiDataCallsIHMMain().addUserToGameDataMainCli(gameNewPlayer, newPlayer, idUser);
+    }
+
+    @Override
+    public void updateTableNewPlayerComDataOthers(Game gameNewPlayer, Player newPlayer, UUID idUser) {
+       // myDataCore.setCurrentGame(gameNewPlayer);
+        myDataCore.getCurrentGame().addPlayer(newPlayer);
+        myDataCore.getiDataCallsIHMGame().newPlayerJoinedDataGameOthers(gameNewPlayer, newPlayer, idUser);
+    }
 }
