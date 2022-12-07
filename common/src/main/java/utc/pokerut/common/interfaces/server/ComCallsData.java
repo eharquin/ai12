@@ -1,7 +1,6 @@
 package utc.pokerut.common.interfaces.server;
 
 import utc.pokerut.common.dataclass.Round;
-import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Result;
@@ -28,4 +27,6 @@ public interface ComCallsData {
     public ArrayList<ServerProfile> getConnectedPlayers();
     public void askJoinTableComDataServ(UUID idUser, UUID idGame);
     public void newPlayerJoinedComDataServ(UUID id_user, UUID id_game);
+    public void startGame(UUID gameId);
+    public void applyAction(UUID idPlayer, UUID idGame, Action action);
 }

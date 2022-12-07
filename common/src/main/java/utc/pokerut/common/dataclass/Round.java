@@ -16,6 +16,28 @@ public class Round implements Serializable {
     private boolean canCheck;
     private ArrayList<Card> showedCards;
 
+    public Round(){
+        this.setCurrentBettingRound(1);
+        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
+        this.setActions(new ArrayList<>());
+        this.setHands(new ArrayList<>());
+        this.setShowedCards(new ArrayList<>());
+        CardDeck cardDeck = new CardDeck();
+        this.setCards(cardDeck.getCardDeck());
+        this.setCurrentBets(new HashMap<>());
+    }
+    public Round(Player firstPlayer){
+        this.setCurrentPlayer(firstPlayer);
+        this.setCurrentBettingRound(1);
+        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
+        this.setActions(new ArrayList<>());
+        this.setHands(new ArrayList<>());
+        this.setShowedCards(new ArrayList<>());
+        CardDeck cardDeck = new CardDeck();
+        this.setCards(cardDeck.getCardDeck());
+        this.setCurrentBets(new HashMap<>());
+    }
+
     public ArrayList<Action> getActions() {
         return actions;
     }
@@ -60,6 +82,10 @@ public class Round implements Serializable {
         return currentBet;
     }
 
+    /**
+     * tour de bet en cours, ce sur quoi on suit où on relance
+     * @param currentBet
+     */
     public void setCurrentBet(int currentBet) {
         this.currentBet = currentBet;
     }
