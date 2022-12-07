@@ -198,4 +198,9 @@ public class Game implements Serializable {
         this.currentRound = newRound;
         this.pcs.firePropertyChange("update_currentRound", oldRound, this.currentRound);
     }
+    public void endGame(Round round){
+        Round oldRound = this.currentRound;
+        this.currentRound = round;
+        this.pcs.firePropertyChange("end_game", oldRound, this.currentRound);
+    }
 }
