@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmgame;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -19,11 +20,18 @@ public class GameViewController {
     protected static Core core;
 
     public void initGame(Game game){
-        //this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
-        this.setCreditGame(Integer.toString(game.getNbPoints()));
+        nbPlayers.setText(Integer.toString(game.getNbMaxPlayers()));
+        creditGame.setText(Integer.toString(game.getNbPoints()));
+        miseMin.setText(Integer.toString(game.getMinimalBet()));
+       // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
+        // nbPlayers.toString();
+        //Text test = new Text(Integer.toString(game.getNbPoints()));
+        //this.setCreditGame(test);
         //this.setMiseMin(new Text(Integer.toString(game.getMinimalBet())));
-        System.out.println(this.nbPlayers.getText());
+        //System.out.println(this.creditGame) ;
     }
+
+
 
     //Number of players in the game
     @FXML
@@ -31,7 +39,7 @@ public class GameViewController {
 
     //Credit of the entire game
     @FXML
-    private String creditGame;
+    private Text creditGame;
 
     //Minimum mise to play at the table
     @FXML
@@ -77,11 +85,11 @@ public class GameViewController {
         this.nbPlayers = nbPlayers;
     }
 
-    public String getCreditGame() {
+    public Text getCreditGame() {
         return creditGame;
     }
 
-    public void setCreditGame(String creditGame) {
+    public void setCreditGame(Text creditGame) {
         this.creditGame = creditGame;
     }
 

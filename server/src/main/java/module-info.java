@@ -1,6 +1,5 @@
 module utc.pokerut.server {
     requires javafx.controls;
-    requires javafx.fxml;
     requires utc.pokerut.common;
 
 
