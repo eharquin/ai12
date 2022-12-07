@@ -101,21 +101,4 @@ public class Core {
         this.iDataCallsCom = iDataCallsCom;
     }
 
-    public Player getNextPlayers(List<Player> players, UUID currentPlayerId){
-        for(int i=0; i<players.size(); i++) {
-            if(players.get(i).getId() == currentPlayerId)
-                return players.get((i+1)%players.size());
-        }
-        return null;
-    }
-
-    public void setNextPlayerRound(List<Player> players, Round round){
-        for(int i=0; i<players.size(); i++) {
-            if(players.get(i).getId() == round.getCurrentPlayer().getId()) {
-                round.setCurrentPlayer(players.get((i+1)%players.size()));
-                return ;
-            }
-        }
-
-    }
 }

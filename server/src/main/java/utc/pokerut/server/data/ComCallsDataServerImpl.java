@@ -129,8 +129,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
         initRound(game);
 
         // send next player actions
-        List<Action> actions = new ArrayList<>();
-        dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
+        List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
+        game = dataServerCore.getOnGoingGame(game.getId()); //majGame si jamais
         UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
         dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions,nextPlayerId);
     }
@@ -153,9 +153,29 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
         // payer la grosse blinde
         int grosseBlincde = littleBlinde*2;
-        dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, dataServerCore.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
+        // éventuellment peut poser problème apply action
+        //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
+        game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
+
+    }
+
+    public Player getNextPlayers(List<Player> players, UUID currentPlayerId){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == currentPlayerId)
+                return players.get((i+1)%players.size());
+        }
+        return null;
+    }
+
+    public void setNextPlayerRound(List<Player> players, Round round){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == round.getCurrentPlayer().getId()) {
+                round.setCurrentPlayer(players.get((i+1)%players.size()));
+                return ;
+            }
+        }
 
     }
 
