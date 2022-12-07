@@ -130,8 +130,14 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
         // send next player actions
         List<Action> actions = new ArrayList<>();
-        UUID nextPlayerId = dataServerCore.getNextPlayers(game.getPlayers(), game.getCurrentRound().getCurrentPlayer().getId()).getId();
+        dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
+        UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
         dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions,nextPlayerId);
+    }
+
+    @Override
+    public void applyAction(UUID idPlayer, UUID idGame, Action action) {
+
     }
 
     public void initRound(Game game){
@@ -147,7 +153,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
         // payer la grosse blinde
         int grosseBlincde = littleBlinde*2;
-        round.setCurrentPlayer(dataServerCore.getNextPlayers(game.getPlayers(), game.getCurrentRound().getCurrentPlayer().getId()));
+        dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
         Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, dataServerCore.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
 

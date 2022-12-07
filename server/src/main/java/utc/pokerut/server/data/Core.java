@@ -2,6 +2,7 @@ package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.Round;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.server.ComCallsData;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
@@ -106,5 +107,15 @@ public class Core {
                 return players.get((i+1)%players.size());
         }
         return null;
+    }
+
+    public void setNextPlayerRound(List<Player> players, Round round){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == round.getCurrentPlayer().getId()) {
+                round.setCurrentPlayer(players.get((i+1)%players.size()));
+                return ;
+            }
+        }
+
     }
 }
