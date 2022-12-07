@@ -99,4 +99,12 @@ public class Core {
     public void setDataCallsCom(DataCallsCom iDataCallsCom) {
         this.iDataCallsCom = iDataCallsCom;
     }
+
+    public Player getNextPlayers(List<Player> players, UUID currentPlayerId){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == currentPlayerId)
+                return players.get((i+1)%players.size());
+        }
+        return null;
+    }
 }

@@ -17,11 +17,11 @@ public interface DataCallsCom {
 
     void notifyAcceptorComCreatorServ(int playerID, int gameID);
 
-    void sendNewRound(Round round, Round newRound, List<Integer> players);
+    void sendNewRound(Round newRound, List<Player> players);
 
-    void sendNextPlayerActions(List<Action> actions, int playerID);
+    void sendNextPlayerActions(List<Action> actions, UUID playerID);
 
-    void sendUpdateRound(Round round, List<Integer> players);
+    void sendUpdateRound(Round round, List<Player> players);
 
     void sendUpdateRoundAndEndResults(Round round, List<Integer> players, List<Result> results);
 
