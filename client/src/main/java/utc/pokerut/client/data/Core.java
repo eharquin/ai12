@@ -51,10 +51,6 @@ public class Core {
         return pcsGame;
     }
 
-    public PropertyChangeSupport getPcsGame() {
-        return pcsGame;
-    }
-
     public PropertyChangeSupport getPcsPlayer() {
         return pcsPlayer;
     }

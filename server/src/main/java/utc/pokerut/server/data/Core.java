@@ -18,9 +18,8 @@ public class Core {
     private ArrayList<Game> waitingGames = new ArrayList<>();
     private ArrayList<ServerProfile> connectedPlayers = new ArrayList<>();
     private final GameEngine gameEngine = new GameEngine();
-
     private ComCallsData comCallsData;
-    private DataCallsCom iDataCallsCom;
+
     public Core()
     {
         comCallsData = new ComCallsDataServerImpl(this);
