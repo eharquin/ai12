@@ -28,6 +28,7 @@ public class MainController extends Controller {
     private final BooleanProperty createGameView = new SimpleBooleanProperty();
     private final BooleanProperty gameListView = new SimpleBooleanProperty();
     private final BooleanProperty inGameView = new SimpleBooleanProperty();
+    private final BooleanProperty logoutView = new SimpleBooleanProperty();
 
     public boolean isLoginView() {
         return loginView.get();
@@ -78,6 +79,18 @@ public class MainController extends Controller {
         this.gameListView.set(gameListView);
     }
 
+    public boolean isLogoutView() {
+        return logoutView.get();
+    }
+
+    public BooleanProperty logoutViewProperty() {
+        return logoutView;
+    }
+
+    public void setLogoutView(boolean logoutView) {
+        this.logoutView.set(logoutView);
+    }
+
 
     public void closeViews()
     {
@@ -86,6 +99,7 @@ public class MainController extends Controller {
         setGameListView(false);
         setCreateGameView(false);
         setIhmGameView(false);
+        setLogoutView(false);
     }
 
     public boolean isIhmGameView() {
@@ -128,6 +142,10 @@ public class MainController extends Controller {
             }
             case CREATE_GAME_VIEW:{
                 setCreateGameView(true);
+                break;
+            }
+            case LOGOUT_VIEW:{
+                setLogoutView(true);
                 break;
             }
         }

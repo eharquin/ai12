@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.LogoutController">
+    <VBox fx:id="showSideBar" alignment="CENTER" style="-fx-background-color: #026502; -fx-padding: 128;" />
+    <VBox alignment="CENTER" style="-fx-background-color: #E3E3E3;">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez été déconnecté(e) !" textAlignment="CENTER" />
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Button mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
+               <Button mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </HBox>
+      </children></VBox>
+
+</HBox>
