@@ -6,6 +6,7 @@ module utc.pokerut.client {
     requires java.sql;
 
     opens utc.pokerut.client to javafx.fxml;
+    opens utc.pokerut.client.ihmgame to javafx.fxml;
     exports utc.pokerut.client;
     exports utc.pokerut.client.ihmmain.controllers;
     exports utc.pokerut.client.ihmgame;
