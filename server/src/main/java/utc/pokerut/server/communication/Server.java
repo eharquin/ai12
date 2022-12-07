@@ -5,8 +5,12 @@ import java.net.Socket;
 import java.io.*;
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Server implements Runnable
 {
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
     private ServerSocket socket;
     private boolean started;
 
@@ -31,9 +35,8 @@ public class Server implements Runnable
 
     public void run() {
         started = true;
-        System.out.print("Server started");
+        logger.info("Listening on port " + socket.getLocalPort());
         while(true) {
-            System.out.println(" .... listen");
             listen();
         }
     }
@@ -41,17 +44,17 @@ public class Server implements Runnable
     private void listen() {
         try {
             Socket clientSocket = socket.accept();
-            System.out.println("Connection acceptedd");
+            logger.info("Connection accepted from " + clientSocket.getInetAddress());
 
             ClientHandler client = new ClientHandler(core, clientSocket);
             clients.add(client);
 
             Thread thread = new Thread(client);
             thread.start();
-            System.out.println("thread started");
+            logger.info("Thread started for client " + clientSocket.getInetAddress());
 
         } catch(IOException e) {
-            System.err.println(e.getMessage());
+            logger.error("Error while accepting connection", e);
         }
     }
 }

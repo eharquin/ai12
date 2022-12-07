@@ -1,5 +1,7 @@
 package utc.pokerut.server.communication;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.client.MessageType;
 import utc.pokerut.server.communication.commands.Command;
@@ -17,12 +19,13 @@ import java.util.HashMap;
 
 public class ClientHandler implements Runnable {
 
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
     private ServerProfile profile;
 
-    private Core core; 
+    private Core core;
 
     private HashMap<MessageType, Class<? extends Command>> map;
 
@@ -53,7 +56,7 @@ public class ClientHandler implements Runnable {
                 MessageType type = (MessageType) in.readObject();
                 map.get(type).getDeclaredConstructor().newInstance().execute(core, this);
 
-                System.out.println("Message receive :" + type);
+                logger.debug("Message received from " + profile.getPseudo() + " : " + type);
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -73,9 +76,10 @@ public class ClientHandler implements Runnable {
 
     public void send(Object obj) {
         try {
+            logger.debug("Message sent to " + profile.getPseudo() + " : " + obj);
             this.out.writeObject(obj);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while sending message to " + profile.getPseudo(), e);
         }
     }
 
@@ -84,8 +88,8 @@ public class ClientHandler implements Runnable {
             Object obj = in.readObject();
             return obj;
         } catch (ClassNotFoundException | IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            logger.error("Error while receiving message from " + profile.getPseudo(), e);
         }
 
         return null;

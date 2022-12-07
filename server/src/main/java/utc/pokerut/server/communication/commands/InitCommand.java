@@ -23,9 +23,6 @@ public class InitCommand implements Command {
         client.send(games);
         client.send(players);
 
-        System.out.println("Send init message (games, players)");
-
-
         // execute BroadcastNewPlayerCommand
     }
     

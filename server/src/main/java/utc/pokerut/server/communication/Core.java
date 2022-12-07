@@ -31,7 +31,7 @@ public class Core {
 
     public Core() {
         // port selection (UI)
-        this.port = 8889;
+        this.port = 443;
 
         dataCallsComImp = new DataCallsComImp(this);
         
