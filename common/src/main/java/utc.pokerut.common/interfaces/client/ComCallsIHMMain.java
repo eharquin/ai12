@@ -1,6 +1,7 @@
 package utc.pokerut.common.interfaces.client;
 
-import utc.pokerut.common.dataclass.*;
+
+import utc.pokerut.common.dataclass.ServerProfile;
 
 import java.util.UUID;
 

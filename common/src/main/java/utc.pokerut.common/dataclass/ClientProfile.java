@@ -2,6 +2,7 @@ package utc.pokerut.common.dataclass;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class ClientProfile extends Player{
     private String password;
@@ -11,11 +12,22 @@ public class ClientProfile extends Player{
     private int gains;
     private int nbGamesPlayed;
     private String ip;
-    private String port;
+    private int port;
     private ArrayList<Game> savedGames;
 
-    public ClientProfile(ClientProfile clientProfile) {
-        super(clientProfile);
+    public ClientProfile(UUID id, String pseudo, String avatar, String password, String name, String surname, Date birthdate, String ip, int port) {
+        super(id, pseudo, avatar);
+
+        // TODO : hasher le password
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.birthdate = birthdate;
+        this.gains = 0;
+        this.nbGamesPlayed = 0;
+        this.ip = ip;
+        this.port = port;
+        this.savedGames = null;
     }
 
     public String getPassword() {
@@ -74,11 +86,11 @@ public class ClientProfile extends Player{
         this.ip = ip;
     }
 
-    public String getPort() {
+    public int getPort() {
         return port;
     }
 
-    public void setPort(String port) {
+    public void setPort(int port) {
         this.port = port;
     }
 
@@ -92,3 +104,6 @@ public class ClientProfile extends Player{
     }
 
 }
+
+
+
