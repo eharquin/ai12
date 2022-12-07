@@ -1,0 +1,1 @@
+java -cp "target/classes/:../common/target/classes/" utc.pokerut.server.communication.Main
