@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utc.pokerut.client.ihmmain.ViewNames;
+import utc.pokerut.client.ihmmain.listeners.GameListListener;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
@@ -40,9 +41,11 @@ public class GameListController extends Controller {
     @FXML
     private TableColumn<Game, String> status;
 
+    private GameListListener gameListListener;
     public void initialize() {
         setGameList(getItemsToAdd());
-
+        gameListListener = new GameListListener(this);
+        //core.getDataInterface().setPCLGame(gameListListener);
     }
 
     private List<Game> getItemsToAdd(){

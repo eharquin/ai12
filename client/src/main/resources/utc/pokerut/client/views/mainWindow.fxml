@@ -44,4 +44,7 @@
             <fx:include fx:id="ihmGame" source="gameTable.fxml" visible="${controller.ihmGameView}"/>
         </StackPane>
     </center>
+    <left>
+        <fx:include fx:id="leftPanel" source="leftPanel.fxml"/>
+    </left>
 </BorderPane>

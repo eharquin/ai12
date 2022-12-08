@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import utc.pokerut.client.ihmmain.Core;
 import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
 import utc.pokerut.common.dataclass.Player;
@@ -35,13 +36,20 @@ public class PlayerListController extends Controller implements Initializable {
     public void setPlayerList(List<Player> playerList) {
         list.getItems().clear();
         for(Player player : playerList){
-            list.getItems().add(player.getPseudo());
+            list.getItems().add(player);
         }
     }
-
+    public void addPlayerList(Player player)
+    {
+        list.getItems().add(player);
+    }
+    public void removePlayerList(Player player)
+    {
+        list.getItems().remove(player);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list.getItems().setAll("User 1", "User 2", "User 3", "User 4");
+        //list.getItems().setAll("User 1", "User 2", "User 3", "User 4");
         playerListListener = new PlayerListListener(this);
     }
     @FXML

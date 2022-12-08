@@ -22,6 +22,8 @@ public class MainApplication extends Application {
 
         // INSTANCIATION INTERFACES MAIN
         mainCore.setDataInterface(dataCore.getIhmMainCallsData());
+        mainCore.getDataInterface().setPCLPlayer(mainCore.getMainController().getLeftPanelController().getPlayerListController().getPlayerListListener());
+
         //mainCore.setComCallsMainInterface(commCore);
 
         // INSTANCIATION INTERFACES DATA
