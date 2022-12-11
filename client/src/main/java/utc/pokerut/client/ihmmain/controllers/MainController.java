@@ -44,24 +44,12 @@ public class MainController extends Controller implements Initializable {
         return loginView;
     }
 
-    public PlayerListController getPlayerListController() {
-        return playerListController;
-    }
-
-    public void setPlayerListController(PlayerListController playerListController) {
-        this.playerListController = playerListController;
-    }
-
     public GameListController getGameListController() {
         return gameListController;
     }
 
-    public void setGameListController(GameListController gameListController) {
-        this.gameListController = gameListController;
-    }
 
-    private PlayerListController playerListController;
-    private GameListController gameListController;
+    @FXML GameListController gameListController;
     public void setLoginView(boolean loginView) {
         this.loginView.set(loginView);
     }
@@ -153,6 +141,7 @@ public class MainController extends Controller implements Initializable {
                 break;
             }
         }
+
     }
 
 

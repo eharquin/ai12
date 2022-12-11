@@ -28,7 +28,8 @@ public class PlayerListListener implements PropertyChangeListener {
                     playerListController.addPlayerList(player);
                     break;
                 case "remove":
-                    //playerListController.setPlayerList(playerList);
+                    Player player1 = (Player) evt.getNewValue();
+                    playerListController.removePlayerList(player1);
                     break;
             }
         }

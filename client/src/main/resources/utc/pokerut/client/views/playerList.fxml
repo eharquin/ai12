@@ -12,6 +12,6 @@
     <Button fx:id="logoutButton" text="Se déconnecter" onAction="#logoutButtonClicked" />
     <Label text="Joueurs connectés" style="-fx-font-weight:bold; -fx-font-size:20;" textFill="white"/>
     <ScrollPane>
-        <ListView fx:id="list"/>
+        <ListView fx:id="list" style="-fx-text-alignment:center; -fx-font-size:20px; -fx-font-weight:bold;"/>
     </ScrollPane>
 </VBox>
