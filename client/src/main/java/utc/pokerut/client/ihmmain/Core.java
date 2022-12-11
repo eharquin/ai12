@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utc.pokerut.client.MainApplication;
+import utc.pokerut.client.ihmgame.GameViewController;
+import utc.pokerut.client.ihmgame.PlayGameController;
 import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.client.ihmmain.implementations.ComCallsIHMMainImpl;
 import utc.pokerut.client.ihmmain.implementations.DataCallsIHMMainImpl;
@@ -79,6 +81,8 @@ public class Core {
 
     private MainController mainController;
 
+    private PlayGameController playGameController;
+
     public Scene getScene() {
         return scene;
     }
@@ -88,11 +92,14 @@ public class Core {
     private Player playerConnected;
     public Core(Stage stage) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
+       // FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/gameTablePlay.fxml"));
+
         scene = new Scene(fxmlLoader.load());
-        mainController = fxmlLoader.getController();
-        mainController.setCore(this);
-        mainController.setLoginView(true);
+        playGameController = fxmlLoader.getController();
+       // mainController = fxmlLoader.getController();
+       // mainController.setCore(this);
+       // mainController.setLoginView(true);
         this.stage = stage;
         this.stage.setTitle("Poker UT - Texas Holdem");
         this.stage.setResizable(false);

@@ -12,6 +12,6 @@
     <children>
         <Button layoutX="194.0" layoutY="99.0" mnemonicParsing="false" text="Relancer" onAction="#RaiseValue"/>
         <Text layoutX="48.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Combien voulez-vous relancer ?" />
-        <TextField layoutX="30.0" layoutY="99.0" />
+        <TextField layoutX="30.0" layoutY="99.0" fx:id="raising" />
     </children>
 </AnchorPane>
