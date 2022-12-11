@@ -32,21 +32,22 @@ public class LoginController extends Controller {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Label errorMessage;
-
     public void loginUser(Event event) {
         if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())) {
             try {
                 core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
-                errorMessage.setVisible(true);
                 JOptionPane.showMessageDialog(null,
-                        "Hi, In the message box",
-                        "PopUp Dialog",
+                        "Erreur de connection",
+                        "Erreur",
                         JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Erreur de connection",
+                    "PopUp Dialog",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
     public boolean validateIP(final String ip) {
