@@ -77,6 +77,350 @@ public class GameViewController {
     @FXML
     private ImageView cardDeck;
 
+    @FXML
+    private Text creditPlayer1;
+
+    @FXML
+    private Text creditPlayer2;
+
+    @FXML
+    private Text creditPlayer3;
+
+    @FXML
+    private Text creditPlayer4;
+
+    @FXML
+    private Text creditPlayer5;
+
+    @FXML
+    private Text creditPlayer6;
+
+    @FXML
+    private Text creditPlayer7;
+
+    @FXML
+    private Text creditPlayer8;
+
+    @FXML
+    private Text Player1;
+
+    @FXML
+    private Text Player2;
+
+    @FXML
+    private Text Player3;
+
+    @FXML
+    private Text Player4;
+
+    @FXML
+    private Text Player5;
+
+    @FXML
+    private Text Player6;
+
+    @FXML
+    private Text Player7;
+
+    @FXML
+    private Text Player8;
+
+    @FXML
+    private ImageView card1Player1;
+
+    @FXML
+    private ImageView card2Player1;
+
+    @FXML
+    private ImageView card1Player2;
+
+    @FXML
+    private ImageView card2Player2;
+
+    @FXML
+    private ImageView card1Player3;
+
+    @FXML
+    private ImageView card2Player3;
+
+    @FXML
+    private ImageView card1Player4;
+
+    @FXML
+    private ImageView card2Player4;
+
+    @FXML
+    private ImageView card1Player5;
+
+    @FXML
+    private ImageView card2Player5;
+
+    @FXML
+    private ImageView card1Player6;
+
+    @FXML
+    private ImageView card2Player6;
+
+    @FXML
+    private ImageView card1Player7;
+
+    @FXML
+    private ImageView card2Player7;
+
+    @FXML
+    private ImageView card1Player8;
+
+    @FXML
+    private ImageView card2Player8;
+
+    @FXML
+    private Text avatarPlayer1;
+
+    @FXML
+    private Text avatarPlayer2;
+
+    @FXML
+    private Text avatarPlayer3;
+
+    @FXML
+    private Text avatarPlayer4;
+
+    @FXML
+    private Text avatarPlayer5;
+
+    @FXML
+    private Text avatarPlayer6;
+
+    @FXML
+    private Text avatarPlayer7;
+
+    @FXML
+    private Text avatarPlayer8;
+
+    public Text getCreditPlayer7() {
+        return creditPlayer7;
+    }
+
+    public void setCreditPlayer7(Text creditPlayer7) {
+        this.creditPlayer7 = creditPlayer7;
+    }
+
+    public Text getCreditPlayer8() {
+        return creditPlayer8;
+    }
+
+    public void setCreditPlayer8(Text creditPlayer8) {
+        this.creditPlayer8 = creditPlayer8;
+    }
+
+    public Text getPlayer7() {
+        return Player7;
+    }
+
+    public void setPlayer7(Text player7) {
+        Player7 = player7;
+    }
+
+    public Text getPlayer8() {
+        return Player8;
+    }
+
+    public void setPlayer8(Text player8) {
+        Player8 = player8;
+    }
+
+    public ImageView getCard1Player1() {
+        return card1Player1;
+    }
+
+    public void setCard1Player1(ImageView card1Player1) {
+        this.card1Player1 = card1Player1;
+    }
+
+    public ImageView getCard2Player1() {
+        return card2Player1;
+    }
+
+    public void setCard2Player1(ImageView card2Player1) {
+        this.card2Player1 = card2Player1;
+    }
+
+    public ImageView getCard1Player2() {
+        return card1Player2;
+    }
+
+    public void setCard1Player2(ImageView card1Player2) {
+        this.card1Player2 = card1Player2;
+    }
+
+    public ImageView getCard2Player2() {
+        return card2Player2;
+    }
+
+    public void setCard2Player2(ImageView card2Player2) {
+        this.card2Player2 = card2Player2;
+    }
+
+    public ImageView getCard1Player3() {
+        return card1Player3;
+    }
+
+    public void setCard1Player3(ImageView card1Player3) {
+        this.card1Player3 = card1Player3;
+    }
+
+    public ImageView getCard2Player3() {
+        return card2Player3;
+    }
+
+    public void setCard2Player3(ImageView card2Player3) {
+        this.card2Player3 = card2Player3;
+    }
+
+    public ImageView getCard1Player4() {
+        return card1Player4;
+    }
+
+    public void setCard1Player4(ImageView card1Player4) {
+        this.card1Player4 = card1Player4;
+    }
+
+    public ImageView getCard2Player4() {
+        return card2Player4;
+    }
+
+    public void setCard2Player4(ImageView card2Player4) {
+        this.card2Player4 = card2Player4;
+    }
+
+    public ImageView getCard1Player5() {
+        return card1Player5;
+    }
+
+    public void setCard1Player5(ImageView card1Player5) {
+        this.card1Player5 = card1Player5;
+    }
+
+    public ImageView getCard2Player5() {
+        return card2Player5;
+    }
+
+    public void setCard2Player5(ImageView card2Player5) {
+        this.card2Player5 = card2Player5;
+    }
+
+    public ImageView getCard1Player6() {
+        return card1Player6;
+    }
+
+    public void setCard1Player6(ImageView card1Player6) {
+        this.card1Player6 = card1Player6;
+    }
+
+    public ImageView getCard2Player6() {
+        return card2Player6;
+    }
+
+    public void setCard2Player6(ImageView card2Player6) {
+        this.card2Player6 = card2Player6;
+    }
+
+    public ImageView getCard1Player7() {
+        return card1Player7;
+    }
+
+    public void setCard1Player7(ImageView card1Player7) {
+        this.card1Player7 = card1Player7;
+    }
+
+    public ImageView getCard2Player7() {
+        return card2Player7;
+    }
+
+    public void setCard2Player7(ImageView card2Player7) {
+        this.card2Player7 = card2Player7;
+    }
+
+    public ImageView getCard1Player8() {
+        return card1Player8;
+    }
+
+    public void setCard1Player8(ImageView card1Player8) {
+        this.card1Player8 = card1Player8;
+    }
+
+    public ImageView getCard2Player8() {
+        return card2Player8;
+    }
+
+    public void setCard2Player8(ImageView card2Player8) {
+        this.card2Player8 = card2Player8;
+    }
+
+    public Text getAvatarPlayer1() {
+        return avatarPlayer1;
+    }
+
+    public void setAvatarPlayer1(Text avatarPlayer1) {
+        this.avatarPlayer1 = avatarPlayer1;
+    }
+
+    public Text getAvatarPlayer2() {
+        return avatarPlayer2;
+    }
+
+    public void setAvatarPlayer2(Text avatarPlayer2) {
+        this.avatarPlayer2 = avatarPlayer2;
+    }
+
+    public Text getAvatarPlayer3() {
+        return avatarPlayer3;
+    }
+
+    public void setAvatarPlayer3(Text avatarPlayer3) {
+        this.avatarPlayer3 = avatarPlayer3;
+    }
+
+    public Text getAvatarPlayer4() {
+        return avatarPlayer4;
+    }
+
+    public void setAvatarPlayer4(Text avatarPlayer4) {
+        this.avatarPlayer4 = avatarPlayer4;
+    }
+
+    public Text getAvatarPlayer5() {
+        return avatarPlayer5;
+    }
+
+    public void setAvatarPlayer5(Text avatarPlayer5) {
+        this.avatarPlayer5 = avatarPlayer5;
+    }
+
+    public Text getAvatarPlayer6() {
+        return avatarPlayer6;
+    }
+
+    public void setAvatarPlayer6(Text avatarPlayer6) {
+        this.avatarPlayer6 = avatarPlayer6;
+    }
+
+    public Text getAvatarPlayer7() {
+        return avatarPlayer7;
+    }
+
+    public void setAvatarPlayer7(Text avatarPlayer7) {
+        this.avatarPlayer7 = avatarPlayer7;
+    }
+
+    public Text getAvatarPlayer8() {
+        return avatarPlayer8;
+    }
+
+    public void setAvatarPlayer8(Text avatarPlayer8) {
+        this.avatarPlayer8 = avatarPlayer8;
+    }
+
     public Text getNbPlayers() {
         return nbPlayers;
     }
@@ -163,5 +507,101 @@ public class GameViewController {
 
     public void setCardDeck(ImageView cardDeck) {
         this.cardDeck = cardDeck;
+    }
+
+    public Text getCreditPlayer1() {
+        return creditPlayer1;
+    }
+
+    public void setCreditPlayer1(Text creditPlayer1) {
+        this.creditPlayer1 = creditPlayer1;
+    }
+
+    public Text getCreditPlayer2() {
+        return creditPlayer2;
+    }
+
+    public void setCreditPlayer2(Text creditPlayer2) {
+        this.creditPlayer2 = creditPlayer2;
+    }
+
+    public Text getCreditPlayer3() {
+        return creditPlayer3;
+    }
+
+    public void setCreditPlayer3(Text creditPlayer3) {
+        this.creditPlayer3 = creditPlayer3;
+    }
+
+    public Text getCreditPlayer4() {
+        return creditPlayer4;
+    }
+
+    public void setCreditPlayer4(Text creditPlayer4) {
+        this.creditPlayer4 = creditPlayer4;
+    }
+
+    public Text getCreditPlayer5() {
+        return creditPlayer5;
+    }
+
+    public void setCreditPlayer5(Text creditPlayer5) {
+        this.creditPlayer5 = creditPlayer5;
+    }
+
+    public Text getCreditPlayer6() {
+        return creditPlayer6;
+    }
+
+    public void setCreditPlayer6(Text creditPlayer6) {
+        this.creditPlayer6 = creditPlayer6;
+    }
+
+    public Text getPlayer1() {
+        return Player1;
+    }
+
+    public void setPlayer1(Text player1) {
+        Player1 = player1;
+    }
+
+    public Text getPlayer2() {
+        return Player2;
+    }
+
+    public void setPlayer2(Text player2) {
+        Player2 = player2;
+    }
+
+    public Text getPlayer3() {
+        return Player3;
+    }
+
+    public void setPlayer3(Text player3) {
+        Player3 = player3;
+    }
+
+    public Text getPlayer4() {
+        return Player4;
+    }
+
+    public void setPlayer4(Text player4) {
+        Player4 = player4;
+    }
+
+    public Text getPlayer5() {
+        return Player5;
+    }
+
+    public void setPlayer5(Text player5) {
+        Player5 = player5;
+    }
+
+    public Text getPlayer6() {
+        return Player6;
+    }
+
+    public void setPlayer6(Text player6) {
+        Player6 = player6;
     }
 }
