@@ -151,9 +151,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
         //updateAvailablePoints
         Integer oldAvailablePoints = currentPlayerHand.getAvailablePoints();
         currentPlayerHand.setAvailablePoints(oldAvailablePoints + action.getBetting());
-        //update list of hands
-        Integer index = round.getHands().indexOf(currentPlayerHand);
-        round.getHands().set(index, currentPlayerHand);
         //update currentBets
         HashMap<Player, Integer> currentBets = round.getCurrentBets();
         Player currentPlayer = round.getCurrentPlayer();
