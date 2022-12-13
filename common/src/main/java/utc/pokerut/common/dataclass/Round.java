@@ -11,7 +11,6 @@ public class Round implements Serializable {
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private LinkedList<Card> cards;
-    private HashMap<Player, Integer> currentBets;
     private Player currentPlayer;
     private int currentBet;
     private int currentBettingRound;
@@ -28,7 +27,6 @@ public class Round implements Serializable {
         this.setShowedCards(new ArrayList<>());
         CardDeck cardDeck = new CardDeck();
         this.setCards(cardDeck.getCardDeck());
-        this.setCurrentBets(new HashMap<>());
     }
     public Round(ArrayList<Player> players, int availablePoints){
         this.setCurrentPlayer(players.get(0));
@@ -39,8 +37,6 @@ public class Round implements Serializable {
         this.setShowedCards(new ArrayList<>());
         CardDeck cardDeck = new CardDeck();
         this.setCards(cardDeck.getCardDeck());
-
-        this.setCurrentBets(new HashMap<>());
 
         for(Player p : players)  {
             ArrayList<Card> handCards = new ArrayList<>();
@@ -53,8 +49,6 @@ public class Round implements Serializable {
 
             Hand h = new Hand(this, p,handCards, availablePoints);
             this.hands.add(h);
-
-            this.currentBets.put(p, 0);
         }
 
     }
@@ -81,14 +75,6 @@ public class Round implements Serializable {
 
     public void setCards(LinkedList<Card> cards) {
         this.cards = cards;
-    }
-
-    public HashMap<Player, Integer> getCurrentBets() {
-        return currentBets;
-    }
-
-    public void setCurrentBets(HashMap<Player, Integer> currentBets) {
-        this.currentBets = currentBets;
     }
 
     public Player getCurrentPlayer() {
