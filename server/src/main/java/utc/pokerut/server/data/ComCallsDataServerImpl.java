@@ -130,7 +130,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
         // send next player actions
         List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
-        game = dataServerCore.getOnGoingGame(game.getId()); //majGame si jamais
         UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
         dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions,nextPlayerId);
     }
