@@ -2,22 +2,16 @@ package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static utc.pokerut.server.data.GameEngine.CombinationEnum.*;
+
 public class GameEngine {
 
-    private final String QUINTE_FLUSH = "Quinte Flush";
-    private final String QUINTE_FLUSH_ROYALE = "Quinte Flush Royale";
-    private final String QUINTE = "Quinte";
-    private final String CARRE = "Carré";
-    private final String FULL = "Full";
-    private final String COULEUR = "Couleur";
-    private final String BRELAN = "Brelan";
-    private final String DOUBLE_PAIR = "Double Pair";
-    private final String CARTE_HAUTE = "Carte Haute";
-    private final String PAIR = "Pair";
+    public enum CombinationEnum {
+        QUINT_FLUSH, QUINT_FLUSH_ROYAL, QUINT,CARRE,FULL,COULEUR,BRELAN,DOUBLE_PAIR,CARTE_HAUTE,PAIR
+    }
 
     public ArrayList<Result> getRanking() {
         ArrayList<Result> results = new ArrayList<>();
@@ -112,20 +106,20 @@ public class GameEngine {
                 .collect(Collectors.toList());
     }
 
-    public String evalComb(List<Card> cardList){
+    public CombinationEnum evalComb(List<Card> cardList){
 
-        String comb = null;
+        CombinationEnum comb = null;
         boolean quinteCheck = isQuinte(cardList);
 
         if (quinteCheck){
             if(isQuinteFlush(cardList)){
-                comb = QUINTE_FLUSH;
+                comb = QUINT_FLUSH;
                 if (isQuinteFlushRoyale(cardList)){
-                    comb = QUINTE_FLUSH_ROYALE;
+                    comb = QUINT_FLUSH_ROYAL;
                 }
                 return comb; // no better combination
             }
-            comb = QUINTE;
+            comb = QUINT;
         }
 
         HashMap<Integer, Integer> multiples = getMultiple(cardList);
@@ -157,7 +151,7 @@ public class GameEngine {
         return comb;
     }
 
-    public int translateResults(){
+    public int translateResults(CombinationEnum combinationName){
         int points = 0;
         return points;
     }
@@ -165,13 +159,13 @@ public class GameEngine {
     public ArrayList<ArrayList<Card>> getCombinations(ArrayList<Card> cardsOnTable) {
         ArrayList<ArrayList<Card>> combinations = new ArrayList<>();
 
-        for(int i=0; i<cardsOnTable.size();i++) {
+        for(int i=0; i < cardsOnTable.size()-2; i++) {
             Card card1 = cardsOnTable.get(i);
-            for(int j =i+1; j <cardsOnTable.size(); j++) {
+            for(int j =i+1; j < cardsOnTable.size()-1; j++) {
                 Card card2 = cardsOnTable.get(j);
-                for(int m = j+1; m <cardsOnTable.size(); m++){
-                    Card card3 = cardsOnTable.get(m);
-                    ArrayList<Card> combination = new ArrayList<>(Arrays.asList(card1, card2,card3));
+                for(int k = j+1; k < cardsOnTable.size(); k++){
+                    Card card3 = cardsOnTable.get(k);
+                    ArrayList<Card> combination = new ArrayList<>(Arrays.asList(card1, card2, card3));
                     combinations.add(combination);
                 }
 
