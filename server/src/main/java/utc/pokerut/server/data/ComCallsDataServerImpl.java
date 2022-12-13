@@ -137,6 +137,30 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void applyAction(UUID idPlayer, UUID idGame, Action action) {
+        Round round = dataServerCore.getOnGoingGame(idGame).getCurrentRound();
+        // update actionList
+        List<Action> actionList = round.getActions();
+        actionList.add(action);
+        round.setActions((ArrayList<Action>) actionList);
+        //update Hand
+        Hand currentPlayerHand = round.getHandByPlayerId(idPlayer);
+        //update isFold
+        if (action.getType().equals(ActionTypeEnum.FOLD)){
+            currentPlayerHand.setIsFold(true);
+        }
+        //updateAvailablePoints
+        Integer oldAvailablePoints = currentPlayerHand.getAvailablePoints();
+        currentPlayerHand.setAvailablePoints(oldAvailablePoints + action.getBetting());
+        //update list of hands
+        Integer index = round.getHands().indexOf(currentPlayerHand);
+        round.getHands().set(index, currentPlayerHand);
+        //update currentBets
+        HashMap<Player, Integer> currentBets = round.getCurrentBets();
+        Player currentPlayer = round.getCurrentPlayer();
+        Integer oldPlayerBets = currentBets.get(currentPlayer);
+        currentBets.put(currentPlayer, oldPlayerBets+ action.getBetting());
+        //update currentPlayer
+        this.setNextPlayerRound(dataServerCore.getOnGoingGame(idGame).getPlayers(), round);
 
     }
 
@@ -178,5 +202,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
         }
 
     }
+
 
 }

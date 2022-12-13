@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class Round implements Serializable {
     private ArrayList<Action> actions;
@@ -112,5 +113,10 @@ public class Round implements Serializable {
 
     public void setShowedCards(ArrayList<Card> showedCards) {
         this.showedCards = showedCards;
+    }
+
+    public Hand getHandByPlayerId(UUID playerId) {
+        Hand hand = hands.stream().filter(hands -> hands.getPlayer().getId() == playerId).findAny().orElse(null);
+        return hand;
     }
 }
