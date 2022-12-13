@@ -9,6 +9,22 @@ public class Hand {
     private boolean isFold;
     private ArrayList<Card> cards;
 
+    public Hand(){
+        player = null;
+        round = null;
+        availablePoints = 0;
+        isFold = false;
+        cards = new ArrayList<>();
+    }
+
+    public Hand(Round round, Player player, ArrayList<Card> cards, int availablePoints) {
+        this.round = round;
+        this.player = player;
+        this.isFold = false;
+        this.cards = cards;
+        this.availablePoints = availablePoints;
+    }
+
     public Player getPlayer() {
         return player;
     }
