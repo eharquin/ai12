@@ -1,15 +1,12 @@
 package utc.pokerut.common.dataclass;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Round implements Serializable {
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private ArrayList<Card> cards;
-    private HashMap<Player, Integer> currentBets;
     private Player currentPlayer;
     private int currentBet;
     private int currentBettingRound;
@@ -38,14 +35,6 @@ public class Round implements Serializable {
 
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
-    }
-
-    public HashMap<Player, Integer> getCurrentBets() {
-        return currentBets;
-    }
-
-    public void setCurrentBets(HashMap<Player, Integer> currentBets) {
-        this.currentBets = currentBets;
     }
 
     public Player getCurrentPlayer() {
