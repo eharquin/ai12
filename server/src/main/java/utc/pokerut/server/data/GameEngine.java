@@ -154,3 +154,26 @@ public class GameEngine {
         return points;
     }
 }
+
+
+public ArrayList<int> isWinner (HashMap<Integer, Integer> map) {
+
+	List<int> winners = new ArrayList<int>(Arrays.asList(0)); //initialisation liste du/des joueur(s) gagnant(s)
+	int win = -1; //valeur de comparaison entre valeurs de combinaisons
+	int nb_winner = 0; //nombre de gagnants
+
+	for (HashMap.Entry<int,int> entry : combinations.entrySet()) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
+		int value_combi = entry.getValue();
+		int player = entry.getKey();
+
+		if (value_combi>win) { //si la valeur de combinaison est supérieure à la précédente
+			winners.clear(); //vider la liste des gagnants
+			winners.add(0,player); //ajouter le nouveau potentiel gagnant
+			int win = value_combi; //la variable de comparaison win prend la valeur de la bombinaison du potentiel gagnant
+			int nb_winner=1; } //on augmente le nombre de gagnants à 1
+
+		else if (value_combi==win) { //si la valeur de combinaison est égale à la supérieure
+			winners.add(nb_winner,player); //ajouter un gagnant supplémentaire à la liste (après le précédent)
+			int nb_winner=nb_winner+1; } //on augmente le nombre de gagnant de +1
+	}
+} //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
