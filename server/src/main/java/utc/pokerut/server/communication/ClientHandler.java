@@ -48,6 +48,7 @@ public class ClientHandler implements Runnable {
         this.map.put(MessageType.LogOut, CommandLogOut.class);
         this.map.put(MessageType.CreateGame, CommandCreateGame.class);
         this.map.put(MessageType.DeleteGame, CommandDeleteGame.class);
+        this.map.put(MessageType.AskJoinGame, CommandLogin.class);
     }
 
     public void run() {

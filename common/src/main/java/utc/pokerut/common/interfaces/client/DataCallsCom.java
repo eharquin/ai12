@@ -6,6 +6,8 @@ import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.client.MessageType;
 
+import java.util.UUID;
+
 public interface DataCallsCom {
 
     public void connectionUser(ServerProfile profile, String ip, int port);
@@ -18,7 +20,7 @@ public interface DataCallsCom {
 
     void sendGame(Game newGame, boolean b);
 
-    void askJoinTableMainComCli(int playerID, int idGame);
+    void askJoinTableMainComCli(UUID playerID, UUID idGame);
 
     void sendStartGame(int gameID);
 

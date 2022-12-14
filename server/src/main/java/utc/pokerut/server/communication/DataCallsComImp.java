@@ -6,14 +6,21 @@ import utc.pokerut.common.dataclass.Result;
 import utc.pokerut.common.dataclass.Round;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
+import utc.pokerut.server.communication.commands.JoinGameCommand;
 
 import java.util.List;
+import java.util.UUID;
 
 public class DataCallsComImp implements DataCallsCom {
 
     private Core core;
     public DataCallsComImp(Core core) {
         this.core = core;
+    }
+
+    public ClientProfile AskForProfile(UUID playerID)
+    {
+        return null;
     }
 
     public ClientProfile AskForProfile(int playerID)
@@ -26,17 +33,13 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void joinTableRequestComServCreator(int playerID, int gameID)
+    public void joinTableRequestDataComServ(UUID playerID, UUID gameID, ClientHandler client)
     {
-
+        JoinGameCommand command = new JoinGameCommand(playerID, gameID);
+        command.execute(core, client);
     }
 
-    public void joinTableRequestDataComServ(int playerID, int gameID)
-    {
-
-    }
-
-    public void notifyAcceptorComCreatorServ(int playerID, int gameID)
+    public void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID)
     {
 
     }
@@ -46,7 +49,7 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void sendNextPlayerActions(List<Action> actions, int playerID)
+    public void sendNextPlayerActions(List<Action> actions, UUID playerID)
     {
 
     }
@@ -66,7 +69,7 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void transmitLeaveMessage(int playerID, int gameID, int nbCreditFinal, boolean result)
+    public void transmitLeaveMessage(UUID playerID, UUID gameID, int nbCreditFinal, boolean result)
     {
         
     }

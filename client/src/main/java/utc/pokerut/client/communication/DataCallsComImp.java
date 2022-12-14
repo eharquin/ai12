@@ -9,6 +9,8 @@ import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
 import utc.pokerut.common.messages.client.MessageType;
 
+import java.util.UUID;
+
 public class DataCallsComImp implements DataCallsCom
 {
     private Core core;
@@ -47,8 +49,10 @@ public class DataCallsComImp implements DataCallsCom
 
     }
 
-    public void askJoinTableMainComCli(int playerID, int idGame) {
-        
+    public void askJoinTableMainComCli(UUID playerID, UUID idGame) {
+        core.getClient().send(MessageType.Login);
+        core.getClient().send(playerID);
+        core.getClient().send(idGame);
     }
 
     public void sendStartGame(int gameID) {

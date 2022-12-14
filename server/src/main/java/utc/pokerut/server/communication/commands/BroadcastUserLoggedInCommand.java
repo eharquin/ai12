@@ -9,12 +9,6 @@ import utc.pokerut.server.communication.ClientHandler;
 import utc.pokerut.server.communication.Core;
 
 public class BroadcastUserLoggedInCommand implements Command {
-    
-    private Game game;
-
-    public BroadcastUserLoggedInCommand(Game game) {
-        this.game = game;
-    }
 
     public void execute(Core core, ClientHandler client) {
 

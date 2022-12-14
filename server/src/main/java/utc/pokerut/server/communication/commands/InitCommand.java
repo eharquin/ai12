@@ -24,6 +24,8 @@ public class InitCommand implements Command {
         client.send(players);
 
         // execute BroadcastNewPlayerCommand
+        BroadcastUserLoggedInCommand command = new BroadcastUserLoggedInCommand();
+        command.execute(core, client);
     }
     
 }
