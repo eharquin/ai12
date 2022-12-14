@@ -16,6 +16,9 @@ public class Round implements Serializable {
     private int currentBettingRound;
     private boolean canCheck;
     private ArrayList<Card> showedCards;
+    private int nbActivePlayers;
+    private int nbCallSuccessivePlayers;
+    private int nbCheckSuccessivePlayers;
 
     public Round(){
         this.setCurrentBettingRound(1);
@@ -118,5 +121,29 @@ public class Round implements Serializable {
     public Hand getHandByPlayerId(UUID playerId) {
         Hand hand = hands.stream().filter(hands -> hands.getPlayer().getId() == playerId).findAny().orElse(null);
         return hand;
+    }
+
+    public int getNbActivePlayers() {
+        return nbActivePlayers;
+    }
+
+    public void setNbActivePlayers(int nbActivePlayers) {
+        this.nbActivePlayers = nbActivePlayers;
+    }
+
+    public int getNbCallSuccessivePlayers() {
+        return nbCallSuccessivePlayers;
+    }
+
+    public void setNbCallSuccessivePlayers(int nbCallSuccessivePlayers) {
+        this.nbCallSuccessivePlayers = nbCallSuccessivePlayers;
+    }
+
+    public int getNbCheckSuccessivePlayers() {
+        return nbCheckSuccessivePlayers;
+    }
+
+    public void setNbCheckSuccessivePlayers(int nbCheckSuccessivePlayers) {
+        this.nbCheckSuccessivePlayers = nbCheckSuccessivePlayers;
     }
 }
