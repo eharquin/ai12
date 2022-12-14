@@ -240,7 +240,7 @@ public class GameEngine {
         }
     } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
 
-    public void profitsCalculation (List winners, Hashmap CurrentBets) {
+    public void profitsCalculation (ArrayList<Player> winners, Hashmap<Integer,Integer>CurrentBets) {
 	    int gains = 0;
         totalPot = somme valeurs Hashmap CurrentBets;
 	    gains = totalPot/winners.size();
