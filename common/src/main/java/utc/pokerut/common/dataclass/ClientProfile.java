@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ClientProfile extends Player{
     // private String password;
-    private String hashed_password;
+    private String hashedPassword;
     private String name;
     private String surname;
     private Date birthdate;
@@ -23,7 +23,7 @@ public class ClientProfile extends Player{
 
         // TODO : test le password hash
         // this.password = password;
-        this.hashed_password = hashPassword(password);
+        this.hashedPassword = hashPassword(password);
         this.name = name;
         this.surname = surname;
         this.birthdate = birthdate;
@@ -66,11 +66,11 @@ public class ClientProfile extends Player{
     }
 
     public String getPassword() {
-        return hashed_password;
+        return hashedPassword;
     }
 
     public void setPassword(String password) {
-        this.hashed_password = hashPassword(password);
+        this.hashedPassword = hashPassword(password);
     }
 
     public String getName() {

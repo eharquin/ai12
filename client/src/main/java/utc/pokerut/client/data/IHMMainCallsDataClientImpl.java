@@ -45,44 +45,10 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         }
     }
 
-    public String hashPassword(String password) {
-        /*
-         * Method that receives a password in string
-         * and returns the password heshed using MD5 algorithm.
-         */
-        String hashed_password = null;
-
-        try
-        {
-            // Creation d'une instance MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            // on y ajoute les bytes du mot de passe
-            md.update(password.getBytes());
-            // on hash les bytes
-            byte[] hash_bytes = md.digest();
-            // conversion au hexadecimal
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash_bytes.length; i++)
-            {
-                sb.append(Integer.toString((hash_bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            // on obtient le mot de passe hashed
-            hashed_password = sb.toString();
-        } catch (NoSuchAlgorithmException e_algo)
-        {
-            e_algo.printStackTrace();
-        }
-
-        return hashed_password;
-    }
-
     public ClientProfile checkAuthentication(String login, String password) throws Exception {
         /*  get Profiles directory, it must be created at:
          *  > 'client/src/main/java/utc/pokerut/client/data/profiles'
          */
-
-        // hash password
-        String hashed_password = hashPassword(password);
 
         File directory = new File(PROFILE_DIRECTORY_NAME);
         // si le répertoire n'existe pas
@@ -103,7 +69,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
                     ois = new ObjectInputStream(file);
                     // lecture de l'objet
                     ClientProfile profile = (ClientProfile) ois.readObject();
-                    if (profile.getPseudo().equals(login) && profile.getPassword().equals(hashed_password)) {
+                    if (profile.getPseudo().equals(login) && profile.getPassword().equals(profile.hashPassword(password))) {
                         // retour du profil correspondant
                         return profile;
                     }
