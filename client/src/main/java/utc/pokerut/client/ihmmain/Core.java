@@ -97,7 +97,7 @@ public class Core {
         mainController.setCore(this);
 
 
-        mainController.setLoginView(true);
+        mainController.setGameListView(true);
         this.stage = stage;
         this.stage.setTitle("Poker UT - Texas Holdem");
         this.stage.setResizable(false);

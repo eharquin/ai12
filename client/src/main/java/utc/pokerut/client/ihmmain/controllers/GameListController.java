@@ -5,14 +5,16 @@ import java.util.List;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 //import utc.pokerut.common.dataclass.Game;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import utc.pokerut.client.ihmmain.ViewNames;
+import utc.pokerut.client.ihmmain.listeners.GameListListener;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.StatusEnum;
 
 import static utc.pokerut.common.dataclass.StatusEnum.ON_GOING;
 import static utc.pokerut.common.dataclass.StatusEnum.WAITING_FOR_PLAYER;
@@ -39,6 +41,11 @@ public class GameListController extends Controller {
 
     @FXML
     private TableColumn<Game, String> status;
+
+    private Game selectedGame;
+
+    @FXML
+    private Label errorMessage;
 
     public GameListListener getGameListListener() {
         return gameListListener;
@@ -78,6 +85,20 @@ public class GameListController extends Controller {
             property.setValue(Game.getValue().getStatus().toString());
             return property;
         });
+
+        myTableView.setRowFactory(tv -> {
+            TableRow<Game> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                        && event.getClickCount() == 1) {
+
+                    selectedGame = row.getItem();
+                    //selectedId = selectedGame.getId();
+                }
+            });
+            return row;
+        });
+
 
     }
 
@@ -141,32 +162,28 @@ public class GameListController extends Controller {
     }
     public void createGame(){
         //navigate to the screen of game creation
+        System.out.println("test");
         core.getMainController().Navigate(ViewNames.CREATE_GAME_VIEW);
     }
 
     public void joinGame(){
         System.out.println(selectedGame);
 
-        if (selectedGame!=null){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Impossible ");
+
+        if (selectedGame!=null && selectedGame.getStatus() == WAITING_FOR_PLAYER){
 
             //currentPlayer=getProfile();
-            //core.getDataInterface().addUserToGameDataMainClient(selectedGame, serverProfile, idUser );
+            //cabler avec le lobby
             //aller à la fenêtre d'attente
             this.selectedGame=null;
         } else {
-            errorMessage.setVisible(true);
-            /*JOptionPane.showMessageDialog(null,
-                    "Aucune partie sélectionnée",
-                        "PopUp Dialog",
-                    JOptionPane.ERROR_MESSAGE);*/
-            }
 
+            alert.setHeaderText("Les informations saisies ne correspondent pas, vérifiez votre login et mot de passe.");
+            alert.show();
+        }
 
-    }
-
-    public void refreshGameList(){
-        //récuperer la nouvelle valeur de la liste dans le listener
-        //rappeler displayGameTables
     }
 
     
