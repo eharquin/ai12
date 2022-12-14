@@ -45,8 +45,8 @@ public class LoginController extends Controller {
             }
         } else {
             JOptionPane.showMessageDialog(null,
-                    "Erreur de connection",
-                    "PopUp Dialog",
+                    "Erreur dans la saisie des champs.",
+                    "Erreur",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

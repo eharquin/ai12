@@ -10,6 +10,7 @@ import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
 import utc.pokerut.common.dataclass.Player;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,6 +54,14 @@ public class PlayerListController extends Controller implements Initializable {
     }
     @FXML
     protected void logoutButtonClicked() {
-        core.getMainController().Navigate(ViewNames.LOGOUT_VIEW);
+        try{
+            core.getDataInterface().logout();
+            core.getMainController().Navigate(ViewNames.LOGOUT_VIEW);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erreur lors de la déconnection.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
