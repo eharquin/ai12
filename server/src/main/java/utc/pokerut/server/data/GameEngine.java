@@ -225,4 +225,98 @@ public class GameEngine {
 
         return winningComb;
     }
+    
+        public ArrayList<ArrayList<Card>> getCombinations(ArrayList<Card> cardsOnTable) {
+        ArrayList<ArrayList<Card>> combinations = new ArrayList<>();
+
+        for(int i=0; i < cardsOnTable.size()-2; i++) {
+            Card card1 = cardsOnTable.get(i);
+            for(int j =i+1; j < cardsOnTable.size()-1; j++) {
+                Card card2 = cardsOnTable.get(j);
+                for(int k = j+1; k < cardsOnTable.size(); k++){
+                    Card card3 = cardsOnTable.get(k);
+                    ArrayList<Card> combination = new ArrayList<>(Arrays.asList(card1, card2, card3));
+                    combinations.add(combination);
+                }
+
+            }
+        }
+        return combinations;
+    }
+    public ArrayList<Card> getBestCardCombinations(ArrayList<Card> playerCards, ArrayList<Card> cardsOnTable){
+        ArrayList<Card> bestCardCombinations = new ArrayList<>();
+        ArrayList<ArrayList<Card>> combinations = getCombinations(cardsOnTable);
+        int bestCardCombinationsValue = -1;
+
+        for(ArrayList<Card> combination : combinations) {
+            ArrayList<Card> combinationToEval = new ArrayList<>();
+            combinationToEval.addAll(combination);
+            combinationToEval.addAll(playerCards);
+            int value = translateResults(evalComb(combinationToEval));
+            if(value < bestCardCombinationsValue) {
+                bestCardCombinationsValue = value;
+                bestCardCombinations = combinationToEval;
+            }
+        }
+
+        return bestCardCombinations;
+    }
+
+    public ArrayList<Player> getWinners(ArrayList<Hand> hands, ArrayList<Card> cardsOnTable) {
+
+        ArrayList<Player> winners = new ArrayList<>(); //initialisation liste du/des joueur(s) gagnant(s)
+        int win = -1; //valeur de comparaison entre valeurs de combinaisons
+        int nbWinners = 0; //nombre de gagnants
+
+        for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
+            ArrayList<Card> cards = getBestCardCombinations(h.getCards(), cardsOnTable);
+            int valueCombi = translateResults(evalComb(cards));
+            Player player = h.getPlayer();
+
+            if (valueCombi > win) { //si la valeur de combinaison est supérieure à la précédente
+                winners.clear(); //vider la liste des gagnants
+                winners.add(player); //ajouter le nouveau potentiel gagnant
+                win = valueCombi; //la variable de comparaison win prend la valeur de la bombinaison du potentiel gagnant
+                nbWinners = 1; // On a un gagnant
+
+            } else if (valueCombi==win) { //si la valeur de combinaison est égale à celle actuelle
+                winners.add(player); //ajouter un gagnant supplémentaire à la liste (après le précédent)
+                nbWinners++;//on augmente le nombre de gagnant de +1
+            }
+        }
+        return winners;
+    } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
+
+    /*
+    public ArrayList<int> isWinner (HashMap<Integer, Integer> map) {
+
+        List<int> winners = new ArrayList<int>(Arrays.asList(0)); //initialisation liste du/des joueur(s) gagnant(s)
+        int win = -1; //valeur de comparaison entre valeurs de combinaisons
+        int nb_winner = 0; //nombre de gagnants
+
+        for (HashMap.Entry<int,int> entry : combinations.entrySet()) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
+            int value_combi = entry.getValue();
+            int player = entry.getKey();
+
+            if (value_combi>win) { //si la valeur de combinaison est supérieure à la précédente
+                winners.clear(); //vider la liste des gagnants
+                winners.add(0,player); //ajouter le nouveau potentiel gagnant
+                int win = value_combi; //la variable de comparaison win prend la valeur de la bombinaison du potentiel gagnant
+                int nb_winner=1; } //on augmente le nombre de gagnants à 1
+
+            else if (value_combi==win) { //si la valeur de combinaison est égale à la supérieure
+                winners.add(nb_winner,player); //ajouter un gagnant supplémentaire à la liste (après le précédent)
+                int nb_winner=nb_winner+1; } //on augmente le nombre de gagnant de +1
+        }
+    } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
+
+    public void profitsCalculation (ArrayList<Player> winners, Hashmap<Integer,Integer>CurrentBets) {
+	    int gains = 0;
+        totalPot = somme valeurs Hashmap CurrentBets;
+	    gains = totalPot/winners.size();
+	    for (int winner: winners) {
+	    	winner.Hand.availablePoints += gains }
+	}
+
+     */
 }
