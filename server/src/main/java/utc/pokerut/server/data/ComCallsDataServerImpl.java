@@ -137,17 +137,16 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void applyAction(UUID idPlayer, UUID idGame, Action action) {
-        //update nbActivePlayers
         Round round = dataServerCore.getOnGoingGame(idGame).getCurrentRound();
         // update actionList
-        List<Action> actionList = round.getActions();
-        actionList.add(action);
-        round.setActions((ArrayList<Action>) actionList);
+        round.getActions().add(action);
         //update Hand
         Hand currentPlayerHand = round.getHandByPlayerId(idPlayer);
         //update isFold
         if (action.getType().equals(ActionTypeEnum.FOLD)){
             currentPlayerHand.setIsFold(true);
+            //update nbActivePlayers
+            round.setNbActivePlayers(round.getNbActivePlayers()-1);
         }
         //updateAvailablePoints
         Integer oldAvailablePoints = currentPlayerHand.getAvailablePoints();
@@ -224,7 +223,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
         } else {
             round.setNbCallSuccessivePlayers(0);
         }
-
     }
 
 
