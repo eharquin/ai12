@@ -240,6 +240,13 @@ public class GameEngine {
         }
     } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
 
+    public void profitCalculation (List<int>, CurrentBets, pot_total ?) {
+		int gains = 0;
+		gains = pot_total/winners.size();
+		for (int winner: winners) {
+			winner.availablePoints += gains }
+	}
+
      */
 }
 
