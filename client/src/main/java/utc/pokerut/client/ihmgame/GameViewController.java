@@ -2,11 +2,17 @@ package utc.pokerut.client.ihmgame;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import utc.pokerut.client.MainApplication;
 import utc.pokerut.client.ihmgame.Core;
 import utc.pokerut.common.dataclass.Game;
+
+import java.awt.event.ActionEvent;
 
 public class GameViewController {
     public static utc.pokerut.client.ihmgame.Core getCore() {
@@ -174,28 +180,28 @@ public class GameViewController {
     private ImageView card2Player8;
 
     @FXML
-    private Text avatarPlayer1;
+    private ImageView avatarPlayer1;
 
     @FXML
-    private Text avatarPlayer2;
+    private ImageView avatarPlayer2;
 
     @FXML
-    private Text avatarPlayer3;
+    private ImageView avatarPlayer3;
 
     @FXML
-    private Text avatarPlayer4;
+    private ImageView avatarPlayer4;
 
     @FXML
-    private Text avatarPlayer5;
+    private ImageView avatarPlayer5;
 
     @FXML
-    private Text avatarPlayer6;
+    private ImageView avatarPlayer6;
 
     @FXML
-    private Text avatarPlayer7;
+    private ImageView avatarPlayer7;
 
     @FXML
-    private Text avatarPlayer8;
+    private ImageView avatarPlayer8;
 
     public Text getCreditPlayer7() {
         return creditPlayer7;
@@ -357,67 +363,67 @@ public class GameViewController {
         this.card2Player8 = card2Player8;
     }
 
-    public Text getAvatarPlayer1() {
+    public ImageView getAvatarPlayer1() {
         return avatarPlayer1;
     }
 
-    public void setAvatarPlayer1(Text avatarPlayer1) {
+    public void setAvatarPlayer1(ImageView avatarPlayer1) {
         this.avatarPlayer1 = avatarPlayer1;
     }
 
-    public Text getAvatarPlayer2() {
+    public ImageView getAvatarPlayer2() {
         return avatarPlayer2;
     }
 
-    public void setAvatarPlayer2(Text avatarPlayer2) {
+    public void setAvatarPlayer2(ImageView avatarPlayer2) {
         this.avatarPlayer2 = avatarPlayer2;
     }
 
-    public Text getAvatarPlayer3() {
+    public ImageView getAvatarPlayer3() {
         return avatarPlayer3;
     }
 
-    public void setAvatarPlayer3(Text avatarPlayer3) {
+    public void setAvatarPlayer3(ImageView avatarPlayer3) {
         this.avatarPlayer3 = avatarPlayer3;
     }
 
-    public Text getAvatarPlayer4() {
+    public ImageView getAvatarPlayer4() {
         return avatarPlayer4;
     }
 
-    public void setAvatarPlayer4(Text avatarPlayer4) {
+    public void setAvatarPlayer4(ImageView avatarPlayer4) {
         this.avatarPlayer4 = avatarPlayer4;
     }
 
-    public Text getAvatarPlayer5() {
+    public ImageView getAvatarPlayer5() {
         return avatarPlayer5;
     }
 
-    public void setAvatarPlayer5(Text avatarPlayer5) {
+    public void setAvatarPlayer5(ImageView avatarPlayer5) {
         this.avatarPlayer5 = avatarPlayer5;
     }
 
-    public Text getAvatarPlayer6() {
+    public ImageView getAvatarPlayer6() {
         return avatarPlayer6;
     }
 
-    public void setAvatarPlayer6(Text avatarPlayer6) {
+    public void setAvatarPlayer6(ImageView avatarPlayer6) {
         this.avatarPlayer6 = avatarPlayer6;
     }
 
-    public Text getAvatarPlayer7() {
+    public ImageView getAvatarPlayer7() {
         return avatarPlayer7;
     }
 
-    public void setAvatarPlayer7(Text avatarPlayer7) {
+    public void setAvatarPlayer7(ImageView avatarPlayer7) {
         this.avatarPlayer7 = avatarPlayer7;
     }
 
-    public Text getAvatarPlayer8() {
+    public ImageView getAvatarPlayer8() {
         return avatarPlayer8;
     }
 
-    public void setAvatarPlayer8(Text avatarPlayer8) {
+    public void setAvatarPlayer8(ImageView avatarPlayer8) {
         this.avatarPlayer8 = avatarPlayer8;
     }
 
@@ -604,4 +610,12 @@ public class GameViewController {
     public void setPlayer6(Text player6) {
         Player6 = player6;
     }
+
+    /*@FXML
+    public void Leave(ActionEvent event) throws IndexOutOfBoundsException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/confirmLeaveGame.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();}*/
+
 }
