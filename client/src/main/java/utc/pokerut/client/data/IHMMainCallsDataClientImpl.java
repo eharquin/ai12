@@ -157,4 +157,9 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     public void setPCLPlayer(PropertyChangeListener PCLPlayer){
         myDataCore.addPropertyChangeListenerPlayer(PCLPlayer);
     }
+
+    @Override
+    public void logout(){
+        myDataCore.getiDataCallsCom().logoutUser(myDataCore.getProfile().getId());
+    }
 }

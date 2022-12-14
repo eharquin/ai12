@@ -158,5 +158,10 @@ public class Core {
 
     public void setComCallsData(ComCallsDataClientImpl comCallsData) {
         this.comCallsData = comCallsData;
+	}
+	
+    public Player getConnectedPlayer(UUID playerId) {
+        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
     }
 }

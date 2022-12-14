@@ -28,4 +28,5 @@ public interface ComCallsData {
     public ArrayList<ServerProfile> getConnectedPlayers();
     public void askJoinTableComDataServ(UUID idUser, UUID idGame);
     public void newPlayerJoinedComDataServ(UUID id_user, UUID id_game);
+    public void removeUser(UUID playerDisconnectingId);
 }

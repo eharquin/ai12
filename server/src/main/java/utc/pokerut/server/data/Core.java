@@ -99,4 +99,12 @@ public class Core {
     public void setDataCallsCom(DataCallsCom iDataCallsCom) {
         this.iDataCallsCom = iDataCallsCom;
     }
+    public ServerProfile getConnectedPlayer(UUID playerId) {
+        ServerProfile connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
+    }
+    public void removeConnectedPlayer(UUID playerDisconnectingId) {
+        Player player = getConnectedPlayer(playerDisconnectingId);
+        connectedPlayers.remove(player);
+    }
 }
