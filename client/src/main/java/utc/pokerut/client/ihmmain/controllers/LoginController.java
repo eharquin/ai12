@@ -33,7 +33,24 @@ public class LoginController extends Controller {
     private Button loginButton;
 
     public void loginUser(Event event) {
-        if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())) {
+        boolean emptyFields = false, wrongIp = false, wrongPort = false;
+        String errorText = "";
+
+        if(!validatePort(port.getText())) {
+            wrongPort = true;
+            errorText = "Veuillez rentrer un nombre pour le Port.";
+        }
+
+        if(!validateIP(serverIp.getText())) {
+            wrongIp = true;
+            errorText = "Mauvais format pour l'adresse IP.";
+        }
+
+        if(username.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty()) {
+            emptyFields = true;
+            errorText = "Veuillez remplir tous les champs.";
+        }
+        if(!emptyFields && !wrongIp && !wrongPort) {
             try {
                 core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
@@ -45,7 +62,7 @@ public class LoginController extends Controller {
             }
         } else {
             JOptionPane.showMessageDialog(null,
-                    "Erreur dans la saisie des champs.",
+                    errorText,
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
         }
