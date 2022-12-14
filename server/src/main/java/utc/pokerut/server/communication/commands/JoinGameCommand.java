@@ -6,7 +6,7 @@ import utc.pokerut.server.communication.Core;
 
 import java.util.UUID;
 
-public class JoinGameCommand implements Command {
+public class JoinGameCommand {
 
     private UUID gameID;
     private UUID playerID;
@@ -15,7 +15,8 @@ public class JoinGameCommand implements Command {
         this.playerID = playerID;
     }
 
-    public void execute(Core core, ClientHandler client) {
+    public void execute(Core core) {
+        ClientHandler client = core.getServer().getClientById(playerID);
         client.send(MessageType.JoinGameRequest);
         client.send(playerID);
         client.send(gameID);

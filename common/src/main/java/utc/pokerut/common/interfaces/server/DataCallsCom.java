@@ -15,13 +15,13 @@ public interface DataCallsCom {
 
     void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID);
 
-    void sendNewRound(Round round, Round newRound, List<Integer> players);
+    void sendNewRound(Round round, Round newRound, List<UUID> players);
 
     void sendNextPlayerActions(List<Action> actions, UUID playerID);
 
-    void sendUpdateRound(Round round, List<Integer> players);
+    void sendUpdateRound(Round round, List<UUID> players);
 
-    void sendUpdateRoundAndEndResults(Round round, List<Integer> players, List<Result> results);
+    void sendUpdateRoundAndEndResults(Round round, List<UUID> players, List<Result> results);
 
     void sendUserActionsRefused();
 

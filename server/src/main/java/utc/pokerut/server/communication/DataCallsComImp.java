@@ -35,10 +35,10 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void joinTableRequestDataComServ(UUID playerID, UUID gameID, ClientHandler client)
+    public void joinTableRequestDataComServ(UUID playerID, UUID gameID)
     {
         JoinGameCommand command = new JoinGameCommand(playerID, gameID);
-        command.execute(core, client);
+        command.execute(core);
     }
 
     public void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID)
@@ -46,7 +46,7 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void sendNewRound(Round round, Round newRound, List<Integer> players)
+    public void sendNewRound(Round round, Round newRound, List<UUID> players)
     {
 
     }
