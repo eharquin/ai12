@@ -43,6 +43,7 @@
                   <content>
                       <TableView fx:id="myTableView" prefHeight="500.0" prefWidth="510.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;">
                           <columns>
+                              <TableColumn fx:id="id" prefWidth="100.0" style="-fx-background-color: #E3E3E3;" text="ID" visible="false" />
                               <TableColumn fx:id="name" prefWidth="100.0" style="-fx-background-color: #E3E3E3;" text="NOM" />
                               <TableColumn fx:id="creator" prefWidth="100.0" style="-fx-background-color: #E3E3E3;" text="CREATEUR" />
                               <TableColumn fx:id="nbRounds" prefWidth="100.65693664550781" style="-fx-background-color: #E3E3E3;" text="NB TOURS MAX" />
@@ -60,7 +61,12 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="550.0">
                      <children>
-                        <Button fx:id="joinGameButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="452.0" layoutY="24.0" mnemonicParsing="false" onAction="#joinGame" style="-fx-background-color: #E3E3E3;" text="Rejoindre" textAlignment="CENTER" />
+                         <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="80.0" text="Veuillez sélectionner une partie" textAlignment="CENTER" textFill="RED" visible="false">
+                             <font>
+                                 <Font size="14.0" />
+                             </font>
+                         </Label>
+                        <Button fx:id="joinGameButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="450.0" layoutY="25.0" mnemonicParsing="false" onAction="#joinGame" style="-fx-background-color: #E3E3E3;" text="Rejoindre" textAlignment="CENTER" />
                      </children>
                   </Pane>
                </children>
