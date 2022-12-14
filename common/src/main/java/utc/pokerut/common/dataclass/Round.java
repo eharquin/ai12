@@ -1,12 +1,13 @@
 package utc.pokerut.common.dataclass;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Round implements Serializable {
+
+    public static int NB_MAX_BETTING_ROUND = 5;
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private ArrayList<Card> cards;
