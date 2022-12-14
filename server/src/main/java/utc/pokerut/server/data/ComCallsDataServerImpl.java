@@ -137,6 +137,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void applyAction(UUID idPlayer, UUID idGame, Action action) {
+        //update nbActivePlayers
         Round round = dataServerCore.getOnGoingGame(idGame).getCurrentRound();
         // update actionList
         List<Action> actionList = round.getActions();
@@ -156,14 +157,110 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Player currentPlayer = round.getCurrentPlayer();
         Integer oldPlayerBets = currentBets.get(currentPlayer);
         currentBets.put(currentPlayer, oldPlayerBets+ action.getBetting());
-        //update currentPlayer
-        this.setNextPlayerRound(dataServerCore.getOnGoingGame(idGame).getPlayers(), round);
+        //update currentBet
+        if (!action.getType().equals(ActionTypeEnum.ALL_IN)){
+            round.setCurrentBet(action.getBetting());
+        }
 
+        Game game = this.dataServerCore.getOnGoingGame(idGame);
+        //check if bettingRound is finished
+        // if true
+        updateBettingRound(action, round);
+        if(isBettingRoundFinished(round)){
+            round.setCurrentBettingRound(round.getCurrentBettingRound()+1);
+            if(round.getCurrentBettingRound() == Round.NB_MAX_BETTING_ROUND) {
+                // la partie est finie
+                // envoyer la fin du round au joueur ?
+                this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
+
+            } else {
+                // la partie n'est pas finie
+
+                // envoyer le nouveau round vérifier si c'est la bonne version
+                initRound(game);
+                this.dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
+
+                List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation();
+                this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
+            }
+        } else {
+            this.setNextPlayerRound(dataServerCore.getOnGoingGame(idGame).getPlayers(), round);
+            this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
+
+            List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation();
+            this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
+            // envoyer le round
+        }
+        // update currentBettingRound
+        //check is RoundFinished
+        // if true
+        // update currentRound
+        //if false
+        //update currentPlayer
+
+        //lui envoyer les actions
+
+        // if currentBettingRound == 0
+        // aucune carte de reoturner, showedCard vide
+        //if currentBettingRound == 1, une carte de la pioche est brulée, trois cartes de retournées
+        // if currentBettingRound == 2, la première carte est jetée, la deuxième est retournée
+        // if currentBettingRound == 3, la première carte est jetée, la deuxième est retournée
+
+    }
+
+    public void updateBettingRound(Action action, Round round) {
+        if(action.equals(ActionTypeEnum.CHECK)) { // si l'action du joueur en cours == check
+            round.setNbCheckSuccessivePlayers(round.getNbCheckSuccessivePlayers()+1);
+        } else {
+            round.setNbCheckSuccessivePlayers(0);
+        }
+
+        if(action.equals(ActionTypeEnum.CALL)) { // si l'action du joueur en cours == call
+            round.setNbCallSuccessivePlayers(round.getNbCallSuccessivePlayers()+1);
+        } else if (action.equals(ActionTypeEnum.RAISE)) { // si l'action du joueur en cours == RAISE
+            round.setNbCallSuccessivePlayers(1);
+        } else if(action.equals(ActionTypeEnum.BET)) { // si l'action du joueur en cours == BET
+            round.setNbCallSuccessivePlayers(1);
+        } else {
+            round.setNbCallSuccessivePlayers(0);
+        }
+
+    }
+
+
+    public boolean isBettingRoundFinished(Round round) {
+        if (round.getNbCallSuccessivePlayers() == round.getNbActivePlayers() || round.getNbCheckSuccessivePlayers() == round.getNbActivePlayers() //
+        || round.getNbActivePlayers() == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void initRound(Game game){
         // init new Round
         Round round = new Round(game.getPlayers().get(0));
+        dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
+
+
+        // payer petite blinde
+        int littleBlinde = Math.round(game.getNbPoints()/100);
+        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, littleBlinde, round.getCurrentPlayer());
+        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerPetiteBlinde);
+
+        // payer la grosse blinde
+        int grosseBlincde = littleBlinde*2;
+        // éventuellment peut poser problème apply action
+        //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
+        game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
+        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
+
+    }
+
+    public void initRound(Game game, Player player){
+        // init new Round
+        Round round = new Round(player);
         dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
 
 
