@@ -36,17 +36,22 @@ public class LoginController extends Controller {
     private Label errorMessage;
 
     public void loginUser(Event event) {
-        if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if(!username.getText().trim().isEmpty() && !passwordField.getText().trim().isEmpty() && validateIP(serverIp.getText()) && validatePort(port.getText())) {
             try {
                 core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
-                errorMessage.setVisible(true);
-                JOptionPane.showMessageDialog(null,
-                        "Hi, In the message box",
-                        "PopUp Dialog",
-                        JOptionPane.ERROR_MESSAGE);
+                System.out.println(e);
+                alert.setTitle("Connexion refusée");
+                alert.setHeaderText("Les informations saisies ne correspondent pas, vérifiez votre login et mot de passe.");
+                alert.show();
             }
+        }
+        else{
+            alert.setTitle("Erreur de saisie");
+            alert.setHeaderText("Vérifiez vos identifiants ainsi que le format de l'IP et le port.");
+            alert.show();
         }
     }
     public boolean validateIP(final String ip) {

@@ -8,6 +8,7 @@ import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.client.ihmmain.implementations.ComCallsIHMMainImpl;
 import utc.pokerut.client.ihmmain.implementations.DataCallsIHMMainImpl;
 import utc.pokerut.client.ihmmain.implementations.IHMGameCallsIHMMainImpl;
+import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.interfaces.client.*;
 
@@ -78,6 +79,7 @@ public class Core {
     }
 
     private MainController mainController;
+    private PlayerListListener playerListListener;
 
     public Scene getScene() {
         return scene;
@@ -91,7 +93,10 @@ public class Core {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
         scene = new Scene(fxmlLoader.load());
         mainController = fxmlLoader.getController();
+
         mainController.setCore(this);
+
+
         mainController.setLoginView(true);
         this.stage = stage;
         this.stage.setTitle("Poker UT - Texas Holdem");

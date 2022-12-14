@@ -33,4 +33,8 @@ public interface DataCallsCom {
     void getReplays();
 
     void logoutUser(int playerID);
+<<<<<<< HEAD
+=======
+
+>>>>>>> remotes/origin/v2/ihm-main/tests
 }

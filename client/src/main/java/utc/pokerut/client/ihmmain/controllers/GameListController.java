@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utc.pokerut.client.ihmmain.ViewNames;
+import utc.pokerut.client.ihmmain.listeners.GameListListener;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
@@ -40,8 +41,44 @@ public class GameListController extends Controller {
     @FXML
     private TableColumn<Game, String> status;
 
+    public GameListListener getGameListListener() {
+        return gameListListener;
+    }
+
+    private GameListListener gameListListener;
     public void initialize() {
-        setGameList(getItemsToAdd());
+        gameListListener = new GameListListener(this);
+        name.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
+        creator.setCellValueFactory(Game -> {
+            SimpleObjectProperty property = new SimpleObjectProperty();
+            property.setValue(Game.getValue().getCreator().getPseudo());
+            return property;
+        });
+
+        nbRounds.setCellValueFactory(Game -> {
+            SimpleObjectProperty property = new SimpleObjectProperty();
+            property.setValue(Game.getValue().getNbRounds());
+            return property;
+        });
+
+        minBet.setCellValueFactory(Game -> {
+            SimpleObjectProperty property = new SimpleObjectProperty();
+            property.setValue(Game.getValue().getMinimalBet());
+            return property;
+        });
+
+
+        nbPlayers.setCellValueFactory(Game -> {
+            SimpleObjectProperty property = new SimpleObjectProperty();
+            property.setValue(Game.getValue().getPlayers().size() + "/" + Game.getValue().getNbMaxPlayers());
+            return property;
+        });
+
+        status.setCellValueFactory(Game -> {
+            SimpleObjectProperty property = new SimpleObjectProperty();
+            property.setValue(Game.getValue().getStatus().toString());
+            return property;
+        });
 
     }
 
@@ -93,43 +130,16 @@ public class GameListController extends Controller {
     //faire fonction
     public void setGameList(List<Game> gameList){
         // faire différents cas en fonction de si on est dans l'ini ou dans l'actualisation
-
-        name.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
-        creator.setCellValueFactory(Game -> {
-            SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Game.getValue().getCreator().getPseudo());
-            return property;
-        });
-
-        nbRounds.setCellValueFactory(Game -> {
-            SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Game.getValue().getNbRounds());
-            return property;
-        });
-
-        minBet.setCellValueFactory(Game -> {
-            SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Game.getValue().getMinimalBet());
-            return property;
-        });
-
-
-        nbPlayers.setCellValueFactory(Game -> {
-            SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Game.getValue().getPlayers().size() + "/" + Game.getValue().getNbMaxPlayers());
-            return property;
-        });
-
-        status.setCellValueFactory(Game -> {
-            SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Game.getValue().getStatus().toString());
-            return property;
-        });
-
-
         myTableView.getItems().setAll(gameList);
     }
-
+    public void addGame(Game game)
+    {
+        myTableView.getItems().add(game);
+    }
+    public void removeGame(Game game)
+    {
+        myTableView.getItems().remove(game);
+    }
     public void createGame(){
         //navigate to the screen of game creation
         core.getMainController().Navigate(ViewNames.CREATE_GAME_VIEW);
