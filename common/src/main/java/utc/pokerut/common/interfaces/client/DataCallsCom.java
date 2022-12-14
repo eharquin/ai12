@@ -33,5 +33,5 @@ public interface DataCallsCom {
     void getReplays();
 
     void logoutUser(int playerID);
-    
+
 }

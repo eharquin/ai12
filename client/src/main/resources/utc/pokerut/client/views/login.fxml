@@ -13,8 +13,6 @@
 <?import javafx.scene.text.Text?>
 
 <HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.LoginController">
-       <!--<fx:include source="leftPanel.fxml"/>-->
-       <VBox fx:id="showSideBar" alignment="CENTER" style="-fx-background-color: #026502; -fx-padding: 128;" />
       <VBox alignment="CENTER" style="-fx-background-color: #E3E3E3;" HBox.hgrow="ALWAYS">
          <children>
              <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">

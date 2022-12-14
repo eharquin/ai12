@@ -19,8 +19,6 @@ public interface ComCallsData {
     public void sendUserActionRefused();
     public void sendUpdateRoundAndNewRound(Round round, Round newRound, List<UUID> players);
     public void transmitLeaveMessage (UUID idPlayer, UUID idGame, int nbCreditFinal, boolean result);
-    public void joinTableRequestDataComServ(UUID idUser, UUID idGame);
-    public void addUserToGameDataComServ(Game gameNewPlayer, Player newPlayer, UUID idUser);
     public void modify(ServerProfile profile);
     public void sendUpdateRoundAndEndResult(Round round, ArrayList<Result> results, List<UUID> players);
     public void sendNewRound(Round round, Round newRound, List<UUID> players);
@@ -28,4 +26,6 @@ public interface ComCallsData {
     public void saveUser(ServerProfile newUser);
     public ArrayList<Game> getWaitingGames();
     public ArrayList<ServerProfile> getConnectedPlayers();
+    public void askJoinTableComDataServ(UUID idUser, UUID idGame);
+    public void newPlayerJoinedComDataServ(UUID id_user, UUID id_game);
 }

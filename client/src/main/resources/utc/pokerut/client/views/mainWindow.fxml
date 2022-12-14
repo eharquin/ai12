@@ -37,11 +37,14 @@
     </top>
     <center>
         <StackPane alignment="CENTER">
-            <fx:include fx:id="login" source="login.fxml" visible="false"/>
-            <fx:include fx:id="create_profile" source="createUser.fxml" visible="false"/>
-            <fx:include fx:id="create_game" source="createGame.fxml" visible="false"/>
-            <fx:include fx:id="game_list" source="gameListView.fxml" visible="true"/>
-            <fx:include fx:id="ihmGame" source="gameTable.fxml" visible="false"/>
+            <fx:include fx:id="login" source="login.fxml" visible="${controller.loginView}"/>
+            <fx:include fx:id="createUser" source="createUser.fxml" visible="${controller.createProfileView}"/>
+            <fx:include fx:id="createGame" source="createGame.fxml" visible="${controller.createGameView}"/>
+            <fx:include fx:id="gameList" source="gameListView.fxml" visible="${controller.gameListView}"/>
+            <fx:include fx:id="ihmGame" source="gameTable.fxml" visible="${controller.ihmGameView}"/>
         </StackPane>
     </center>
+    <left>
+        <fx:include fx:id="leftPanel" source="leftPanel.fxml"/>
+    </left>
 </BorderPane>

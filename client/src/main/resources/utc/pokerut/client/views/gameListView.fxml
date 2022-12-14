@@ -74,7 +74,4 @@
          </children>
       </VBox>
    </center>
-    <left>
-        <fx:include source="leftPanel.fxml" />
-    </left>
 </BorderPane>
