@@ -9,7 +9,7 @@ public class Round implements Serializable {
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private ArrayList<Card> cards;
-    private HashMap<Player, Integer> currentBets;
+    private HashMap<Integer, Integer> currentBets;
     private Player currentPlayer;
     private int currentBet;
     private int currentBettingRound;
@@ -40,11 +40,11 @@ public class Round implements Serializable {
         this.cards = cards;
     }
 
-    public HashMap<Player, Integer> getCurrentBets() {
+    public HashMap<Integer, Integer> getCurrentBets() {
         return currentBets;
     }
 
-    public void setCurrentBets(HashMap<Player, Integer> currentBets) {
+    public void setCurrentBets(HashMap<Integer, Integer> currentBets) {
         this.currentBets = currentBets;
     }
 
