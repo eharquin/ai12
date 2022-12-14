@@ -118,4 +118,9 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Player player = dataServerCore.getConnectedPlayer(idUser);
         dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
     }
+
+    @Override
+    public void removeUser(UUID playerDisconnectingId) {
+        this.dataServerCore.removeConnectedPlayer(playerDisconnectingId);
+    }
 }
