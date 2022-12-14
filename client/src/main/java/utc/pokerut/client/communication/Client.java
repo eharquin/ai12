@@ -45,6 +45,8 @@ public class Client implements Runnable{
         this.map.put(MessageType.Init, CommandInit.class);
         this.map.put(MessageType.GameCreated, CommandGameCreated.class);
         this.map.put(MessageType.GameDeleted, CommandGameDeleted.class);
+        this.map.put(MessageType.ActionPlayed, CommandActionPlayed.class);
+        this.map.put(MessageType.ActionRefused, CommandActionRefused.class);
     }
 
     public void connect(String host, int port) {

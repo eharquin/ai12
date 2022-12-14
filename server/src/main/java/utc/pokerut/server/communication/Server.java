@@ -26,6 +26,15 @@ public class Server implements Runnable
         return clients;
     }
 
+    public ClientHandler getClientById(UUID id){
+        for (ClientHandler client : clients) {
+            if (client.getProfile().getId() == id) {
+                return client;
+            }
+        }
+        return null;
+    }
+
     Server(Core core, int port) throws IOException {
         this.core = core;
         socket = new ServerSocket(port);

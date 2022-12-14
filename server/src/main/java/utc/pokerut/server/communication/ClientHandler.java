@@ -4,11 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.client.MessageType;
-import utc.pokerut.server.communication.commands.Command;
-import utc.pokerut.server.communication.commands.CommandCreateGame;
-import utc.pokerut.server.communication.commands.CommandDeleteGame;
-import utc.pokerut.server.communication.commands.CommandLogOut;
-import utc.pokerut.server.communication.commands.CommandLogin;
+import utc.pokerut.server.communication.commands.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -49,6 +45,7 @@ public class ClientHandler implements Runnable {
         this.map.put(MessageType.CreateGame, CommandCreateGame.class);
         this.map.put(MessageType.DeleteGame, CommandDeleteGame.class);
         this.map.put(MessageType.AskJoinGame, CommandLogin.class);
+        this.map.put(MessageType.PlayAction, CommandActionPlayed.class);
     }
 
     public void run() {

@@ -9,5 +9,6 @@ public enum MessageType implements Serializable {
     GameCreated, // notify all player that a new game has been created
     GameDeleted,
     JoinGameRequest,
+    ActionPlayed, ActionRefused, // Envoyé aux joueurs quand une action est jouée
 
 }
