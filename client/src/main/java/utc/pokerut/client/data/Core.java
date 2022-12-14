@@ -5,7 +5,9 @@ import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.interfaces.client.ComCallsData;
+import utc.pokerut.common.interfaces.client.DataCallsIHMGame;
 import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
+import utc.pokerut.common.interfaces.client.IHMGameCallsData;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
 
@@ -14,9 +16,11 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class Core {
-    private ComCallsData comCallsData;
     private IHMMainCallsData ihmMainCallsData;
+    private IHMGameCallsData ihmGameCallsData;
     private DataCallsIHMMain iDataCallsIHMMain;
+    private DataCallsIHMGame iDataCallsIHMGame;
+    private ComCallsData comCallsData;
     private DataCallsCom iDataCallsCom;
     private ClientProfile profile;
     private Game currentGame;
@@ -29,6 +33,7 @@ public class Core {
     {
         ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
         comCallsData = new ComCallsDataClientImpl(this);
+        ihmGameCallsData = new IHMGameCallsDataClientImpl(this);
         waitingGame = new ArrayList<Game>();
         connectedPlayers = new ArrayList<Player>();
         pcsGame = new PropertyChangeSupport(waitingGame);
@@ -36,6 +41,10 @@ public class Core {
     }
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
+    }
+
+    public IHMGameCallsData getIhmGameCallsData() {
+        return ihmGameCallsData;
     }
 
     public PropertyChangeSupport getPcsGame() {
@@ -133,6 +142,14 @@ public class Core {
     }
     public DataCallsIHMMain getiDataCallsIHMMain() {
         return this.iDataCallsIHMMain;
+    }
+
+    public DataCallsIHMGame getiDataCallsIHMGame() {
+        return this.iDataCallsIHMGame;
+    }
+
+    public void setiDataCallsIHMGame(DataCallsIHMGame iDataCallsIHMGame) {
+        this.iDataCallsIHMGame = iDataCallsIHMGame;
     }
 
     public void setiDataCallsIHMMain(DataCallsIHMMain iDataCallsIHMMain) {

@@ -11,7 +11,9 @@ public class Round implements Serializable {
     private ArrayList<Card> cards;
     private HashMap<Player, Integer> currentBets;
     private Player currentPlayer;
+    private int currentBet;
     private int currentBettingRound;
+    private boolean canCheck;
     private ArrayList<Card> showedCards;
 
     public ArrayList<Action> getActions() {
@@ -54,12 +56,28 @@ public class Round implements Serializable {
         this.currentPlayer = currentPlayer;
     }
 
+    public int getCurrentBet() {
+        return currentBet;
+    }
+
+    public void setCurrentBet(int currentBet) {
+        this.currentBet = currentBet;
+    }
+
     public int getCurrentBettingRound() {
         return currentBettingRound;
     }
 
     public void setCurrentBettingRound(int currentBettingRound) {
         this.currentBettingRound = currentBettingRound;
+    }
+
+    public boolean getCanCheck() {
+        return canCheck;
+    }
+
+    public void setCanCheck(boolean canCheck) {
+        this.canCheck = canCheck;
     }
 
     public ArrayList<Card> getShowedCards() {

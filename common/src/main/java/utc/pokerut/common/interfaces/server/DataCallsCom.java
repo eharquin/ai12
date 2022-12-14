@@ -3,6 +3,7 @@ package utc.pokerut.common.interfaces.server;
 import utc.pokerut.common.dataclass.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface DataCallsCom {
 
@@ -12,7 +13,7 @@ public interface DataCallsCom {
 
     void joinTableRequestComServCreator(int playerID, int gameID);
 
-    void joinTableRequestDataComServ(int playerID, int gameID);
+    void joinTableRequestDataComServ(UUID idUser, UUID idGame);
 
     void notifyAcceptorComCreatorServ(int playerID, int gameID);
 
@@ -27,5 +28,5 @@ public interface DataCallsCom {
     void sendUserActionsRefused();
 
     void transmitLeaveMessage(int playerID, int gameID, int nbCreditFinal, boolean result);
-
+    void addUserToGameDataComServ(Game game, Player player,  UUID id_user);
 }
