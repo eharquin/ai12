@@ -242,7 +242,7 @@ public class GameEngine {
 
     public void profitsCalculation (List winners, Hashmap CurrentBets) {
 		int gains = 0;
-        totalPot = somme valeurs Hashmap CurrentBets
+        totalPot = somme valeurs Hashmap CurrentBets;
 		gains = totalPot/winners.size();
 		for (int winner: winners) {
 			winner.availablePoints += gains }
