@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CreateUserController extends Controller {
 
+
     @FXML private TextField name;
     @FXML private TextField surname;
     @FXML private DatePicker birthdate;
@@ -31,6 +32,25 @@ public class CreateUserController extends Controller {
     @FXML private Label profileState;
     @FXML private Label avatarState;
     private String avatar;
+    private ClientProfile updateClientProfile;
+
+    public CreateUserController()
+    {
+        ClientProfile client =
+        if ((newUser == false) & (updateUser != null))
+        {
+            updateClientProfile = updateUser;
+        }
+        else if (((newUser == true) & (updateUser != null)) | ((newUser == false) & (updateUser == null)))
+        {
+            //error
+        }
+        else
+        {
+            updateClientProfile = null;
+        }
+    }
+
 
     private void ChooseAvatar(String path) throws IOException
     {
@@ -85,7 +105,7 @@ public class CreateUserController extends Controller {
                 core.getMainController().Navigate(ViewNames.LOGIN_VIEW);
                 //Instant instant = Instant.from(birthdate.getValue());
                 try {
-                    core.getDataInterface().createUser(pseudo.getText(), password.getText(), name.getText(), surname.getText(), new Date(), avatar, null, 0);
+                    core.getDataInterface().createUser(pseudo.getText(), password.getText(), name.getText(), surname.getText(), java.sql.Date.valueOf(String.valueOf(birthdate)), avatar, null, 0);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
