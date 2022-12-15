@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 import utc.pokerut.client.communication.Commands.*;
 // pokerut
-import utc.pokerut.common.messages.server.MessageType;
+import utc.pokerut.common.messages.*;
 
-public class Client implements Runnable{
+public class Client extends MessageHandler<Core> implements Runnable {
 
     private boolean connected;
 
@@ -21,9 +21,7 @@ public class Client implements Runnable{
 
     private Core core;
 
-    private HashMap<MessageType, Class<? extends Command>> map;
-
-    public boolean isConnected() {
+    public Boolean isConnected() {
         return connected;
     }
 
@@ -35,22 +33,36 @@ public class Client implements Runnable{
         return out;
     }
 
+    @Override
+    public Core getCore() {
+        return core;
+    }
+
+    @Override
+    protected Command getCommand(Class<? extends Command> commandClass) {
+        try {
+            return commandClass.getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Client(Core core) {
         this.core = core;
 
         connected = false;
-        this.map = new HashMap<>();
-        this.map.put(MessageType.UserLoggedIn, CommandUserLoggedIn.class);
-        this.map.put(MessageType.UserLoggedOut, CommandUserLoggedOut.class);
-        this.map.put(MessageType.Init, CommandInit.class);
-        this.map.put(MessageType.GameCreated, CommandGameCreated.class);
-        this.map.put(MessageType.GameDeleted, CommandGameDeleted.class);
-        this.map.put(MessageType.ActionPlayed, CommandActionPlayed.class);
-        this.map.put(MessageType.ActionRefused, CommandActionRefused.class);
+        this.messages = new HashMap<>();
+        this.messages.put(LoginMessage.class, CommandUserLoggedIn.class);
+        this.messages.put(LogoutMessage.class, CommandUserLoggedOut.class);
+        this.messages.put(InitMessage.class, CommandInit.class);
+        this.messages.put(GameCreated.class, CommandGameCreated.class);
+        this.messages.put(GameDeleted.class, CommandGameDeleted.class);
+        this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
+        this.messages.put(ActionRefused.class, CommandActionRefused.class);
     }
 
     public void connect(String host, int port) {
-        if(connected)
+        if (this.isConnected())
             throw new IllegalArgumentException("client already connected");
 
         try {
@@ -58,49 +70,8 @@ public class Client implements Runnable{
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
             connected = true;
-        } catch(IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void run() {
-        while(connected)
-        {
-            try {
-                MessageType type = (MessageType) in.readObject();
-                map.get(type).getDeclaredConstructor().newInstance().execute(core);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public void send(Object obj) {
-        try {
-            this.out.writeObject(obj);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public Object receive() {
-        try {
-            Object obj = this.in.readObject();
-            return obj;
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

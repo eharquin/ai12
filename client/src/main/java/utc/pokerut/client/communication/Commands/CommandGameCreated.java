@@ -2,10 +2,10 @@ package utc.pokerut.client.communication.Commands;
 
 import utc.pokerut.client.communication.Core;
 import utc.pokerut.common.dataclass.Game;
+import utc.pokerut.common.messages.GameCreated;
 
-public class CommandGameCreated implements Command {
-    public void execute(Core core) {
-        Game newGame = (Game) core.getClient().receive();
-        core.getComCallsData().updateGameList(newGame);
+public class CommandGameCreated extends ClientCommand<GameCreated> {
+    public void execute() {
+        core.getComCallsData().updateGameList(message.game);
     }
 }

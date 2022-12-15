@@ -17,9 +17,9 @@ public class JoinGameCommand {
 
     public void execute(Core core) {
         ClientHandler client = core.getServer().getClientById(playerID);
-        client.send(MessageType.JoinGameRequest);
-        client.send(playerID);
-        client.send(gameID);
+//        client.send(MessageType.JoinGameRequest);
+//        client.send(playerID);
+//        client.send(gameID);
     }
     
 }

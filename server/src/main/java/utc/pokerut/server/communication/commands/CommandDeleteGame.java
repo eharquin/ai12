@@ -1,10 +1,9 @@
 package utc.pokerut.server.communication.commands;
 
-import utc.pokerut.server.communication.ClientHandler;
-import utc.pokerut.server.communication.Core;
+import utc.pokerut.common.messages.GameDeleted;
 
-public class CommandDeleteGame implements Command {
-    public void execute(Core core, ClientHandler client)
+public class CommandDeleteGame extends ServerCommand<GameDeleted> {
+    public void execute()
     {
         
     }

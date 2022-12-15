@@ -1,12 +1,13 @@
 package utc.pokerut.client.communication;
 
-import utc.pokerut.client.communication.Commands.CreateGameCommand;
-import utc.pokerut.client.communication.Commands.LoginCommand;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
+import utc.pokerut.common.messages.GameCreated;
+import utc.pokerut.common.messages.LoginMessage;
+import utc.pokerut.common.messages.LogoutMessage;
 import utc.pokerut.common.messages.client.MessageType;
 
 import java.util.UUID;
@@ -21,14 +22,8 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void connectionUser(ServerProfile profile, String ip, int port) {
-
-
-
         core.connect(ip, port);
-
-        // send new LoginCommand
-        LoginCommand command = new LoginCommand(profile);
-        command.execute(core);
+        core.getClient().send(new LoginMessage(profile));
     }
 
     public ClientProfile AskForProfile(int playerID) {
@@ -41,8 +36,7 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void initGameClient(Game newGame) {
-        CreateGameCommand command = new CreateGameCommand(newGame);
-        command.execute(core);
+        core.getClient().send(new GameCreated(newGame));
     }
 
     public void sendGame(Game newGame, boolean b) {
@@ -50,9 +44,9 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void askJoinTableMainComCli(UUID playerID, UUID idGame) {
-        core.getClient().send(MessageType.Login);
-        core.getClient().send(playerID);
-        core.getClient().send(idGame);
+//        core.getClient().send(MessageType.Login);
+//        core.getClient().send(playerID);
+//        core.getClient().send(idGame);
     }
 
     public void sendStartGame(int gameID) {
@@ -79,8 +73,8 @@ public class DataCallsComImp implements DataCallsCom
 
     }
 
-    public void logoutUser(int playerID) {
-
+    public void logoutUser(UUID playerID) {
+        core.getClient().send(new LogoutMessage(playerID));
     }
 
 }

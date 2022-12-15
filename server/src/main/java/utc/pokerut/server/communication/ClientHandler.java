@@ -1,21 +1,18 @@
 package utc.pokerut.server.communication;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.messages.*;
 import utc.pokerut.common.messages.client.MessageType;
 import utc.pokerut.server.communication.commands.*;
+import utc.pokerut.server.communication.commands.Command;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ClientHandler implements Runnable {
-
-    private static final Logger logger = LoggerFactory.getLogger(Server.class);
+public class ClientHandler extends MessageHandler<Core> implements Runnable {
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
@@ -39,57 +36,43 @@ public class ClientHandler implements Runnable {
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 
-        this.map = new HashMap<>();
-        this.map.put(MessageType.Login, CommandLogin.class);
-        this.map.put(MessageType.LogOut, CommandLogOut.class);
-        this.map.put(MessageType.CreateGame, CommandCreateGame.class);
-        this.map.put(MessageType.DeleteGame, CommandDeleteGame.class);
-        this.map.put(MessageType.AskJoinGame, CommandLogin.class);
-        this.map.put(MessageType.PlayAction, CommandActionPlayed.class);
+        this.messages = new HashMap<>();
+        this.messages.put(LoginMessage.class, CommandLogin.class);
+        this.messages.put(LogoutMessage.class, CommandLogOut.class);
+        this.messages.put(GameCreated.class, CommandCreateGame.class);
+        this.messages.put(GameDeleted.class, CommandDeleteGame.class);
+//        this.messages.put(MessageType.AskJoinGame, CommandLogin.class);
+        this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
     }
 
-    public void run() {
-        while (true) {
-            try {
-                MessageType type = (MessageType) in.readObject();
-                map.get(type).getDeclaredConstructor().newInstance().execute(core, this);
-
-                logger.debug("Message received from " + profile.getPseudo() + " : " + type);
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    @Override
+    public ObjectInputStream getInputStream() {
+        return in;
     }
 
-    public void send(Object obj) {
+    @Override
+    public ObjectOutputStream getOutputStream() {
+        return out;
+    }
+
+    @Override
+    protected Core getCore() {
+        return core;
+    }
+
+    @Override
+    protected utc.pokerut.common.messages.Command getCommand(Class<? extends utc.pokerut.common.messages.Command> commandClass) {
         try {
-            logger.debug("Message sent to " + profile.getPseudo() + " : " + obj);
-            this.out.writeObject(obj);
-        } catch (IOException e) {
-            logger.error("Error while sending message to " + profile.getPseudo(), e);
+            ServerCommand command = (ServerCommand) commandClass.getConstructor().newInstance();
+            command.setClient(this);
+            return command;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public Object receive() {
-        try {
-            Object obj = in.readObject();
-            return obj;
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-            logger.error("Error while receiving message from " + profile.getPseudo(), e);
-        }
-
-        return null;
+    @Override
+    public Boolean isConnected() {
+        return true;
     }
-} 
+}

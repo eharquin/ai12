@@ -3,11 +3,11 @@ package utc.pokerut.client.communication.Commands;
 import utc.pokerut.client.communication.Core;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.Round;
+import utc.pokerut.common.messages.ActionRefused;
 
-public class CommandActionRefused implements Command {
+public class CommandActionRefused extends ClientCommand<ActionRefused> {
 
-    public void execute(Core core) {
-        Action action = (Action) core.getClient().receive();
-        core.getComCallsData().sendUserActionRefused(action);
+    public void execute() {
+//        core.getComCallsData().sendUserActionRefused(message.action);
     }
 }

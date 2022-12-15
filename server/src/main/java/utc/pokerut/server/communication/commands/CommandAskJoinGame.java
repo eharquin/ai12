@@ -9,9 +9,9 @@ import java.util.UUID;
 public class CommandAskJoinGame implements Command{
     public void execute(Core core, ClientHandler client) {
 
-        UUID playerId = (UUID) client.receive();
-        UUID gameId = (UUID) client.receive();
+//        UUID playerId = (UUID) client.receive();
+//        UUID gameId = (UUID) client.receive();
 
-        core.getComCallsData().joinTableRequestDataComServ(playerId, gameId);
+//        core.getComCallsData().joinTableRequestDataComServ(playerId, gameId);
     }
 }
