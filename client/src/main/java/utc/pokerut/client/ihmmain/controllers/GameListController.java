@@ -86,7 +86,7 @@ public class GameListController extends Controller {
             return property;
         });
 
-        setGameList(getItemsToAdd());
+        //setGameList(getItemsToAdd()); //decommenter pour tester
 
         myTableView.setRowFactory(tv -> {
             TableRow<Game> row = new TableRow<>();
@@ -110,7 +110,7 @@ public class GameListController extends Controller {
         ArrayList<Player> playerList1 = new ArrayList<>();
         ArrayList<Player> playerList2 = new ArrayList<>();
 
-        ClientProfile client1= new ClientProfile(UUID.randomUUID(),"Bob","avatar","abc", "Bob","Bob",new Date(2000,02,02), "2",3);
+        /* ClientProfile client1= new ClientProfile(UUID.randomUUID(),"Bob","avatar","abc", "Bob","Bob",new Date(2000,02,02), "2",3);
         Player player1 =new Player(client1);
         player1.setPseudo("Bob");
         playerList1.add(player1);
@@ -121,7 +121,7 @@ public class GameListController extends Controller {
         game1.setCreator(player1);
         game1.setPlayers(playerList1);
 
-        list.add(game1);
+        list.add(game1);*/ //decommenter pour tester
 
         return list;
     }
