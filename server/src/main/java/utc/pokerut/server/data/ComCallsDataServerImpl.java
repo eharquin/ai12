@@ -183,14 +183,14 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
             }
         } else {
-            this.setNextPlayerRound(dataServerCore.getOnGoingGame(idGame).getPlayers(), round);
+            this.setNextPlayerRound(round);
             this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
 
             List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation();
             this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
             // envoyer le round
         }
-        // update currentBettingRound
+
         //check is RoundFinished
         // if true
         // update currentRound
@@ -251,7 +251,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
         // éventuellment peut poser problème apply action
         //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
+        setNextPlayerRound(round);
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
 
     }
@@ -272,23 +273,17 @@ public class ComCallsDataServerImpl implements ComCallsData {
         // éventuellment peut poser problème apply action
         //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
+        setNextPlayerRound(round);
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
 
     }
-
-    public Player getNextPlayers(List<Player> players, UUID currentPlayerId){
-        for(int i=0; i<players.size(); i++) {
-            if(players.get(i).getId() == currentPlayerId)
-                return players.get((i+1)%players.size());
-        }
-        return null;
-    }
-
-    public void setNextPlayerRound(List<Player> players, Round round){
-        for(int i=0; i<players.size(); i++) {
-            if(players.get(i).getId() == round.getCurrentPlayer().getId()) {
-                round.setCurrentPlayer(players.get((i+1)%players.size()));
+    public void setNextPlayerRound(Round round){
+        for(int i=0; i<round.getHands().size(); i++) {
+            int indexNextPlayer = (i+1)%round.getHands().size();
+            if(round.getHands().get(i).getPlayer().getId() == round.getCurrentPlayer().getId() //
+            && !round.getHands().get(indexNextPlayer).getIsFold()) {
+                round.setCurrentPlayer(round.getHands().get(indexNextPlayer).getPlayer());
                 return ;
             }
         }
