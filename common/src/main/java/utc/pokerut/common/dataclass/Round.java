@@ -8,17 +8,17 @@ import java.util.UUID;
 
 public class Round implements Serializable {
 
-    public static int NB_MAX_BETTING_ROUND = 5;
+    public static int NB_MAX_BETTING_ROUND = 4;
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
-    private LinkedList<Card> cards;
+    private LinkedList<Card> cards; // cartes sur la table face cachée
+    private ArrayList<Card> showedCards;
     // clé : currentBettingRound, valeur : pari
     private HashMap<Integer, Integer> currentBets;
     private Hand handCurrentPlayer;
     private int currentBet;
     private int currentBettingRound;
     private boolean canCheck;
-    private ArrayList<Card> showedCards;
     private int nbActivePlayers;
     private int nbCallSuccessivePlayers;
     private int nbCheckSuccessivePlayers;

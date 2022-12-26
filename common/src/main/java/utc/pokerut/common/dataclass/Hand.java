@@ -12,6 +12,8 @@ public class Hand {
     private int bet3;
     private int bet4;
     private boolean isFold;
+
+    private int valueWinComb;
     private ArrayList<Card> cards;
 
     public Hand (){
@@ -105,5 +107,13 @@ public class Hand {
 
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
+    }
+
+    public int getValueWinComb() {
+        return valueWinComb;
+    }
+
+    public void setValueWinComb(int valueWinComb) {
+        this.valueWinComb = valueWinComb;
     }
 }

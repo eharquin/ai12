@@ -2,6 +2,7 @@ package utc.pokerut.server.data;
 
 import utc.pokerut.common.dataclass.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,37 @@ public class GameEngine {
     private final int PAIR_SEIL           = 739807;
     private final int HIGH_CARD_SEIL      = 368713;
 
-    public ArrayList<Result> getRanking() {
+    public ArrayList<Result> getRanking(Game game) {
+        ArrayList<Hand> allHands = new ArrayList<>();
+        for(Round round: game.getRounds()){
+            allHands.addAll(round.getHands()); // on récupère toutes les mains de la partie
+        }
+        // on trie la liste de toutes ces mains par playerId
+        Collections.sort(allHands, Comparator.comparing(ah -> ah.getPlayer().getId()));
+
         ArrayList<Result> results = new ArrayList<>();
+        Result result = new Result();
+        Player player = allHands.get(0).getPlayer();
+        for(Hand hand : allHands){
+            if(hand.getPlayer().getId() == player.getId()){
+                result.setNbPoints(result.getNbPoints()+hand.getAvailablePoints());
+            } else {
+                player = hand.getPlayer();
+                result = new Result(player, hand.getAvailablePoints());
+            }
+        }
+
+        // on trie par point
+        Collections.sort(results, Comparator.comparingInt(Result::getNbPoints).reversed());
+        int currentRank = 1;
+        int currentPoints = results.get(0).getNbPoints();
+        for(Result r : results){
+            if(currentPoints > r.getNbPoints()) {
+                currentRank++;
+                currentPoints = r.getNbPoints();
+            }
+            r.setRank(currentRank);
+        }
         return results;
     }
 
@@ -300,7 +330,6 @@ public class GameEngine {
 
         ArrayList<Player> winners = new ArrayList<>(); //initialisation liste du/des joueur(s) gagnant(s)
         int win = -1; //valeur de comparaison entre valeurs de combinaisons
-        int nbWinners = 0; //nombre de gagnants
 
         for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
             // ici changer pour adapter au code de Lidia
@@ -312,16 +341,49 @@ public class GameEngine {
                 winners.clear(); //vider la liste des gagnants
                 winners.add(player); //ajouter le nouveau potentiel gagnant
                 win = valueCombi; //la variable de comparaison win prend la valeur de la bombinaison du potentiel gagnant
-                nbWinners = 1; // On a un gagnant
-
             } else if (valueCombi==win) { //si la valeur de combinaison est égale à celle actuelle
                 winners.add(player); //ajouter un gagnant supplémentaire à la liste (après le précédent)
-                nbWinners++;//on augmente le nombre de gagnant de +1
             }
         }
         return winners;
     } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
 
+    /**
+     * Fonction moche qui retourne la liste des mains avec le champs availablepoint maj et triée
+     * @param round
+     * @return
+     */
+    public ArrayList<Hand> getResultsRound(Round round) {
+        ArrayList<Hand> hands = round.getHands();
+        for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
+            // ici changer pour adapter au code de Lidia
+            ArrayList<Card> cards = getBestCardCombinations(h.getCards(), round.getShowedCards());
+            h.setValueWinComb(evalComb(cards));
+        }
+        Collections.sort(hands, Comparator.comparingInt(Hand::getValueWinComb).reversed());
+        profitsCalculationRound(hands,round.getCurrentBets());
+        return hands;
+    }
+    public void profitsCalculationRound (ArrayList<Hand> hands, HashMap<Integer,Integer> currentBets) {
+        ArrayList<Hand> winners = new ArrayList<>();
+        int winValue = hands.get(0).getValueWinComb();
+        for(Hand h : hands) {
+            if(h.getValueWinComb() == winValue)
+                winners.add(h);
+            else if(h.getValueWinComb()<winValue)
+                break;
+        }
+        int gains = 0;
+        int totalPot = 0;
+        for (int value : currentBets.values()) {
+            totalPot += value;
+        }
+        gains = totalPot/winners.size();
+
+        for (Hand winner: winners) {
+            winner.setAvailablePoints(gains);
+        }
+    }
 
     public void profitsCalculation (ArrayList<Hand> winners, HashMap<Integer,Integer> currentBets) {
 	    int gains = 0;

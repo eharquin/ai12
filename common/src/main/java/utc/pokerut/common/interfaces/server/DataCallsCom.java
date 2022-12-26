@@ -21,7 +21,7 @@ public interface DataCallsCom {
 
     void sendUpdateRound(Round round, List<Player> players);
 
-    void sendUpdateRoundAndEndResults(Round round, List<Integer> players, List<Result> results);
+    void sendUpdateRoundAndEndResults(Round round, List<Player> players, List<Result> results);
 
     void sendUserActionsRefused();
 
