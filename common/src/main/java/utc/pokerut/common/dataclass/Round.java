@@ -3,6 +3,7 @@ package utc.pokerut.common.dataclass;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class Round implements Serializable {
@@ -10,10 +11,10 @@ public class Round implements Serializable {
     public static int NB_MAX_BETTING_ROUND = 5;
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
-    private ArrayList<Card> cards;
-    // clé : currentBettingRound, valeur : pari 
+    private LinkedList<Card> cards;
+    // clé : currentBettingRound, valeur : pari
     private HashMap<Integer, Integer> currentBets;
-    private Player currentPlayer;
+    private Hand handCurrentPlayer;
     private int currentBet;
     private int currentBettingRound;
     private boolean canCheck;
@@ -32,18 +33,6 @@ public class Round implements Serializable {
         this.setCards(cardDeck.getCardDeck());
         this.setCurrentBets(new HashMap<>());
     }
-    public Round(Player firstPlayer){
-        this.setCurrentPlayer(firstPlayer);
-        this.setCurrentBettingRound(1);
-        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
-        this.setActions(new ArrayList<>());
-        this.setHands(new ArrayList<>());
-        this.setShowedCards(new ArrayList<>());
-        CardDeck cardDeck = new CardDeck();
-        this.setCards(cardDeck.getCardDeck());
-        this.setCurrentBets(new HashMap<>());
-    }
-
     public ArrayList<Action> getActions() {
         return actions;
     }
@@ -60,11 +49,11 @@ public class Round implements Serializable {
         this.hands = hands;
     }
 
-    public ArrayList<Card> getCards() {
+    public LinkedList<Card> getCards() {
         return cards;
     }
 
-    public void setCards(ArrayList<Card> cards) {
+    public void setCards(LinkedList<Card> cards) {
         this.cards = cards;
     }
 
@@ -76,12 +65,16 @@ public class Round implements Serializable {
         this.currentBets = currentBets;
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
+    public Hand getHandCurrentPlayer() {
+        return handCurrentPlayer;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public Player getCurrentPlayer() {
+        return handCurrentPlayer.getPlayer();
+    }
+
+    public void setHandCurrentPlayer(Hand handCurrentPlayer) {
+        this.handCurrentPlayer = handCurrentPlayer;
     }
 
     public int getCurrentBet() {

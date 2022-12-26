@@ -129,7 +129,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
         initRound(game);
 
         // send next player actions
-        List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
+        List<Action> actions = dataServerCore.getGameEngine().actionCalculation(game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); //majGame si jamais
         UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
         dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions,nextPlayerId);
@@ -178,14 +178,14 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 initRound(game);
                 this.dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
 
-                List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation();
+                List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation(round);
                 this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
             }
         } else {
             this.setNextPlayerRound(round);
             this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
 
-            List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation();
+            List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation(round);
             this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
             // envoyer le round
         }
@@ -234,9 +234,31 @@ public class ComCallsDataServerImpl implements ComCallsData {
         }
     }
 
+    private void initHandList(Game game) {
+        ArrayList<Hand> hands = new ArrayList<>();
+        Round round = game.getCurrentRound();
+        for(Player player : game.getPlayers()) {
+            ArrayList<Card> cards = new ArrayList<>();
+            for(int i=0; i<Hand.NB_CARDS_IN_HAND; i++) {
+                cards.add(round.getCards().getFirst());
+                round.getCards().removeFirst();
+            }
+            hands.add(new Hand(player, round, cards));
+        }
+        round.setHands(hands);
+    }
+
     public void initRound(Game game){
         // init new Round
-        Round round = new Round(game.getPlayers().get(0));
+        Round round = new Round();
+        game.getRounds().add(round);
+        game.setCurrentRound(round);
+        // maj des mains des joueurs
+        initHandList(game);
+        // set first player
+        int noCurrentRound = game.getRounds().size();
+        int indexFirstPlayer = (noCurrentRound-1)%game.getPlayers().size();
+        round.setHandCurrentPlayer(round.getHands().get(indexFirstPlayer));
         dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
 
 
@@ -256,39 +278,17 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     }
 
-    public void initRound(Game game, Player player){
-        // init new Round
-        Round round = new Round(player);
-        dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
-
-
-        // payer petite blinde
-        int littleBlinde = Math.round(game.getNbPoints()/100);
-        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, littleBlinde, round.getCurrentPlayer());
-        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerPetiteBlinde);
-
-        // payer la grosse blinde
-        int grosseBlincde = littleBlinde*2;
-        // éventuellment peut poser problème apply action
-        //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
-        game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
-        setNextPlayerRound(round);
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, round.getCurrentPlayer());
-        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
-
-    }
     public void setNextPlayerRound(Round round){
         for(int i=0; i<round.getHands().size(); i++) {
             int indexNextPlayer = (i+1)%round.getHands().size();
-            if(round.getHands().get(i).getPlayer().getId() == round.getCurrentPlayer().getId() //
+            if(round.getHands().get(i).getPlayer().getId() == round.getCurrentPlayer().getId()//
             && !round.getHands().get(indexNextPlayer).getIsFold()) {
-                round.setCurrentPlayer(round.getHands().get(indexNextPlayer).getPlayer());
+                round.setHandCurrentPlayer(round.getHands().get(indexNextPlayer));
                 return ;
             }
         }
 
     }
-
 
 	@Override
     public void removeUser(UUID playerDisconnectingId) {

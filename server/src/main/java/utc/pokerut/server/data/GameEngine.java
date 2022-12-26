@@ -48,8 +48,9 @@ public class GameEngine {
         return hand.getIsFold();
     }
 
-    public List<ActionTypeEnum> actionCalculation(Round round, Hand hand) {
-        List<ActionTypeEnum> possibleActions = new ArrayList<ActionTypeEnum>();
+    public List<ActionTypeEnum> actionCalculation2(Round round) {
+        Hand hand = round.getHandCurrentPlayer();
+        List<ActionTypeEnum> possibleActions = new ArrayList<>();
         if (isBettingPossible(round))
             possibleActions.add(ActionTypeEnum.BET);
         if (isCallingPossible(round))
@@ -62,6 +63,24 @@ public class GameEngine {
             possibleActions.add(ActionTypeEnum.FOLD);
         if(isAllInPossible(round, hand))
             possibleActions.add(ActionTypeEnum.ALL_IN);
+        return possibleActions;
+    }
+
+    public List<Action> actionCalculation(Round round) {
+        Hand hand = round.getHandCurrentPlayer();
+        List<Action> possibleActions = new ArrayList<>();
+        if (isBettingPossible(round))
+            possibleActions.add(new Action(ActionTypeEnum.BET));
+        if (isCallingPossible(round))
+            possibleActions.add(new Action(ActionTypeEnum.CALL));
+        if(isRaisingPossible(round, hand))
+            possibleActions.add(new Action(ActionTypeEnum.RAISE));
+        if(isCheckingPossible(round))
+            possibleActions.add(new Action(ActionTypeEnum.CHECK));
+        if(isFoldingPossible(hand))
+            possibleActions.add(new Action(ActionTypeEnum.FOLD));
+        if(isAllInPossible(round, hand))
+            possibleActions.add(new Action(ActionTypeEnum.ALL_IN));
         return possibleActions;
     }
 

@@ -3,6 +3,7 @@ package utc.pokerut.common.dataclass;
 import java.util.ArrayList;
 
 public class Hand {
+    public static final int NB_CARDS_IN_HAND = 2;
     private Player player;
     private Round round;
     private int availablePoints;
@@ -12,6 +13,25 @@ public class Hand {
     private int bet4;
     private boolean isFold;
     private ArrayList<Card> cards;
+
+    public Hand (){
+        this.availablePoints = 0;
+        this.bet1 = 0;
+        this.bet2 = 0;
+        this.bet3 = 0;
+        this.bet4 = 0;
+    }
+
+    public Hand(Player player, Round round, ArrayList<Card> cards) {
+        this.player = player;
+        this.round = round;
+        this.availablePoints = 0;
+        this.bet1 = 0;
+        this.bet2 = 0;
+        this.bet3 = 0;
+        this.bet4 = 0;
+        this.cards = cards;
+    }
 
     public Player getPlayer() {
         return player;
