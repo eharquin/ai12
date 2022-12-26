@@ -225,8 +225,13 @@ public class GameEngine {
 
         return winningComb;
     }
-    
-        public ArrayList<ArrayList<Card>> getCombinations(ArrayList<Card> cardsOnTable) {
+
+    /**
+     * Fait des combinaisons de 5 cartes à partir d'un paquet de cartes/ si celle de Lidia fonctionne pas
+     * @param cardsOnTable
+     * @return
+     */
+    public ArrayList<ArrayList<Card>> getCombinations(ArrayList<Card> cardsOnTable) {
         ArrayList<ArrayList<Card>> combinations = new ArrayList<>();
 
         for(int i=0; i < cardsOnTable.size()-2; i++) {
@@ -235,8 +240,15 @@ public class GameEngine {
                 Card card2 = cardsOnTable.get(j);
                 for(int k = j+1; k < cardsOnTable.size(); k++){
                     Card card3 = cardsOnTable.get(k);
-                    ArrayList<Card> combination = new ArrayList<>(Arrays.asList(card1, card2, card3));
-                    combinations.add(combination);
+                    for(int l = k+1; l < cardsOnTable.size(); l++){
+                        Card card4 = cardsOnTable.get(l);
+                        for(int m = l+1; m < cardsOnTable.size(); m++){
+                            Card card5= cardsOnTable.get(m);
+                            ArrayList<Card> combination = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5));
+                            combinations.add(combination);
+                        }
+                    }
+
                 }
 
             }
@@ -245,17 +257,20 @@ public class GameEngine {
     }
     public ArrayList<Card> getBestCardCombinations(ArrayList<Card> playerCards, ArrayList<Card> cardsOnTable){
         ArrayList<Card> bestCardCombinations = new ArrayList<>();
-        ArrayList<ArrayList<Card>> combinations = getCombinations(cardsOnTable);
+        // cards : paquet de cartes composé des cartes des joueurs et des cartess sur la table
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.addAll(cardsOnTable);
+        cards.addAll(playerCards);
+
+        // on récupère la liste des combinaisons possibles avec les 5 cartes
+        ArrayList<ArrayList<Card>> combinations = getCombinations(cards);
         int bestCardCombinationsValue = -1;
 
         for(ArrayList<Card> combination : combinations) {
-            ArrayList<Card> combinationToEval = new ArrayList<>();
-            combinationToEval.addAll(combination);
-            combinationToEval.addAll(playerCards);
-            int value = translateResults(evalComb(combinationToEval));
+            int value = evalComb(combination);
             if(value < bestCardCombinationsValue) {
                 bestCardCombinationsValue = value;
-                bestCardCombinations = combinationToEval;
+                bestCardCombinations = combination;
             }
         }
 
@@ -269,8 +284,9 @@ public class GameEngine {
         int nbWinners = 0; //nombre de gagnants
 
         for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
+            // ici changer pour adapter au code de Lidia
             ArrayList<Card> cards = getBestCardCombinations(h.getCards(), cardsOnTable);
-            int valueCombi = translateResults(evalComb(cards));
+            int valueCombi = evalComb(cards);
             Player player = h.getPlayer();
 
             if (valueCombi > win) { //si la valeur de combinaison est supérieure à la précédente
@@ -287,36 +303,19 @@ public class GameEngine {
         return winners;
     } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
 
-    /*
-    public ArrayList<int> isWinner (HashMap<Integer, Integer> map) {
 
-        List<int> winners = new ArrayList<int>(Arrays.asList(0)); //initialisation liste du/des joueur(s) gagnant(s)
-        int win = -1; //valeur de comparaison entre valeurs de combinaisons
-        int nb_winner = 0; //nombre de gagnants
-
-        for (HashMap.Entry<int,int> entry : combinations.entrySet()) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
-            int value_combi = entry.getValue();
-            int player = entry.getKey();
-
-            if (value_combi>win) { //si la valeur de combinaison est supérieure à la précédente
-                winners.clear(); //vider la liste des gagnants
-                winners.add(0,player); //ajouter le nouveau potentiel gagnant
-                int win = value_combi; //la variable de comparaison win prend la valeur de la bombinaison du potentiel gagnant
-                int nb_winner=1; } //on augmente le nombre de gagnants à 1
-
-            else if (value_combi==win) { //si la valeur de combinaison est égale à la supérieure
-                winners.add(nb_winner,player); //ajouter un gagnant supplémentaire à la liste (après le précédent)
-                int nb_winner=nb_winner+1; } //on augmente le nombre de gagnant de +1
-        }
-    } //à la fin on obtient une liste comprenant le ou les joueurs ayant la valeur de combinaison la plus élevée (donc le ou les gagnants du round)
-
-    public void profitsCalculation (ArrayList<Player> winners, Hashmap<Integer,Integer>CurrentBets) {
+    public void profitsCalculation (ArrayList<Hand> winners, HashMap<Integer,Integer> currentBets) {
 	    int gains = 0;
-        totalPot = somme valeurs Hashmap CurrentBets;
+        int totalPot = 0;
+        for (int value : currentBets.values()) {
+            totalPot += value;
+        }
 	    gains = totalPot/winners.size();
-	    for (int winner: winners) {
-	    	winner.Hand.availablePoints += gains }
+
+	    for (Hand winner: winners) {
+            winner.setAvailablePoints(winner.getAvailablePoints()+gains);
+        }
 	}
 
-     */
+
 }
