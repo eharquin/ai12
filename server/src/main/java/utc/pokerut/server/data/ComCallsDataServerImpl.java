@@ -153,9 +153,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
         currentPlayerHand.setAvailablePoints(oldAvailablePoints + action.getBetting());
         //update currentBets
 
-        int oldBet = round.getCurrentBets().get(round.getCurrentBettingRound());
-        round.getCurrentBets().put(round.getCurrentBettingRound(), oldBet+ action.getBetting());
-        
+        round.getCurrentBets().put(round.getCurrentBettingRound(), action.getBetting());
+
         //update currentBet
         if (!action.getType().equals(ActionTypeEnum.ALL_IN)){
             round.setCurrentBet(action.getBetting());

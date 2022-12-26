@@ -11,6 +11,7 @@ public class Round implements Serializable {
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private ArrayList<Card> cards;
+    // clé : currentBettingRound, valeur : pari 
     private HashMap<Integer, Integer> currentBets;
     private Player currentPlayer;
     private int currentBet;
