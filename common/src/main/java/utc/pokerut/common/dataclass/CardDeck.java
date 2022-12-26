@@ -11,6 +11,7 @@ public class CardDeck {
     private ArrayList<Card>  cardDeck;
     public CardDeck() {
         createCardDeck();
+        shuffleCardDeck();
     }
 
     public ArrayList<Card> getCardDeck() {

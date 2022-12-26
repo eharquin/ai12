@@ -2,8 +2,12 @@ package utc.pokerut.common.dataclass;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Round implements Serializable {
+
+    public static int NB_MAX_BETTING_ROUND = 5;
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
     private ArrayList<Card> cards;
@@ -13,6 +17,31 @@ public class Round implements Serializable {
     private int currentBettingRound;
     private boolean canCheck;
     private ArrayList<Card> showedCards;
+    private int nbActivePlayers;
+    private int nbCallSuccessivePlayers;
+    private int nbCheckSuccessivePlayers;
+
+    public Round(){
+        this.setCurrentBettingRound(1);
+        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
+        this.setActions(new ArrayList<>());
+        this.setHands(new ArrayList<>());
+        this.setShowedCards(new ArrayList<>());
+        CardDeck cardDeck = new CardDeck();
+        this.setCards(cardDeck.getCardDeck());
+        this.setCurrentBets(new HashMap<>());
+    }
+    public Round(Player firstPlayer){
+        this.setCurrentPlayer(firstPlayer);
+        this.setCurrentBettingRound(1);
+        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
+        this.setActions(new ArrayList<>());
+        this.setHands(new ArrayList<>());
+        this.setShowedCards(new ArrayList<>());
+        CardDeck cardDeck = new CardDeck();
+        this.setCards(cardDeck.getCardDeck());
+        this.setCurrentBets(new HashMap<>());
+    }
 
     public ArrayList<Action> getActions() {
         return actions;
@@ -58,6 +87,10 @@ public class Round implements Serializable {
         return currentBet;
     }
 
+    /**
+     * tour de bet en cours, ce sur quoi on suit où on relance
+     * @param currentBet
+     */
     public void setCurrentBet(int currentBet) {
         this.currentBet = currentBet;
     }
@@ -84,5 +117,34 @@ public class Round implements Serializable {
 
     public void setShowedCards(ArrayList<Card> showedCards) {
         this.showedCards = showedCards;
+    }
+
+    public Hand getHandByPlayerId(UUID playerId) {
+        Hand hand = hands.stream().filter(hands -> hands.getPlayer().getId() == playerId).findAny().orElse(null);
+        return hand;
+    }
+
+    public int getNbActivePlayers() {
+        return nbActivePlayers;
+    }
+
+    public void setNbActivePlayers(int nbActivePlayers) {
+        this.nbActivePlayers = nbActivePlayers;
+    }
+
+    public int getNbCallSuccessivePlayers() {
+        return nbCallSuccessivePlayers;
+    }
+
+    public void setNbCallSuccessivePlayers(int nbCallSuccessivePlayers) {
+        this.nbCallSuccessivePlayers = nbCallSuccessivePlayers;
+    }
+
+    public int getNbCheckSuccessivePlayers() {
+        return nbCheckSuccessivePlayers;
+    }
+
+    public void setNbCheckSuccessivePlayers(int nbCheckSuccessivePlayers) {
+        this.nbCheckSuccessivePlayers = nbCheckSuccessivePlayers;
     }
 }
