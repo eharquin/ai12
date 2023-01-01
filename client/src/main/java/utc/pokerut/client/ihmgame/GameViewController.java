@@ -13,6 +13,7 @@ import utc.pokerut.client.ihmgame.Core;
 import utc.pokerut.common.dataclass.Game;
 
 import java.awt.event.ActionEvent;
+import java.net.URL;
 
 public class GameViewController {
     public static utc.pokerut.client.ihmgame.Core getCore() {
@@ -26,9 +27,31 @@ public class GameViewController {
     protected static Core core;
 
     public void initGame(Game game){
+        Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
         nbPlayers.setText(Integer.toString(game.getNbMaxPlayers()));
         creditGame.setText(Integer.toString(game.getNbPoints()));
         miseMin.setText(Integer.toString(game.getMinimalBet()));
+        card1.setImage(pioche);
+        card2.setImage(pioche);
+        card3.setImage(pioche);
+        card4.setImage(pioche);
+        card5.setImage(pioche);
+        card1Player1.setImage(pioche);
+        card2Player1.setImage(pioche);
+        card1Player2.setImage(pioche);
+        card2Player2.setImage(pioche);
+        card1Player3.setImage(pioche);
+        card2Player3.setImage(pioche);
+        card1Player4.setImage(pioche);
+        card2Player4.setImage(pioche);
+        card1Player5.setImage(pioche);
+        card2Player5.setImage(pioche);
+        card1Player6.setImage(pioche);
+        card2Player6.setImage(pioche);
+        card1Player7.setImage(pioche);
+        card2Player7.setImage(pioche);
+        card1Player8.setImage(pioche);
+        card2Player8.setImage(pioche);
        // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
         // nbPlayers.toString();
         //Text test = new Text(Integer.toString(game.getNbPoints()));
@@ -239,128 +262,129 @@ public class GameViewController {
         return card1Player1;
     }
 
-    public void setCard1Player1(ImageView card1Player1) {
-        this.card1Player1 = card1Player1;
+    public void setCard1Player1(Image imagecard1Player1) {
+        this.card1Player1.setImage(imagecard1Player1);
     }
 
     public ImageView getCard2Player1() {
         return card2Player1;
     }
 
-    public void setCard2Player1(ImageView card2Player1) {
-        this.card2Player1 = card2Player1;
+    public void setCard2Player1(Image imagecard2Player1) {
+        this.card2Player1.setImage(imagecard2Player1);
     }
 
     public ImageView getCard1Player2() {
         return card1Player2;
     }
 
-    public void setCard1Player2(ImageView card1Player2) {
-        this.card1Player2 = card1Player2;
+    public void setCard1Player2(Image imagecard1Player2) {
+        this.card1Player2.setImage(imagecard1Player2);
     }
 
     public ImageView getCard2Player2() {
         return card2Player2;
     }
 
-    public void setCard2Player2(ImageView card2Player2) {
-        this.card2Player2 = card2Player2;
+    public void setCard2Player2(Image imagecard2Player2) {
+        this.card2Player2.setImage(imagecard2Player2);
     }
 
     public ImageView getCard1Player3() {
         return card1Player3;
     }
 
-    public void setCard1Player3(ImageView card1Player3) {
-        this.card1Player3 = card1Player3;
+    public void setCard1Player3(Image imagecard1Player3) {
+        this.card1Player3.setImage(imagecard1Player3);
     }
 
     public ImageView getCard2Player3() {
         return card2Player3;
     }
 
-    public void setCard2Player3(ImageView card2Player3) {
-        this.card2Player3 = card2Player3;
+    public void setCard2Player3(Image imagecard2Player3) {
+        this.card2Player3.setImage(imagecard2Player3);
     }
 
     public ImageView getCard1Player4() {
         return card1Player4;
     }
 
-    public void setCard1Player4(ImageView card1Player4) {
-        this.card1Player4 = card1Player4;
+    public void setCard1Player4(Image imagecard1Player4) {
+        this.card1Player4.setImage(imagecard1Player4);
     }
 
     public ImageView getCard2Player4() {
         return card2Player4;
     }
 
-    public void setCard2Player4(ImageView card2Player4) {
-        this.card2Player4 = card2Player4;
+    public void setCard2Player4(Image imagecard2Player4) {
+        this.card2Player4.setImage(imagecard2Player4);
     }
 
     public ImageView getCard1Player5() {
         return card1Player5;
     }
 
-    public void setCard1Player5(ImageView card1Player5) {
-        this.card1Player5 = card1Player5;
+    public void setCard1Player5(Image imagecard1Player5) {
+        this.card1Player5.setImage(imagecard1Player5);
     }
 
     public ImageView getCard2Player5() {
         return card2Player5;
     }
 
-    public void setCard2Player5(ImageView card2Player5) {
-        this.card2Player5 = card2Player5;
+    public void setCard2Player5(Image imagecard2Player5) {
+        this.card2Player5.setImage(imagecard2Player5);
     }
 
     public ImageView getCard1Player6() {
         return card1Player6;
     }
 
-    public void setCard1Player6(ImageView card1Player6) {
-        this.card1Player6 = card1Player6;
+    public void setCard1Player6(Image imagecard1Player6) {
+        this.card1Player6.setImage(imagecard1Player6);
     }
+
 
     public ImageView getCard2Player6() {
         return card2Player6;
     }
 
-    public void setCard2Player6(ImageView card2Player6) {
-        this.card2Player6 = card2Player6;
+    public void setCard2Player6(Image imagecard2Player6) {
+        this.card2Player6.setImage(imagecard2Player6);
     }
 
     public ImageView getCard1Player7() {
         return card1Player7;
     }
 
-    public void setCard1Player7(ImageView card1Player7) {
-        this.card1Player7 = card1Player7;
+    public void setCard1Player7(Image imagecard1Player7) {
+        this.card1Player7.setImage(imagecard1Player7);
     }
 
     public ImageView getCard2Player7() {
         return card2Player7;
     }
 
-    public void setCard2Player7(ImageView card2Player7) {
-        this.card2Player7 = card2Player7;
+    public void setCard2Player7(Image imagecard2Player7) {
+        this.card2Player7.setImage(imagecard2Player7);
     }
 
     public ImageView getCard1Player8() {
         return card1Player8;
     }
 
-    public void setCard1Player8(ImageView card1Player8) {
-        this.card1Player8 = card1Player8;
+    public void setCard1Player8(Image imagecard1Player8) {
+        this.card1Player8.setImage(imagecard1Player8);
     }
 
     public ImageView getCard2Player8() {
         return card2Player8;
     }
 
-    public void setCard2Player8(ImageView card2Player8) {
-        this.card2Player8 = card2Player8;
+    public void setCard2Player8(Image imagecard2Player8) {
+        this.card2Player8.setImage(imagecard2Player8);
     }
 
     public ImageView getAvatarPlayer1() {
@@ -471,48 +495,48 @@ public class GameViewController {
         return card1;
     }
 
-    public void setCard1(ImageView card1) {
-        this.card1 = card1;
+    public void setCard1(Image cardimage1) {
+        this.card1.setImage(cardimage1);
     }
 
     public ImageView getCard2() {
         return card2;
     }
 
-    public void setCard2(ImageView card2) {
-        this.card2 = card2;
+    public void setCard2(Image cardimage2) {
+        this.card2.setImage(cardimage2);
     }
 
     public ImageView getCard3() {
         return card3;
     }
 
-    public void setCard3(ImageView card3) {
-        this.card3 = card3;
+    public void setCard3(Image cardimage3) {
+        this.card3.setImage(cardimage3);
     }
 
     public ImageView getCard4() {
         return card4;
     }
 
-    public void setCard4(ImageView card4) {
-        this.card4 = card4;
+    public void setCard4(Image cardimage4) {
+        this.card4.setImage(cardimage4);
     }
 
     public ImageView getCard5() {
         return card5;
     }
 
-    public void setCard5(ImageView card5) {
-        this.card5 = card5;
+    public void setCard5(Image cardimage5) {
+        this.card5.setImage(cardimage5);
     }
 
     public ImageView getCardDeck() {
         return cardDeck;
     }
 
-    public void setCardDeck(ImageView cardDeck) {
-        this.cardDeck = cardDeck;
+    public void setCardDeck(Image cardimagedeck) {
+        this.cardDeck.setImage(cardimagedeck);
     }
 
     public Text getCreditPlayer1() {
@@ -610,6 +634,8 @@ public class GameViewController {
     public void setPlayer6(Text player6) {
         Player6 = player6;
     }
+
+
 
     /*@FXML
     public void Leave(ActionEvent event) throws IndexOutOfBoundsException {
