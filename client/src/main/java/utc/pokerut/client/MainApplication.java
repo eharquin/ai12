@@ -35,6 +35,11 @@ public class MainApplication extends Application {
 
     }
 
+    @Override
+    public void stop() throws Exception {
+        mainCore.getDataInterface().logout();
+    }
+
     public static void main(String[] args) {
         launch();
     }
