@@ -17,24 +17,24 @@ import javafx.scene.layout.*;
 
 import javafx.scene.control.*;
 import utc.pokerut.client.ihmmain.ViewNames;
-import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.ClientProfile;
 import javafx.util.Callback;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Player;
+import utc.pokerut.common.dataclass.ClientProfile;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class WaitingRoomController {
     @FXML
-    private TableView<Player> myTableView;
+    private TableView<ClientProfile> myTableView;
 
     @FXML
-    private TableColumn<Player, String> username;
+    private TableColumn<ClientProfile, String> username;
 
     @FXML
-    private TableColumn<Player, Void> status;
+    private TableColumn<ClientProfile, Void> status;
 
     @FXML
     private Button launchGame;
@@ -51,12 +51,12 @@ public class WaitingRoomController {
     }
 
     public void initialize() {
-        List<Player> list = new ArrayList<>(); // getPlayerlist ?
+        List<ClientProfile> list = new ArrayList<>(); // getClientProfilelist ?
         
 
 
-        //Player p1 = new Player();
-        //Player p2 = new Player();
+        //ClientProfile p1 = new ClientProfile();
+        //ClientProfile p2 = new ClientProfile();
 
         //p1.setPseudo("Bob");
         //p2.setPseudo("Bob2");
@@ -64,13 +64,13 @@ public class WaitingRoomController {
         //list.add(p1);
         //list.add(p2);
 
-        username.setCellValueFactory(Player -> {
+        username.setCellValueFactory(ClientProfile -> {
             SimpleObjectProperty property = new SimpleObjectProperty();
-            property.setValue(Player.getValue().getPseudo());
+            property.setValue(ClientProfile.getValue().getPseudo());
             return property;
         });
 
-        status.setCellFactory(col -> new TableCell<Player, Void>() {
+        status.setCellFactory(col -> new TableCell<ClientProfile, Void>() {
             private final HBox container;
             private final Button clearButton;
 
@@ -81,14 +81,14 @@ public class WaitingRoomController {
                 viewBtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        //acceptPlayer();
+                        //acceptClientProfile();
                     }
                 });
 
                 clearButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        //rejectPlayer();
+                        //rejectClientProfile();
                     }
                 });
 
