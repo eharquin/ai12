@@ -7,6 +7,6 @@ public enum ViewNames {
     GAME_LIST_VIEW,
     CREATE_GAME_VIEW,
     VIEW_GAME,
-    IHM_GAME_VIEW
-
+    IHM_GAME_VIEW,
+    WAITING_ROOM_VIEW
 }
