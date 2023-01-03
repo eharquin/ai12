@@ -1,13 +1,10 @@
 package utc.pokerut.server.communication;
 
-import utc.pokerut.common.dataclass.Action;
-import utc.pokerut.common.dataclass.ClientProfile;
-import utc.pokerut.common.dataclass.Result;
-import utc.pokerut.common.dataclass.Round;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
 
 import java.util.List;
+import java.util.UUID;
 
 public class DataCallsComImp implements DataCallsCom {
 
@@ -28,6 +25,11 @@ public class DataCallsComImp implements DataCallsCom {
 
     public void joinTableRequestComServCreator(int playerID, int gameID)
     {
+
+    }
+
+    @Override
+    public void joinTableRequestDataComServ(UUID idUser, UUID idGame) {
 
     }
 
@@ -69,6 +71,11 @@ public class DataCallsComImp implements DataCallsCom {
     public void transmitLeaveMessage(int playerID, int gameID, int nbCreditFinal, boolean result)
     {
         
+    }
+
+    @Override
+    public void addUserToGameDataComServ(Game game, Player player, UUID id_user) {
+
     }
 
 }

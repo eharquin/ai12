@@ -18,18 +18,20 @@ public class GameListListener implements PropertyChangeListener {
         {
             String action = evt.getPropertyName();
             String[] actions = action.split("_");
-            List<Game> gameList = (List<Game>) evt.getOldValue();
 
             switch (actions[0])
             {
                 case "init":
+                    List<Game> gameList = (List<Game>) evt.getNewValue();
                     gameListController.setGameList(gameList);
                     break;
                 case "add":
-                    gameListController.setGameList(gameList);
+                    Game game = (Game) evt.getNewValue();
+                    gameListController.addGame(game);
                     break;
                 case "remove":
-                    gameListController.setGameList(gameList);
+                    Game game1 = (Game) evt.getNewValue();
+                    gameListController.removeGame(game1);
                     break;
             }
         }
