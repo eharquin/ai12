@@ -100,5 +100,8 @@ public class Core {
     public void setDataCallsCom(DataCallsCom iDataCallsCom) {
         this.iDataCallsCom = iDataCallsCom;
     }
-
+    public void removeConnectedPlayer(UUID playerDisconnectingId) {
+        Player player = getConnectedPlayer(playerDisconnectingId);
+        connectedPlayers.remove(player);
+    }
 }

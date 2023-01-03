@@ -14,6 +14,7 @@ import utc.pokerut.common.interfaces.client.DataCallsCom;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Core {
     private IHMMainCallsData ihmMainCallsData;
@@ -159,5 +160,10 @@ public class Core {
 
     public void setComCallsData(ComCallsDataClientImpl comCallsData) {
         this.comCallsData = comCallsData;
+	}
+	
+    public Player getConnectedPlayer(UUID playerId) {
+        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
     }
 }
