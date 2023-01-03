@@ -3,9 +3,7 @@ package utc.pokerut.server.data;
 import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.server.ComCallsData;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ComCallsDataServerImpl implements ComCallsData {
     private Core dataServerCore;
@@ -118,4 +116,64 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Player player = dataServerCore.getConnectedPlayer(idUser);
         dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
     }
+
+    @Override
+    public void startGame(UUID gameId){
+        // move game from waiting game to onGoingGames
+        Game game = dataServerCore.getWaitingGame(gameId);
+        dataServerCore.getOnGoingGames().add(game);
+        dataServerCore.getWaitingGames().remove(game);
+
+        Collections.shuffle(game.getPlayers()); // mélanger la liste des joueurs
+
+        initRound(game);
+
+        // send next player actions
+        List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
+        UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
+        dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions,nextPlayerId);
+    }
+
+    @Override
+    public void applyAction(UUID idPlayer, UUID idGame, Action action) {
+
+    }
+
+    public void initRound(Game game){
+        // init new Round
+        Round round = new Round(game.getPlayers(), game.getNbPoints());
+        dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
+
+
+        // payer petite blinde
+        int smallBlind = Math.round(game.getNbPoints()/100);
+        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, smallBlind, round.getCurrentPlayer());
+        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerPetiteBlinde);
+
+        // payer la grosse blinde
+        int bigBlind = smallBlind*2;
+
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, bigBlind, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
+        applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
+
+    }
+
+    public Player getNextPlayers(List<Player> players, UUID currentPlayerId){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == currentPlayerId)
+                return players.get((i+1)%players.size());
+        }
+        return null;
+    }
+
+    public void setNextPlayerRound(List<Player> players, Round round){
+        for(int i=0; i<players.size(); i++) {
+            if(players.get(i).getId() == round.getCurrentPlayer().getId()) {
+                round.setCurrentPlayer(players.get((i+1)%players.size()));
+                return ;
+            }
+        }
+
+    }
+
 }

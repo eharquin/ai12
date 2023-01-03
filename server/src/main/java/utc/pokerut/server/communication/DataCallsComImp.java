@@ -48,12 +48,12 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void sendNextPlayerActions(List<Action> actions, int playerID)
+    public void sendNextPlayerActions(List<Action> actions, UUID playerID)
     {
 
     }
 
-    public void sendUpdateRound(Round round, List<Integer> players)
+    public void sendUpdateRound(Round round, List<Player> players)
     {
 
     }
