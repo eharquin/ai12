@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainController extends Controller {
+public class MainController extends Controller implements Initializable {
 
     private final BooleanProperty loginView = new SimpleBooleanProperty();
     private final BooleanProperty createProfileView = new SimpleBooleanProperty();
@@ -34,11 +34,23 @@ public class MainController extends Controller {
         return loginView.get();
     }
 
+    public LeftPanelController getLeftPanelController() {
+        return leftPanelController;
+    }
+
+    @FXML LeftPanelController leftPanelController;
+
     public BooleanProperty loginViewProperty() {
 
         return loginView;
     }
 
+    public GameListController getGameListController() {
+        return gameListController;
+    }
+
+
+    @FXML GameListController gameListController;
     public void setLoginView(boolean loginView) {
         this.loginView.set(loginView);
     }
@@ -101,7 +113,6 @@ public class MainController extends Controller {
         setIhmGameView(false);
         setLogoutView(false);
     }
-
     public boolean isIhmGameView() {
         return ihmGameView.get();
     }
@@ -115,7 +126,6 @@ public class MainController extends Controller {
     }
 
     private final BooleanProperty ihmGameView = new SimpleBooleanProperty();
-
 
 
 
@@ -149,7 +159,12 @@ public class MainController extends Controller {
                 break;
             }
         }
+
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Initialized");
+    }
 }

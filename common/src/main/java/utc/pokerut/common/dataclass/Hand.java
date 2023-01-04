@@ -6,6 +6,7 @@ public class Hand {
     private Player player;
     private Round round;
     private int availablePoints;
+    private boolean isFold;
     private ArrayList<Card> cards;
 
     public Player getPlayer() {
@@ -30,6 +31,14 @@ public class Hand {
 
     public void setAvailablePoints(int availablePoints) {
         this.availablePoints = availablePoints;
+    }
+
+    public boolean getIsFold() {
+        return isFold;
+    }
+
+    public void setIsFold(boolean isFold) {
+        this.isFold = isFold;
     }
 
     public ArrayList<Card> getCards() {
