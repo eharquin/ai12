@@ -22,6 +22,10 @@ public class Action implements Serializable {
         this.timestamp = new Timestamp((new Date()).getTime());
     }
 
+    public Action(ActionTypeEnum actionType) {
+        this.type = actionType;
+    }
+
     public Player getPlayer() {
         return player;
     }

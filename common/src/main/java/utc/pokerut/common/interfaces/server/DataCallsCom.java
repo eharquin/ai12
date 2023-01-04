@@ -9,8 +9,6 @@ public interface DataCallsCom {
 
     ClientProfile AskForProfile(int playerID);
 
-    void Connection(ServerProfile profile, String ip, int port);
-
     void joinTableRequestComServCreator(int playerID, int gameID);
 
     void joinTableRequestDataComServ(UUID idUser, UUID idGame);
@@ -23,10 +21,11 @@ public interface DataCallsCom {
 
     void sendUpdateRound(Round round, List<Player> players);
 
-    void sendUpdateRoundAndEndResults(Round round, List<Integer> players, List<Result> results);
+    void sendUpdateRoundAndEndResults(Round round, List<Player> players, List<Result> results);
 
     void sendUserActionsRefused();
 
     void transmitLeaveMessage(int playerID, int gameID, int nbCreditFinal, boolean result);
+    
     void addUserToGameDataComServ(Game game, Player player,  UUID id_user);
 }

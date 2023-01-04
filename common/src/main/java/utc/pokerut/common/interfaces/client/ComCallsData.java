@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ComCallsData {
-    public void connexionUser(ServerProfile profile, String IP, int port);
-    public void logoutUser(UUID playerId);
-    public void modifyUser(ServerProfile profile);
     public void addUserAtList(Player player);
     public void sendLists(List<Player> players, List<Game> games);
     public  void updateGameList(Game game);
@@ -19,4 +16,5 @@ public interface ComCallsData {
     public void updateRound(Round round);
     public void updateGameEnd(Round round, List<Result> results);
     public void updateNewRound(Round round);
+    public void userDisconnected(UUID playerID);
 }

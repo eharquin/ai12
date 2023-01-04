@@ -29,4 +29,5 @@ public interface ComCallsData {
     public void newPlayerJoinedComDataServ(UUID id_user, UUID id_game);
     public void startGame(UUID gameId);
     public void applyAction(UUID idPlayer, UUID idGame, Action action);
+    public void removeUser(UUID playerDisconnectingId);
 }
