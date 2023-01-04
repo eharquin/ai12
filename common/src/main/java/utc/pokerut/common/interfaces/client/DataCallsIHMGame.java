@@ -18,4 +18,5 @@ public interface DataCallsIHMGame{
 
     public void notifyPlayersInGame(UUID player_uuid, UUID game_uuid);
 
+    public boolean notifyRejectionComMainCli(UUID userUuid, UUID gameUuid);
 }

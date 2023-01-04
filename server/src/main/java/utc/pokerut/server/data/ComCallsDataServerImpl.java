@@ -85,6 +85,16 @@ public class ComCallsDataServerImpl implements ComCallsData {
     }
 
     @Override
+    public void askJoinTableComDataServ(UUID game, UUID player) {
+
+    }
+
+    @Override
+    public Game getGameById(UUID gameID) {
+        return dataServerCore.getWaitingGames().stream().filter(game -> game.getId().equals(gameID)).findFirst().get();
+    }
+
+    @Override
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
     }

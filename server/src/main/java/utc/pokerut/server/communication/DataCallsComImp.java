@@ -1,11 +1,8 @@
 package utc.pokerut.server.communication;
 
-import utc.pokerut.common.dataclass.Action;
-import utc.pokerut.common.dataclass.ClientProfile;
-import utc.pokerut.common.dataclass.Result;
-import utc.pokerut.common.dataclass.Round;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.server.DataCallsCom;
+import utc.pokerut.common.messages.JoinGameAsked;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,8 +31,10 @@ public class DataCallsComImp implements DataCallsCom {
 
     public void joinTableRequestDataComServ(UUID playerID, UUID gameID)
     {
-//        JoinGameCommand command = new JoinGameCommand(playerID, gameID);
-//        command.execute(core);
+        Game game = core.getComCallsData().getGameById(gameID);
+        ClientHandler client = core.getServer().getClientById(game.getCreator().getId());
+
+        client.send(new JoinGameAsked(playerID, gameID));
     }
 
     public void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID)

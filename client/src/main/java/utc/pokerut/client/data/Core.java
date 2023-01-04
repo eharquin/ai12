@@ -4,10 +4,7 @@ package utc.pokerut.client.data;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.interfaces.client.ComCallsData;
-import utc.pokerut.common.interfaces.client.DataCallsIHMMain;
-import utc.pokerut.common.interfaces.client.IHMMainCallsData;
-import utc.pokerut.common.interfaces.client.DataCallsCom;
+import utc.pokerut.common.interfaces.client.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -18,6 +15,7 @@ public class Core {
     private IHMMainCallsData ihmMainCallsData;
     private DataCallsIHMMain iDataCallsIHMMain;
     private DataCallsCom iDataCallsCom;
+    private DataCallsIHMGame iDataCallsIHMGame;
     private ClientProfile profile;
     private Game currentGame;
     private ArrayList<Player> connectedPlayers;
@@ -48,6 +46,10 @@ public class Core {
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
+    }
+
+    public DataCallsIHMGame getiDataCallsIHMGame() {
+        return iDataCallsIHMGame;
     }
 
     public ComCallsData getComCallsData() {

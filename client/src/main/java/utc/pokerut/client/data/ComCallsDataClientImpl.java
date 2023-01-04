@@ -50,4 +50,14 @@ public class ComCallsDataClientImpl implements ComCallsData {
             myDataCore.getiDataCallsIHMMain().displayGame(game);
 
     }
+
+    @Override
+    public boolean joinTableRequestComGameCreator(String username, UUID gameID) {
+        return myDataCore.getiDataCallsIHMMain().joinTableRequestComGameCreator(username, gameID);
+    }
+
+    @Override
+    public void notifyRejectionComMainCli(UUID gameID, UUID playerID) {
+        myDataCore.getiDataCallsIHMGame().notifyRejectionComMainCli(gameID, playerID);
+    }
 }

@@ -37,12 +37,14 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
         in = new ObjectInputStream(socket.getInputStream());
 
         this.messages = new HashMap<>();
-        this.messages.put(LoginMessage.class, CommandLogin.class);
-        this.messages.put(LogoutMessage.class, CommandLogOut.class);
+        this.messages.put(Login.class, CommandLogin.class);
+        this.messages.put(Logout.class, CommandLogOut.class);
         this.messages.put(GameCreated.class, CommandCreateGame.class);
         this.messages.put(GameDeleted.class, CommandDeleteGame.class);
 //        this.messages.put(MessageType.AskJoinGame, CommandLogin.class);
         this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
+        this.messages.put(AskJoinGame.class, CommandAskJoinGame.class);
+        this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
     }
 
     @Override

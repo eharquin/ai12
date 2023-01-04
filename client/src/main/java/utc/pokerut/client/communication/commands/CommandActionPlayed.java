@@ -1,8 +1,5 @@
-package utc.pokerut.client.communication.Commands;
+package utc.pokerut.client.communication.commands;
 
-import utc.pokerut.client.communication.Core;
-import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.dataclass.Round;
 import utc.pokerut.common.messages.ActionPlayed;
 
 public class CommandActionPlayed extends ClientCommand<ActionPlayed> {

@@ -3,11 +3,10 @@ package utc.pokerut.client.communication;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.util.HashMap;
 
-import utc.pokerut.client.communication.Commands.*;
+import utc.pokerut.client.communication.commands.*;
 // pokerut
 import utc.pokerut.common.messages.*;
 
@@ -52,13 +51,15 @@ public class Client extends MessageHandler<Core> implements Runnable {
 
         connected = false;
         this.messages = new HashMap<>();
-        this.messages.put(LoginMessage.class, CommandUserLoggedIn.class);
-        this.messages.put(LogoutMessage.class, CommandUserLoggedOut.class);
-        this.messages.put(InitMessage.class, CommandInit.class);
+        this.messages.put(Login.class, CommandUserLoggedIn.class);
+        this.messages.put(Logout.class, CommandUserLoggedOut.class);
+        this.messages.put(Init.class, CommandInit.class);
         this.messages.put(GameCreated.class, CommandGameCreated.class);
         this.messages.put(GameDeleted.class, CommandGameDeleted.class);
         this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
         this.messages.put(ActionRefused.class, CommandActionRefused.class);
+        this.messages.put(JoinGameAsked.class, CommandJoinGameAsked.class);
+        this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
     }
 
     public void connect(String host, int port) {

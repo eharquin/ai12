@@ -144,6 +144,11 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     }
 
     @Override
+    public void askJoinTableMainComCli(UUID idGame, UUID idUser) {
+        myDataCore.getiDataCallsCom().askJoinTableMainComCli(idGame, idUser);
+    }
+
+    @Override
     public void setPCLGame(PropertyChangeListener PCLGame){
         myDataCore.addPropertyChangeListenerGame(PCLGame);
     }

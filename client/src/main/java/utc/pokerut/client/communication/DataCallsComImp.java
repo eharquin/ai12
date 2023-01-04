@@ -5,9 +5,10 @@ import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
+import utc.pokerut.common.messages.AskJoinGame;
 import utc.pokerut.common.messages.GameCreated;
-import utc.pokerut.common.messages.LoginMessage;
-import utc.pokerut.common.messages.LogoutMessage;
+import utc.pokerut.common.messages.Login;
+import utc.pokerut.common.messages.Logout;
 import utc.pokerut.common.messages.client.MessageType;
 
 import java.util.UUID;
@@ -23,13 +24,14 @@ public class DataCallsComImp implements DataCallsCom
 
     public void connectionUser(ServerProfile profile, String ip, int port) {
         core.connect(ip, port);
-        core.getClient().send(new LoginMessage(profile));
+        core.getClient().send(new Login(profile));
     }
 
     public ClientProfile AskForProfile(int playerID) {
 
         return null;
     }
+
 
     public void modifyUser(ServerProfile profile) {
 
@@ -44,9 +46,7 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void askJoinTableMainComCli(UUID playerID, UUID idGame) {
-//        core.getClient().send(MessageType.Login);
-//        core.getClient().send(playerID);
-//        core.getClient().send(idGame);
+        core.getClient().send(new AskJoinGame(idGame, playerID));
     }
 
     public void sendStartGame(int gameID) {
@@ -74,7 +74,7 @@ public class DataCallsComImp implements DataCallsCom
     }
 
     public void logoutUser(UUID playerID) {
-        core.getClient().send(new LogoutMessage(playerID));
+        core.getClient().send(new Logout(playerID));
     }
 
 }

@@ -1,7 +1,5 @@
-package utc.pokerut.client.communication.Commands;
+package utc.pokerut.client.communication.commands;
 
-import utc.pokerut.client.communication.Core;
-import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.messages.GameCreated;
 
 public class CommandGameCreated extends ClientCommand<GameCreated> {

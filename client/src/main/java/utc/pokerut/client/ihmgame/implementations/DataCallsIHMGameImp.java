@@ -28,4 +28,9 @@ public class DataCallsIHMGameImp implements DataCallsIHMGame {
     @Override
     public void notifyPlayersInGame(UUID player_uuid, UUID game_uuid){}
 
+    @Override
+    public boolean notifyRejectionComMainCli(UUID userUuid, UUID gameUuid) {
+        return false;
+    }
+
 }

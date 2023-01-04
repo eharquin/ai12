@@ -1,14 +1,12 @@
 package utc.pokerut.server.communication.commands;
 
-import utc.pokerut.common.dataclass.ServerProfile;
-import utc.pokerut.common.messages.InitMessage;
-import utc.pokerut.common.messages.LoginMessage;
+import utc.pokerut.common.messages.Init;
+import utc.pokerut.common.messages.Login;
 import utc.pokerut.server.communication.ClientHandler;
-import utc.pokerut.server.communication.Core;
 
 import java.util.ArrayList;
 
-public class CommandLogin extends ServerCommand<LoginMessage> {
+public class CommandLogin extends ServerCommand<Login> {
 
     public void execute()
     {
@@ -16,7 +14,7 @@ public class CommandLogin extends ServerCommand<LoginMessage> {
         core.getComCallsData().saveUser(message.profile);
 
         // send init data to new client
-        getClient().send(new InitMessage(
+        getClient().send(new Init(
                 core.getComCallsData().getWaitingGames(),
                 core.getComCallsData().getConnectedPlayers()
         ));
@@ -26,7 +24,7 @@ public class CommandLogin extends ServerCommand<LoginMessage> {
 
         for (ClientHandler other : clients) {
             if(other != getClient()) {
-                other.send(new LoginMessage(getClient().getProfile()));
+                other.send(new Login(getClient().getProfile()));
             }
         }
     }

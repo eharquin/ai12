@@ -2,10 +2,10 @@ package utc.pokerut.common.messages;
 
 import java.util.UUID;
 
-public class LogoutMessage extends Message {
+public class Logout extends Message {
     public UUID idUser;
 
-    public LogoutMessage(UUID idUser) {
+    public Logout(UUID idUser) {
         this.idUser = idUser;
     }
 }
