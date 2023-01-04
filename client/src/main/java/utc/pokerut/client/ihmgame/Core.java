@@ -7,7 +7,6 @@ import utc.pokerut.common.dataclass.Game;
 
 public class Core {
 
-
     private ComCallsIHMGameImp comInterface;
 
     private DataCallsIHMGameImp dataInterface;
@@ -52,6 +51,7 @@ public class Core {
     public Core(Game game) {
 
         this.game = game;
+        Controller.setCore(this);
 
         setComInterface(new ComCallsIHMGameImp(this));
         setDataInterface(new DataCallsIHMGameImp(this));

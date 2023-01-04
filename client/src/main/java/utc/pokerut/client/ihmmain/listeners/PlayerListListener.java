@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmmain.listeners;
 
+import utc.pokerut.client.ihmmain.controllers.Controller;
 import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.client.ihmmain.controllers.PlayerListController;
 import utc.pokerut.common.dataclass.Player;

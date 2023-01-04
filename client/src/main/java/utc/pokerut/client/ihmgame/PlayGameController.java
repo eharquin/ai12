@@ -19,18 +19,7 @@ import java.io.IOException;
 import java.security.Timestamp;
 import java.util.UUID;
 
-public class PlayGameController {
-
-    public static utc.pokerut.client.ihmgame.Core getCore(){
-        return core;
-    }
-
-    public static void setCore(utc.pokerut.client.ihmgame.Core _core){
-        core = _core;
-    }
-
-    protected  static Core core;
-
+public class PlayGameController extends Controller {
 
     @FXML
     public TextField betting;
