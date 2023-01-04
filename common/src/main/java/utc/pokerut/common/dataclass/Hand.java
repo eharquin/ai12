@@ -15,30 +15,6 @@ public class Hand {
 
     private int valueWinComb;
     private ArrayList<Card> cards;
-    private int bettingRound1;
-    private int bettingRound2;
-    private int bettingRound3;
-    public Hand(){
-        player = null;
-        round = null;
-        availablePoints = 0;
-        isFold = false;
-        cards = new ArrayList<>();
-        this.bettingRound1 = 0;
-        this.bettingRound2 = 0;
-        this.bettingRound3 = 0;
-    }
-
-    public Hand(Round round, Player player, ArrayList<Card> cards, int availablePoints) {
-        this.round = round;
-        this.player = player;
-        this.isFold = false;
-        this.cards = cards;
-        this.availablePoints = availablePoints;
-        this.bettingRound1 = 0;
-        this.bettingRound2 = 0;
-        this.bettingRound3 = 0;
-    }
 
     public Hand (){
         this.availablePoints = 0;
@@ -139,30 +115,6 @@ public class Hand {
 
     public void setFold(boolean fold) {
         isFold = fold;
-    }
-
-    public int getBettingRound1() {
-        return bettingRound1;
-    }
-
-    public void setBettingRound1(int bettingRound1) {
-        this.bettingRound1 = bettingRound1;
-    }
-
-    public int getBettingRound2() {
-        return bettingRound2;
-    }
-
-    public void setBettingRound2(int bettingRound2) {
-        this.bettingRound2 = bettingRound2;
-    }
-
-    public int getBettingRound3() {
-        return bettingRound3;
-    }
-
-    public void setBettingRound3(int bettingRound3) {
-        this.bettingRound3 = bettingRound3;
     }
 
     public int getValueWinComb() {
