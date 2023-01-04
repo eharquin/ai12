@@ -8,16 +8,17 @@ public class CardDeck {
     public final static String heart = "heart";
     public final static String clover = "clover";
     public final static String diamond = "diamond";
-    private ArrayList<Card>  cardDeck;
+    private LinkedList<Card>  cardDeck;
     public CardDeck() {
         createCardDeck();
+        shuffleCardDeck();
     }
 
-    public ArrayList<Card> getCardDeck() {
+    public LinkedList<Card> getCardDeck() {
         return cardDeck;
     }
 
-    public void setCardDeck(ArrayList cardDeck) {
+    public void setCardDeck(LinkedList cardDeck) {
         this.cardDeck = cardDeck;
     }
 
