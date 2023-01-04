@@ -130,6 +130,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
         initRound(game);
 
         // send next player actions
+        List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
         List<Action> actions = dataServerCore.getGameEngine().actionCalculation(game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); //majGame si jamais
         UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
@@ -274,6 +275,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     public void initRound(Game game){
         // init new Round
+        Round round = new Round(game.getPlayers(), game.getNbPoints());
         Round round = new Round();
         game.getRounds().add(round);
         game.setCurrentRound(round);
@@ -287,11 +289,14 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
 
         // payer petite blinde
-        int littleBlinde = Math.round(game.getNbPoints()/100);
-        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, littleBlinde, round.getCurrentPlayer());
+        int smallBlind = Math.round(game.getNbPoints()/100);
+        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, smallBlind, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerPetiteBlinde);
 
         // payer la grosse blinde
+        int bigBlind = smallBlind*2;
+
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, bigBlind, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
         int grosseBlincde = littleBlinde*2;
         // éventuellment peut poser problème apply action
         //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
