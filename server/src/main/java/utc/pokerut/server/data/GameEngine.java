@@ -234,7 +234,6 @@ public class GameEngine {
 
         return result;
     }
-
     private List<List<Integer>> combinationUtil(int arr[], int data[], int start, int end, int index, int r, List<List<Integer>> combs) {
         List<Integer> comb = new ArrayList<Integer>();
         if (index == r) {
@@ -251,9 +250,14 @@ public class GameEngine {
         return combs;
     }
 
-    private List<Card> getCombination(int arr[], int n, int r, List<Card> allCards) {
+    private ArrayList<Card> getCombination(ArrayList<Card> allCards, int r, int n) {
         int data[] = new int[r];
-        List<Card> winningComb = new ArrayList<Card>();
+        int arr_size = allCards.size();
+        int arr[] = new int [arr_size];
+        for (int index = 0; index < arr_size; index++){
+            arr[index] = index + 1;
+        }
+        ArrayList<Card> winningComb = new ArrayList<Card>();
         int points = 0;
         int point;
         List<List<Integer>> combs = new ArrayList<List<Integer>>();
@@ -261,7 +265,7 @@ public class GameEngine {
 
         for (int i = 0; i < combs.size(); i++) {
             List<Integer> comb = combs.get(i);
-            List<Card> currentComb = new ArrayList<Card>();
+            ArrayList<Card> currentComb = new ArrayList<Card>();
             for (int j = 0; j < comb.size(); j++) {
                 currentComb.add(allCards.get(comb.get(j)));
             }
@@ -332,8 +336,10 @@ public class GameEngine {
         int win = -1; //valeur de comparaison entre valeurs de combinaisons
 
         for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
-            // ici changer pour adapter au code de Lidia
-            ArrayList<Card> cards = getBestCardCombinations(h.getCards(), cardsOnTable);
+            ArrayList<Card> allCards = new ArrayList<>();
+            allCards.addAll(h.getCards());
+            allCards.addAll(cardsOnTable);
+            ArrayList<Card> cards = getCombination(allCards, 7, 5);
             int valueCombi = evalComb(cards);
             Player player = h.getPlayer();
 
@@ -356,8 +362,10 @@ public class GameEngine {
     public ArrayList<Hand> getResultsRound(Round round) {
         ArrayList<Hand> hands = round.getHands();
         for (Hand h : hands) { //parcourir la hashmap des valeurs des combinaisons des joueurs restants à la fin du round
-            // ici changer pour adapter au code de Lidia
-            ArrayList<Card> cards = getBestCardCombinations(h.getCards(), round.getShowedCards());
+            ArrayList<Card> allCards = new ArrayList<>();
+            allCards.addAll(h.getCards());
+            allCards.addAll(round.getShowedCards());
+            ArrayList<Card> cards = getCombination(allCards, 7, 5);
             h.setValueWinComb(evalComb(cards));
         }
         Collections.sort(hands, Comparator.comparingInt(Hand::getValueWinComb).reversed());
