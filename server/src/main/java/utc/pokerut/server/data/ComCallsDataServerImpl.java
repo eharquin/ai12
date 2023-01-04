@@ -170,6 +170,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 // si la partie est finie
                 if(game.getNbRounds() == Game.NB_MAX_ROUND) {
                     // calculer les résultats
+                    ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
+                    round.setHands(hands);
                     ArrayList<Result> rankings = this.dataServerCore.getGameEngine().getRanking(game);
                     this.dataServerCore.getiDataCallsCom().sendUpdateRoundAndEndResults(round, game.getPlayers(), rankings);
                 } else {
