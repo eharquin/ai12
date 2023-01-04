@@ -130,7 +130,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
         initRound(game);
 
         // send next player actions
-        List<Action> actions = dataServerCore.getGameEngine().actionCalulation();
         List<Action> actions = dataServerCore.getGameEngine().actionCalculation(game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); //majGame si jamais
         UUID nextPlayerId = game.getCurrentRound().getCurrentPlayer().getId();
@@ -275,7 +274,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     public void initRound(Game game){
         // init new Round
-        Round round = new Round(game.getPlayers(), game.getNbPoints());
         Round round = new Round();
         game.getRounds().add(round);
         game.setCurrentRound(round);
@@ -296,13 +294,11 @@ public class ComCallsDataServerImpl implements ComCallsData {
         // payer la grosse blinde
         int bigBlind = smallBlind*2;
 
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, bigBlind, this.getNextPlayers(game.getPlayers(), round.getCurrentPlayer().getId()));
-        int grosseBlincde = littleBlinde*2;
         // éventuellment peut poser problème apply action
         //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
         setNextPlayerRound(round);
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, round.getCurrentPlayer());
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, bigBlind, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
 
     }

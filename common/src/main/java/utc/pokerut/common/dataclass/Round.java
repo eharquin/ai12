@@ -11,8 +11,6 @@ public class Round implements Serializable {
     public static int NB_MAX_BETTING_ROUND = 4;
     private ArrayList<Action> actions;
     private ArrayList<Hand> hands;
-    private LinkedList<Card> cards;
-    private Player currentPlayer;
     private LinkedList<Card> cards; // cartes sur la table face cachée
     private ArrayList<Card> showedCards;
     // clé : currentBettingRound, valeur : pari
@@ -35,31 +33,6 @@ public class Round implements Serializable {
         this.setShowedCards(new ArrayList<>());
         CardDeck cardDeck = new CardDeck();
         this.setCards(cardDeck.getCardDeck());
-    }
-
-    public Round(ArrayList<Player> players, int availablePoints){
-        this.setCurrentPlayer(players.get(0));
-        this.setCurrentBettingRound(1);
-        this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
-        this.setActions(new ArrayList<>());
-        this.setHands(new ArrayList<>());
-        this.setShowedCards(new ArrayList<>());
-        CardDeck cardDeck = new CardDeck();
-        this.setCards(cardDeck.getCardDeck());
-
-        for(Player p : players)  {
-            ArrayList<Card> handCards = new ArrayList<>();
-
-            // on ajoute les cartes à la main
-            for(int i =0; i <NB_CARDS_HAND; i++) {
-                handCards.add(cards.getFirst());
-                cards.getFirst();
-            }
-
-            Hand h = new Hand(this, p,handCards, availablePoints);
-            this.hands.add(h);
-        }
-
     }
 
     public ArrayList<Action> getActions() {
@@ -144,11 +117,6 @@ public class Round implements Serializable {
     
     public Hand getHandByPlayerId(UUID playerId) {
         Hand hand = hands.stream().filter(h -> h.getPlayer().getId() == playerId).findAny().orElse(null);
-        return hand;
-    }
-
-    public Hand getHandByPlayerId(UUID playerId) {
-        Hand hand = hands.stream().filter(hands -> hands.getPlayer().getId() == playerId).findAny().orElse(null);
         return hand;
     }
 
