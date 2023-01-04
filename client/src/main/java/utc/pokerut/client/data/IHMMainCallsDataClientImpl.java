@@ -76,7 +76,9 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
                 } catch (IOException e_read) {
                     // erreur rencontre pendant l'ouverture et/ou lecture
                     // e_read.printStackTrace();
-                    throw new Exception("Fichier non trouvé");
+                    if (i >= listOfFiles.length-1){
+                        throw new Exception("Fichier non trouvé");
+                    }
                 } catch(ClassNotFoundException e_class) {
                     // l'objet obtenu ne correspond pas au type de la classe
                     throw new Exception("Erreur");
@@ -156,6 +158,11 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     @Override
     public void setPCLPlayer(PropertyChangeListener PCLPlayer){
         myDataCore.addPropertyChangeListenerPlayer(PCLPlayer);
+    }
+
+    @Override
+    public ClientProfile getProfile(){
+        return this.myDataCore.getProfile();
     }
 
     @Override
