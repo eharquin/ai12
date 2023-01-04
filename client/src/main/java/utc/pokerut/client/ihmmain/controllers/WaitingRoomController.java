@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 
 import javafx.scene.control.*;
 import utc.pokerut.client.ihmmain.ViewNames;
+import utc.pokerut.client.ihmmain.listeners.LobbyGameListener;
 import utc.pokerut.common.dataclass.ClientProfile;
 import javafx.util.Callback;
 import utc.pokerut.common.dataclass.ClientProfile;
@@ -26,7 +27,7 @@ import utc.pokerut.common.dataclass.ClientProfile;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class WaitingRoomController {
+public class WaitingRoomController extends Controller {
     @FXML
     private TableView<ClientProfile> myTableView;
 
@@ -42,6 +43,12 @@ public class WaitingRoomController {
     @FXML
     private Button cancel;
 
+    public LobbyGameListener getLobbyGameListener() {
+        return lobbyGameListener;
+    }
+
+    private LobbyGameListener lobbyGameListener;
+
     public void handleLaunchGameButtonAction(ActionEvent event) {
         // launchGame()
     }
@@ -49,20 +56,15 @@ public class WaitingRoomController {
     public void handleCancelButtonAction(ActionEvent event) {
         // cancel --> redirection?
     }
+    public void incomingJoinRequest(ClientProfile requester)
+    {
+        myTableView.getItems().add(requester);
+    }
+    public void acceptJoinRequest(ClientProfile requester)
+    {
 
+    }
     public void initialize() {
-        List<ClientProfile> list = new ArrayList<>(); // getClientProfilelist ?
-        
-
-
-        //ClientProfile p1 = new ClientProfile();
-        //ClientProfile p2 = new ClientProfile();
-
-        //p1.setPseudo("Bob");
-        //p2.setPseudo("Bob2");
-
-        //list.add(p1);
-        //list.add(p2);
 
         username.setCellValueFactory(ClientProfile -> {
             SimpleObjectProperty property = new SimpleObjectProperty();
@@ -107,6 +109,5 @@ public class WaitingRoomController {
                 }
             }
         });
-        myTableView.getItems().setAll(list);
     }
 }

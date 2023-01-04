@@ -31,5 +31,9 @@ public class LobbyGameListener implements PropertyChangeListener{
             }
         }
     }
+    public LobbyGameListener(WaitingRoomController _controller)
+    {
+        this.waitingRoomController = _controller;
+    }
 
 }

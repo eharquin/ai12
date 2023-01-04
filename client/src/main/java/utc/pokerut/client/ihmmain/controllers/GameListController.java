@@ -147,6 +147,7 @@ public class GameListController extends Controller {
 
     public void joinGame(){
         //call data to join a game
+
     }
 
     public void refreshGameList(){
