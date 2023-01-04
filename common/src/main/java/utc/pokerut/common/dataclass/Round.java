@@ -23,6 +23,8 @@ public class Round implements Serializable {
     private int nbCallSuccessivePlayers;
     private int nbCheckSuccessivePlayers;
 
+    private final int NB_CARDS_HAND = 2;
+
     public Round(){
         this.setCurrentBettingRound(1);
         this.setCurrentBet(0); // 0, le premier joueur doit payer la petite blinde
@@ -31,8 +33,8 @@ public class Round implements Serializable {
         this.setShowedCards(new ArrayList<>());
         CardDeck cardDeck = new CardDeck();
         this.setCards(cardDeck.getCardDeck());
-        this.setCurrentBets(new HashMap<>());
     }
+
     public ArrayList<Action> getActions() {
         return actions;
     }
@@ -112,9 +114,9 @@ public class Round implements Serializable {
     public void setShowedCards(ArrayList<Card> showedCards) {
         this.showedCards = showedCards;
     }
-
+    
     public Hand getHandByPlayerId(UUID playerId) {
-        Hand hand = hands.stream().filter(hands -> hands.getPlayer().getId() == playerId).findAny().orElse(null);
+        Hand hand = hands.stream().filter(h -> h.getPlayer().getId() == playerId).findAny().orElse(null);
         return hand;
     }
 
@@ -141,4 +143,5 @@ public class Round implements Serializable {
     public void setNbCheckSuccessivePlayers(int nbCheckSuccessivePlayers) {
         this.nbCheckSuccessivePlayers = nbCheckSuccessivePlayers;
     }
+    
 }

@@ -287,17 +287,18 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
 
         // payer petite blinde
-        int littleBlinde = Math.round(game.getNbPoints()/100);
-        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, littleBlinde, round.getCurrentPlayer());
+        int smallBlind = Math.round(game.getNbPoints()/100);
+        Action actionPayerPetiteBlinde = new Action(ActionTypeEnum.BET, smallBlind, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerPetiteBlinde);
 
         // payer la grosse blinde
-        int grosseBlincde = littleBlinde*2;
+        int bigBlind = smallBlind*2;
+
         // éventuellment peut poser problème apply action
         //dataServerCore.setNextPlayerRound(game.getPlayers(), game.getCurrentRound());
         game = dataServerCore.getOnGoingGame(game.getId()); // histoire d'être sur que ce soit bien à jour
         setNextPlayerRound(round);
-        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, grosseBlincde, round.getCurrentPlayer());
+        Action actionPayerGrosseBlinde = new Action(ActionTypeEnum.BET, bigBlind, round.getCurrentPlayer());
         applyAction(round.getCurrentPlayer().getId(), game.getId(), actionPayerGrosseBlinde);
 
     }
