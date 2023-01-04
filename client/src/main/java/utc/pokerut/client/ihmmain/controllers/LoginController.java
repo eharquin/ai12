@@ -53,6 +53,7 @@ public class LoginController extends Controller {
         if(!emptyFields && !wrongIp && !wrongPort) {
             try {
                 core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
+                core.getMainController().getLeftPanelController().setIsPlayerListVisible(true);
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,

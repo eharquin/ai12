@@ -57,15 +57,10 @@
                       </TableView>
                   </content>
               </ScrollPane>
-            <HBox prefHeight="200.0" prefWidth="200.0">
+            <HBox>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="550.0">
+                  <Pane>
                      <children>
-                         <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="80.0" text="Veuillez sélectionner une partie" textAlignment="CENTER" textFill="RED" visible="false">
-                             <font>
-                                 <Font size="14.0" />
-                             </font>
-                         </Label>
                         <Button fx:id="joinGameButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="450.0" layoutY="25.0" mnemonicParsing="false" onAction="#joinGame" style="-fx-background-color: #E3E3E3;" text="Rejoindre" textAlignment="CENTER" />
                      </children>
                   </Pane>

@@ -16,7 +16,7 @@
                         <Image url="@../img/cardsIcon.png" />
                     </image>
                 </ImageView>
-                <ImageView pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                <ImageView pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
                     <image>
                         <Image url="@../img/mainTitle.png" />
                     </image>

@@ -12,6 +12,7 @@ import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.interfaces.client.*;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Core {
@@ -88,6 +89,7 @@ public class Core {
     private Scene scene;
     private Stage stage;
     private Player playerConnected;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public Core(Stage stage) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
@@ -101,6 +103,8 @@ public class Core {
         this.stage = stage;
         this.stage.setTitle("Poker UT - Texas Holdem");
         this.stage.setResizable(false);
+        this.stage.setHeight(screenSize.getHeight() - 50);
+        this.stage.setWidth(screenSize.getWidth()*0.7);
         this.stage.setScene(scene);
         this.stage.show();
 

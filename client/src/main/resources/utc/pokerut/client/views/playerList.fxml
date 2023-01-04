@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/" fx:id="player" alignment="CENTER" spacing="20.0" style="-fx-background-color: #026502; -fx-padding: 15;" fx:controller="utc.pokerut.client.ihmmain.controllers.PlayerListController">
-    <Button fx:id="profileButton" text="Mon profil" onAction="#profileButtonClicked" />
-    <Button fx:id="viewGameButton" text="Voir une partie" onAction="#viewGameButtonClicked"/>
-    <Button fx:id="logoutButton" text="Se déconnecter" onAction="#logoutButtonClicked" />
-    <Label text="Joueurs connectés" style="-fx-font-weight:bold; -fx-font-size:20;" textFill="white"/>
-    <ScrollPane>
-        <ListView fx:id="list" style="-fx-text-alignment:center; -fx-font-size:20px; -fx-font-weight:bold;"/>
+<VBox fx:id="player" alignment="CENTER" spacing="20.0" style="-fx-background-color: #026502; -fx-padding: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.PlayerListController">
+    <Button fx:id="profileButton" onAction="#profileButtonClicked" text="Mon profil" />
+    <Button fx:id="viewGameButton" onAction="#viewGameButtonClicked" text="Voir une partie" />
+    <Button fx:id="logoutButton" onAction="#logoutButtonClicked" text="Se déconnecter" />
+    <Label style="-fx-font-weight:bold; -fx-font-size:20;" text="Joueurs connectés" textFill="white" />
+    <ScrollPane VBox.vgrow="ALWAYS">
+        <ListView fx:id="list" prefHeight="368.0" prefWidth="248.0" style="-fx-text-alignment:center; -fx-font-size:20px; -fx-font-weight:bold;" />
     </ScrollPane>
 </VBox>
