@@ -1,7 +1,5 @@
 package utc.pokerut.common.interfaces.client;
 
-import java.beans.PropertyChangeListener;
-
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
@@ -18,6 +16,8 @@ public interface IHMMainCallsData {
     public void login(String login, String password, String ip, int port) throws Exception;
     public void logout() throws Exception;
     public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port) throws Exception;
-    public void createGame(String tablename, int miseMinimale, int nbJoueurs, int maxTours, int creditsDepart) throws Exception;
+    public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception;
+    // call from Main to transmit to Com
+    public void askJoinTableMainComCli(UUID idGame, UUID idUser);
     public ClientProfile getProfile();
 }

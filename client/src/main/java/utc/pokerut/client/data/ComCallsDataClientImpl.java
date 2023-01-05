@@ -8,20 +8,19 @@ import java.util.List;
 import java.util.UUID;
 
 public class ComCallsDataClientImpl implements ComCallsData {
-
     private Core myDataCore;
 
     public ComCallsDataClientImpl(Core myDataCore) {
         this.myDataCore = myDataCore;
     }
-
     @Override
-    public void addUserAtList(Player player) {
+    public void addUserAtList(Player player){
         myDataCore.addNewPlayer(player);
     }
 
     @Override
-    public void sendLists(List<Player> players, List<Game> games) {
+    public void sendLists(List<Player> players, List<Game> games){
+
         myDataCore.setConnectedPlayers((ArrayList<Player>) players);
         myDataCore.setWaitingGame((ArrayList<Game>) games);
     }
@@ -31,6 +30,7 @@ public class ComCallsDataClientImpl implements ComCallsData {
         myDataCore.addWaitingGame(game);
         if(game.getCreator().getId() == myDataCore.getProfile().getId())
             myDataCore.getiDataCallsIHMMain().displayGame(game);
+
     }
 
     @Override
@@ -41,6 +41,12 @@ public class ComCallsDataClientImpl implements ComCallsData {
     @Override
     public void notifyRejectionComMainCli(UUID gameID, UUID playerID) {
         myDataCore.getiDataCallsIHMGame().notifyRejectionComMainCli(gameID, playerID);
+    }
+
+    @Override
+    public void newCurrentGame(Game game) {
+        myDataCore.getCurrentGame().setStatus(StatusEnum.ON_GOING);
+        myDataCore.getiDataCallsIHMMain().displayGame(myDataCore.getCurrentGame());
     }
 
     @Override
@@ -64,12 +70,6 @@ public class ComCallsDataClientImpl implements ComCallsData {
        // myDataCore.setCurrentGame(gameNewPlayer);
         myDataCore.getCurrentGame().addPlayer(newPlayer);
         myDataCore.getiDataCallsIHMGame().newPlayerJoinedDataGameOthers(gameNewPlayer, newPlayer, idUser);
-    }
-
-    @Override
-    public void newCurrentGame(Game game) {
-        myDataCore.getCurrentGame().setStatus(StatusEnum.ON_GOING);
-        myDataCore.getiDataCallsIHMMain().displayGame(myDataCore.getCurrentGame());
     }
 
     @Override
