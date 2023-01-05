@@ -14,6 +14,7 @@ import utc.pokerut.common.dataclass.Game;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class GameViewController {
     public static utc.pokerut.client.ihmgame.Core getCore() {
@@ -26,32 +27,63 @@ public class GameViewController {
 
     protected static Core core;
 
+    private ImageView[][] playerCardsImageArray;
+
+    private ImageView[] centerCardsImageArray;
+
+    public GameViewController(){
+        this.initImageViewPointers();
+    }
+
+    private void initImageViewPointers(){
+
+        this.playerCardsImageArray = new ImageView[3][9];
+
+        card1Player1 = this.playerCardsImageArray[1][1];
+        card2Player1 = this.playerCardsImageArray[2][1];
+        card1Player2 = this.playerCardsImageArray[1][2];
+        card2Player2 = this.playerCardsImageArray[2][2];
+        card1Player3 = this.playerCardsImageArray[1][3];
+        card2Player3 = this.playerCardsImageArray[2][3];
+        card1Player4 = this.playerCardsImageArray[1][4];
+        card2Player4 = this.playerCardsImageArray[2][4];
+        card1Player5 = this.playerCardsImageArray[1][5];
+        card2Player5 = this.playerCardsImageArray[2][5];
+        card1Player6 = this.playerCardsImageArray[1][6];
+        card2Player6 = this.playerCardsImageArray[2][6];
+        card1Player7 = this.playerCardsImageArray[1][7];
+        card2Player7 = this.playerCardsImageArray[2][7];
+        card1Player8 = this.playerCardsImageArray[1][8];
+        card2Player8 = this.playerCardsImageArray[2][8];
+
+        this.centerCardsImageArray = new ImageView[6];
+
+        card1 = this.centerCardsImageArray[1];
+        card2 = this.centerCardsImageArray[2];
+        card3 = this.centerCardsImageArray[3];
+        card4 = this.centerCardsImageArray[4];
+        card5 = this.centerCardsImageArray[5];
+    }
+
+
     public void initGame(Game game){
+
         Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
+
+        for (int i=1 ; i <= Integer.parseInt(this.nbPlayers.toString()) ; i++){
+            for (int j=1 ; j <= 2 ; j++){
+                this.playerCardsImageArray[i][j].setImage(pioche);
+            }
+        }
+
+        for (int i=1 ; i < 6 ; i++){
+            this.centerCardsImageArray[i].setImage(pioche);
+        }
+
         nbPlayers.setText(Integer.toString(game.getNbMaxPlayers()));
         creditGame.setText(Integer.toString(game.getNbPoints()));
         miseMin.setText(Integer.toString(game.getMinimalBet()));
-        card1.setImage(pioche);
-        card2.setImage(pioche);
-        card3.setImage(pioche);
-        card4.setImage(pioche);
-        card5.setImage(pioche);
-        card1Player1.setImage(pioche);
-        card2Player1.setImage(pioche);
-        card1Player2.setImage(pioche);
-        card2Player2.setImage(pioche);
-        card1Player3.setImage(pioche);
-        card2Player3.setImage(pioche);
-        card1Player4.setImage(pioche);
-        card2Player4.setImage(pioche);
-        card1Player5.setImage(pioche);
-        card2Player5.setImage(pioche);
-        card1Player6.setImage(pioche);
-        card2Player6.setImage(pioche);
-        card1Player7.setImage(pioche);
-        card2Player7.setImage(pioche);
-        card1Player8.setImage(pioche);
-        card2Player8.setImage(pioche);
+
        // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
         // nbPlayers.toString();
         //Text test = new Text(Integer.toString(game.getNbPoints()));
