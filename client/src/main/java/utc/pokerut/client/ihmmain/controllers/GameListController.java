@@ -147,7 +147,7 @@ public class GameListController extends Controller {
 
     public void joinGame(){
         System.out.println(selectedGame);
-        core.getDataInterface().askJoinTableMainComCli(selectedGame.getId(), core.getPlayerConnected().getId());
+        core.getDataInterface().askJoinTableMainComCli(selectedGame.getId(), core.getDataInterface().getProfile().getId());
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Impossible de rejoindre une partie");
 
