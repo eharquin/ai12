@@ -45,12 +45,12 @@ public class PlayGameController extends Controller {
 
         // Calling round to get player
         Action action = new Action();
-        action.setPlayer(PlayerListController.getCore().getPlayerConnected());
+        action.setPlayer(PlayerListController.getCore().getConnectedPlayer());
         action.setType(ActionTypeEnum.RAISE);
         action.setBetting(Integer.parseInt(raising.getText()));
         // action.setTimestamp(new Timestamp());
 
-        // sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        // sendAction(PlayerListController.getCore().getConnectedPlayer().getId(), getCore().getGame().getId(), action);
     }
     @FXML
     public void Call(ActionEvent event){
@@ -60,13 +60,13 @@ public class PlayGameController extends Controller {
         // go to next player
         event.consume();
         Action action = new Action();
-        action.setPlayer(PlayerListController.getCore().getPlayerConnected());
+        action.setPlayer(PlayerListController.getCore().getConnectedPlayer());
         action.setType(ActionTypeEnum.CALL);
         // Récupérer la mise du round en cours Int mise = ...
         // action.setBetting(mise);
         // action.setTimestamp(new Timestamp());
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        //sendAction(PlayerListController.getCore().getConnectedPlayer().getId(), getCore().getGame().getId(), action);
 
     }
     @FXML
@@ -74,26 +74,26 @@ public class PlayGameController extends Controller {
         // Inform Data, go to next player
         event.consume();
         Action action = new Action();
-        action.setPlayer(PlayerListController.getCore().getPlayerConnected());
+        action.setPlayer(PlayerListController.getCore().getConnectedPlayer());
         action.setType(ActionTypeEnum.CHECK);
         // Récupérer la mise du round en cours Int mise = ...
         action.setBetting(0);
         //action.setTimestamp(new Timestamp());
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        //sendAction(PlayerListController.getCore().getConnectedPlayer().getId(), getCore().getGame().getId(), action);
     }
     @FXML
     public void Fold(ActionEvent event){
         // Inform Data, go to next player
         event.consume();
         Action action = new Action();
-        action.setPlayer(PlayerListController.getCore().getPlayerConnected());
+        action.setPlayer(PlayerListController.getCore().getConnectedPlayer());
         action.setType(ActionTypeEnum.FOLD);
         // Récupérer la mise du round en cours Int mise = ...
         action.setBetting(0);
         //action.setTimestamp(new Timestamp());
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        //sendAction(PlayerListController.getCore().getConnectedPlayer().getId(), getCore().getGame().getId(), action);
     }
 
     @FXML
@@ -112,13 +112,13 @@ public class PlayGameController extends Controller {
         stage.close();
         // Calling Data with the value
         Action action = new Action();
-       // Action.setPlayer(PlayerListController.getCore().getPlayerConnected());
+       // Action.setPlayer(PlayerListController.getCore().getConnectedPlayer());
        // action.setType(ActionTypeEnum.); // Demander implémentation de BET à DATA
         // Récupérer la mise du round en cours Int mise = ...
        // action.setBetting(mise);
         //action.setTimestamp(new Timestamp());
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        //sendAction(PlayerListController.getCore().getConnectedPlayer().getId(), getCore().getGame().getId(), action);
 
     }
 

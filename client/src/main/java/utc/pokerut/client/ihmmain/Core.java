@@ -71,7 +71,7 @@ public class Core {
         this.mainController = mainController;
     }
 
-    public Player getPlayerConnected() {
+    public Player getConnectedPlayer() {
         return playerConnected;
     }
 
