@@ -376,10 +376,11 @@ public class GameEngine {
         ArrayList<Hand> winners = new ArrayList<>();
         int winValue = hands.get(0).getValueWinComb();
         for(Hand h : hands) {
-            if(h.getValueWinComb() == winValue)
+            if(h.getValueWinComb() == winValue) {
                 winners.add(h);
-            else if(h.getValueWinComb()<winValue)
+            } else if(h.getValueWinComb()<winValue) {
                 break;
+            }
         }
         int gains = 0;
         int totalPot = 0;
