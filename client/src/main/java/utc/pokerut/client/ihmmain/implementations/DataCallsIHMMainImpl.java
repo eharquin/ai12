@@ -22,7 +22,7 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
 
     @Override
     public void notifyGameReady(Game game) {
-
+        core.getGameInterface().newGameWindow(game);
     }
 
     public DataCallsIHMMainImpl(Core core)
