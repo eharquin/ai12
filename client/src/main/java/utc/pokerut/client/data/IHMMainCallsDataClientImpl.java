@@ -1,14 +1,13 @@
 package utc.pokerut.client.data;
 
-import utc.pokerut.common.dataclass.ClientProfile;
-import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.client.IHMMainCallsData;
 
 import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -150,11 +149,13 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     @Override
     public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
         Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
+        game.setCreator(getProfile()); // A voir pour passer un Player à la place d'un ClientProfile
+        game.setPlayers(new ArrayList<Player>());
+        game.setStatus(StatusEnum.WAITING_FOR_PLAYER);
         myDataCore.setCurrentGame(game);
         myDataCore.getiDataCallsCom().initGameClient(game);
     }
 
-    @Override
     public void askJoinTableMainComCli(UUID idGame, UUID idUser) {
         myDataCore.getiDataCallsCom().askJoinTableMainComCli(idGame, idUser);
     }

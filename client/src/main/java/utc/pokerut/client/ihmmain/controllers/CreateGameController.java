@@ -58,7 +58,14 @@ public class CreateGameController extends Controller {
         }    else {
             errorLengthMsg.setVisible(false);
             errorValuesMsg.setVisible(false);
-            //createGame();
+            try {
+                core.getDataInterface().createGame(tablename.getText(), Integer.parseInt(miseMinimale.getText()), Integer.parseInt(nbJoueurs.getText()), Integer.parseInt(maxTours.getText()), Integer.parseInt(creditsDepart.getText()));
+                core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
+            } catch (Exception e) {
+                System.out.println("Can't create the game");
+                throw new RuntimeException(e);
+            }
+
         }
     }
 

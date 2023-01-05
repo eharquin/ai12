@@ -44,11 +44,6 @@ public class ComCallsDataClientImpl implements ComCallsData {
     }
 
     @Override
-    public void newCurrentGame(Game game) {
-        // TODO
-    }
-
-    @Override
     public void displayResults(List<Result> results) {
         myDataCore.getiDataCallsIHMGame().displayResults(results);
     }
