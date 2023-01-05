@@ -389,22 +389,23 @@ public class GameEngine {
         gains = totalPot/winners.size();
 
         for (Hand winner: winners) {
-            winner.setAvailablePoints(gains);
+            winner.setAvailablePoints(winner.getAvailablePoints()+gains);
         }
     }
 
-    public void profitsCalculation (ArrayList<Hand> winners, HashMap<Integer,Integer> currentBets) {
-	    int gains = 0;
-        int totalPot = 0;
-        for (int value : currentBets.values()) {
-            totalPot += value;
-        }
-	    gains = totalPot/winners.size();
+    // A supprimer ?
+    //public void profitsCalculation (ArrayList<Hand> winners, HashMap<Integer,Integer> currentBets) {
+	    //int gains = 0;
+        //int totalPot = 0;
+        //for (int value : currentBets.values()) {
+            //totalPot += value;
+        //}
+	    //gains = totalPot/winners.size();
 
-	    for (Hand winner: winners) {
-            winner.setAvailablePoints(winner.getAvailablePoints()+gains);
-        }
-	}
+	    //for (Hand winner: winners) {
+            //winner.setAvailablePoints(winner.getAvailablePoints()+gains);
+        //}
+	//}
 
 //tttt
 }
