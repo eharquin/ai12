@@ -11,4 +11,5 @@ public interface DataCallsIHMMain {
     public void displayGame(Game game);
 
     public void addUserToGameDataMainCli(Game gameNewPlayer, Player newPlayer, UUID idUser);
+    void notifyGameReady(Game game);
 }

@@ -20,6 +20,11 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
         
     }
 
+    @Override
+    public void notifyGameReady(Game game) {
+
+    }
+
     public DataCallsIHMMainImpl(Core core)
     {
         this.core = core;
