@@ -17,8 +17,6 @@ public interface ComCallsData {
 
     public void notifyRejectionComMainCli(UUID gameID, UUID playerID);
 
-    public void newCurrentGame(Game game);
-
     public void sendUserActionRefused(Action action);
 
     public void displayResults(List<Result> results);
