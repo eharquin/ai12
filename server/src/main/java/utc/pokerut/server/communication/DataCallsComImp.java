@@ -37,10 +37,9 @@ public class DataCallsComImp implements DataCallsCom {
         client.send(new JoinGameAsked(playerID, gameID));
     }
 
-    public void sendNewRound(Round round, Round newRound, List<UUID> players)
+    public void sendNewRound(Round round, List<Player> players)
     {
-        core.getServer().broadcast(new UpdateRoundEnd(round), players);
-        core.getServer().broadcast(new UpdateNewRound(newRound), players);
+        core.getServer().broadcastPlayers(new UpdateNewRound(round), players);
     }
 
     public void sendNextPlayerActions(List<Action> actions, UUID playerID)
@@ -48,15 +47,14 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-    public void sendUpdateRound(Round round, List<UUID> players)
+    public void sendUpdateRound(Round round, List<Player> players)
     {
-        core.getServer().broadcast(new UpdateRoundEnd(round), players);
+        core.getServer().broadcastPlayers(new UpdateNewRound(round), players);
     }
 
-    public void sendUpdateRoundAndEndResults(Round round, List<UUID> players, List<Result> results)
+    public void sendUpdateRoundAndEndResults(Round round, List<Player> players, List<Result> results)
     {
-        core.getServer().broadcast(new UpdateRoundEnd(round), players);
-        core.getServer().broadcast(new UpdateRoundResult(results), players);
+        core.getServer().broadcastPlayers(new UpdateRoundEnd(round, results), players);
     }
 
     public void sendUserActionsRefused(UUID playerID, Action action)
@@ -70,8 +68,8 @@ public class DataCallsComImp implements DataCallsCom {
     }
 
     @Override
-    public void addUserToGameDataComServ(Game game, ServerProfile profile, UUID playerID) {
-        core.getServer().broadcast(new PlayerJoinGame(game, profile, playerID));
+    public void addUserToGameDataComServ(Game game, Player player, UUID playerID) {
+        core.getServer().broadcast(new PlayerJoinGame(game, player, playerID));
 
 
     }

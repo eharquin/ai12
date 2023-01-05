@@ -5,7 +5,6 @@ import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.dataclass.Result;
-import utc.pokerut.common.dataclass.Result;
 import utc.pokerut.common.interfaces.client.DataCallsIHMGame;
 
 import java.util.List;
@@ -55,11 +54,6 @@ public class DataCallsIHMGameImp implements DataCallsIHMGame {
 
     @Override
     public void displayPossibleActions(List<Action> actions) {
-
-    }
-
-    @Override
-    public void displayResults(List<Result> results) {
 
     }
 

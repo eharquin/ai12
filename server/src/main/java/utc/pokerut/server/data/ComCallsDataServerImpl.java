@@ -3,7 +3,6 @@ package utc.pokerut.server.data;
 import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.server.ComCallsData;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ComCallsDataServerImpl implements ComCallsData {
@@ -74,23 +73,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void askJoinTableComDataServ(UUID game, UUID player) {
-
-    }
-
-    @Override
     public Game getGameById(UUID gameID) {
         return dataServerCore.getWaitingGames().stream().filter(game -> game.getId().equals(gameID)).findFirst().get();
-    }
-
-    @Override
-    public void newPlayerJoinedComDataServ(UUID gameID, UUID playerID) {
-
-    }
-
-    @Override
-    public void applyAction(UUID playerID, UUID gameID, Action action) {
-
     }
 
     @Override

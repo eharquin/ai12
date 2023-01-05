@@ -1,14 +1,13 @@
 package utc.pokerut.client.communication;
 
+import utc.pokerut.client.communication.commands.*;
+import utc.pokerut.common.messages.*;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
-
-import utc.pokerut.client.communication.commands.*;
-// pokerut
-import utc.pokerut.common.messages.*;
 
 public class Client extends MessageHandler<Core> implements Runnable {
 
@@ -62,7 +61,6 @@ public class Client extends MessageHandler<Core> implements Runnable {
 
         this.messages.put(UpdateNewRound.class, CommandUpdateNewRound.class);
         this.messages.put(UpdateRoundEnd.class, CommandUpdateRoundEnd.class);
-        this.messages.put(UpdateRoundResult.class, CommandUpdateRoundResult.class);
         this.messages.put(ActionRefused.class, CommandActionRefused.class);
         this.messages.put(LaunchGame.class, CommandLaunchGame.class);
     }

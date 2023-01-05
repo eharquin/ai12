@@ -44,6 +44,11 @@ public class ComCallsDataClientImpl implements ComCallsData {
     }
 
     @Override
+    public void newCurrentGame(Game game) {
+        // TODO
+    }
+
+    @Override
     public void displayResults(List<Result> results) {
         myDataCore.getiDataCallsIHMGame().displayResults(results);
     }
@@ -90,6 +95,11 @@ public class ComCallsDataClientImpl implements ComCallsData {
     public void userDisconnected(UUID playerID) {
         Player player = myDataCore.getConnectedPlayer(playerID);
         myDataCore.removePlayer(player);
+    }
+
+    @Override
+    public void logoutUser(UUID idUser) {
+        // TODO
     }
 
 }

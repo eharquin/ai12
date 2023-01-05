@@ -13,19 +13,19 @@ public interface DataCallsCom {
 
     void joinTableRequestDataComServ(UUID playerID, UUID gameID);
 
-    void sendNewRound(Round round, Round newRound, List<UUID> players);
+    void sendNewRound(Round round, List<Player> players);
 
     void sendNextPlayerActions(List<Action> actions, UUID playerID);
 
-    void sendUpdateRound(Round round, List<UUID> players);
+    void sendUpdateRound(Round round, List<Player> players);
 
-    void sendUpdateRoundAndEndResults(Round round, List<UUID> players, List<Result> results);
+    void sendUpdateRoundAndEndResults(Round round, List<Player> players, List<Result> results);
 
     void sendUserActionsRefused(UUID playerID, Action action);
 
     void transmitLeaveMessage(UUID playerID, UUID gameID, int nbCreditFinal, boolean result);
 
-    void addUserToGameDataComServ(Game game, ServerProfile profile, UUID playerID);
+    void addUserToGameDataComServ(Game game, Player player, UUID playerID);
 
     void launchGame(Game game);
 }

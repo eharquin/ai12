@@ -1,7 +1,7 @@
 package utc.pokerut.common.messages;
 
 import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.Player;
 
 import java.util.UUID;
 
@@ -9,11 +9,11 @@ public class PlayerJoinGame extends Message {
 
     public UUID playerID;
     public Game game;
-    public ServerProfile profile;
+    public Player player;
 
-    public PlayerJoinGame(Game game, ServerProfile profile, UUID playerID) {
+    public PlayerJoinGame(Game game, Player player, UUID playerID) {
         this.game = game;
         this.playerID = playerID;
-        this.profile = profile;
+        this.player = player;
     }
 }

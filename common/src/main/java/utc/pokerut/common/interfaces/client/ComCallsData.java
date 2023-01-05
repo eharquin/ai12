@@ -2,7 +2,6 @@ package utc.pokerut.common.interfaces.client;
 
 import utc.pokerut.common.dataclass.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,4 +36,6 @@ public interface ComCallsData {
     public void updateNewRound(Round round);
 
     public void userDisconnected(UUID playerID);
+
+    public void logoutUser(UUID idUser);
 }

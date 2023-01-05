@@ -2,7 +2,6 @@ package utc.pokerut.common.interfaces.client;
 
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Result;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.dataclass.Result;
 
@@ -30,6 +29,4 @@ public interface DataCallsIHMGame {
     public void newPlayerJoinedDataGameOthers(Game gameNewPlayer, Player newPlayer, UUID idUser);
 
     public void displayPossibleActions(List<Action> actions);
-
-    public void displayResults(List<Result> results);
 }
