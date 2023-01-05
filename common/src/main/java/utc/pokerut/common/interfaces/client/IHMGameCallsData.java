@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface IHMGameCallsData {
     public void displayPossibleActions(List<Action> actions);
     public void newPlayerJoinedDataGameOthers(Game gameNewPlayer, ServerProfile newPlayer, UUID idUser);
+
+    void sendAction(UUID playerID, UUID gameID, Action action);
 }

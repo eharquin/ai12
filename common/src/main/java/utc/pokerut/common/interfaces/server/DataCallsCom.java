@@ -23,8 +23,12 @@ public interface DataCallsCom {
 
     void sendUpdateRoundAndEndResults(Round round, List<UUID> players, List<Result> results);
 
-    void sendUserActionsRefused();
+void sendUserActionsRefused(UUID playerID, Action action);
 
     void transmitLeaveMessage(UUID playerID, UUID gameID, int nbCreditFinal, boolean result);
+
+    void addUserToGameDataComServ(Game game, ServerProfile profile, UUID playerID);
+
+
 
 }

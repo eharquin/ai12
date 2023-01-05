@@ -1,6 +1,7 @@
 package utc.pokerut.client.communication.commands;
 
 import utc.pokerut.common.messages.JoinGameAsked;
+import utc.pokerut.common.messages.NotifyAcceptance;
 import utc.pokerut.common.messages.NotifyRejection;
 
 public class CommandJoinGameAsked extends ClientCommand<JoinGameAsked> {
@@ -10,7 +11,7 @@ public class CommandJoinGameAsked extends ClientCommand<JoinGameAsked> {
 
         if(res)
             core.getClient().send(new NotifyRejection(message.gameID, message.playerID));
-        //else
-            //core.getClient().send(new NotifyAcceptation(message.gameID, message.playerID));
+        else
+            core.getClient().send(new NotifyAcceptance(message.gameID, message.playerID));
     }
 }

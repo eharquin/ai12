@@ -7,6 +7,7 @@ import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utc.pokerut.common.messages.Message;
 
 public class Server implements Runnable
 {
@@ -33,6 +34,18 @@ public class Server implements Runnable
             }
         }
         return null;
+    }
+
+    public void broadcast(Message message) {
+        for (ClientHandler client : clients) {
+            client.send(message);
+        }
+    }
+
+    public void broadcast(Message message, List<UUID> players) {
+        for (UUID player : players) {
+            getClientById(player).send(message);
+        }
     }
 
     Server(Core core, int port) throws IOException {

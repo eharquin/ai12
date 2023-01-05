@@ -4,7 +4,6 @@ import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
-import utc.pokerut.common.messages.client.MessageType;
 
 import java.util.UUID;
 
@@ -12,7 +11,7 @@ public interface DataCallsCom {
 
     public void connectionUser(ServerProfile profile, String ip, int port);
 
-    ClientProfile AskForProfile(int playerID);
+    ClientProfile AskForProfile(UUID playerID);
 
     void modifyUser(ServerProfile profile);
 
@@ -22,18 +21,15 @@ public interface DataCallsCom {
 
     void askJoinTableMainComCli(UUID playerID, UUID idGame);
 
-    void sendStartGame(int gameID);
+    void sendStartGame(UUID gameID);
 
-    void sendAction(int playerID, int gameID, Action action);
+    void sendAction(UUID playerID, UUID gameID, Action action);
 
-    void sendMessage(MessageType msg);
-
-    void receiveMessage(utc.pokerut.common.messages.server.MessageType msg);
-
-    void leaveGame(int gameID, int playerID);
+    void leaveGame(UUID gameID, UUID playerID);
 
     void getReplays();
 
     void logoutUser(UUID playerID);
-    
+
+
 }

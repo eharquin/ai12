@@ -14,12 +14,6 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
         core.getMainController().Navigate(ViewNames.IHM_GAME_VIEW);
     }
 
-    @Override
-    public boolean joinTableRequestComGameCreator(String username, UUID gameID) {
-        // to implement
-        return false;
-    }
-
     public DataCallsIHMMainImpl(Core core)
     {
         this.core = core;

@@ -5,11 +5,7 @@ import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.interfaces.client.DataCallsCom;
-import utc.pokerut.common.messages.AskJoinGame;
-import utc.pokerut.common.messages.GameCreated;
-import utc.pokerut.common.messages.Login;
-import utc.pokerut.common.messages.Logout;
-import utc.pokerut.common.messages.client.MessageType;
+import utc.pokerut.common.messages.*;
 
 import java.util.UUID;
 
@@ -27,7 +23,7 @@ public class DataCallsComImp implements DataCallsCom
         core.getClient().send(new Login(profile));
     }
 
-    public ClientProfile AskForProfile(int playerID) {
+    public ClientProfile AskForProfile(UUID playerID) {
 
         return null;
     }
@@ -49,23 +45,15 @@ public class DataCallsComImp implements DataCallsCom
         core.getClient().send(new AskJoinGame(idGame, playerID));
     }
 
-    public void sendStartGame(int gameID) {
+    public void sendStartGame(UUID gameID) {
 
     }
 
-    public void sendAction(int playerID, int gameID, Action action) {
-
+    public void sendAction(UUID playerID, UUID gameID, Action action) {
+        core.getClient().send(new SubmitAction(playerID, gameID, action));
     }
 
-    public void sendMessage(MessageType msg) {
-
-    }
-
-    public void receiveMessage(utc.pokerut.common.messages.server.MessageType msg) {
-
-    }
-
-    public void leaveGame(int gameID, int playerID) {
+    public void leaveGame(UUID gameID, UUID playerID) {
         
     }
 

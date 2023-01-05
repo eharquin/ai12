@@ -2,6 +2,7 @@ package utc.pokerut.client.ihmgame.implementations;
 
 import utc.pokerut.client.ihmgame.Core;
 import utc.pokerut.common.dataclass.Action;
+import utc.pokerut.common.dataclass.Result;
 import utc.pokerut.common.interfaces.client.DataCallsIHMGame;
 
 import java.util.List;
@@ -29,8 +30,18 @@ public class DataCallsIHMGameImp implements DataCallsIHMGame {
     public void notifyPlayersInGame(UUID player_uuid, UUID game_uuid){}
 
     @Override
+    public boolean joinTableRequestComGameCreator(String username, UUID gameID) {
+        return false;
+    }
+
+    @Override
     public boolean notifyRejectionComMainCli(UUID userUuid, UUID gameUuid) {
         return false;
+    }
+
+    @Override
+    public void displayResults(List<Result> results) {
+
     }
 
 }

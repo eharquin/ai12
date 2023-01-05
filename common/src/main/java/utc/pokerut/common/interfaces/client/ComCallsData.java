@@ -1,8 +1,6 @@
 package utc.pokerut.common.interfaces.client;
 
-import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,4 +17,14 @@ public interface ComCallsData {
     public boolean joinTableRequestComGameCreator(String username, UUID gameID);
 
     public void notifyRejectionComMainCli(UUID gameID, UUID playerID);
+
+    void updateTableNewPlayerComDataOthers(Game game, ServerProfile profile, UUID playerID);
+
+    void updateRoundEnd(Round round);
+
+    void updateNewRound(Round round);
+
+    void displayResults(List<Result> results);
+
+    void sendUserActionRefused(Action action);
 }

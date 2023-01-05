@@ -56,10 +56,14 @@ public class Client extends MessageHandler<Core> implements Runnable {
         this.messages.put(Init.class, CommandInit.class);
         this.messages.put(GameCreated.class, CommandGameCreated.class);
         this.messages.put(GameDeleted.class, CommandGameDeleted.class);
-        this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
-        this.messages.put(ActionRefused.class, CommandActionRefused.class);
         this.messages.put(JoinGameAsked.class, CommandJoinGameAsked.class);
         this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
+        this.messages.put(PlayerJoinGame.class, CommandPlayerJoinGame.class);
+
+        this.messages.put(UpdateNewRound.class, CommandUpdateNewRound.class);
+        this.messages.put(UpdateRoundEnd.class, CommandUpdateRoundEnd.class);
+        this.messages.put(UpdateRoundResult.class, CommandUpdateRoundResult.class);
+        this.messages.put(ActionRefused.class, CommandActionRefused.class);
     }
 
     public void connect(String host, int port) {

@@ -95,6 +95,16 @@ public class ComCallsDataServerImpl implements ComCallsData {
     }
 
     @Override
+    public void newPlayerJoinedComDataServ(UUID gameID, UUID playerID) {
+
+    }
+
+    @Override
+    public void applyAction(UUID playerID, UUID gameID, Action action) {
+
+    }
+
+    @Override
     public void initGameServer(Game newGame) {
         dataServerCore.getWaitingGames().add(newGame);
     }

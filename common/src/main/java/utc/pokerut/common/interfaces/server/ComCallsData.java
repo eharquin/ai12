@@ -31,4 +31,8 @@ public interface ComCallsData {
     public void askJoinTableComDataServ(UUID game, UUID player);
 
     public Game getGameById(UUID gameID);
+
+    void newPlayerJoinedComDataServ(UUID gameID, UUID playerID);
+
+    void applyAction(UUID playerID, UUID gameID, Action action);
 }

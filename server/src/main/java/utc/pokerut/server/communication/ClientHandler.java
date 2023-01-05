@@ -2,7 +2,6 @@ package utc.pokerut.server.communication;
 
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.*;
-import utc.pokerut.common.messages.client.MessageType;
 import utc.pokerut.server.communication.commands.*;
 import utc.pokerut.server.communication.commands.Command;
 
@@ -19,8 +18,6 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
     private ServerProfile profile;
 
     private Core core;
-
-    private HashMap<MessageType, Class<? extends Command>> map;
 
     public void setProfile(ServerProfile profile) {
         this.profile = profile;
@@ -45,6 +42,8 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
         this.messages.put(ActionPlayed.class, CommandActionPlayed.class);
         this.messages.put(AskJoinGame.class, CommandAskJoinGame.class);
         this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
+        this.messages.put(NotifyAcceptance.class, CommandNotifyAcceptance.class);
+        this.messages.put(SubmitAction.class, CommandSubmitAction.class);
     }
 
     @Override

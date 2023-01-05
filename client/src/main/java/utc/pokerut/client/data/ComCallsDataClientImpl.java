@@ -1,8 +1,6 @@
 package utc.pokerut.client.data;
 
-import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Player;
-import utc.pokerut.common.dataclass.ServerProfile;
+import utc.pokerut.common.dataclass.*;
 import utc.pokerut.common.interfaces.client.ComCallsData;
 
 import java.util.ArrayList;
@@ -53,11 +51,36 @@ public class ComCallsDataClientImpl implements ComCallsData {
 
     @Override
     public boolean joinTableRequestComGameCreator(String username, UUID gameID) {
-        return myDataCore.getiDataCallsIHMMain().joinTableRequestComGameCreator(username, gameID);
+        return myDataCore.getiDataCallsIHMGame().joinTableRequestComGameCreator(username, gameID);
     }
 
     @Override
     public void notifyRejectionComMainCli(UUID gameID, UUID playerID) {
         myDataCore.getiDataCallsIHMGame().notifyRejectionComMainCli(gameID, playerID);
+    }
+
+    @Override
+    public void updateTableNewPlayerComDataOthers(Game game, ServerProfile profile, UUID playerID) {
+
+    }
+
+    @Override
+    public void updateRoundEnd(Round round) {
+
+    }
+
+    @Override
+    public void updateNewRound(Round round) {
+
+    }
+
+    @Override
+    public void displayResults(List<Result> results) {
+        myDataCore.getiDataCallsIHMGame().displayResults(results);
+    }
+
+    @Override
+    public void sendUserActionRefused(Action action) {
+
     }
 }
