@@ -42,9 +42,10 @@ public class Game implements Serializable {
         this.pcs.removePropertyChangeListener(listener);
     }
 
-    public PropertyChangeSupport getPcs(){
+    public PropertyChangeSupport getPcs() {
         return pcs;
     }
+
     public Chat getChat() {
         return chat;
     }
@@ -53,12 +54,12 @@ public class Game implements Serializable {
         this.chat = chat;
         this.pcs.firePropertyChange("init_chat", null, this.chat);
     }
-    public void updateChat(Chat chat){
+
+    public void updateChat(Chat chat) {
         Chat oldChat = this.chat;
         this.chat = chat;
         this.pcs.firePropertyChange("update_chat", oldChat, this.chat);
     }
-
 
     public UUID getId() {
         return id;
@@ -125,11 +126,13 @@ public class Game implements Serializable {
         this.players = players;
         this.pcs.firePropertyChange("init_player", oldPlayers, this.players);
     }
-    public void addPlayer(Player newPlayer){
+
+    public void addPlayer(Player newPlayer) {
         this.players.add(newPlayer);
         this.pcs.firePropertyChange("add_players", this.players, newPlayer);
     }
-    public void removePlayer(Player player){
+
+    public void removePlayer(Player player) {
         this.players.remove(player);
         this.pcs.firePropertyChange("remove_players", this.players, player);
     }
@@ -151,11 +154,13 @@ public class Game implements Serializable {
         this.results = results;
         this.pcs.firePropertyChange("init_results", oldResults, this.results);
     }
-    public void addResult(Result newResult){
+
+    public void addResult(Result newResult) {
         this.results.add(newResult);
         this.pcs.firePropertyChange("add_results", this.results, newResult);
     }
-    public void removeResult(Result result){
+
+    public void removeResult(Result result) {
         this.results.remove(result);
         this.pcs.firePropertyChange("remove_results", this.results, result);
     }
@@ -168,11 +173,13 @@ public class Game implements Serializable {
         this.status = status;
         this.pcs.firePropertyChange("init_status", null, this.status);
     }
-    public void updateStatus(StatusEnum newStatus){
+
+    public void updateStatus(StatusEnum newStatus) {
         StatusEnum oldStatus = this.status;
         this.status = newStatus;
         this.pcs.firePropertyChange("update_status", oldStatus, this.status);
     }
+
     public ArrayList<Round> getRounds() {
         return rounds;
     }
@@ -182,7 +189,8 @@ public class Game implements Serializable {
         this.rounds = rounds;
         this.pcs.firePropertyChange("init_rounds", oldRounds, this.rounds);
     }
-    public void addRound(Round newRound){
+
+    public void addRound(Round newRound) {
         this.rounds.add(newRound);
         this.pcs.firePropertyChange("add_rounds", this.rounds, newRound);
     }
@@ -195,14 +203,17 @@ public class Game implements Serializable {
         this.currentRound = currentRound;
         this.pcs.firePropertyChange("init_currentRound", null, this.currentRound);
     }
-    public void updateCurrentRound(Round newRound){
+
+    public void updateCurrentRound(Round newRound) {
         Round oldRound = this.currentRound;
         this.currentRound = newRound;
         this.pcs.firePropertyChange("update_currentRound", oldRound, this.currentRound);
     }
-    public void endGame(Round round){
+
+    public void endGame(Round round) {
         Round oldRound = this.currentRound;
         this.currentRound = round;
         this.pcs.firePropertyChange("end_game", oldRound, this.currentRound);
     }
+    
 }
