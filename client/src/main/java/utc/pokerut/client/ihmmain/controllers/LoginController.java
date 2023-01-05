@@ -32,21 +32,40 @@ public class LoginController extends Controller {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Label errorMessage;
-
     public void loginUser(Event event) {
-        if(username.getText() != "" && passwordField.getText() != "" && validateIP(serverIp.getText()) && validatePort(port.getText())) {
+        boolean emptyFields = false, wrongIp = false, wrongPort = false;
+        String errorText = "";
+
+        if(!validatePort(port.getText())) {
+            wrongPort = true;
+            errorText = "Veuillez rentrer un nombre pour le Port.";
+        }
+
+        if(!validateIP(serverIp.getText())) {
+            wrongIp = true;
+            errorText = "Mauvais format pour l'adresse IP.";
+        }
+
+        if(username.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty()) {
+            emptyFields = true;
+            errorText = "Veuillez remplir tous les champs.";
+        }
+        if(!emptyFields && !wrongIp && !wrongPort) {
             try {
                 core.getDataInterface().login(username.getText(), passwordField.getText(), serverIp.getText(), parseInt(port.getText()));
+                core.getMainController().getLeftPanelController().setIsPlayerListVisible(true);
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
-                errorMessage.setVisible(true);
                 JOptionPane.showMessageDialog(null,
-                        "Hi, In the message box",
-                        "PopUp Dialog",
+                        "Erreur de connection",
+                        "Erreur",
                         JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    errorText,
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
     public boolean validateIP(final String ip) {

@@ -6,12 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/" fx:id="showSideBar" alignment="CENTER" spacing="20.0" style="-fx-background-color: #026502; -fx-padding: 15;" fx:controller="utc.pokerut.client.ihmmain.controllers.PlayerListController">
-    <Button fx:id="profileButton" text="Mon profil" onAction="#profileButtonClicked" />
-    <Button fx:id="viewGameButton" text="Voir une partie" onAction="#viewGameButtonClicked"/>
-    <Button fx:id="logoutButton" text="Se déconnecter" onAction="#logoutButtonClicked" />
-    <Label text="Joueurs connectés" style="-fx-font-weight:bold; -fx-font-size:20;" textFill="white"/>
-    <ScrollPane>
-        <ListView fx:id="list"/>
-    </ScrollPane>
-</VBox>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/" fx:controller="utc.pokerut.client.ihmmain.controllers.LeftPanelController">
+    <fx:include fx:id="playerList" source="playerList.fxml" visible="${controller.isPlayerListVisible}"/>
+</StackPane>

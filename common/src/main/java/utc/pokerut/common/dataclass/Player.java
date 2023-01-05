@@ -46,5 +46,10 @@ public class Player implements Serializable {
         this.avatar = avatar;
     }
 
+    @Override
+    public String toString()
+    {
+        return getPseudo();
+    }
 
 }

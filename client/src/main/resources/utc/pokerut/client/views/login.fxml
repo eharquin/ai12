@@ -12,21 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.LoginController">
-       <!--<fx:include source="leftPanel.fxml"/>-->
-       <VBox fx:id="showSideBar" alignment="CENTER" style="-fx-background-color: #026502; -fx-padding: 128;" />
-      <VBox alignment="CENTER" style="-fx-background-color: #E3E3E3;" HBox.hgrow="ALWAYS">
+<HBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.LoginController">
+    <VBox alignment="CENTER" style="-fx-background-color: #E3E3E3;" HBox.hgrow="ALWAYS">
          <children>
              <VBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
                  <children>
                      <Label style="-fx-font-size:36; -fx-text-alignment:center;" text="Connexion" textAlignment="CENTER">
                          <font>
                              <Font size="36.0" />
-                         </font>
-                     </Label>
-                     <Label fx:id="errorMessage" text="Erreur de connexion" textAlignment="CENTER" textFill="RED" visible="false">
-                         <font>
-                             <Font size="14.0" />
                          </font>
                      </Label>
                  </children>

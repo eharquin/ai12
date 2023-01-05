@@ -125,6 +125,7 @@ public class Core {
 
     public void addNewPlayer(Player newPlayer){
         this.connectedPlayers.add(newPlayer);
+        System.out.println("addNewPlayer");
         this.pcsPlayer.firePropertyChange("add_connectedPlayers", this.connectedPlayers, newPlayer);
     }
 

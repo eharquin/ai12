@@ -3,6 +3,7 @@ package utc.pokerut.client;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainApplication extends Application {
@@ -22,6 +23,9 @@ public class MainApplication extends Application {
 
         // INSTANCIATION INTERFACES MAIN
         mainCore.setDataInterface(dataCore.getIhmMainCallsData());
+        mainCore.getDataInterface().setPCLPlayer(mainCore.getMainController().getLeftPanelController().getPlayerListController().getPlayerListListener());
+        mainCore.getDataInterface().setPCLGame(mainCore.getMainController().getGameListController().getGameListListener());
+
         //mainCore.setComCallsMainInterface(commCore);
 
         // INSTANCIATION INTERFACES DATA
@@ -33,6 +37,11 @@ public class MainApplication extends Application {
 
         // INSTANCIATION INTERFACES GAME
 
+    }
+
+    @Override
+    public void stop() throws Exception {
+        mainCore.getDataInterface().logout();
     }
 
     public static void main(String[] args) {
