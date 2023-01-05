@@ -56,16 +56,16 @@ public class LoginController extends Controller {
                 core.getMainController().getLeftPanelController().setIsPlayerListVisible(true);
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,
+                /*JOptionPane.showMessageDialog(null,
                         "Erreur de connection",
                         "Erreur",
-                        JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);*/
             }
         } else {
-            JOptionPane.showMessageDialog(null,
+            /*JOptionPane.showMessageDialog(null,
                     errorText,
                     "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);*/
         }
     }
     public boolean validateIP(final String ip) {
