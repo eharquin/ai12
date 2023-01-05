@@ -47,6 +47,11 @@ public class ComCallsDataClientImpl implements ComCallsData {
     }
 
     @Override
+    public void newCurrentGame(Game game) {
+        myDataCore.getiDataCallsIHMMain().displayGame(myDataCore.getCurrentGame());
+    }
+
+    @Override
     public void notifyNextPlayerPossibleActions(List<Action> actions) {
         myDataCore.getiDataCallsIHMGame().displayPossibleActions(actions);
     }

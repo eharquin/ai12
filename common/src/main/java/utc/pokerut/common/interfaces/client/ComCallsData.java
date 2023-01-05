@@ -12,6 +12,7 @@ public interface ComCallsData {
     public  void updateGameList(Game game);
     public void addUserToGameComDataCli(Game gameNewPlayer, Player newPlayer, UUID idUser);
     public void updateTableNewPlayerComDataOthers(Game gameNewPlayer, Player newPlayer, UUID idUser);
+    public void newCurrentGame(Game game); // add Game as argument if needed
     public void notifyNextPlayerPossibleActions(List<Action> actions);
     public void updateRound(Round round);
     public void updateGameEnd(Round round, List<Result> results);
