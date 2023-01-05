@@ -15,7 +15,7 @@ public class IHMMainCallsIHMGameImp implements IHMMainCallsIHMGame {
     @Override
     public void createGame(Game new_game){
         gameViewController = new GameViewController();
-        gameViewController.initGame(new_game);
+        gameViewController.initGameStatic(new_game);
     }
 
     @Override
