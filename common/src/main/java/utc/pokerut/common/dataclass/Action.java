@@ -7,14 +7,16 @@ import java.util.Date;
 import static utc.pokerut.common.dataclass.ActionTypeEnum.BET;
 
 public class Action implements Serializable {
+
     private Player player;
     private ActionTypeEnum type;
     private int betting;
     private Timestamp timestamp;
 
-    public Action (){
+    public Action () {
 
     }
+
     public Action(ActionTypeEnum actionTypeEnum, int littleBlinde, Player player) {
         this.player = player;
         this.type = actionTypeEnum;
@@ -57,4 +59,5 @@ public class Action implements Serializable {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
 }

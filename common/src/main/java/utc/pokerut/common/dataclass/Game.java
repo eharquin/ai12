@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Game implements Serializable {
+
     public static final int NB_MAX_ROUND = 4;
     private UUID id;
     private String name;
@@ -20,27 +21,27 @@ public class Game implements Serializable {
     private ArrayList<Result> results;
     private StatusEnum status;
     private ArrayList<Round> rounds;
-
     private Round currentRound;
     private Chat chat;
-
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Game(String name, int nbMaxPlayers, int nbPoints, int minimalBet, int nbRounds) {
-        this.name = name;
-        this.nbMaxPlayers = nbMaxPlayers;
-        this.nbPoints = nbPoints;
-        this.minimalBet = minimalBet;
-        this.nbRounds = nbRounds;
-        this.id = UUID.randomUUID();
+        this.name          = name;
+        this.nbMaxPlayers  = nbMaxPlayers;
+        this.nbPoints      = nbPoints;
+        this.minimalBet    = minimalBet;
+        this.nbRounds      = nbRounds;
+        this.id            = UUID.randomUUID();
     }
 
-    public void addPropertyChangeListenerPCS(PropertyChangeListener listener){
+    public void addPropertyChangeListenerPCS(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(listener);
     }
-    public void removePropertyChangeListenerPCS(PropertyChangeListener listener){
+
+    public void removePropertyChangeListenerPCS(PropertyChangeListener listener) {
         this.pcs.removePropertyChangeListener(listener);
     }
+
     public PropertyChangeSupport getPcs(){
         return pcs;
     }

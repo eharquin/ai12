@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
+
     private Core myDataCore;
     private final String PROFILE_DIRECTORY_NAME ="profiles";
 
@@ -37,10 +38,10 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         System.out.println(ip + ":" + port);
 
         ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-        if (myDataCore.getProfile().getIp() != null){
+        if (myDataCore.getProfile().getIp() != null) {
             myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
         }
-        else{
+        else {
             myDataCore.getiDataCallsCom().connectionUser(myNewUser, ip, port);
         }
     }
@@ -52,7 +53,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
         File directory = new File(PROFILE_DIRECTORY_NAME);
         // si le répertoire n'existe pas
-        if(!directory.exists() ) {
+        if(!directory.exists()) {
             // do something
             directory.mkdir();
         }
@@ -76,7 +77,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
                 } catch (IOException e_read) {
                     // erreur rencontre pendant l'ouverture et/ou lecture
                     // e_read.printStackTrace();
-                    if (i >= listOfFiles.length-1){
+                    if (i >= listOfFiles.length-1) {
                         throw new Exception("Fichier non trouvé");
                     }
                 } catch(ClassNotFoundException e_class) {
@@ -107,7 +108,7 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         try {
             File directory = new File(PROFILE_DIRECTORY_NAME);
             // si le répertoire n'existe pas
-            if(!directory.exists() ) {
+            if(!directory.exists()) {
                 // do something
                 directory.mkdir();
             }
@@ -135,33 +136,36 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
             }
         }
     }
+
     @Override
     public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port) throws Exception {
         UUID userUUID = UUID.randomUUID();
         ClientProfile myUser = new ClientProfile(userUUID, pseudo, avatar, password, name, surname, birthdate, ip, port);
         //truc crado qu'on fait pour aller plus vite à enlever pour la V2
         myDataCore.setProfile(myUser);
-
-
         //appel de la méthode saveProfil
         saveProfile(myUser);
-
-
     }
 
     @Override
-    public void setPCLGame(PropertyChangeListener PCLGame){
+    public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
+        Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
+        myDataCore.setCurrentGame(game);
+        myDataCore.getiDataCallsCom().initGameClient(game);
+    }
+
+    @Override
+    public void setPCLGame(PropertyChangeListener PCLGame) {
         myDataCore.addPropertyChangeListenerGame(PCLGame);
     }
 
-
     @Override
-    public void setPCLPlayer(PropertyChangeListener PCLPlayer){
+    public void setPCLPlayer(PropertyChangeListener PCLPlayer) {
         myDataCore.addPropertyChangeListenerPlayer(PCLPlayer);
     }
 
     @Override
-    public ClientProfile getProfile(){
+    public ClientProfile getProfile() {
         return this.myDataCore.getProfile();
     }
 
@@ -169,4 +173,5 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     public void logout(){
         myDataCore.getiDataCallsCom().logoutUser(myDataCore.getProfile().getId());
     }
+
 }

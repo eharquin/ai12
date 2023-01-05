@@ -1,6 +1,5 @@
 package utc.pokerut.client.data;
 
-
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Core {
+
     private IHMMainCallsData ihmMainCallsData;
     private IHMGameCallsData ihmGameCallsData;
     private DataCallsIHMMain iDataCallsIHMMain;
@@ -30,16 +30,16 @@ public class Core {
     private PropertyChangeSupport pcsGame;
     private PropertyChangeSupport pcsPlayer;
 
-    public Core()
-    {
-        ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
-        comCallsData = new ComCallsDataClientImpl(this);
-        ihmGameCallsData = new IHMGameCallsDataClientImpl(this);
-        waitingGame = new ArrayList<Game>();
-        connectedPlayers = new ArrayList<Player>();
-        pcsGame = new PropertyChangeSupport(waitingGame);
-        pcsPlayer = new PropertyChangeSupport(connectedPlayers);
+    public Core() {
+        ihmMainCallsData  = new IHMMainCallsDataClientImpl(this);
+        comCallsData      = new ComCallsDataClientImpl(this);
+        ihmGameCallsData  = new IHMGameCallsDataClientImpl(this);
+        waitingGame       = new ArrayList<Game>();
+        connectedPlayers  = new ArrayList<Player>();
+        pcsGame           = new PropertyChangeSupport(waitingGame);
+        pcsPlayer         = new PropertyChangeSupport(connectedPlayers);
     }
+
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
     }
@@ -107,6 +107,7 @@ public class Core {
     public ArrayList<Player> getConnectedPlayers() {
         return connectedPlayers;
     }
+
     public ArrayList<Game> getWaitingGame() {
         return waitingGame;
     }
@@ -123,24 +124,26 @@ public class Core {
         this.pcsGame.firePropertyChange("init_waitingGame", oldWaitingGame, this.waitingGame);
     }
 
-    public void addWaitingGame(Game newGame){
+    public void addWaitingGame(Game newGame) {
         this.waitingGame.add(newGame);
         this.pcsGame.firePropertyChange("add_waitingGame", this.waitingGame, newGame);
     }
 
-    public void addNewPlayer(Player newPlayer){
+    public void addNewPlayer(Player newPlayer) {
         this.connectedPlayers.add(newPlayer);
         this.pcsPlayer.firePropertyChange("add_connectedPlayers", this.connectedPlayers, newPlayer);
     }
 
-    public void removeWaitingGame(Game game){
+    public void removeWaitingGame(Game game) {
         this.waitingGame.remove(game);
         this.pcsGame.firePropertyChange("remove_waitingGame", this.waitingGame, game);
     }
-    public void removePlayer(Player player){
+
+    public void removePlayer(Player player) {
         this.connectedPlayers.remove(player);
         this.pcsPlayer.firePropertyChange("remove_connectedPlayer", this.connectedPlayers, player);
     }
+
     public DataCallsIHMMain getiDataCallsIHMMain() {
         return this.iDataCallsIHMMain;
     }
@@ -165,4 +168,5 @@ public class Core {
         Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
         return connectedPlayer;
     }
+
 }

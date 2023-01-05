@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class ClientProfile extends Player{
+public class ClientProfile extends Player {
+
     // private String password;
     private String hashedPassword;
     private String name;
@@ -41,8 +42,7 @@ public class ClientProfile extends Player{
          */
         String hashed_password = null;
 
-        try
-        {
+        try {
             // Creation d'une instance MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             // on y ajoute les bytes du mot de passe
@@ -51,17 +51,14 @@ public class ClientProfile extends Player{
             byte[] hash_bytes = md.digest();
             // conversion au hexadecimal
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash_bytes.length; i++)
-            {
+            for (int i = 0; i < hash_bytes.length; i++) {
                 sb.append(Integer.toString((hash_bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
             // on obtient le mot de passe hashed
             hashed_password = sb.toString();
-        } catch (NoSuchAlgorithmException e_algo)
-        {
+        } catch (NoSuchAlgorithmException e_algo) {
             e_algo.printStackTrace();
         }
-
         return hashed_password;
     }
 
@@ -128,7 +125,6 @@ public class ClientProfile extends Player{
     public void setPort(int port) {
         this.port = port;
     }
-
 
     public ArrayList<Game> getSavedGames() {
         return savedGames;
