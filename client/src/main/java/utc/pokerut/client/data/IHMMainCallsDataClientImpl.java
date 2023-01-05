@@ -155,6 +155,13 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     }
 
     @Override
+    public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
+        Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
+        myDataCore.setCurrentGame(game);
+        myDataCore.getiDataCallsCom().initGameClient(game);
+    }
+
+    @Override
     public void setPCLGame(PropertyChangeListener PCLGame){
         myDataCore.addPropertyChangeListenerGame(PCLGame);
     }

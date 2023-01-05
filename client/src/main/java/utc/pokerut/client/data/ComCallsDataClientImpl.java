@@ -45,7 +45,8 @@ public class ComCallsDataClientImpl implements ComCallsData {
 
     @Override
     public void newCurrentGame(Game game) {
-        // TODO
+        myDataCore.getCurrentGame().setStatus(StatusEnum.ON_GOING);
+        myDataCore.getiDataCallsIHMMain().displayGame(myDataCore.getCurrentGame());
     }
 
     @Override
