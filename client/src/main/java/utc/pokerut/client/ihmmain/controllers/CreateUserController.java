@@ -10,10 +10,13 @@ import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.common.dataclass.ClientProfile;
 
@@ -32,34 +35,31 @@ public class CreateUserController extends Controller {
     @FXML private Label avatarState;
     private String avatar;
 
-    private void ChooseAvatar(String path) throws IOException
+    private void ChooseAvatar(ActionEvent event, String initDir) throws IOException
     {
-        JFileChooser dialogue = new JFileChooser(new File(path));
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(initDir));
+        File selectedFile = fileChooser.showOpenDialog((Stage)((Node) event.getSource()).getScene().getWindow());
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Photos", "*.png", "*.jpg")
+        );
 
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Images", "png");
-        dialogue.setFileFilter(filter);
-        File file;
-
-        if (dialogue.showOpenDialog(null)==
-                JFileChooser.APPROVE_OPTION) {
-            file = dialogue.getSelectedFile();
-            if( file != null)
+        if( selectedFile != null) {
             {
-                byte[] byteAvatar = Files.readAllBytes(file.toPath());
+                byte[] byteAvatar = Files.readAllBytes(selectedFile.toPath());
                 avatar = Base64.getEncoder().encodeToString(byteAvatar);
             }
-        }
+       }
     }
 
     @FXML
-    protected void AddAvatar() throws IOException {
-        ChooseAvatar(".");
+    protected void AddAvatar(ActionEvent e) throws IOException {
+        ChooseAvatar(e, ".");
     }
 
     @FXML
-    protected void AddBaseAvatar() throws IOException {
-        ChooseAvatar(System.getProperty("user.dir") + "/client/src/main/resources/utc/pokerut/client/img");
+    protected void AddBaseAvatar(ActionEvent e) throws IOException {
+        ChooseAvatar(e,System.getProperty("user.dir") + "/client/src/main/resources/utc/pokerut/client/img");
     }
 
     @FXML
@@ -68,22 +68,7 @@ public class CreateUserController extends Controller {
         {
             if(password.getText().equals(passwordVerification.getText()))
             {
-                /*ClientProfile profile = new ClientProfile();
-                profile.setName(name.getText());
-                profile.setPassword(password.getText());
-                profile.setSurname(surname.getText());
-                profile.setBirthdate(java.sql.Date.valueOf(String.valueOf(birthdate)));
-                profile.setGains(0);
-                profile.setIp(null);
-                profile.setNbGamesPlayed(0);
-                profile.setId(null);
-                profile.setPseudo(pseudo.getText());
-                profile.setPort(null);
-                profile.setAvatar(null);
-            //sendUserData(profile);
-            //Todo : besoin constructeur par defaut pour la classe ClientProfile*/
                 core.getMainController().Navigate(ViewNames.LOGIN_VIEW);
-                //Instant instant = Instant.from(birthdate.getValue());
                 try {
                     core.getDataInterface().createUser(pseudo.getText(), password.getText(), name.getText(), surname.getText(), new Date(), avatar, null, 0);
                 } catch (Exception e) {
