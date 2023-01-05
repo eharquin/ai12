@@ -1,12 +1,13 @@
 package utc.pokerut.common.dataclass;
 
 public class Card {
+
     private String symbol;
     private int value;
 
     public Card(String symbol, int value) {
         this.symbol = symbol;
-        this.value = value;
+        this.value  = value;
     }
 
     public String getSymbol() {
@@ -24,4 +25,5 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Chat {
+
     private UUID idGame;
     private ArrayList<ChatMessage> messages;
 
@@ -22,4 +23,5 @@ public class Chat {
     public void setMessages(ArrayList<ChatMessage> messages) {
         this.messages = messages;
     }
+
 }

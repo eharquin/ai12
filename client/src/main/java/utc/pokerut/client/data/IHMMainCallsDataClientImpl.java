@@ -145,8 +145,13 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
         //appel de la méthode saveProfil
         saveProfile(myUser);
+    }
 
-
+    @Override
+    public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
+        Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
+        myDataCore.setCurrentGame(game);
+        myDataCore.getiDataCallsCom().initGameClient(game);
     }
 
     @Override

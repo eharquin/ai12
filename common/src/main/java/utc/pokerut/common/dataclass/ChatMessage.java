@@ -3,6 +3,7 @@ package utc.pokerut.common.dataclass;
 import java.security.Timestamp;
 
 public class ChatMessage {
+
     private Player sender;
     private String content;
     private Timestamp timestamp;
@@ -30,4 +31,5 @@ public class ChatMessage {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
 }
