@@ -1,11 +1,10 @@
 package utc.pokerut.common.interfaces.client;
 
-import java.beans.PropertyChangeListener;
-
 import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.ServerProfile;
 
+import java.beans.PropertyChangeListener;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,5 +20,4 @@ public interface IHMMainCallsData {
     // call from Main to transmit to Com
     public void askJoinTableMainComCli(UUID idGame, UUID idUser);
     public ClientProfile getProfile();
-    public void logout();
 }
