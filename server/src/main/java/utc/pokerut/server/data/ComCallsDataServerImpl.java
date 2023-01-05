@@ -86,6 +86,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
             if(game != null) {
                 game.getPlayers().add(player);
                 dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
+                // si le nombre de joueur est égal au nombre de joueur max
+                // appeler une méthode chez com pour lancer la partie avec un game en argument si besoin
             }
         }
     }
@@ -124,6 +126,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Game game = dataServerCore.getWaitingGame(gameId);
         dataServerCore.getOnGoingGames().add(game);
         dataServerCore.getWaitingGames().remove(game);
+        game.setStatus(StatusEnum.ON_GOING);
 
         Collections.shuffle(game.getPlayers()); // mélanger la liste des joueurs
 
@@ -170,10 +173,12 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 // si la partie est finie
                 if(game.getNbRounds() == Game.NB_MAX_ROUND) {
                     // calculer les résultats
+                    game.setStatus(StatusEnum.FINISHED);
                     ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
                     round.setHands(hands);
                     ArrayList<Result> rankings = this.dataServerCore.getGameEngine().getRanking(game);
                     this.dataServerCore.getiDataCallsCom().sendUpdateRoundAndEndResults(round, game.getPlayers(), rankings);
+                    this.dataServerCore.getOnGoingGames().remove(game); // on enlève la partie de la liste des parties en cours
                 } else {
                     // maj la liste des mains avec celles triées par ordre de points
                     ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
