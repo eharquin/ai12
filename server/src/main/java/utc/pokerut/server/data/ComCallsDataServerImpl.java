@@ -86,8 +86,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
             if(game != null) {
                 game.getPlayers().add(player);
                 dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
-                // si le nombre de joueur est égal au nombre de joueur max
-                // appeler une méthode chez com pour lancer la partie avec un game en argument si besoin
+                if(game.getNbMaxPlayers() == game.getPlayers().size())
+                    dataServerCore.getiDataCallsCom().launchGame(game);
             }
         }
     }
