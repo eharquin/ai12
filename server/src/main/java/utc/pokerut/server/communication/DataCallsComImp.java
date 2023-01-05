@@ -39,12 +39,6 @@ public class DataCallsComImp implements DataCallsCom {
 
     }
 
-
-    public void joinTableRequestDataComServ(UUID idUser, UUID idGame)
-    {
-
-    }
-
     public void notifyAcceptorComCreatorServ(int playerID, int gameID)
     {
 
@@ -79,14 +73,8 @@ public class DataCallsComImp implements DataCallsCom {
     {
         
     }
-
-<<<<<<< HEAD
-    public void addUserToGameDataComServ(Game game, Player player, UUID id_user)
-    {
-=======
     @Override
     public void addUserToGameDataComServ(Game game, Player player, UUID id_user) {
->>>>>>> remotes/origin/v2/ihm-main/tests
 
     }
 

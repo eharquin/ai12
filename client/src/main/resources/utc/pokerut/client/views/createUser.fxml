@@ -11,13 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<<<<<<< HEAD
-<HBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.CreateUserController">
-    <fx:include source="leftPanel.fxml" />
-=======
-<?import javafx.scene.layout.HBox?>
 <HBox  xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmmain.controllers.CreateUserController">
->>>>>>> remotes/origin/v2/ihm-main/tests
     <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="10.0" />
