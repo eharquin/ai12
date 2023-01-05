@@ -161,7 +161,7 @@ public class Core {
 	}
 
     public Player getConnectedPlayer(UUID playerId) {
-        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId().equals(playerId)).findFirst().orElse(null);
         return connectedPlayer;
     }
 

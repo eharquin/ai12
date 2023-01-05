@@ -27,16 +27,16 @@ public class Core {
     }
 
     public Player getPlayerInGame(UUID playerID, Game game) {
-        Player player = game.getPlayers().stream().filter(a -> a.getId() == playerID).findAny().orElse(null);
+        Player player = game.getPlayers().stream().filter(a -> a.getId().equals(playerID)).findAny().orElse(null);
         return player;
     }
 
     public ServerProfile getConnectedPlayer(UUID playerID) {
-        ServerProfile player = connectedPlayers.stream().filter(a -> a.getId() == playerID).findAny().orElse(null);
+        ServerProfile player = connectedPlayers.stream().filter(a -> a.getId().equals(playerID)).findAny().orElse(null);
         return player;
     }
     public Game getWaitingGame(UUID gameId) {
-        Game game = waitingGames.stream().filter(a -> a.getId() == gameId).findAny().orElse(null);
+        Game game = waitingGames.stream().filter(a -> a.getId().equals(gameId)).findAny().orElse(null);
         return game;
     }
 
@@ -49,13 +49,13 @@ public class Core {
     }
 
     public Game getUnfilledWaitingGame(UUID gameId) {
-        Game unfilledGame = waitingGames.stream().filter(game -> game.getId() == gameId && game.getPlayers().size() < game.getNbMaxPlayers())
+        Game unfilledGame = waitingGames.stream().filter(game -> (game.getId().equals(gameId)) && game.getPlayers().size() < game.getNbMaxPlayers())
                 .findAny().orElse(null);
         return unfilledGame;
     }
 
     public Game getOnGoingGame(UUID gameId) {
-        Game game = onGoingGames.stream().filter(a -> a.getId() == gameId).findAny().orElse(null);
+        Game game = onGoingGames.stream().filter(a -> a.getId().equals(gameId)).findAny().orElse(null);
         return game;
     }
 
