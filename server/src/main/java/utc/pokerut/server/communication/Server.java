@@ -7,6 +7,7 @@ import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.messages.Message;
 
 public class Server implements Runnable
@@ -45,6 +46,12 @@ public class Server implements Runnable
     public void broadcast(Message message, List<UUID> players) {
         for (UUID player : players) {
             getClientById(player).send(message);
+        }
+    }
+
+    public void broadcastPlayers(Message message, List<Player> players) {
+        for (Player player : players) {
+            getClientById(player.getId()).send(message);
         }
     }
 

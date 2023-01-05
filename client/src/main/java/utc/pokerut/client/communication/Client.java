@@ -64,6 +64,7 @@ public class Client extends MessageHandler<Core> implements Runnable {
         this.messages.put(UpdateRoundEnd.class, CommandUpdateRoundEnd.class);
         this.messages.put(UpdateRoundResult.class, CommandUpdateRoundResult.class);
         this.messages.put(ActionRefused.class, CommandActionRefused.class);
+        this.messages.put(LaunchGame.class, CommandLaunchGame.class);
     }
 
     public void connect(String host, int port) {

@@ -31,7 +31,8 @@ public class DataCallsIHMGameImp implements DataCallsIHMGame {
 
     @Override
     public boolean joinTableRequestComGameCreator(String username, UUID gameID) {
-        return false;
+        // hardcoded true
+        return true;
     }
 
     @Override

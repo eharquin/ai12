@@ -83,4 +83,9 @@ public class ComCallsDataClientImpl implements ComCallsData {
     public void sendUserActionRefused(Action action) {
 
     }
+
+    @Override
+    public void newCurrentGame(Game game) {
+
+    }
 }

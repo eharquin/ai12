@@ -13,8 +13,6 @@ public interface DataCallsCom {
 
     void joinTableRequestDataComServ(UUID playerID, UUID gameID);
 
-    void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID);
-
     void sendNewRound(Round round, Round newRound, List<UUID> players);
 
     void sendNextPlayerActions(List<Action> actions, UUID playerID);
@@ -23,12 +21,11 @@ public interface DataCallsCom {
 
     void sendUpdateRoundAndEndResults(Round round, List<UUID> players, List<Result> results);
 
-void sendUserActionsRefused(UUID playerID, Action action);
+    void sendUserActionsRefused(UUID playerID, Action action);
 
     void transmitLeaveMessage(UUID playerID, UUID gameID, int nbCreditFinal, boolean result);
 
     void addUserToGameDataComServ(Game game, ServerProfile profile, UUID playerID);
 
-
-
+    void launchGame(Game game);
 }

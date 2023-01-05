@@ -27,4 +27,6 @@ public interface ComCallsData {
     void displayResults(List<Result> results);
 
     void sendUserActionRefused(Action action);
+
+    void newCurrentGame(Game game);
 }

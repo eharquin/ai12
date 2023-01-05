@@ -37,12 +37,6 @@ public class DataCallsComImp implements DataCallsCom {
         client.send(new JoinGameAsked(playerID, gameID));
     }
 
-    // ??
-    public void notifyAcceptorComCreatorServ(UUID playerID, UUID gameID)
-    {
-
-    }
-
     public void sendNewRound(Round round, Round newRound, List<UUID> players)
     {
         core.getServer().broadcast(new UpdateRoundEnd(round), players);
@@ -80,5 +74,10 @@ public class DataCallsComImp implements DataCallsCom {
         core.getServer().broadcast(new PlayerJoinGame(game, profile, playerID));
 
 
+    }
+
+    @Override
+    public void launchGame(Game game) {
+        core.getServer().broadcastPlayers(new LaunchGame(game), game.getPlayers());
     }
 }
