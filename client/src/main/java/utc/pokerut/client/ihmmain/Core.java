@@ -5,11 +5,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utc.pokerut.client.MainApplication;
 import utc.pokerut.client.ihmgame.GameViewController;
+import utc.pokerut.client.ihmgame.PlayGameController;
 import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.client.ihmmain.implementations.ComCallsIHMMainImpl;
 import utc.pokerut.client.ihmmain.implementations.DataCallsIHMMainImpl;
 import utc.pokerut.client.ihmmain.implementations.IHMGameCallsIHMMainImpl;
-import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.interfaces.client.*;
 
@@ -81,7 +81,7 @@ public class Core {
 
     private MainController mainController;
 
-    private GameViewController gameViewController;
+    private PlayGameController playGameController;
 
     public Scene getScene() {
         return scene;
@@ -92,18 +92,14 @@ public class Core {
     private Player playerConnected;
     public Core(Stage stage) throws IOException
     {
-        // TODO: undo
+       // FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/gameTablePlay.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/gameTable.fxml"));
-
-        //FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/mainWindow.fxml"));
         scene = new Scene(fxmlLoader.load());
-        gameViewController = fxmlLoader.getController();
-        this.gameViewController.initGame(new Game("test", 6, 1000, 50, 10));
-
-        //mainController = fxmlLoader.getController();
-        //mainController.setCore(this);
-        //mainController.setLoginView(true);
+        playGameController = fxmlLoader.getController();
+       // mainController = fxmlLoader.getController();
+       // mainController.setCore(this);
+       // mainController.setLoginView(true);
         this.stage = stage;
         this.stage.setTitle("Poker UT - Texas Holdem");
         this.stage.setResizable(false);
