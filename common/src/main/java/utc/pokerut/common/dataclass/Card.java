@@ -4,6 +4,11 @@ public class Card {
     private String symbol;
     private int value;
 
+    public Card(String symbol, int value) {
+        this.symbol = symbol;
+        this.value = value;
+    }
+
     public String getSymbol() {
         return symbol;
     }

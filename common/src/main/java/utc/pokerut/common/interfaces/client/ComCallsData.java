@@ -7,26 +7,34 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ComCallsData {
-    public void connexionUser(ServerProfile profile, String IP, int port);
-    public void logoutUser(UUID playerId);
-    public void modifyUser(ServerProfile profile);
+
     public void addUserAtList(Player player);
+
     public void sendLists(List<Player> players, List<Game> games);
-    public  void updateGameList(Game game);
+
+    public void updateGameList(Game game);
 
     public boolean joinTableRequestComGameCreator(String username, UUID gameID);
 
     public void notifyRejectionComMainCli(UUID gameID, UUID playerID);
 
-    void updateTableNewPlayerComDataOthers(Game game, ServerProfile profile, UUID playerID);
+    public void newCurrentGame(Game game);
 
-    void updateRoundEnd(Round round);
+    public void sendUserActionRefused(Action action);
 
-    void updateNewRound(Round round);
+    public void displayResults(List<Result> results);
 
-    void displayResults(List<Result> results);
+    public void addUserToGameComDataCli(Game gameNewPlayer, Player newPlayer, UUID idUser);
 
-    void sendUserActionRefused(Action action);
+    public void updateTableNewPlayerComDataOthers(Game gameNewPlayer, Player newPlayer, UUID idUser);
 
-    void newCurrentGame(Game game);
+    public void notifyNextPlayerPossibleActions(List<Action> actions);
+
+    public void updateRound(Round round);
+
+    public void updateGameEnd(Round round, List<Result> results);
+
+    public void updateNewRound(Round round);
+
+    public void userDisconnected(UUID playerID);
 }

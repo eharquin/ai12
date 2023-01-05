@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Game implements Serializable {
+    public static final int NB_MAX_ROUND = 4;
     private UUID id;
     private String name;
     private int nbMaxPlayers;
@@ -197,5 +198,10 @@ public class Game implements Serializable {
         Round oldRound = this.currentRound;
         this.currentRound = newRound;
         this.pcs.firePropertyChange("update_currentRound", oldRound, this.currentRound);
+    }
+    public void endGame(Round round){
+        Round oldRound = this.currentRound;
+        this.currentRound = round;
+        this.pcs.firePropertyChange("end_game", oldRound, this.currentRound);
     }
 }

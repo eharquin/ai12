@@ -9,13 +9,15 @@ import utc.pokerut.common.interfaces.client.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Core {
-    private ComCallsData comCallsData;
     private IHMMainCallsData ihmMainCallsData;
+    private IHMGameCallsData ihmGameCallsData;
     private DataCallsIHMMain iDataCallsIHMMain;
-    private DataCallsCom iDataCallsCom;
     private DataCallsIHMGame iDataCallsIHMGame;
+    private ComCallsData comCallsData;
+    private DataCallsCom iDataCallsCom;
     private ClientProfile profile;
     private Game currentGame;
     private ArrayList<Player> connectedPlayers;
@@ -27,6 +29,7 @@ public class Core {
     {
         ihmMainCallsData = new IHMMainCallsDataClientImpl(this);
         comCallsData = new ComCallsDataClientImpl(this);
+        ihmGameCallsData = new IHMGameCallsDataClientImpl(this);
         waitingGame = new ArrayList<Game>();
         connectedPlayers = new ArrayList<Player>();
         pcsGame = new PropertyChangeSupport(waitingGame);
@@ -34,6 +37,10 @@ public class Core {
     }
     public IHMMainCallsData getIhmMainCallsData() {
         return ihmMainCallsData;
+    }
+
+    public IHMGameCallsData getIhmGameCallsData() {
+        return ihmGameCallsData;
     }
 
     public PropertyChangeSupport getPcsGame() {
@@ -46,10 +53,6 @@ public class Core {
 
     public DataCallsCom getiDataCallsCom() {
         return iDataCallsCom;
-    }
-
-    public DataCallsIHMGame getiDataCallsIHMGame() {
-        return iDataCallsIHMGame;
     }
 
     public ComCallsData getComCallsData() {
@@ -137,11 +140,24 @@ public class Core {
         return this.iDataCallsIHMMain;
     }
 
+    public DataCallsIHMGame getiDataCallsIHMGame() {
+        return this.iDataCallsIHMGame;
+    }
+
+    public void setiDataCallsIHMGame(DataCallsIHMGame iDataCallsIHMGame) {
+        this.iDataCallsIHMGame = iDataCallsIHMGame;
+    }
+
     public void setiDataCallsIHMMain(DataCallsIHMMain iDataCallsIHMMain) {
         this.iDataCallsIHMMain = iDataCallsIHMMain;
     }
 
     public void setComCallsData(ComCallsDataClientImpl comCallsData) {
         this.comCallsData = comCallsData;
+	}
+
+    public Player getConnectedPlayer(UUID playerId) {
+        Player connectedPlayer = connectedPlayers.stream().filter(player -> player.getId() == playerId).findFirst().orElse(null);
+        return connectedPlayer;
     }
 }

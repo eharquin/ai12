@@ -13,22 +13,6 @@ public class ComCallsDataClientImpl implements ComCallsData {
     public ComCallsDataClientImpl(Core myDataCore) {
         this.myDataCore = myDataCore;
     }
-
-    @Override
-    public void connexionUser(ServerProfile profile, String IP, int port){
-
-    }
-
-    @Override
-    public void logoutUser(UUID playerID){
-
-    }
-
-    @Override
-    public void modifyUser(ServerProfile profile){
-
-    }
-
     @Override
     public void addUserAtList(Player player){
         myDataCore.addNewPlayer(player);
@@ -60,21 +44,6 @@ public class ComCallsDataClientImpl implements ComCallsData {
     }
 
     @Override
-    public void updateTableNewPlayerComDataOthers(Game game, ServerProfile profile, UUID playerID) {
-
-    }
-
-    @Override
-    public void updateRoundEnd(Round round) {
-
-    }
-
-    @Override
-    public void updateNewRound(Round round) {
-
-    }
-
-    @Override
     public void displayResults(List<Result> results) {
         myDataCore.getiDataCallsIHMGame().displayResults(results);
     }
@@ -85,7 +54,42 @@ public class ComCallsDataClientImpl implements ComCallsData {
     }
 
     @Override
-    public void newCurrentGame(Game game) {
-
+    public void addUserToGameComDataCli(Game gameNewPlayer, Player newPlayer, UUID idUser) {
+        myDataCore.setCurrentGame(gameNewPlayer);
+        myDataCore.getiDataCallsIHMMain().addUserToGameDataMainCli(gameNewPlayer, newPlayer, idUser);
     }
+
+    @Override
+    public void updateTableNewPlayerComDataOthers(Game gameNewPlayer, Player newPlayer, UUID idUser) {
+       // myDataCore.setCurrentGame(gameNewPlayer);
+        myDataCore.getCurrentGame().addPlayer(newPlayer);
+        myDataCore.getiDataCallsIHMGame().newPlayerJoinedDataGameOthers(gameNewPlayer, newPlayer, idUser);
+    }
+
+    @Override
+    public void notifyNextPlayerPossibleActions(List<Action> actions) {
+        myDataCore.getiDataCallsIHMGame().displayPossibleActions(actions);
+    }
+
+    @Override
+    public void updateRound(Round round) {
+        myDataCore.getCurrentGame().updateCurrentRound(round);
+    }
+
+    @Override
+    public void updateGameEnd(Round round, List<Result> results) {
+        myDataCore.getCurrentGame().endGame(round);
+        myDataCore.getiDataCallsIHMGame().displayResults(results);
+    }
+
+    @Override
+    public void updateNewRound(Round round) {
+        myDataCore.getCurrentGame().addRound(round);
+    }
+
+    public void userDisconnected(UUID playerID) {
+        Player player = myDataCore.getConnectedPlayer(playerID);
+        myDataCore.removePlayer(player);
+    }
+
 }

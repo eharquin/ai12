@@ -66,7 +66,7 @@ public class DataCallsComImp implements DataCallsCom {
 
     public void transmitLeaveMessage(UUID playerID, UUID gameID, int nbCreditFinal, boolean result)
     {
-        
+
     }
 
     @Override

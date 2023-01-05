@@ -1,13 +1,30 @@
 package utc.pokerut.common.dataclass;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import static utc.pokerut.common.dataclass.ActionTypeEnum.BET;
 
 public class Action implements Serializable {
     private Player player;
     private ActionTypeEnum type;
     private int betting;
     private Timestamp timestamp;
+
+    public Action (){
+
+    }
+    public Action(ActionTypeEnum actionTypeEnum, int littleBlinde, Player player) {
+        this.player = player;
+        this.type = actionTypeEnum;
+        this.betting = littleBlinde;
+        this.timestamp = new Timestamp((new Date()).getTime());
+    }
+
+    public Action(ActionTypeEnum actionType) {
+        this.type = actionType;
+    }
 
     public Player getPlayer() {
         return player;
