@@ -79,7 +79,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void initGameServer(Game newGame) {
-        newGame.addPlayer(newGame.getCreator());
+        //newGame.getPlayers().add(newGame.getCreator());
         dataServerCore.getWaitingGames().add(newGame);
     }
 
