@@ -11,7 +11,9 @@ public class Hand {
     private int bet2;
     private int bet3;
     private int bet4;
+    private int totalBet;
     private boolean isFold;
+    private boolean isAllIn;
 
     private int valueWinComb;
     private ArrayList<Card> cards;
@@ -24,10 +26,10 @@ public class Hand {
         this.bet4 = 0;
     }
 
-    public Hand(Player player, Round round, ArrayList<Card> cards) {
+    public Hand(Player player, Round round, ArrayList<Card> cards, int availablePoints) {
         this.player = player;
         this.round = round;
-        this.availablePoints = 0;
+        this.availablePoints = availablePoints;
         this.bet1 = 0;
         this.bet2 = 0;
         this.bet3 = 0;
@@ -123,5 +125,21 @@ public class Hand {
 
     public void setValueWinComb(int valueWinComb) {
         this.valueWinComb = valueWinComb;
+    }
+
+    public int getTotalBet() {
+        return totalBet;
+    }
+
+    public void setTotalBet(int totalBet) {
+        this.totalBet = totalBet;
+    }
+
+    public boolean isAllIn() {
+        return isAllIn;
+    }
+
+    public void setAllIn(boolean allIn) {
+        isAllIn = allIn;
     }
 }

@@ -79,12 +79,13 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void initGameServer(Game newGame) {
+        newGame.addPlayer(newGame.getCreator());
         dataServerCore.getWaitingGames().add(newGame);
     }
 
     @Override
     public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
-        System.out.println("ASK JOIN TABLES");
+        System.out.println("ASK JOIN TABLES User : "+idUser+" Game : "+idGame);
         if (checkJoiningConditions(idUser, idGame) == true) {
             ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
             Game game = dataServerCore.getUnfilledWaitingGame(idGame);
@@ -92,8 +93,10 @@ public class ComCallsDataServerImpl implements ComCallsData {
             if(game != null) {
                 game.getPlayers().add(player);
                 dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
-                if(game.getNbMaxPlayers() == game.getPlayers().size())
+                if(game.getNbMaxPlayers() == game.getPlayers().size()) {
+                    startGame(idGame);
                     dataServerCore.getiDataCallsCom().launchGame(game);
+                }
             }
         }
     }
@@ -106,10 +109,10 @@ public class ComCallsDataServerImpl implements ComCallsData {
      */
     private boolean checkJoiningConditions(UUID idUser, UUID idGame){
         Game game = dataServerCore.getWaitingGame(idGame);
-        System.out.println("Nb joueurs : " + game.getPlayers().size());
         //check that the game exists
         if(game == null)
             return false;
+        System.out.println("Nb joueurs : " + game.getPlayers().size());
         //checks that the maximum number of players has not been reached
         if(game.getNbMaxPlayers() == game.getPlayers().size())
             return false;
@@ -151,19 +154,28 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Round round = dataServerCore.getOnGoingGame(idGame).getCurrentRound();
         // update actionList
         round.getActions().add(action);
-        //update Hand
+        // on récupère la main du joueur
         Hand currentPlayerHand = round.getHandByPlayerId(idPlayer);
-        //update isFold
-        if (action.getType().equals(ActionTypeEnum.FOLD)){
+        // update hand
+        if(action.getType().equals(ActionTypeEnum.BET) || action.getType().equals(ActionTypeEnum.RAISE) //
+         || action.getType().equals(ActionTypeEnum.CALL) || action.getType().equals(ActionTypeEnum.CHECK) ){
+            //updateAvailablePoints
+            int oldAvailablePoints = currentPlayerHand.getAvailablePoints();
+            currentPlayerHand.setAvailablePoints(oldAvailablePoints - action.getBetting());
+            //update totalBet
+            int totalBet = currentPlayerHand.getTotalBet()+ action.getBetting();
+            currentPlayerHand.setTotalBet(totalBet);
+        } else if (action.getType().equals(ActionTypeEnum.ALL_IN)){
+            int totalBet = currentPlayerHand.getTotalBet()+currentPlayerHand.getAvailablePoints();
+            currentPlayerHand.setTotalBet(totalBet);
+            currentPlayerHand.setAvailablePoints(0);
+            currentPlayerHand.setAllIn(true);
+        } else if (action.getType().equals(ActionTypeEnum.FOLD)){
             currentPlayerHand.setIsFold(true);
             //update nbActivePlayers
             round.setNbActivePlayers(round.getNbActivePlayers()-1);
         }
-        //updateAvailablePoints
-        Integer oldAvailablePoints = currentPlayerHand.getAvailablePoints();
-        currentPlayerHand.setAvailablePoints(oldAvailablePoints + action.getBetting());
         //update currentBets
-
         round.getCurrentBets().put(round.getCurrentBettingRound(), action.getBetting());
 
         //update currentBet
@@ -171,7 +183,9 @@ public class ComCallsDataServerImpl implements ComCallsData {
             round.setCurrentBet(action.getBetting());
         }
 
+
         Game game = this.dataServerCore.getOnGoingGame(idGame);
+
         //check if bettingRound is finished
         // if true
         updateBettingRound(action, round);
@@ -279,7 +293,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
             for(int i=0; i<Hand.NB_CARDS_IN_HAND; i++) {
                 cards.add(round.getCards().removeFirst());
             }
-            hands.add(new Hand(player, round, cards));
+            hands.add(new Hand(player, round, cards, game.getNbPoints()));
         }
         round.setHands(hands);
     }
@@ -318,8 +332,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
     public void setNextPlayerRound(Round round){
         for(int i=0; i<round.getHands().size(); i++) {
             int indexNextPlayer = (i+1)%round.getHands().size();
-            if(round.getHands().get(i).getPlayer().getId() == round.getCurrentPlayer().getId()//
-            && !round.getHands().get(indexNextPlayer).getIsFold()) {
+            if(round.getHands().get(i).getPlayer().getId().equals(round.getCurrentPlayer().getId())//
+            && !round.getHands().get(indexNextPlayer).isFold() && !round.getHands().get(indexNextPlayer).isAllIn()) {
                 round.setHandCurrentPlayer(round.getHands().get(indexNextPlayer));
                 return ;
             }
