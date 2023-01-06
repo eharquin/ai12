@@ -94,8 +94,8 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 game.getPlayers().add(player);
                 dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
                 if(game.getNbMaxPlayers() == game.getPlayers().size()) {
-                    startGame(idGame);
                     dataServerCore.getiDataCallsCom().launchGame(game);
+                    startGame(idGame);
                 }
             }
         }

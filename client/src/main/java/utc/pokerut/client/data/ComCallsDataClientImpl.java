@@ -100,9 +100,4 @@ public class ComCallsDataClientImpl implements ComCallsData {
         myDataCore.removePlayer(player);
     }
 
-    @Override
-    public void logoutUser(UUID idUser) {
-        // TODO
-    }
-
 }

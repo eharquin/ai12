@@ -36,6 +36,4 @@ public interface ComCallsData {
     public void updateNewRound(Round round);
 
     public void userDisconnected(UUID playerID);
-
-    public void logoutUser(UUID idUser);
 }
