@@ -369,10 +369,10 @@ public class GameEngine {
             h.setValueWinComb(evalComb(cards));
         }
         Collections.sort(hands, Comparator.comparingInt(Hand::getValueWinComb).reversed());
-        profitsCalculationRound(hands,round.getCurrentBets());
+        profitsCalculationRound(hands,round.getPot());
         return hands;
     }
-    public void profitsCalculationRound (ArrayList<Hand> hands, HashMap<Integer,Integer> currentBets) {
+    public void profitsCalculationRound (ArrayList<Hand> hands, int pot) {
         ArrayList<Hand> winners = new ArrayList<>();
         int winValue = hands.get(0).getValueWinComb();
         for(Hand h : hands) {
@@ -382,11 +382,8 @@ public class GameEngine {
                 break;
         }
         int gains = 0;
-        int totalPot = 0;
-        for (int value : currentBets.values()) {
-            totalPot += value;
-        }
-        gains = totalPot/winners.size();
+
+        gains = pot/winners.size();
 
         for (Hand winner: winners) {
             winner.setAvailablePoints(gains);

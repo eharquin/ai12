@@ -149,8 +149,8 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
     @Override
     public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
         Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
-        game.setCreator(getProfile()); // A voir pour passer un Player à la place d'un ClientProfile
-        game.setPlayers(new ArrayList<Player>());
+        game.setCreator(new Player(getProfile()));
+        game.getPlayers().add(game.getCreator());
         game.setStatus(StatusEnum.WAITING_FOR_PLAYER);
         myDataCore.setCurrentGame(game);
         myDataCore.getiDataCallsCom().initGameClient(game);

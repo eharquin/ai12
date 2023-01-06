@@ -163,20 +163,23 @@ public class ComCallsDataServerImpl implements ComCallsData {
             int oldAvailablePoints = currentPlayerHand.getAvailablePoints();
             currentPlayerHand.setAvailablePoints(oldAvailablePoints - action.getBetting());
             //update totalBet
-            int totalBet = currentPlayerHand.getTotalBet()+ action.getBetting();
+            int totalBet = currentPlayerHand.getTotalBet() + action.getBetting();
             currentPlayerHand.setTotalBet(totalBet);
         } else if (action.getType().equals(ActionTypeEnum.ALL_IN)){
             int totalBet = currentPlayerHand.getTotalBet()+currentPlayerHand.getAvailablePoints();
             currentPlayerHand.setTotalBet(totalBet);
             currentPlayerHand.setAvailablePoints(0);
             currentPlayerHand.setAllIn(true);
+            // créer un pot juste pour la personne qui a allIn ?
+            round.setNbActivePlayers(round.getNbActivePlayers()-1);
         } else if (action.getType().equals(ActionTypeEnum.FOLD)){
             currentPlayerHand.setIsFold(true);
             //update nbActivePlayers
             round.setNbActivePlayers(round.getNbActivePlayers()-1);
         }
-        //update currentBets
-        round.getCurrentBets().put(round.getCurrentBettingRound(), action.getBetting());
+
+        //update pot
+        round.setPot(round.getPot()+ action.getBetting());
 
         //update currentBet
         if (!action.getType().equals(ActionTypeEnum.ALL_IN)){
@@ -190,9 +193,10 @@ public class ComCallsDataServerImpl implements ComCallsData {
         // if true
         updateBettingRound(action, round);
         if(isBettingRoundFinished(round)){
+            // si le dernier tour de mise est terminé
             if(round.getCurrentBettingRound() == Round.NB_MAX_BETTING_ROUND) {
                 // si la partie est finie
-                if(game.getNbRounds() == Game.NB_MAX_ROUND) {
+                if(game.getNbRounds() == game.getRounds().size()) {
                     // calculer les résultats
                     game.setStatus(StatusEnum.FINISHED);
                     ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
@@ -214,7 +218,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
                     List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation(round);
                     this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
                 }
-
+            // cas où on commence un nouveau tour de mise
             } else {
                 round.setCurrentBettingRound(round.getCurrentBettingRound()+1);
                 // la partie n'est pas finie

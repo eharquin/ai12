@@ -14,7 +14,7 @@ public class Round implements Serializable {
     private LinkedList<Card> cards; // cartes sur la table face cachée
     private ArrayList<Card> showedCards;
     // clé : currentBettingRound, valeur : pari
-    private HashMap<Integer, Integer> currentBets;
+    private int pot;
     private Hand handCurrentPlayer;
     private int currentBet;
     private int currentBettingRound;
@@ -57,14 +57,6 @@ public class Round implements Serializable {
 
     public void setCards(LinkedList<Card> cards) {
         this.cards = cards;
-    }
-
-    public HashMap<Integer, Integer> getCurrentBets() {
-        return currentBets;
-    }
-
-    public void setCurrentBets(HashMap<Integer, Integer> currentBets) {
-        this.currentBets = currentBets;
     }
 
     public Hand getHandCurrentPlayer() {
@@ -143,5 +135,12 @@ public class Round implements Serializable {
     public void setNbCheckSuccessivePlayers(int nbCheckSuccessivePlayers) {
         this.nbCheckSuccessivePlayers = nbCheckSuccessivePlayers;
     }
-    
+
+    public int getPot() {
+        return pot;
+    }
+
+    public void setPot(int pot) {
+        this.pot = pot;
+    }
 }
