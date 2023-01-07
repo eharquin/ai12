@@ -1,19 +1,23 @@
 package utc.pokerut.client.ihmmain.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 //import utc.pokerut.common.dataclass.Game;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.client.ihmmain.listeners.GameListListener;
-import utc.pokerut.common.dataclass.ClientProfile;
 import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Player;
 
@@ -145,8 +149,23 @@ public class GameListController extends Controller {
         core.getMainController().Navigate(ViewNames.CREATE_GAME_VIEW);
     }
 
-    public void joinGame(){
-        System.out.println(selectedGame);
+    public void generatePopup(ActionEvent event) {
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+        progressIndicator.setMinHeight(200);
+        progressIndicator.setMinWidth(200);
+        Text textChargement = new Text("En attente de joueurs");
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        StackPane layout = new StackPane();
+        layout.setMargin(progressIndicator, new Insets(50, 50, 50, 50));
+        layout.getChildren().addAll(progressIndicator, textChargement);
+        Scene scene = new Scene(layout, 300, 300);
+        stage.setTitle("Chargement");
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void joinGame(ActionEvent event){
         core.getDataInterface().askJoinTableMainComCli(selectedGame.getId(), core.getDataInterface().getProfile().getId());
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Impossible de rejoindre une partie");
@@ -155,6 +174,7 @@ public class GameListController extends Controller {
             //currentPlayer=getProfile();
             //cabler avec le lobby
             //aller à la fenêtre d'attente
+            generatePopup(event);
             this.selectedGame=null;
         } else if (selectedGame==null){
             alert.setHeaderText("Veuillez selectionner une partie");

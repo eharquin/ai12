@@ -33,6 +33,9 @@ public class LoginController extends Controller {
     private Button loginButton;
 
     public void loginUser(Event event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+
         boolean emptyFields = false, wrongIp = false, wrongPort = false;
         String errorText = "";
 
@@ -56,16 +59,12 @@ public class LoginController extends Controller {
                 core.getMainController().getLeftPanelController().setIsPlayerListVisible(true);
                 core.getMainController().Navigate(ViewNames.GAME_LIST_VIEW);
             } catch (Exception e) {
-                /*JOptionPane.showMessageDialog(null,
-                        "Erreur de connection",
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE);*/
+                alert.setHeaderText("Erreur de connection");
+                alert.show();
             }
         } else {
-            /*JOptionPane.showMessageDialog(null,
-                    errorText,
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);*/
+            alert.setHeaderText(errorText);
+            alert.show();
         }
     }
     public boolean validateIP(final String ip) {
