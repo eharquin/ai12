@@ -5,6 +5,6 @@ import utc.pokerut.common.messages.Logout;
 public class CommandUserLoggedOut extends ClientCommand<Logout> {
 
     public void execute() {
-        core.getComCallsData().logoutUser(message.idUser);
+        core.getComCallsData().userDisconnected(message.idUser);
     }
 }

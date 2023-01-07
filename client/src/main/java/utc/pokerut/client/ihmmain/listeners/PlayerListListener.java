@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmmain.listeners;
 
+import javafx.application.Platform;
 import utc.pokerut.client.ihmmain.controllers.Controller;
 import utc.pokerut.client.ihmmain.controllers.MainController;
 import utc.pokerut.client.ihmmain.controllers.PlayerListController;
@@ -20,17 +21,26 @@ public class PlayerListListener implements PropertyChangeListener {
             System.out.println("Message received in PropertyChange : " + evt.getPropertyName());
             switch (actions[0])
             {
+                // We used here Platform runlater to avoid IllegalStateException (when we call GUI methods not on FX app thread)
                 case "init":
-                    List<Player> playerList = (List<Player>) evt.getNewValue();
-                    playerListController.setPlayerList(playerList);
+                    Platform.runLater(() -> {
+                        List<Player> playerList = (List<Player>) evt.getNewValue();
+                        playerListController.setPlayerList(playerList);
+                    });
+
                     break;
                 case "add":
-                    Player player = (Player) evt.getNewValue();
-                    playerListController.addPlayerList(player);
+                    Platform.runLater(() -> {
+                        Player player = (Player) evt.getNewValue();
+                        playerListController.addPlayerList(player);
+                    });
+
                     break;
                 case "remove":
-                    Player player1 = (Player) evt.getNewValue();
-                    playerListController.removePlayerList(player1);
+                    Platform.runLater(() ->{
+                        Player player1 = (Player) evt.getNewValue();
+                        playerListController.removePlayerList(player1);
+                    });
                     break;
             }
         }
