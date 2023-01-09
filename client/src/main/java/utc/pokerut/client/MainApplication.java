@@ -17,7 +17,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         mainCore = new utc.pokerut.client.ihmmain.Core(stage);
-        //gameCore = new utc.pokerut.client.ihmgame.Core();
+        gameCore = new utc.pokerut.client.ihmgame.Core();
         dataCore = new utc.pokerut.client.data.Core();
         commCore = new utc.pokerut.client.communication.Core();
 
