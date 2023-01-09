@@ -48,10 +48,9 @@ public class Core {
     }
 
     //constructor
-    public Core(Game game) {
+    public Core() {
 
-        this.game = game;
-        Controller.setCore(this);
+        GameViewController.setCore(this);
 
         setComInterface(new ComCallsIHMGameImp(this));
         setDataInterface(new DataCallsIHMGameImp(this));

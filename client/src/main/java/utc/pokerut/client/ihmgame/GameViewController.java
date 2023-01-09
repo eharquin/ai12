@@ -33,6 +33,8 @@ public class GameViewController {
 
     protected static Core core;
 
+    private Game game;
+
     private ImageView[][] playerCardsImageArray;
 
     private ImageView[] centerCardsImageArray;
@@ -99,6 +101,8 @@ public class GameViewController {
     }
 
     public void initGameStatic(Game game){
+
+        this.game = game;
 
         Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
 
