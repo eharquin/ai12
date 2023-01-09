@@ -1,6 +1,8 @@
 package utc.pokerut.client.ihmgame.pcl;
 
 import utc.pokerut.client.ihmgame.adapters.RoundsAdapter;
+import utc.pokerut.client.ihmgame.controllers.GameViewController;
+import utc.pokerut.common.dataclass.Game;
 import utc.pokerut.common.dataclass.Round;
 
 import java.beans.PropertyChangeEvent;
@@ -9,10 +11,14 @@ import java.util.List;
 
 public class RoundListener implements PropertyChangeListener {
 
+    private GameViewController gameViewController;
+
     private RoundsAdapter roundsAdapter;
 
     @Override
     public void propertyChange(PropertyChangeEvent event){
+
+        this.roundsAdapter = new RoundsAdapter(gameViewController);
 
         if(event != null){
 
@@ -31,8 +37,8 @@ public class RoundListener implements PropertyChangeListener {
         }
     }
 
-    public RoundListener(RoundsAdapter roundsAdapter){
-        this.roundsAdapter = roundsAdapter;
+    public RoundListener(GameViewController gameViewController){
+        this.gameViewController = gameViewController;
     }
 
 

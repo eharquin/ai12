@@ -12,4 +12,6 @@ module utc.pokerut.client {
     exports utc.pokerut.client.ihmgame;
     exports utc.pokerut.client.ihmmain;
     opens utc.pokerut.client.ihmmain.controllers to javafx.fxml;
+    exports utc.pokerut.client.ihmgame.controllers;
+    opens utc.pokerut.client.ihmgame.controllers to javafx.fxml;
 }

@@ -1,6 +1,6 @@
 package utc.pokerut.client.ihmgame.adapters;
 
-import utc.pokerut.client.ihmgame.GameViewController;
+import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.StatusEnum;
 
 public class StatusAdapter {

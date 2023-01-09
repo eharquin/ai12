@@ -1,4 +1,4 @@
-package utc.pokerut.client.ihmgame;
+package utc.pokerut.client.ihmgame.controllers;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -13,14 +13,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utc.pokerut.client.MainApplication;
+import utc.pokerut.client.ihmgame.Core;
+import utc.pokerut.client.ihmgame.pcl.CurrentRoundListener;
+import utc.pokerut.client.ihmgame.pcl.PlayersListener;
+import utc.pokerut.client.ihmgame.pcl.RoundListener;
+import utc.pokerut.client.ihmgame.pcl.StatusListener;
 import utc.pokerut.client.ihmmain.controllers.PlayerListController;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.ActionTypeEnum;
 import utc.pokerut.common.dataclass.Game;
-import utc.pokerut.common.dataclass.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class GameViewController {
     public static utc.pokerut.client.ihmgame.Core getCore() {
@@ -42,6 +45,11 @@ public class GameViewController {
     private Text[] playerNames;
 
     private ImageView[] playerAvatars;
+
+    private CurrentRoundListener currentRoundListener;
+    private PlayersListener playersListener;
+    private RoundListener roundListener;
+    private StatusListener statusListener;
 
     public GameViewController(){
         this.initImageViewPointers();
@@ -98,6 +106,16 @@ public class GameViewController {
         avatarPlayer7 = this.playerAvatars[7];
         avatarPlayer8 = this.playerAvatars[8];
 
+    }
+
+    public void init(Game game){
+
+        this.playersListener = new PlayersListener(this);
+        this.currentRoundListener = new CurrentRoundListener(this);
+        this.roundListener = new RoundListener(this);
+        this.statusListener = new StatusListener(this);
+
+        this.initGameStatic(game);
     }
 
     public void initGameStatic(Game game){

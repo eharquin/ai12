@@ -2,6 +2,7 @@ package utc.pokerut.client.ihmgame.pcl;
 
 import utc.pokerut.client.ihmgame.adapters.CurrentRoundAdapter;
 import utc.pokerut.client.ihmgame.adapters.RoundsAdapter;
+import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.Round;
 
 import java.beans.PropertyChangeEvent;
@@ -12,8 +13,12 @@ public class CurrentRoundListener implements PropertyChangeListener {
 
     private CurrentRoundAdapter currentRoundAdapter;
 
+    private GameViewController gameViewController;
+
     @Override
     public void propertyChange(PropertyChangeEvent event){
+
+        this.currentRoundAdapter = new CurrentRoundAdapter(gameViewController);
 
         if(event != null){
 
@@ -35,8 +40,8 @@ public class CurrentRoundListener implements PropertyChangeListener {
         }
     }
 
-    public CurrentRoundListener(CurrentRoundAdapter currentRoundAdapter){
-        this.currentRoundAdapter = currentRoundAdapter;
+    public CurrentRoundListener(GameViewController gameViewController){
+        this.gameViewController = gameViewController;
     }
 
 

@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmgame;
 
+import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.client.ihmgame.implementations.ComCallsIHMGameImp;
 import utc.pokerut.client.ihmgame.implementations.DataCallsIHMGameImp;
 import utc.pokerut.client.ihmgame.implementations.IHMMainCallsIHMGameImp;
