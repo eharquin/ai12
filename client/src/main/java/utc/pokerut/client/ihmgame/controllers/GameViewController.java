@@ -47,6 +47,10 @@ public class GameViewController {
 
     private Text[] playerNames;
 
+    private Text[] playerCredits;
+
+    private Text[] playersBettings;
+
     private ImageView[] playerAvatars;
 
     private CurrentRoundListener currentRoundListener;
@@ -118,6 +122,29 @@ public class GameViewController {
         avatarPlayer7 = this.playerAvatars[7];
         avatarPlayer8 = this.playerAvatars[8];
 
+        this.playerCredits = new Text[9];
+
+        creditPlayer1 = this.playerCredits[1];
+        creditPlayer2 = this.playerCredits[2];
+        creditPlayer3 = this.playerCredits[3];
+        creditPlayer4 = this.playerCredits[4];
+        creditPlayer5 = this.playerCredits[5];
+        creditPlayer6 = this.playerCredits[6];
+        creditPlayer7 = this.playerCredits[7];
+        creditPlayer8 = this.playerCredits[8];
+
+        this.playersBettings = new Text[9];
+
+        bettingPlayer1 = this.playersBettings[1];
+        bettingPlayer2 = this.playersBettings[2];
+        bettingPlayer3 = this.playersBettings[3];
+        bettingPlayer4 = this.playersBettings[4];
+        bettingPlayer5 = this.playersBettings[5];
+        bettingPlayer6 = this.playersBettings[6];
+        bettingPlayer7 = this.playersBettings[7];
+        bettingPlayer8 = this.playersBettings[8];
+
+
     }
 
     public void initGameStatic(Game game){
@@ -128,7 +155,7 @@ public class GameViewController {
         creditGame = new Text();
         miseMin = new Text();
 
-        int nbPlayersInt = game.getNbMaxPlayers();
+        int nbPlayersInt = game.getPlayers().size();
 
         nbPlayers.setText(Integer.toString(nbPlayersInt));
         creditGame.setText(Integer.toString(game.getNbPoints()));
@@ -145,6 +172,12 @@ public class GameViewController {
             for (int j=1 ; j <= 2 ; j++){
                 this.playerCardsImageArray[i][j] = new ImageView(pioche);
             }
+
+            //Initialisation des crédits de chaque joueur
+            this.playerCredits[i].setText( Integer.toString(this.game.getNbPoints()) );
+
+            //Initialisation de la mise de chaque joueur
+            this.playersBettings[i].setText( "0" );
         }
 
         for (int i=1 ; i < 6 ; i++){
@@ -231,6 +264,30 @@ public class GameViewController {
 
     @FXML
     private Text creditPlayer8;
+
+    @FXML
+    private Text bettingPlayer1;
+
+    @FXML
+    private Text bettingPlayer2;
+
+    @FXML
+    private Text bettingPlayer3;
+
+    @FXML
+    private Text bettingPlayer4;
+
+    @FXML
+    private Text bettingPlayer5;
+
+    @FXML
+    private Text bettingPlayer6;
+
+    @FXML
+    private Text bettingPlayer7;
+
+    @FXML
+    private Text bettingPlayer8;
 
     @FXML
     private Text Player1;
@@ -753,7 +810,13 @@ public class GameViewController {
 
     public void setCenterCardsImageArray(ImageView cardImage, int x) { centerCardsImageArray[x] = cardImage; }
 
+    public Text[] getPlayerCredits() {
+        return playerCredits;
+    }
 
+    public void setPlayerCredits(Text[] playerCredits) {
+        this.playerCredits = playerCredits;
+    }
 
     /*@FXML
     public void Leave(ActionEvent event) throws IndexOutOfBoundsException {
