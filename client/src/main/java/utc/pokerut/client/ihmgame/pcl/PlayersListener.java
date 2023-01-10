@@ -6,6 +6,7 @@ import utc.pokerut.common.dataclass.Player;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayersListener implements PropertyChangeListener {
@@ -23,17 +24,19 @@ public class PlayersListener implements PropertyChangeListener {
 
             String action = event.getPropertyName();
             String[] actions = action.split("_");
-            List<Player> players = (List<Player>) event.getOldValue();
 
             switch (actions[0]){
                 case "init":
-                    playersAdapter.initPlayers(players);
+                    ArrayList<Player> init_players = (ArrayList<Player>) event.getNewValue();
+                    playersAdapter.initPlayers(init_players);
                     break;
                 case "add":
-                    playersAdapter.addPlayers(players);
+                    ArrayList<Player> add_players = (ArrayList<Player>) event.getOldValue();
+                    playersAdapter.addPlayers(add_players);
                     break;
                 case "remove":
-                    playersAdapter.removePlayers(players);
+                    ArrayList<Player> remove_players = (ArrayList<Player>) event.getOldValue();
+                    playersAdapter.removePlayers(remove_players);
                     break;
             }
         }

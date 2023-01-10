@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmgame.adapters;
 
+import javafx.application.Platform;
 import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.Chat;
 
@@ -23,10 +24,14 @@ public class ChatAdapter {
 
     public void initChat(Chat chat){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+        });
     }
 
     public void updateChat(Chat chat){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+        });
     }
 
 }
