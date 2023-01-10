@@ -31,9 +31,7 @@ public class CurrentRoundAdapter {
 
     public void updateCurrentRound(Round round){
         //@TODO: Update game scene in GameViewController
-        Platform.runLater(() ->{
 
-        });
     }
 
     public void endCurrentRound(Round round){
