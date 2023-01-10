@@ -49,7 +49,7 @@ public class Core {
     }
 
     public Game getUnfilledWaitingGame(UUID gameId) {
-        Game unfilledGame = waitingGames.stream().filter(game -> (game.getId().equals(gameId)) && game.getPlayers().size() < game.getNbMaxPlayers())
+        Game unfilledGame = waitingGames.stream().filter(game -> (game.getId().equals(gameId))).filter(game -> game.getPlayers().size() < game.getNbMaxPlayers())
                 .findAny().orElse(null);
         return unfilledGame;
     }

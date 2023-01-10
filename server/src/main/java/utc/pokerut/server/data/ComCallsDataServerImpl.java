@@ -88,8 +88,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
         System.out.println("ASK JOIN TABLES User : "+idUser+" Game : "+idGame);
         if (checkJoiningConditions(idUser, idGame) == true) {
             ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
-            Game game = dataServerCore.getUnfilledWaitingGame(idGame);
-            System.out.println("Nb Joueurs : " + game.getPlayers().size());
+            Game game = dataServerCore.getUnfilledWaitingGame(idGame); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
             if(game != null) {
                 game.getPlayers().add(player);
                 dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
