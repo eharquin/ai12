@@ -128,7 +128,7 @@ public class GameViewController {
         creditGame = new Text();
         miseMin = new Text();
 
-        int nbPlayersInt = game.getNbMaxPlayers();
+        int nbPlayersInt = game.getPlayers().size();
 
         nbPlayers.setText(Integer.toString(nbPlayersInt));
         creditGame.setText(Integer.toString(game.getNbPoints()));

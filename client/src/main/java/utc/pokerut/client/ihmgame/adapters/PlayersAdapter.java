@@ -20,8 +20,6 @@ public class PlayersAdapter {
 
     public void initPlayers(ArrayList<Player> players){
         Platform.runLater(() ->{
-            gameViewController.getGame().setPlayers(players);
-
             Image pioche = new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
 
             for (int i=1 ; i <= players.size() ; i++){
@@ -39,15 +37,14 @@ public class PlayersAdapter {
         });
     }
 
-    public void addPlayers(ArrayList<Player> players){
-        Platform.runLater(() ->{
-            gameViewController.getGame().setPlayers(players);
+    public void addPlayers(Player newPlayer){
+        Platform.runLater(() -> {
+
         });
     }
 
-    public void removePlayers(ArrayList<Player> players){
+    public void removePlayers(Player newPlayer){
         Platform.runLater(() ->{
-            gameViewController.getGame().setPlayers(players);
 
         });
     }
