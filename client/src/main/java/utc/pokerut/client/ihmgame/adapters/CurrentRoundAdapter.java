@@ -58,6 +58,10 @@ public class CurrentRoundAdapter {
             gameViewController.setPlayersBettings( (Integer.toString(round.getCurrentBettingRound())), i);
         }
 
+        for (int i=0 ; i <= round.getShowedCards().size() ; i++){
+            gameViewController.setCenterCardsImageArray(mappingImage.mapping(round.getShowedCards().get(i)), i);
+        }
+
     }
 
     public void endCurrentRound(Round round){
