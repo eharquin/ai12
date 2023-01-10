@@ -114,16 +114,17 @@ public class ComCallsDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void newPlayerJoinedComDataServ(UUID idUser, UUID idGame) {
-        Player player = dataServerCore.getConnectedPlayer(idUser);
-        Game game = dataServerCore.getUnfilledWaitingGame(idGame); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
+    public void newPlayerJoinedComDataServ(UUID GameID, UUID playerID) {
+        Player player = dataServerCore.getConnectedPlayer(playerID);
+        Game game = dataServerCore.getUnfilledWaitingGame(GameID); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
+        System.out.println("Game : " + game);
         if(game != null) {
-            dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
+            dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, playerID);
             // à faire après envoyer à comm parce que doit être fait côté client pour déclencher pcl
             game.getPlayers().add(player);
             if(game.getNbMaxPlayers() == game.getPlayers().size()) {
                 dataServerCore.getiDataCallsCom().launchGame(game);
-                startGame(idGame);
+                startGame(GameID);
             }
         }
     }
