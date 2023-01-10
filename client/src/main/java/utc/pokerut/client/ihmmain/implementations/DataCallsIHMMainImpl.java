@@ -13,6 +13,7 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
     @Override
     public void displayGame(Game game) {
         core.getMainController().Navigate(ViewNames.IHM_GAME_VIEW);
+        core.getMainController().NavigateLeftPannel(ViewNames.CHAT_PARTIE);
     }
 
     @Override
