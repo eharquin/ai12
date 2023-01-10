@@ -22,7 +22,7 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
 
     @Override
     public void notifyGameReady(Game game) {
-        core.getWaitingPopupStage().close();
+        if(core.getWaitingPopupStage() != null) core.getWaitingPopupStage().close();
         core.getGameInterface().createGame(game);
     }
 

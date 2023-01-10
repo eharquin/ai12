@@ -167,7 +167,6 @@ public class GameListController extends Controller {
     }
 
     public void joinGame(ActionEvent event){
-        core.getDataInterface().askJoinTableMainComCli(selectedGame.getId(), core.getDataInterface().getProfile().getId());
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Impossible de rejoindre une partie");
 
@@ -175,6 +174,7 @@ public class GameListController extends Controller {
             //currentPlayer=getProfile();
             //cabler avec le lobby
             //aller à la fenêtre d'attente
+            core.getDataInterface().askJoinTableMainComCli(selectedGame.getId(), core.getDataInterface().getProfile().getId());
             generatePopup(event);
             this.selectedGame=null;
         } else if (selectedGame==null){
