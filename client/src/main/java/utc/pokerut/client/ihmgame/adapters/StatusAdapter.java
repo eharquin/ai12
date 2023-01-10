@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmgame.adapters;
 
+import javafx.application.Platform;
 import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.StatusEnum;
 
@@ -23,10 +24,16 @@ public class StatusAdapter {
 
     public void initStatus(StatusEnum status){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+
+        });
     }
 
     public void updateStatus(StatusEnum status){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+
+        });
     }
 
 }

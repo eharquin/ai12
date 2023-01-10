@@ -21,6 +21,7 @@ public class ChatListener implements PropertyChangeListener {
 
             switch (actions[0]){
                 case "init":
+
                     chatAdapter.initChat(chat);
                     break;
                 case "update":

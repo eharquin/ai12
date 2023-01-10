@@ -122,9 +122,23 @@ public class GameViewController {
 
         this.game = game;
 
-        Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
+        nbPlayers = new Text();
+        creditGame = new Text();
+        miseMin = new Text();
+
+        nbPlayers.setText(Integer.toString(game.getNbMaxPlayers()));
+        creditGame.setText(Integer.toString(game.getNbPoints()));
+        miseMin.setText(Integer.toString(game.getMinimalBet()));
+
+        Image pioche = new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
 
         for (int i=1 ; i <= Integer.parseInt(this.nbPlayers.toString()) ; i++){
+
+            // Initialisation des pseudos
+            Text pseudo = new Text(this.game.getPlayers().get(i).getPseudo());
+            this.setPlayerNames(pseudo, i);
+
+            // Initialisation des cartes des joueurs
             for (int j=1 ; j <= 2 ; j++){
                 this.playerCardsImageArray[i][j].setImage(pioche);
             }
@@ -134,9 +148,7 @@ public class GameViewController {
             this.centerCardsImageArray[i].setImage(pioche);
         }
 
-        nbPlayers.setText(Integer.toString(game.getNbMaxPlayers()));
-        creditGame.setText(Integer.toString(game.getNbPoints()));
-        miseMin.setText(Integer.toString(game.getMinimalBet()));
+
 
         // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
         // nbPlayers.toString();
@@ -314,6 +326,10 @@ public class GameViewController {
 
     @FXML
     private ImageView avatarPlayer8;
+
+    public Game getGame() {
+        return game;
+    }
 
     public Text getCreditPlayer7() {
         return creditPlayer7;
@@ -724,6 +740,17 @@ public class GameViewController {
         Player6 = player6;
     }
 
+    public Text[] getPlayerNames() { return this.playerNames; }
+
+    public void setPlayerNames(Text playername, int x) { playerNames[x] = playername; }
+
+    public ImageView[][] getPlayerCardsImageArray() { return playerCardsImageArray; }
+
+    public void setPlayerCardsImageArray(ImageView imageView, int x, int y) { playerCardsImageArray[x][y] = imageView; }
+
+    public ImageView[] getCenterCardsImageArray() { return centerCardsImageArray; }
+
+    public void setCenterCardsImageArray(ImageView cardImage, int x) { centerCardsImageArray[x] = cardImage; }
 
 
     /*@FXML
