@@ -154,15 +154,16 @@ public class GameListController extends Controller {
         progressIndicator.setMinHeight(200);
         progressIndicator.setMinWidth(200);
         Text textChargement = new Text("En attente de joueurs");
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
         StackPane layout = new StackPane();
+        Stage stage = new Stage();
+        Scene scene = new Scene(layout, 300, 300);
+        stage.initModality(Modality.APPLICATION_MODAL);
         layout.setMargin(progressIndicator, new Insets(50, 50, 50, 50));
         layout.getChildren().addAll(progressIndicator, textChargement);
-        Scene scene = new Scene(layout, 300, 300);
         stage.setTitle("Chargement");
         stage.setScene(scene);
-        stage.showAndWait();
+        core.setWaitingPopupStage(stage);
+        core.getWaitingPopupStage().show();
     }
 
     public void joinGame(ActionEvent event){
