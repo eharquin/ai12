@@ -1,5 +1,7 @@
 package utc.pokerut.client.ihmgame.controllers;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +39,7 @@ public class GameViewController {
         core = _core;
     }
 
-    protected static Core core;
+    private static Core core;
 
     private Game game;
 
@@ -53,6 +55,8 @@ public class GameViewController {
 
     private ImageView[] playerAvatars;
 
+    private BooleanProperty areActionsAvailable;
+
     private CurrentRoundListener currentRoundListener;
     private PlayersListener playersListener;
     private RoundListener roundListener;
@@ -66,6 +70,7 @@ public class GameViewController {
         this.currentRoundListener = new CurrentRoundListener(this);
         this.roundListener = new RoundListener(this);
         this.statusListener = new StatusListener(this);
+        this.areActionsAvailable = new SimpleBooleanProperty(false);
 
         this.initImageViewPointers();
         this.initGameStatic(game);
@@ -174,10 +179,10 @@ public class GameViewController {
             }
 
             //Initialisation des crédits de chaque joueur
-            this.playerCredits[i].setText( Integer.toString(this.game.getNbPoints()) );
+            this.playerCredits[i] = new Text( Integer.toString(this.game.getNbPoints()) );
 
             //Initialisation de la mise de chaque joueur
-            this.playersBettings[i].setText( "0" );
+            this.playersBettings[i] = new Text("0" );
         }
 
         for (int i=1 ; i < 6 ; i++){
@@ -814,8 +819,52 @@ public class GameViewController {
         return playerCredits;
     }
 
-    public void setPlayerCredits(Text[] playerCredits) {
-        this.playerCredits = playerCredits;
+    public void setPlayerCredits(String playerCredit, int x) {
+        this.playerCredits[x].setText(playerCredit);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void setPlayerCardsImageArray(ImageView[][] playerCardsImageArray) {
+        this.playerCardsImageArray = playerCardsImageArray;
+    }
+
+    public void setCenterCardsImageArray(ImageView[] centerCardsImageArray) {
+        this.centerCardsImageArray = centerCardsImageArray;
+    }
+
+    public void setPlayerNames(Text[] playerNames) {
+        this.playerNames = playerNames;
+    }
+
+    public Text[] getPlayersBettings() {
+        return playersBettings;
+    }
+
+    public void setPlayersBettings(String playersBettings, int x) {
+        this.playersBettings[x].setText(playersBettings);
+    }
+
+    public ImageView[] getPlayerAvatars() {
+        return playerAvatars;
+    }
+
+    public void setPlayerAvatars(ImageView[] playerAvatars) {
+        this.playerAvatars = playerAvatars;
+    }
+
+    public boolean isAreActionsAvailable() {
+        return areActionsAvailable.get();
+    }
+
+    public BooleanProperty areActionsAvailableProperty() {
+        return areActionsAvailable;
+    }
+
+    public void setAreActionsAvailable(boolean areActionsAvailable) {
+        this.areActionsAvailable.set(areActionsAvailable);
     }
 
     /*@FXML
