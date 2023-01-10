@@ -13,14 +13,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utc.pokerut.client.MainApplication;
-import utc.pokerut.client.ihmgame.Core;
 import utc.pokerut.client.ihmmain.controllers.PlayerListController;
 import utc.pokerut.common.dataclass.Action;
 import utc.pokerut.common.dataclass.ActionTypeEnum;
 import utc.pokerut.common.dataclass.Game;
+import utc.pokerut.common.dataclass.Player;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class GameViewController {
@@ -34,14 +33,15 @@ public class GameViewController {
 
     protected static Core core;
 
+    private Game game;
+
     private ImageView[][] playerCardsImageArray;
 
     private ImageView[] centerCardsImageArray;
 
-    @FXML
-    public TextField betting;
-    @FXML
-    public TextField raising;
+    private Text[] playerNames;
+
+    private ImageView[] playerAvatars;
 
     public GameViewController(){
         this.initImageViewPointers();
@@ -75,10 +75,34 @@ public class GameViewController {
         card3 = this.centerCardsImageArray[3];
         card4 = this.centerCardsImageArray[4];
         card5 = this.centerCardsImageArray[5];
+
+        this.playerNames = new Text[9];
+
+        Player1 = this.playerNames[1];
+        Player2 = this.playerNames[2];
+        Player3 = this.playerNames[3];
+        Player4 = this.playerNames[4];
+        Player5 = this.playerNames[5];
+        Player6 = this.playerNames[6];
+        Player7 = this.playerNames[7];
+        Player8 = this.playerNames[8];
+
+        this.playerAvatars = new ImageView[9];
+
+        avatarPlayer1 = this.playerAvatars[1];
+        avatarPlayer2 = this.playerAvatars[2];
+        avatarPlayer3 = this.playerAvatars[3];
+        avatarPlayer4 = this.playerAvatars[4];
+        avatarPlayer5 = this.playerAvatars[5];
+        avatarPlayer6 = this.playerAvatars[6];
+        avatarPlayer7 = this.playerAvatars[7];
+        avatarPlayer8 = this.playerAvatars[8];
+
     }
 
+    public void initGameStatic(Game game){
 
-    public void initGame(Game game){
+        this.game = game;
 
         Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
 
@@ -104,7 +128,10 @@ public class GameViewController {
         //System.out.println(this.creditGame) ;
     }
 
-
+    @FXML
+    public TextField betting;
+    @FXML
+    public TextField raising;
 
     //Number of players in the game
     @FXML
