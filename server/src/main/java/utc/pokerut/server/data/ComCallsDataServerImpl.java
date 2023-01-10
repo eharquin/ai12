@@ -85,7 +85,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
-        System.out.println("ASK JOIN TABLES User : "+idUser+" Game : "+idGame);
+        System.out.println("ASK JOIN TABLES Users : "+idUser+" Game : "+idGame);
         if (checkJoiningConditions(idUser, idGame) == true) {
             ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
             Game game = dataServerCore.getUnfilledWaitingGame(idGame); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
@@ -123,10 +123,10 @@ public class ComCallsDataServerImpl implements ComCallsData {
     }
 
     @Override
-    public void newPlayerJoinedComDataServ(UUID idUser, UUID idGame) {
-        Game game = dataServerCore.getWaitingGame(idGame);
-        Player player = dataServerCore.getConnectedPlayer(idUser);
-        dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
+    public void newPlayerJoinedComDataServ(UUID gameID, UUID playerID) {
+        Game game = dataServerCore.getWaitingGame(gameID);
+        Player player = dataServerCore.getConnectedPlayer(playerID);
+        dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, playerID);
     }
 
     @Override

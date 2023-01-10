@@ -57,7 +57,9 @@ public class Client extends MessageHandler<Core> implements Runnable {
         this.messages.put(GameDeleted.class, CommandGameDeleted.class);
         this.messages.put(JoinGameAsked.class, CommandJoinGameAsked.class);
         this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
+        this.messages.put(NotifyAcceptance.class, CommandNotifyAcceptance.class);
         this.messages.put(PlayerJoinGame.class, CommandPlayerJoinGame.class);
+        this.messages.put(JoinGameAccepted.class, CommandJoinGameAccepted.class);
 
         this.messages.put(UpdateNewRound.class, CommandUpdateNewRound.class);
         this.messages.put(UpdateRoundEnd.class, CommandUpdateRoundEnd.class);

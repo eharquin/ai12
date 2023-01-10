@@ -69,7 +69,7 @@ public class ComCallsDataClientImpl implements ComCallsData {
 
     @Override
     public void updateTableNewPlayerComDataOthers(Game gameNewPlayer, Player newPlayer, UUID idUser) {
-       // myDataCore.setCurrentGame(gameNewPlayer);
+        myDataCore.setCurrentGame(gameNewPlayer);
         myDataCore.getCurrentGame().addPlayer(newPlayer);
         myDataCore.getiDataCallsIHMGame().newPlayerJoinedDataGameOthers(gameNewPlayer, newPlayer, idUser);
     }

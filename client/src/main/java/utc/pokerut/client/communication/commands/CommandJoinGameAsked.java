@@ -9,7 +9,7 @@ public class CommandJoinGameAsked extends ClientCommand<JoinGameAsked> {
     public void execute() {
         boolean res = core.getComCallsData().joinTableRequestComGameCreator("", message.gameID);
 
-        if(res)
+        if(!res)
             core.getClient().send(new NotifyRejection(message.gameID, message.playerID));
         else
             core.getClient().send(new NotifyAcceptance(message.gameID, message.playerID));

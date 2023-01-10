@@ -30,7 +30,7 @@ public class Server implements Runnable
 
     public ClientHandler getClientById(UUID id){
         for (ClientHandler client : clients) {
-            if (client.getProfile().getId() == id) {
+            if (client.getProfile().getId().equals(id)) {
                 return client;
             }
         }
@@ -40,6 +40,14 @@ public class Server implements Runnable
     public void broadcast(Message message) {
         for (ClientHandler client : clients) {
             client.send(message);
+        }
+    }
+
+    public void broadcastExcept(Message message, UUID exept) {
+        for (ClientHandler client : clients) {
+            if (!client.getProfile().getId().equals(exept)) {
+                client.send(message);
+            }
         }
     }
 

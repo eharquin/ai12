@@ -69,9 +69,19 @@ public class DataCallsComImp implements DataCallsCom {
 
     @Override
     public void addUserToGameDataComServ(Game game, Player player, UUID playerID) {
-        core.getServer().broadcast(new PlayerJoinGame(game, player, playerID));
 
+        List<ServerProfile> players = core.getComCallsData().getConnectedPlayers();
+        for (ServerProfile p : players) {
+            System.out.println("PlayerID : " + p.getId());
+        }
 
+        List<ClientHandler> clients = core.getServer().getClients();
+        for (ClientHandler c : clients) {
+            System.out.println("ClientID : " + c.getProfile().getId());
+        }
+
+        core.getServer().broadcastExcept(new PlayerJoinGame(game, player, playerID), playerID);
+        core.getServer().getClientById(playerID).send(new JoinGameAccepted(game, player, playerID));
     }
 
     @Override
