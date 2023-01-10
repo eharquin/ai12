@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmmain.implementations;
 
+import javafx.application.Platform;
 import utc.pokerut.client.ihmmain.Core;
 import utc.pokerut.client.ihmmain.ViewNames;
 import utc.pokerut.common.dataclass.Game;
@@ -22,7 +23,7 @@ public class DataCallsIHMMainImpl implements DataCallsIHMMain {
 
     @Override
     public void notifyGameReady(Game game) {
-        if(core.getWaitingPopupStage() != null) core.getWaitingPopupStage().close();
+        if(core.getWaitingPopupStage() != null) Platform.runLater(() -> core.getWaitingPopupStage().close());
         core.getGameInterface().createGame(game);
     }
 
