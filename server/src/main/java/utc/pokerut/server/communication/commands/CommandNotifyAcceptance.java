@@ -6,7 +6,6 @@ import utc.pokerut.common.messages.NotifyAcceptance;
 public class CommandNotifyAcceptance extends ServerCommand<NotifyAcceptance> {
     @Override
     public void execute() {
-        System.out.println("PlayerID : " + message.playerID);
         core.getComCallsData().newPlayerJoinedComDataServ(message.gameID, message.playerID);
     }
 }

@@ -132,9 +132,14 @@ public class GameViewController {
         creditGame.setText(Integer.toString(game.getNbPoints()));
         miseMin.setText(Integer.toString(game.getMinimalBet()));
 
-        Image pioche= new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
+        Image pioche = new Image(String.valueOf(MainApplication.class.getResource("img/ihmgame/other/pioche.png")));
 
         for (int i=1 ; i <= nbPlayersInt; i++){
+
+            // Initialisation des pseudos
+            this.playerNames[i] = new Text(this.game.getPlayers().get(i).getPseudo());
+
+            // Initialisation des cartes des joueurs
             for (int j=1 ; j <= 2 ; j++){
                 this.playerCardsImageArray[i][j].setImage(pioche);
             }
@@ -143,7 +148,6 @@ public class GameViewController {
         for (int i=1 ; i < 6 ; i++){
             this.centerCardsImageArray[i].setImage(pioche);
         }
-
 
         // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
         // nbPlayers.toString();
@@ -730,6 +734,22 @@ public class GameViewController {
     public void setPlayer6(Text player6) {
         Player6 = player6;
     }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Text[] getPlayerNames() { return this.playerNames; }
+
+    public void setPlayerNames(Text playername, int x) { playerNames[x] = playername; }
+
+    public ImageView[][] getPlayerCardsImageArray() { return playerCardsImageArray; }
+
+    public void setPlayerCardsImageArray(ImageView imageView, int x, int y) { playerCardsImageArray[x][y] = imageView; }
+
+    public ImageView[] getCenterCardsImageArray() { return centerCardsImageArray; }
+
+    public void setCenterCardsImageArray(ImageView cardImage, int x) { centerCardsImageArray[x] = cardImage; }
 
 
 

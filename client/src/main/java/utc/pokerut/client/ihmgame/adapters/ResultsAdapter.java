@@ -1,5 +1,6 @@
 package utc.pokerut.client.ihmgame.adapters;
 
+import javafx.application.Platform;
 import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.Result;
 
@@ -25,14 +26,23 @@ public class ResultsAdapter {
 
     public void initResults(List<Result> results){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+
+        });
     }
 
     public void addResults(List<Result> results){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+
+        });
     }
 
     public void removeResults(List<Result> results){
         //@TODO: Update game scene in GameViewController
+        Platform.runLater(() ->{
+
+        });
     }
 
 }
