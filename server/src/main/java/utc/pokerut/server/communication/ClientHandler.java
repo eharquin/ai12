@@ -3,17 +3,14 @@ package utc.pokerut.server.communication;
 import utc.pokerut.common.dataclass.ServerProfile;
 import utc.pokerut.common.messages.*;
 import utc.pokerut.server.communication.commands.*;
-import utc.pokerut.server.communication.commands.Command;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
 public class ClientHandler extends MessageHandler<Core> implements Runnable {
-    private ObjectInputStream in;
-    private ObjectOutputStream out;
+
+    private Server server;
 
     private ServerProfile profile;
 
@@ -27,11 +24,11 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
         return this.profile;
     }
 
-    public ClientHandler(Core core, Socket socket) throws IOException {
+    public ClientHandler(Server server, Core core, Socket socket) throws IOException {
         this.core = core;
-
-        out = new ObjectOutputStream(socket.getOutputStream());
-        in = new ObjectInputStream(socket.getInputStream());
+        this.server = server;
+        this.setSocket(socket);
+        this.server.addClient(this);
 
         this.messages = new HashMap<>();
         this.messages.put(Login.class, CommandLogin.class);
@@ -44,16 +41,6 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
         this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
         this.messages.put(NotifyAcceptance.class, CommandNotifyAcceptance.class);
         this.messages.put(SubmitAction.class, CommandSubmitAction.class);
-    }
-
-    @Override
-    public ObjectInputStream getInputStream() {
-        return in;
-    }
-
-    @Override
-    public ObjectOutputStream getOutputStream() {
-        return out;
     }
 
     @Override
@@ -73,7 +60,8 @@ public class ClientHandler extends MessageHandler<Core> implements Runnable {
     }
 
     @Override
-    public Boolean isConnected() {
-        return true;
+    public void disconnect() {
+        super.disconnect();
+        this.server.removeClient(this);
     }
 }

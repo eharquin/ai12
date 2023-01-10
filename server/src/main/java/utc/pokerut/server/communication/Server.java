@@ -1,14 +1,16 @@
 package utc.pokerut.server.communication;
 
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.io.*;
-import java.util.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utc.pokerut.common.dataclass.Player;
 import utc.pokerut.common.messages.Message;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Server implements Runnable
 {
@@ -78,13 +80,20 @@ public class Server implements Runnable
         }
     }
 
+    public void addClient(ClientHandler client) {
+        clients.add(client);
+    }
+
+    public void removeClient(ClientHandler client) {
+        clients.remove(client);
+    }
+
     private void listen() {
         try {
             Socket clientSocket = socket.accept();
             logger.info("Connection accepted from " + clientSocket.getInetAddress());
 
-            ClientHandler client = new ClientHandler(core, clientSocket);
-            clients.add(client);
+            ClientHandler client = new ClientHandler(this, core, clientSocket);
 
             Thread thread = new Thread(client);
             thread.start();
