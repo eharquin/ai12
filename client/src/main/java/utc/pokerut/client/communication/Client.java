@@ -4,32 +4,12 @@ import utc.pokerut.client.communication.commands.*;
 import utc.pokerut.common.messages.*;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
 public class Client extends MessageHandler<Core> implements Runnable {
 
-    private boolean connected;
-
-    private Socket socket;
-    private ObjectInputStream in;
-    private ObjectOutputStream out;
-
     private Core core;
-
-    public Boolean isConnected() {
-        return connected;
-    }
-
-    public ObjectInputStream getInputStream() {
-        return in;
-    }
-
-    public ObjectOutputStream getOutputStream() {
-        return out;
-    }
 
     @Override
     public Core getCore() {
@@ -47,8 +27,6 @@ public class Client extends MessageHandler<Core> implements Runnable {
 
     public Client(Core core) {
         this.core = core;
-
-        connected = false;
         this.messages = new HashMap<>();
         this.messages.put(Login.class, CommandUserLoggedIn.class);
         this.messages.put(Logout.class, CommandUserLoggedOut.class);
@@ -57,7 +35,9 @@ public class Client extends MessageHandler<Core> implements Runnable {
         this.messages.put(GameDeleted.class, CommandGameDeleted.class);
         this.messages.put(JoinGameAsked.class, CommandJoinGameAsked.class);
         this.messages.put(NotifyRejection.class, CommandNotifyRejection.class);
+        this.messages.put(NotifyAcceptance.class, CommandNotifyAcceptance.class);
         this.messages.put(PlayerJoinGame.class, CommandPlayerJoinGame.class);
+        this.messages.put(JoinGameAccepted.class, CommandJoinGameAccepted.class);
 
         this.messages.put(UpdateNewRound.class, CommandUpdateNewRound.class);
         this.messages.put(UpdateRoundEnd.class, CommandUpdateRoundEnd.class);
@@ -70,12 +50,9 @@ public class Client extends MessageHandler<Core> implements Runnable {
             throw new IllegalArgumentException("client already connected");
 
         try {
-            socket = new Socket(host, port);
-            in = new ObjectInputStream(socket.getInputStream());
-            out = new ObjectOutputStream(socket.getOutputStream());
-            connected = true;
+            this.setSocket(new Socket(host, port));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

@@ -85,7 +85,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
-        System.out.println("ASK JOIN TABLES User : "+idUser+" Game : "+idGame);
+        System.out.println("ASK JOIN TABLES Users : "+idUser+" Game : "+idGame);
         if (checkJoiningConditions(idUser, idGame) == true) {
             dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
         }

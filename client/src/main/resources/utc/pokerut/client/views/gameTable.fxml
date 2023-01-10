@@ -29,117 +29,284 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="301.0" prefWidth="97.0" />
             </content>
         </ScrollPane>
-        <ImageView fx:id="avatarPlayer7" fitHeight="36.0" fitWidth="36.0" layoutX="334.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/avatar_h.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="avatarPlayer4" fitHeight="36.0" fitWidth="36.0" layoutX="210.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/avatar_f.png" />
-            </image>
-        </ImageView>
+
         <ImageView fx:id="avatarPlayer1" fitHeight="39.0" fitWidth="36.0" layoutX="201.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/avatar_h.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="avatarPlayer8" fitHeight="36.0" fitWidth="36.0" layoutX="343.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card1Player1" fitHeight="44.0" fitWidth="27.0" layoutX="248.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/ihmgame/other/avatar_f.png" />
+                <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
+        <ImageView fx:id="card2Player1" fitHeight="44.0" fitWidth="27.0" layoutX="266.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/cartes.png" />
+            </image>
+        </ImageView>
+        <Text fx:id="player1" fill="#f8f8f8" layoutX="184.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 1">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="176.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer1" fill="WHITE" layoutX="205.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
         <ImageView fx:id="avatarPlayer2" fitHeight="36.0" fitWidth="36.0" layoutX="473.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <ImageView fx:id="card1Player2" fitHeight="44.0" fitWidth="27.0" layoutX="520.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/cartes.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card2Player2" fitHeight="44.0" fitWidth="27.0" layoutX="538.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/cartes.png" />
+            </image>
+        </ImageView>
+        <Text fx:id="player2" fill="#f8f8f8" layoutX="456.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 2">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="448.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer2" fill="WHITE" layoutX="477.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
         <ImageView fx:id="avatarPlayer3" fitHeight="39.0" fitWidth="36.0" layoutX="473.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player1" fitHeight="44.0" fitWidth="27.0" layoutX="244.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card1Player3" fitHeight="44.0" fitWidth="27.0" layoutX="520.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player1" fitHeight="44.0" fitWidth="27.0" layoutX="262.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player3" fitHeight="44.0" fitWidth="27.0" layoutX="538.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player7" fitHeight="44.0" fitWidth="27.0" layoutX="381.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="player3" fill="#f8f8f8" layoutX="456.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 3">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="448.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer3" fill="WHITE" layoutX="477.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
+        <ImageView fx:id="avatarPlayer4" fitHeight="36.0" fitWidth="36.0" layoutX="201.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/avatar_f.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1Player4" fitHeight="44.0" fitWidth="27.0" layoutX="248.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player7" fitHeight="44.0" fitWidth="27.0" layoutX="399.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player4" fitHeight="44.0" fitWidth="27.0" layoutX="266.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player3" fitHeight="44.0" fitWidth="27.0" layoutX="513.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="player4" fill="#f8f8f8" layoutX="184.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 4">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="176.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer4" fill="WHITE" layoutX="205.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
+
+        <ImageView fx:id="avatarPlayer5" fitHeight="36.0" fitWidth="36.0" layoutX="156.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/avatar_f.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1Player5" fitHeight="44.0" fitWidth="27.0" layoutX="152.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player3" fitHeight="44.0" fitWidth="27.0" layoutX="531.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player5" fitHeight="44.0" fitWidth="27.0" layoutX="170.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player4" fitHeight="44.0" fitWidth="27.0" layoutX="257.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="Player5" fill="#f8f8f8" layoutX="151.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 5">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="142.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer5" fill="WHITE" layoutX="171.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
+        <ImageView fx:id="avatarPlayer6" fitHeight="36.0" fitWidth="36.0" layoutX="544.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/avatar_h.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1Player6" fitHeight="44.0" fitWidth="27.0" layoutX="540.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player4" fitHeight="44.0" fitWidth="27.0" layoutX="275.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player6" fitHeight="44.0" fitWidth="27.0" layoutX="558.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player8" fitHeight="44.0" fitWidth="27.0" layoutX="387.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="player6" fill="#f8f8f8" layoutX="539.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 6">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="530.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer6" fill="WHITE" layoutX="559.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
+        <ImageView fx:id="avatarPlayer7" fitHeight="36.0" fitWidth="36.0" layoutX="334.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/avatar_h.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1Player7" fitHeight="44.0" fitWidth="27.0" layoutX="381.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player8" fitHeight="44.0" fitWidth="27.0" layoutX="404.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player7" fitHeight="44.0" fitWidth="27.0" layoutX="399.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1Player2" fitHeight="44.0" fitWidth="27.0" layoutX="520.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="player7" fill="#f8f8f8" layoutX="317.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 7">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="309.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer7" fill="WHITE" layoutX="338.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+        <ImageView fx:id="avatarPlayer8" fitHeight="36.0" fitWidth="36.0" layoutX="334.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/ihmgame/other/avatar_f.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1Player8" fitHeight="44.0" fitWidth="27.0" layoutX="381.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2Player2" fitHeight="44.0" fitWidth="27.0" layoutX="540.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2Player8" fitHeight="44.0" fitWidth="27.0" layoutX="399.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card4" fitHeight="57.0" fitWidth="58.0" layoutX="398.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="player8" fill="#f8f8f8" layoutX="317.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placement 8 ">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fill="#f8f8f8" layoutX="309.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="creditPlayer8" fill="WHITE" layoutX="338.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+
+
+        <ImageView fx:id="card4" fitHeight="57.0" fitWidth="58.0" layoutX="395.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card5" fitHeight="57.0" fitWidth="58.0" layoutX="447.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card5" fitHeight="57.0" fitWidth="58.0" layoutX="440.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card3" fitHeight="57.0" fitWidth="58.0" layoutX="352.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card3" fitHeight="57.0" fitWidth="58.0" layoutX="350.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card2" fitHeight="57.0" fitWidth="58.0" layoutX="307.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card2" fitHeight="57.0" fitWidth="58.0" layoutX="305.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="card1" fitHeight="57.0" fitWidth="58.0" layoutX="263.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="card1" fitHeight="57.0" fitWidth="58.0" layoutX="260.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
             </image>
@@ -153,66 +320,12 @@
             <font>
                 <Font size="10.0" />
             </font></Button>
-        <Text fx:id="player1" fill="#f8f8f8" layoutX="184.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 1">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="176.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player7" fill="#f8f8f8" layoutX="319.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur 2">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="313.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player3" fill="#f8f8f8" layoutX="462.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="453.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player2" fill="#f8f8f8" layoutX="472.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="470.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player8" fill="#f8f8f8" layoutX="342.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="337.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player4" fill="#f8f8f8" layoutX="208.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fill="#f8f8f8" layoutX="201.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
+
+
+
+
+
+
         <Text fill="#f8f8f8" layoutX="304.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit de la manche:">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="10.0" />
@@ -264,105 +377,19 @@
 
             </children>
         </GridPane>
-        <Text fx:id="creditPlayer1" fill="WHITE" layoutX="205.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer7" fill="WHITE" layoutX="342.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer3" fill="WHITE" layoutX="482.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer2" fill="WHITE" layoutX="499.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
+
+
+
         <Text fx:id="creditTable" fill="WHITE" layoutX="415.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="12.0" />
             </font>
         </Text>
-        <Text fx:id="creditPlayer4" fill="WHITE" layoutX="231.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer8" fill="WHITE" layoutX="366.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <ImageView fx:id="avatarPlayer5" fitHeight="36.0" fitWidth="36.0" layoutX="156.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/avatar_f.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="avatarPlayer6" fitHeight="36.0" fitWidth="36.0" layoutX="540.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/avatar_h.png" />
-            </image>
-        </ImageView>
-        <Text fx:id="Player5" fill="#f8f8f8" layoutX="151.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <ImageView fx:id="card1Player5" fitHeight="44.0" fitWidth="27.0" layoutX="152.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/cartes.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="card2Player5" fitHeight="44.0" fitWidth="27.0" layoutX="171.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/cartes.png" />
-            </image>
-        </ImageView>
-        <Text fill="#f8f8f8" layoutX="142.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer5" fill="WHITE" layoutX="171.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="player6" fill="#f8f8f8" layoutX="540.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur X">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <ImageView fx:id="card1Player6" fitHeight="44.0" fitWidth="27.0" layoutX="540.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/cartes.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="card2Player6" fitHeight="44.0" fitWidth="27.0" layoutX="554.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/ihmgame/other/cartes.png" />
-            </image>
-        </ImageView>
-        <Text fill="#f8f8f8" layoutX="530.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Crédit:">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
-        <Text fx:id="creditPlayer6" fill="WHITE" layoutX="559.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="8.0" />
-            </font>
-        </Text>
+
+        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" />
         <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#Raise" text="Relancer" />
         <Button layoutX="327.0" layoutY="370.0" mnemonicParsing="false" onAction="#Call" text="Suivre" />
-        <Button layoutX="393.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" />
-        <Button layoutX="485.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" />
-        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" />
+        <Button layoutX="397.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" />
+        <Button layoutX="492.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" />
     </children>
 </AnchorPane>

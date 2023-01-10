@@ -30,6 +30,7 @@ public class MainApplication extends Application {
 
         // INSTANCIATION INTERFACES DATA
         dataCore.setiDataCallsIHMMain(mainCore.getDataCallsMainInterface());
+        dataCore.setiDataCallsIHMGame(gameCore.getDataInterface());
         dataCore.setiDataCallsCom(commCore.getDataCallsCom());
 
         // INSTANCIATION INTERFAES COMM
