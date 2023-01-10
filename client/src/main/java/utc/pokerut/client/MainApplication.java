@@ -3,7 +3,6 @@ package utc.pokerut.client;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class MainApplication extends Application {

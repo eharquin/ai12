@@ -1,24 +1,12 @@
 package utc.pokerut.client.ihmmain.controllers;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import utc.pokerut.client.ihmmain.Core;
 import utc.pokerut.client.ihmmain.ViewNames;
-import utc.pokerut.client.ihmmain.listeners.PlayerListListener;
-import utc.pokerut.common.dataclass.ClientProfile;
-import utc.pokerut.common.dataclass.Player;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController extends Controller implements Initializable {
@@ -29,7 +17,9 @@ public class MainController extends Controller implements Initializable {
     private final BooleanProperty gameListView = new SimpleBooleanProperty();
     private final BooleanProperty inGameView = new SimpleBooleanProperty();
     private final BooleanProperty logoutView = new SimpleBooleanProperty();
+    @FXML
     private final BooleanProperty leftPanel = new SimpleBooleanProperty(true);
+    @FXML
     private final BooleanProperty chatPartie = new SimpleBooleanProperty();
 
     public boolean isLoginView() {
