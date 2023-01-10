@@ -31,6 +31,8 @@ public class Game implements Serializable {
         this.nbRounds      = nbRounds;
         this.id            = UUID.randomUUID();
         this.players = new ArrayList<>();
+
+        this.rounds = new ArrayList<Round>();
     }
 
     public void addPropertyChangeListenerPCS(PropertyChangeListener listener) {
@@ -123,7 +125,7 @@ public class Game implements Serializable {
     public void setPlayers(ArrayList<Player> players) {
         ArrayList<Player> oldPlayers = this.players;
         this.players = players;
-        this.pcs.firePropertyChange("init_player", oldPlayers, this.players);
+        this.pcs.firePropertyChange("init_players", oldPlayers, this.players);
     }
 
     public void addPlayer(Player newPlayer) {

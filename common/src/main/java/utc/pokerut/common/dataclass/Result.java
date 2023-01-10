@@ -1,6 +1,8 @@
 package utc.pokerut.common.dataclass;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     private int rank;
     private int nbPoints;
 

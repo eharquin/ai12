@@ -27,6 +27,7 @@ public class CardDeck {
         // les valeurs vont de 2 à 15
         //les symbols st dans list_symbolq
         List<String> list_symbol = new ArrayList<String>(Arrays.asList(spade, heart, clover, diamond));
+        this.cardDeck = new LinkedList<Card>();
 
         for (String symbol: list_symbol) {
             for (int i = 2; i < 15; i++) {

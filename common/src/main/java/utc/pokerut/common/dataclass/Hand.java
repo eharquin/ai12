@@ -1,8 +1,9 @@
 package utc.pokerut.common.dataclass;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hand {
+public class Hand implements Serializable {
     public static final int NB_CARDS_IN_HAND = 2;
     private Player player;
     private Round round;

@@ -1,6 +1,8 @@
 package utc.pokerut.common.dataclass;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card  implements Serializable {
 
     private String symbol;
     private int value;

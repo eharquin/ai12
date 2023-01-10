@@ -49,7 +49,7 @@ public class Core {
     }
 
     public Game getUnfilledWaitingGame(UUID gameId) {
-        System.out.println("getUnfilledWaitingGame");
+        //System.out.println("getUnfilledWaitingGame");
         for(Game game : waitingGames)
         {
             System.out.println(game.getId());

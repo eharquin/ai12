@@ -98,6 +98,10 @@ public class Core {
 
         mainController.setCore(this);
 
+        setGameCallsMainInterface(new IHMGameCallsIHMMainImpl(this));
+        setDataCallsMainInterface(new DataCallsIHMMainImpl(this));
+        setComCallsMainInterface(new ComCallsIHMMainImpl(this));
+
 
         mainController.setLoginView(true);
         this.stage = stage;
@@ -107,10 +111,6 @@ public class Core {
         this.stage.setWidth(screenSize.getWidth()*0.7);
         this.stage.setScene(scene);
         this.stage.show();
-
-        setGameCallsMainInterface(new IHMGameCallsIHMMainImpl(this));
-        setDataCallsMainInterface(new DataCallsIHMMainImpl(this));
-        setComCallsMainInterface(new ComCallsIHMMainImpl(this));
     }
 }
 
