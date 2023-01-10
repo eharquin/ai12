@@ -24,7 +24,9 @@ import utc.pokerut.common.dataclass.ActionTypeEnum;
 import utc.pokerut.common.dataclass.Game;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GameViewController {
     public static utc.pokerut.client.ihmgame.Core getCore() {
@@ -137,16 +139,16 @@ public class GameViewController {
         for (int i=1 ; i <= nbPlayersInt; i++){
 
             // Initialisation des pseudos
-            this.playerNames[i] = new Text(this.game.getPlayers().get(i).getPseudo());
+            this.playerNames[i] = new Text(this.game.getPlayers().get(i - 1).getPseudo());
 
             // Initialisation des cartes des joueurs
             for (int j=1 ; j <= 2 ; j++){
-                this.playerCardsImageArray[i][j].setImage(pioche);
+                this.playerCardsImageArray[i][j] = new ImageView(pioche);
             }
         }
 
         for (int i=1 ; i < 6 ; i++){
-            this.centerCardsImageArray[i].setImage(pioche);
+            this.centerCardsImageArray[i] = new ImageView(pioche);
         }
 
         // this.setNbPlayers(new Text((Integer.toString(game.getNbMaxPlayers()))));
@@ -782,9 +784,9 @@ public class GameViewController {
         action.setPlayer(PlayerListController.getCore().getPlayerConnected());
         action.setType(ActionTypeEnum.RAISE);
         action.setBetting(Integer.parseInt(raising.getText()));
-        // action.setTimestamp(new Timestamp());
+        action.setTimestamp(new Timestamp(new Date().getTime()));
 
-        // sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        core.getGameCallsData().sendAction(core.getGameCallsData().getConnectedPlayer().getId(), core.getGameCallsData().getGame().getId(), action);
     }
     @FXML
     public void Call(javafx.event.ActionEvent event){
@@ -797,10 +799,10 @@ public class GameViewController {
         action.setPlayer(PlayerListController.getCore().getPlayerConnected());
         action.setType(ActionTypeEnum.CALL);
         // Récupérer la mise du round en cours Int mise = ...
-        // action.setBetting(mise);
-        // action.setTimestamp(new Timestamp());
+        action.setBetting(Integer.parseInt(betting.getText()));
+        action.setTimestamp(new Timestamp(new Date().getTime()));
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        core.getGameCallsData().sendAction(core.getGameCallsData().getConnectedPlayer().getId(), core.getGameCallsData().getGame().getId(), action);
 
     }
     @FXML
@@ -812,9 +814,9 @@ public class GameViewController {
         action.setType(ActionTypeEnum.CHECK);
         // Récupérer la mise du round en cours Int mise = ...
         action.setBetting(0);
-        //action.setTimestamp(new Timestamp());
+        action.setTimestamp(new Timestamp(new Date().getTime()));
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        core.getGameCallsData().sendAction(core.getGameCallsData().getConnectedPlayer().getId(), core.getGameCallsData().getGame().getId(), action);
     }
     @FXML
     public void Fold(javafx.event.ActionEvent event){
@@ -825,9 +827,9 @@ public class GameViewController {
         action.setType(ActionTypeEnum.FOLD);
         // Récupérer la mise du round en cours Int mise = ...
         action.setBetting(0);
-        //action.setTimestamp(new Timestamp());
+        action.setTimestamp(new Timestamp(new Date().getTime()));
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
+        core.getGameCallsData().sendAction(core.getGameCallsData().getConnectedPlayer().getId(), core.getGameCallsData().getGame().getId(), action);
     }
 
     @FXML
@@ -846,14 +848,13 @@ public class GameViewController {
         stage.close();
         // Calling Data with the value
         Action action = new Action();
-        // Action.setPlayer(PlayerListController.getCore().getPlayerConnected());
-        // action.setType(ActionTypeEnum.); // Demander implémentation de BET à DATA
+        action.setPlayer(core.getGameCallsData().getConnectedPlayer());
+        action.setType(ActionTypeEnum.BET); // Demander implémentation de BET à DATA
         // Récupérer la mise du round en cours Int mise = ...
-        // action.setBetting(mise);
-        //action.setTimestamp(new Timestamp());
+        action.setBetting(Integer.parseInt(betting.getText()));
+        action.setTimestamp(new Timestamp(new Date().getTime()));
 
-        //sendAction(PlayerListController.getCore().getPlayerConnected().getId(), getCore().getGame().getId(), action);
-
+        core.getGameCallsData().sendAction(core.getGameCallsData().getConnectedPlayer().getId(), core.getGameCallsData().getGame().getId(), action);
     }
 
     public void updatePlayers(Game game){

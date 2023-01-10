@@ -38,6 +38,7 @@ public class MainApplication extends Application {
         commCore.setComCallsData(dataCore.getComCallsData());
 
         // INSTANCIATION INTERFACES GAME
+        gameCore.setGameCallsData(dataCore.getIhmGameCallsData());
 
     }
 

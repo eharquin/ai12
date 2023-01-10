@@ -24,7 +24,7 @@ public class IHMGameCallsDataClientImpl implements IHMGameCallsData {
 
     @Override
     public void sendAction(UUID playerID, UUID gameID, Action action) {
-
+        myDataCore.getiDataCallsCom().sendAction(playerID, gameID, action);
     }
 
     @Override

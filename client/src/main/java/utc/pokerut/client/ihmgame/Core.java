@@ -5,6 +5,7 @@ import utc.pokerut.client.ihmgame.implementations.ComCallsIHMGameImp;
 import utc.pokerut.client.ihmgame.implementations.DataCallsIHMGameImp;
 import utc.pokerut.client.ihmgame.implementations.IHMMainCallsIHMGameImp;
 import utc.pokerut.common.dataclass.Game;
+import utc.pokerut.common.interfaces.client.IHMGameCallsData;
 
 public class Core {
 
@@ -13,6 +14,8 @@ public class Core {
     private DataCallsIHMGameImp dataInterface;
 
     private IHMMainCallsIHMGameImp mainInterface;
+
+    private IHMGameCallsData dataCalls;
 
     private Game game;
 
@@ -38,6 +41,16 @@ public class Core {
 
     public void setMainInterface(IHMMainCallsIHMGameImp mainInterface) {
         this.mainInterface = mainInterface;
+    }
+
+    public void setGameCallsData(IHMGameCallsData dataCalls)
+    {
+        this.dataCalls = dataCalls;
+    }
+
+    public IHMGameCallsData getGameCallsData()
+    {
+        return dataCalls;
     }
 
     public Game getGame() {

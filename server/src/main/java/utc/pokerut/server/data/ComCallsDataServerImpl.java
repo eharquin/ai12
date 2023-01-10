@@ -210,7 +210,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
                     // envoyer la fin du round au joueur ?
 
-                    // this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
+                    //this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
                     // envoyer le nouveau round vérifier si c'est la bonne version
                     initRound(game);
                     this.dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
