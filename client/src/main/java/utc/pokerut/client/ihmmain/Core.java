@@ -88,6 +88,16 @@ public class Core {
 
     private Scene scene;
     private Stage stage;
+    private Stage waitingPopupStage;
+
+    public Stage getWaitingPopupStage() {
+        return waitingPopupStage;
+    }
+
+    public void setWaitingPopupStage(Stage waitingPopupStage) {
+         this.waitingPopupStage = waitingPopupStage;
+    }
+
     private Player playerConnected;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public Core(Stage stage) throws IOException
