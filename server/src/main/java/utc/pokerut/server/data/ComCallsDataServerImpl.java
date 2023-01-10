@@ -87,16 +87,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
     public void askJoinTableComDataServ(UUID idUser, UUID idGame) {
         System.out.println("ASK JOIN TABLES User : "+idUser+" Game : "+idGame);
         if (checkJoiningConditions(idUser, idGame) == true) {
-            ServerProfile player = dataServerCore.getConnectedPlayer(idUser);
-            Game game = dataServerCore.getUnfilledWaitingGame(idGame); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
-            if(game != null) {
-                game.getPlayers().add(player);
-                dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
-                if(game.getNbMaxPlayers() == game.getPlayers().size()) {
-                    dataServerCore.getiDataCallsCom().launchGame(game);
-                    startGame(idGame);
-                }
-            }
+            dataServerCore.getiDataCallsCom().joinTableRequestDataComServ(idUser, idGame);
         }
     }
 
@@ -124,9 +115,17 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
     @Override
     public void newPlayerJoinedComDataServ(UUID idUser, UUID idGame) {
-        Game game = dataServerCore.getWaitingGame(idGame);
         Player player = dataServerCore.getConnectedPlayer(idUser);
-        dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
+        Game game = dataServerCore.getUnfilledWaitingGame(idGame); // si fonctionne pas faire avec dataServerCore.getWaitingGame(idGame);
+        if(game != null) {
+            dataServerCore.getiDataCallsCom().addUserToGameDataComServ(game, player, idUser);
+            // à faire après envoyer à comm parce que doit être fait côté client pour déclencher pcl
+            game.getPlayers().add(player);
+            if(game.getNbMaxPlayers() == game.getPlayers().size()) {
+                dataServerCore.getiDataCallsCom().launchGame(game);
+                startGame(idGame);
+            }
+        }
     }
 
     @Override
