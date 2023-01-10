@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.HashMap;
 
 abstract public class MessageHandler<T> {
@@ -72,7 +73,7 @@ abstract public class MessageHandler<T> {
         Message message = null;
         try {
             message = (Message) this.getInputStream().readObject();
-        } catch (EOFException e) {
+        } catch (EOFException | SocketException e) {
             this.disconnect();
             return null;
         } catch (Exception e) {
