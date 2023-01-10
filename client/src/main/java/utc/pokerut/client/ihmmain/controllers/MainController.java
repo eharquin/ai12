@@ -29,6 +29,8 @@ public class MainController extends Controller implements Initializable {
     private final BooleanProperty gameListView = new SimpleBooleanProperty();
     private final BooleanProperty inGameView = new SimpleBooleanProperty();
     private final BooleanProperty logoutView = new SimpleBooleanProperty();
+    private final BooleanProperty leftPanel = new SimpleBooleanProperty(true);
+    private final BooleanProperty chatPartie = new SimpleBooleanProperty();
 
     public boolean isLoginView() {
         return loginView.get();
@@ -103,6 +105,29 @@ public class MainController extends Controller implements Initializable {
         this.logoutView.set(logoutView);
     }
 
+    public boolean isLeftPanel() {
+        return leftPanel.get();
+    }
+
+    public BooleanProperty leftPanelProperty() {
+        return leftPanel;
+    }
+
+    public void setLeftPanel(boolean leftPanel) {
+        this.leftPanel.set(leftPanel);
+    }
+
+    public boolean isChatPartie() {
+        return chatPartie.get();
+    }
+
+    public BooleanProperty chatPartieProperty() {
+        return chatPartie;
+    }
+
+    public void setChatPartie(boolean chatPartie) {
+        this.chatPartie.set(chatPartie);
+    }
 
     public void closeViews()
     {
@@ -112,6 +137,12 @@ public class MainController extends Controller implements Initializable {
         setCreateGameView(false);
         setIhmGameView(false);
         setLogoutView(false);
+    }
+
+    public void closePanelViews()
+    {
+        setLeftPanel(false);
+        setChatPartie(false);
     }
     public boolean isIhmGameView() {
         return ihmGameView.get();
@@ -162,6 +193,22 @@ public class MainController extends Controller implements Initializable {
 
     }
 
+    public void NavigateLeftPannel(ViewNames view)
+    {
+        closePanelViews();
+        switch(view)
+        {
+            case LEFT_PANEL: {
+                setLeftPanel(true);
+                break;
+            }
+            case CHAT_PARTIE: {
+                setChatPartie(true);
+                break;
+            }
+        }
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
