@@ -2,7 +2,6 @@ package utc.pokerut.client.ihmgame.controllers;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +26,6 @@ import utc.pokerut.common.dataclass.Game;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class GameViewController {
@@ -55,7 +53,7 @@ public class GameViewController {
 
     private ImageView[] playerAvatars;
 
-    private BooleanProperty areActionsAvailable;
+    private BooleanProperty areActionsDisabled;
 
     private CurrentRoundListener currentRoundListener;
     private PlayersListener playersListener;
@@ -70,7 +68,7 @@ public class GameViewController {
         this.currentRoundListener = new CurrentRoundListener(this);
         this.roundListener = new RoundListener(this);
         this.statusListener = new StatusListener(this);
-        this.areActionsAvailable = new SimpleBooleanProperty(false);
+        this.areActionsDisabled = new SimpleBooleanProperty(false);
 
         this.initImageViewPointers();
         this.initGameStatic(game);
@@ -855,16 +853,16 @@ public class GameViewController {
         this.playerAvatars = playerAvatars;
     }
 
-    public boolean isAreActionsAvailable() {
-        return areActionsAvailable.get();
+    public boolean getAreActionsDisabled() {
+        return areActionsDisabled.get();
     }
 
-    public BooleanProperty areActionsAvailableProperty() {
-        return areActionsAvailable;
+    public BooleanProperty areActionsDisabledProperty() {
+        return areActionsDisabled;
     }
 
-    public void setAreActionsAvailable(boolean areActionsAvailable) {
-        this.areActionsAvailable.set(areActionsAvailable);
+    public void setAreActionsDisabled(boolean areActionsDisabled) {
+        this.areActionsDisabled.set(areActionsDisabled);
     }
 
     /*@FXML

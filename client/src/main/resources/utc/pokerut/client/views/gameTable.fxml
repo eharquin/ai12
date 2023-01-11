@@ -466,10 +466,10 @@
             </font>
         </Text>
 
-        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" disable="{$[areButtonsAvailable]}" />
-        <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#Raise" text="Relancer" disable="{$[areButtonsAvailable]}"/>
-        <Button layoutX="327.0" layoutY="370.0" mnemonicParsing="false" onAction="#Call" text="Suivre" disable="{$[areButtonsAvailable]}"/>
-        <Button layoutX="397.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" disable="{$[areButtonsAvailable]}"/>
-        <Button layoutX="492.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" disable="{$[areButtonsAvailable]}"/>
+        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" disable="${controller.areActionsDisabled}" />
+        <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#Raise" text="Relancer" disable="${controller.areActionsDisabled}"/>
+        <Button layoutX="327.0" layoutY="370.0" mnemonicParsing="false" onAction="#Call" text="Suivre" disable="${controller.areActionsDisabled}"/>
+        <Button layoutX="397.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" disable="${controller.areActionsDisabled}"/>
+        <Button layoutX="492.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" disable="${controller.areActionsDisabled}"/>
     </children>
 </AnchorPane>

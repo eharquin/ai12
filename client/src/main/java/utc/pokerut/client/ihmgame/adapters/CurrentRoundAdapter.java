@@ -1,8 +1,6 @@
 package utc.pokerut.client.ihmgame.adapters;
 
 import javafx.application.Platform;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import utc.pokerut.client.ihmgame.MappingImage;
 import utc.pokerut.client.ihmgame.controllers.GameViewController;
 import utc.pokerut.common.dataclass.Round;
@@ -61,13 +59,13 @@ public class CurrentRoundAdapter {
                 for (int j=1 ; j <= 2 ; j++){
                     gameViewController.setPlayerCardsImageArray(mappingImage.mapping( round.getHandCurrentPlayer().getCards().get(i)), i, j);
                 }
-                //Désactiver les boutons du joueur qui vient de jouer
-                gameViewController.setAreActionsAvailable(false);
+                //Désactiver les boutons du joueur qui vient de jouer (disable = true)
+                gameViewController.setAreActionsDisabled(true);
             }
             else{
-                //Si je suis le joueur suivant, réactiver mes boutons
+                //Si je suis le joueur suivant, réactiver mes boutons (disable = false)
                 if (next_uuid == my_uuid){
-                    gameViewController.setAreActionsAvailable(true);
+                    gameViewController.setAreActionsDisabled(false);
 
                 }
             }
