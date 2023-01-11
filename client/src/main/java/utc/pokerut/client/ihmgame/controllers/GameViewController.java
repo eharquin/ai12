@@ -53,7 +53,7 @@ public class GameViewController {
 
     private ImageView[] playerAvatars;
 
-    private BooleanProperty areActionsDisabled;
+    private BooleanProperty areActionsDisabled = new SimpleBooleanProperty(false);
 
     private CurrentRoundListener currentRoundListener;
     private PlayersListener playersListener;
