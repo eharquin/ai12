@@ -35,6 +35,16 @@
                 <Image url="@../img/ihmgame/other/avatar_h.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="188.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer1" fill="WHITE" layoutX="210.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise1">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player1" fitHeight="44.0" fitWidth="27.0" layoutX="248.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -67,6 +77,16 @@
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="465.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer2" fill="WHITE" layoutX="487.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 2">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player2" fitHeight="44.0" fitWidth="27.0" layoutX="520.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -99,6 +119,16 @@
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="465.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer3" fill="WHITE" layoutX="487.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 3">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player3" fitHeight="44.0" fitWidth="27.0" layoutX="520.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -131,6 +161,16 @@
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="195.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer4" fill="WHITE" layoutX="217.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 4">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player4" fitHeight="44.0" fitWidth="27.0" layoutX="248.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -164,6 +204,16 @@
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="143.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer5" fill="WHITE" layoutX="166.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 5">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player5" fitHeight="44.0" fitWidth="27.0" layoutX="152.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -196,6 +246,16 @@
                 <Image url="@../img/ihmgame/other/avatar_h.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="531.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer6" fill="WHITE" layoutX="553.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 6">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player6" fitHeight="44.0" fitWidth="27.0" layoutX="540.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -228,6 +288,16 @@
                 <Image url="@../img/ihmgame/other/avatar_h.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="321.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer7" fill="WHITE" layoutX="343.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 7">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player7" fitHeight="44.0" fitWidth="27.0" layoutX="381.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -259,6 +329,16 @@
                 <Image url="@../img/ihmgame/other/avatar_f.png" />
             </image>
         </ImageView>
+        <Text fill="#f8f8f8" layoutX="321.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise:">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
+        <Text fx:id="bettingPlayer8" fill="WHITE" layoutX="343.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise 8">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="8.0" />
+            </font>
+        </Text>
         <ImageView fx:id="card1Player8" fitHeight="44.0" fitWidth="27.0" layoutX="381.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/ihmgame/other/cartes.png" />
@@ -386,10 +466,10 @@
             </font>
         </Text>
 
-        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" />
-        <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#Raise" text="Relancer" />
-        <Button layoutX="327.0" layoutY="370.0" mnemonicParsing="false" onAction="#Call" text="Suivre" />
-        <Button layoutX="397.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" />
-        <Button layoutX="492.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" />
+        <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" onAction="#Bet" text="Miser" disable="{$[areButtonsAvailable]}" />
+        <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#Raise" text="Relancer" disable="{$[areButtonsAvailable]}"/>
+        <Button layoutX="327.0" layoutY="370.0" mnemonicParsing="false" onAction="#Call" text="Suivre" disable="{$[areButtonsAvailable]}"/>
+        <Button layoutX="397.0" layoutY="370.0" mnemonicParsing="false" onAction="#Fold" text="Se coucher" disable="{$[areButtonsAvailable]}"/>
+        <Button layoutX="492.0" layoutY="370.0" mnemonicParsing="false" onAction="#Check" text="Check" disable="{$[areButtonsAvailable]}"/>
     </children>
 </AnchorPane>
