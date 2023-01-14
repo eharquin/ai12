@@ -35,7 +35,6 @@
         </StackPane>
     </center>
     <left>
-        <fx:include fx:id="leftPanel" source="leftPanel.fxml" visible="${controller.leftPanel}" prefWidth="200"></fx:include>
-        <fx:include fx:id="chatPartie" source="chatPartie.fxml" visible="${controller.chatPartie}" prefWidth="200"></fx:include>
+        <fx:include fx:id="leftPanel" source="leftPanel.fxml" visible="true" prefWidth="200"></fx:include>
     </left>
 </BorderPane>

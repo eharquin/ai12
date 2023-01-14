@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Point3D?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="utc.pokerut.client.ihmgame.ChatPartieController"
-            prefHeight="400.0" prefWidth="600.0">
-    <center>
-        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="utc.pokerut.client.ihmgame.ChatPartieController">
             <children>
-                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="496.0" vbarPolicy="ALWAYS" vmin="1.0" vvalue="1.0" VBox.vgrow="ALWAYS">
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="207.0" prefWidth="412.0" vbarPolicy="ALWAYS" vmin="1.0" vvalue="1.0" VBox.vgrow="ALWAYS">
                     <content>
                         <ListView fx:id="chatPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
                     </content>
@@ -33,12 +23,10 @@
                     </children>
                 </HBox>
             </children>
-        </VBox>
-    </center>
     <top>
         <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #026502;" BorderPane.alignment="CENTER">
             <left>
-                <HBox prefWidth="259.0" BorderPane.alignment="CENTER">
+                <HBox prefWidth="100.0" BorderPane.alignment="CENTER">
                     <children>
                         <VBox>
                             <HBox.margin>
