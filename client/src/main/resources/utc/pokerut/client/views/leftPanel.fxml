@@ -8,5 +8,5 @@
 
 
 <StackPane style="-fx-background-color: #026502;" xmlns:fx="http://javafx.com/fxml/" fx:controller="utc.pokerut.client.ihmmain.controllers.LeftPanelController">
-    <fx:include fx:id="playerList" source="playerList.fxml" visible="true"/>
+    <fx:include fx:id="playerList" source="playerList.fxml" visible="${controller.isPlayerListVisible}"/>
 </StackPane>
