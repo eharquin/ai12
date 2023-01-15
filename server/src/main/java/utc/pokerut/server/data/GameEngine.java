@@ -381,9 +381,7 @@ public class GameEngine {
             else if(h.getValueWinComb()<winValue)
                 break;
         }
-        int gains = 0;
-
-        gains = pot/winners.size();
+        int gains = pot/winners.size();
 
         for (Hand winner: winners) {
             winner.setAvailablePoints(gains);

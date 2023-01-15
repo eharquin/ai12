@@ -153,7 +153,7 @@ public class ComCallsDataServerImpl implements ComCallsData {
         Round round = dataServerCore.getOnGoingGame(idGame).getCurrentRound();
         // update actionList
         round.getActions().add(action);
-        // on récupère la main du joueur
+
         Hand currentPlayerHand = round.getHandByPlayerId(idPlayer);
         // update hand
         if(action.getType().equals(ActionTypeEnum.BET) || action.getType().equals(ActionTypeEnum.RAISE) //
@@ -169,7 +169,6 @@ public class ComCallsDataServerImpl implements ComCallsData {
             currentPlayerHand.setTotalBet(totalBet);
             currentPlayerHand.setAvailablePoints(0);
             currentPlayerHand.setAllIn(true);
-            // créer un pot juste pour la personne qui a allIn ?
             round.setNbActivePlayers(round.getNbActivePlayers()-1);
         } else if (action.getType().equals(ActionTypeEnum.FOLD)){
             currentPlayerHand.setIsFold(true);
@@ -185,61 +184,57 @@ public class ComCallsDataServerImpl implements ComCallsData {
             round.setCurrentBet(action.getBetting());
         }
 
-
         Game game = this.dataServerCore.getOnGoingGame(idGame);
-
-        //check if bettingRound is finished
-        // if true
         updateBettingRound(action, round);
+
+        // check is the curren betting round is over
         if(isBettingRoundFinished(round)){
-            // si le dernier tour de mise est terminé
+            // case when the current betting round is over
             if(round.getCurrentBettingRound() == Round.NB_MAX_BETTING_ROUND) {
-                // si la partie est finie
+                // case when the last betting round is over
+                // calculation of the results at the end of the round
+                ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
+                round.setHands(hands);
                 if(game.getNbRounds() == game.getRounds().size()) {
-                    // calculer les résultats
+                    // case when the game is over
                     game.setStatus(StatusEnum.FINISHED);
-                    ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
-                    round.setHands(hands);
+                    // calculation of the ranking at the end of the game
                     ArrayList<Result> rankings = this.dataServerCore.getGameEngine().getRanking(game);
+                    // send results
                     this.dataServerCore.getiDataCallsCom().sendUpdateRoundAndEndResults(round, game.getPlayers(), rankings);
-                    this.dataServerCore.getOnGoingGames().remove(game); // on enlève la partie de la liste des parties en cours
+                    // remove the game from the list of on going games
+                    this.dataServerCore.getOnGoingGames().remove(game);
                 } else {
-                    // maj la liste des mains avec celles triées par ordre de points
-                    ArrayList<Hand> hands = this.dataServerCore.getGameEngine().getResultsRound(round);
-                    round.setHands(hands);
 
-                    // envoyer la fin du round au joueur ?
-
-                    //this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
-                    // envoyer le nouveau round vérifier si c'est la bonne version
+                    // init new round
                     initRound(game);
                     this.dataServerCore.getiDataCallsCom().sendNewRound(round, game.getPlayers());
                     List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation(round);
                     this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
                 }
-            // cas où on commence un nouveau tour de mise
             } else {
+                // case when a new betting round is started
                 round.setCurrentBettingRound(round.getCurrentBettingRound()+1);
-                // la partie n'est pas finie
+                // the game is not over
 
-                //retournage de cartes
+                // card turning
                 if(round.getCurrentBettingRound() == 2){
-                    // on brûle une carte de la pioche
+                    // burn one card from the deck
                     round.getCards().removeFirst();
-                    // on retourne trois cartes
+                    // three cards are turned over
                     round.getShowedCards().add(round.getCards().removeFirst());
                     round.getShowedCards().add(round.getCards().removeFirst());
                     round.getShowedCards().add(round.getCards().removeFirst());
                 } else if(round.getCurrentBettingRound() == 3){
-                    // on brûle une carte de la pioche
+                    // burn one card from the deck
                     round.getCards().removeFirst();
-                    // on retourne trois cartes
+                    // one card is turned over
                     round.getShowedCards().add(round.getCards().removeFirst());
 
                 } else if(round.getCurrentBettingRound() == 4){
-                    // on brûle une carte de la pioche
+                    // burn one card from the deck
                     round.getCards().removeFirst();
-                    // on retourne trois cartes
+                    // one card is turned over
                     round.getShowedCards().add(round.getCards().removeFirst());
                 }
                 this.setNextPlayerRound(round);
@@ -249,13 +244,12 @@ public class ComCallsDataServerImpl implements ComCallsData {
                 this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
             }
         } else {
-
+            // if the betting round continue
             this.setNextPlayerRound(round);
             this.dataServerCore.getiDataCallsCom().sendUpdateRound(round, game.getPlayers());
 
             List<Action> actions = this.dataServerCore.getGameEngine().actionCalculation(round);
             this.dataServerCore.getiDataCallsCom().sendNextPlayerActions(actions, round.getCurrentPlayer().getId());
-            // envoyer le round
         }
 
     }
@@ -280,8 +274,9 @@ public class ComCallsDataServerImpl implements ComCallsData {
 
 
     public boolean isBettingRoundFinished(Round round) {
-        if (round.getNbCallSuccessivePlayers() == round.getNbActivePlayers() || round.getNbCheckSuccessivePlayers() == round.getNbActivePlayers() //
-        || round.getNbActivePlayers() == 1) {
+        if (round.getNbCallSuccessivePlayers() == round.getNbActivePlayers() //
+                 || round.getNbCheckSuccessivePlayers() == round.getNbActivePlayers() //
+                 || round.getNbActivePlayers() == 1) {
             return true;
         } else {
             return false;
