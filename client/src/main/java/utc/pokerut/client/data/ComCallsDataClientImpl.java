@@ -14,13 +14,12 @@ public class ComCallsDataClientImpl implements ComCallsData {
         this.myDataCore = myDataCore;
     }
     @Override
-    public void addUserAtList(Player player){
+    public void addUserAtList(Player player) {
         myDataCore.addNewPlayer(player);
     }
 
     @Override
-    public void sendLists(List<Player> players, List<Game> games){
-
+    public void sendLists(List<Player> players, List<Game> games) {
         myDataCore.setConnectedPlayers((ArrayList<Player>) players);
         myDataCore.setWaitingGame((ArrayList<Game>) games);
     }
@@ -28,7 +27,7 @@ public class ComCallsDataClientImpl implements ComCallsData {
     @Override
     public void updateGameList(Game game) {
         myDataCore.addWaitingGame(game);
-        if(game.getCreator().getId() == myDataCore.getProfile().getId())
+        if (game.getCreator().getId() == myDataCore.getProfile().getId())
             myDataCore.getiDataCallsIHMMain().displayGame(game);
 
     }

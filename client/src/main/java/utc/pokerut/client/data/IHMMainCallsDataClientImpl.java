@@ -12,46 +12,75 @@ import java.util.Date;
 import java.util.UUID;
 
 public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
+
     private Core myDataCore;
     private final String PROFILE_DIRECTORY_NAME ="profiles";
 
+    /**
+     *
+     * @param myDataCore
+     */
     public IHMMainCallsDataClientImpl(Core myDataCore) {
         this.myDataCore = myDataCore;
     }
 
+    /**
+     *
+     * @param newGame
+     */
     @Override
     public void displayGame(Game newGame) {
 
     }
 
+    /**
+     *
+     * @param gameNewPlayer
+     * @param newPlayer
+     * @param idUser
+     */
     @Override
     public void addUserToGameDataMainClient(Game gameNewPlayer, ServerProfile newPlayer, UUID idUser) {
 
     }
 
+    /**
+     *
+     * @param login
+     * @param password
+     * @param ip
+     * @param port
+     * @throws Exception
+     */
     @Override
     public void login(String login, String password, String ip, int port) throws Exception {
         myDataCore.setProfile(checkAuthentication(login, password));
-
         System.out.println(ip + ":" + port);
-
         ServerProfile myNewUser = new ServerProfile(myDataCore.getProfile());
-        if (myDataCore.getProfile().getIp() != null){
+
+        if (myDataCore.getProfile().getIp() != null) {
             myDataCore.getiDataCallsCom().connectionUser(myNewUser, myDataCore.getProfile().getIp(), myDataCore.getProfile().getPort());
         }
-        else{
+        else {
             myDataCore.getiDataCallsCom().connectionUser(myNewUser, ip, port);
         }
     }
 
+    /**
+     *
+     * @param login
+     * @param password
+     * @return
+     * @throws Exception
+     */
     public ClientProfile checkAuthentication(String login, String password) throws Exception {
         /*  get Profiles directory, it must be created at:
          *  > 'client/src/main/java/utc/pokerut/client/data/profiles'
          */
 
         File directory = new File(PROFILE_DIRECTORY_NAME);
-        // si le répertoire n'existe pas
-        if(!directory.exists() ) {
+        // if the folder doesn't exist
+        if (!directory.exists()) {
             // do something
             directory.mkdir();
         }
@@ -59,45 +88,49 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         ObjectInputStream ois = null;
 
         for (int i = 0; i < listOfFiles.length; i++) {
-            // on verifie que c'est un fichier
+            // verify it is a file
             if (listOfFiles[i].isFile()) {
-                // on fait la lecture se l'objet serializable
+                // read the serializable object
                 try {
-                    // ouverture du fichier
+                    // open the file
                     FileInputStream file = new FileInputStream(listOfFiles[i]);
                     ois = new ObjectInputStream(file);
-                    // lecture de l'objet
+                    // read the object
                     ClientProfile profile = (ClientProfile) ois.readObject();
                     if (profile.getPseudo().equals(login) && profile.getPassword().equals(profile.hashPassword(password))) {
-                        // retour du profil correspondant
+                        // returns the corresponding profile
                         return profile;
                     }
                 } catch (IOException e_read) {
-                    // erreur rencontre pendant l'ouverture et/ou lecture
+                    // error during the file opening or reading
                     // e_read.printStackTrace();
-                    if (i >= listOfFiles.length-1){
+                    if (i >= listOfFiles.length-1) {
                         throw new Exception("Fichier non trouvé");
                     }
                 } catch(ClassNotFoundException e_class) {
-                    // l'objet obtenu ne correspond pas au type de la classe
+                    // the object is not compatible with the class type
                     throw new Exception("Erreur");
                 } finally {
                     try {
-                        // fermeture du pipeline
+                        // close the pipeline
                         if (ois != null) {
                             ois.close();
                         }
                     } catch (IOException e_close) {
-                        // erreur rencontre pendant la fermeture du pipeline
+                        // error during the pipeline closure
                         throw new Exception(e_close);
                     }
                 }
-
             }
         }
         throw new Exception("Aucun profil trouvé");
     }
 
+    /**
+     *
+     * @param profile
+     * @throws Exception
+     */
     public void saveProfile(ClientProfile profile) throws Exception {
 
         String file_path =  PROFILE_DIRECTORY_NAME +"/"+profile.getId().toString() + ".ser";
@@ -105,47 +138,65 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
 
         try {
             File directory = new File(PROFILE_DIRECTORY_NAME);
-            // si le répertoire n'existe pas
-            if(!directory.exists() ) {
+            // if the repertory doesn't exist
+            if(!directory.exists()) {
                 // do something
                 directory.mkdir();
             }
-            // on ouvre le fichier
+            // open the file
             FileOutputStream file = new FileOutputStream(file_path);
-            // on cree une instance d'un ObjectStream en utilisant le fichier ouvert
+            // create an ObjectStream instance with the opened file
             oos = new ObjectOutputStream(file);
-            // on sauvegarde le profile dans le fichier
+            // save the profile in the file
             oos.writeObject(profile);
-            // on push les binaires par le pipeline
+            // push the binaries through the pipeline
             oos.flush();
         } catch (IOException e_write) {
-            // erreur rencontre pendant l'ouverture et/ou sauvegarde
+            // error during the opening or save
             throw new Exception(e_write);
         } finally {
             try {
-                // fermeture du pipeline
+                // close the pipeline
                 if (oos != null) {
                     oos.flush();
                     oos.close();
                 }
             } catch (IOException e_close) {
-                // erreur rencontre pendant la fermeture du pipeline
+                // error during the pipeline closure
                 throw new Exception(e_close);
             }
         }
     }
+
+    /**
+     *
+     * @param pseudo
+     * @param password
+     * @param name
+     * @param surname
+     * @param birthdate
+     * @param avatar
+     * @param ip
+     * @param port
+     * @throws Exception
+     */
     @Override
     public void createUser(String pseudo, String password, String name, String surname, Date birthdate, String avatar, String ip, int port) throws Exception {
         UUID userUUID = UUID.randomUUID();
         ClientProfile myUser = new ClientProfile(userUUID, pseudo, avatar, password, name, surname, birthdate, ip, port);
-        //truc crado qu'on fait pour aller plus vite à enlever pour la V2
         myDataCore.setProfile(myUser);
-
-
-        //appel de la méthode saveProfil
         saveProfile(myUser);
     }
 
+    /**
+     *
+     * @param name
+     * @param minimalBet
+     * @param nbMaxPlayers
+     * @param nbRounds
+     * @param nbPoints
+     * @throws Exception
+     */
     @Override
     public void createGame(String name, int minimalBet, int nbMaxPlayers, int nbRounds, int nbPoints) throws Exception {
         Game game = new Game(name, nbMaxPlayers, nbPoints, minimalBet, nbRounds);
@@ -156,26 +207,45 @@ public class IHMMainCallsDataClientImpl implements IHMMainCallsData {
         myDataCore.getiDataCallsCom().initGameClient(game);
     }
 
+    /**
+     *
+     * @param idGame
+     * @param idUser
+     */
     public void askJoinTableMainComCli(UUID idGame, UUID idUser) {
         myDataCore.getiDataCallsCom().askJoinTableMainComCli(idGame, idUser);
     }
 
+    /**
+     *
+     * @param PCLGame
+     */
     @Override
     public void setPCLGame(PropertyChangeListener PCLGame){
         myDataCore.addPropertyChangeListenerGame(PCLGame);
     }
 
-
+    /**
+     *
+     * @param PCLPlayer
+     */
     @Override
-    public void setPCLPlayer(PropertyChangeListener PCLPlayer){
+    public void setPCLPlayer(PropertyChangeListener PCLPlayer) {
         myDataCore.addPropertyChangeListenerPlayer(PCLPlayer);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public ClientProfile getProfile(){
+    public ClientProfile getProfile() {
         return this.myDataCore.getProfile();
     }
 
+    /**
+     *
+     */
     @Override
     public void logout(){
         myDataCore.getiDataCallsCom().logoutUser(myDataCore.getProfile().getId());
